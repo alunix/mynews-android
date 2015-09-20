@@ -1,0 +1,79 @@
+apply plugin: 'com.android.application'
+apply plugin: 'groovyx.grooid.groovy-android'
+
+repositories {
+	jcenter()
+	maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
+}
+
+android {
+	compileSdkVersion 22
+	buildToolsVersion "23.0.0 rc2"
+	
+	defaultConfig {
+		applicationId "com.qchu.feedarticle"
+		minSdkVersion 15
+		targetSdkVersion 22
+		versionCode 1
+		versionName "1.0"
+
+		// Enabling multidex support.
+		multiDexEnabled true
+		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+	}
+
+	packagingOptions {
+		exclude 'META-INF/services/org.codehaus.groovy.transform.ASTTransformation'
+		exclude 'LICENSE.txt'
+	}
+
+	buildTypes {
+		release {
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+		}
+	}
+
+	// in order to bring memory usage down on CI
+	dexOptions {
+		incremental false
+		preDexLibraries false
+		javaMaxHeapSize "1538M"
+	}
+
+	lintOptions {
+		abortOnError false
+	}
+}
+
+dependencies {
+	compile fileTree(dir: 'libs', include: ['*.jar'])
+	compile 'com.android.support:design:22.2.0'
+
+	compile 'com.squareup.retrofit:retrofit:2.0.0-beta1'
+	compile 'com.squareup.retrofit:converter-gson:2.0.0-beta1'
+	compile 'com.squareup.retrofit:adapter-rxjava:2.0.0-beta1'
+	compile 'com.google.code.gson:gson:2.+'
+	compile ('com.squareup.retrofit:converter-simplexml:2.0.0-beta1') {
+		exclude group: 'xpp3', module: 'xpp3'
+		exclude group: 'stax', module: 'stax-api'
+		exclude group: 'stax', module: 'stax'
+	}
+	compile 'org.jsoup:jsoup:1.8.3'
+	compile 'io.reactivex:rxjava:1.0.10'
+	compile 'org.projectlombok:lombok:1.16.+'
+
+
+	//test
+	compile 'org.codehaus.groovy:groovy:2.4.1:grooid'
+
+	androidTestCompile "com.andrewreitz:spock-android:1.1.0"
+	androidTestCompile('org.spockframework:spock-core:1.0-groovy-2.4') {
+		exclude group: 'org.codehaus.groovy'
+		exclude group: 'junit'
+	}
+	androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
+	androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
+
+}
