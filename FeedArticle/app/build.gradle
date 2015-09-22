@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.android.databinding'
 apply plugin: 'groovyx.grooid.groovy-android'
 
 repositories {
@@ -66,7 +67,7 @@ dependencies {
 
 
 	//test
-	compile 'org.codehaus.groovy:groovy:2.4.1:grooid'
+	androidTestCompile 'org.codehaus.groovy:groovy:2.4.1:grooid'
 
 	androidTestCompile "com.andrewreitz:spock-android:1.1.0"
 	androidTestCompile('org.spockframework:spock-core:1.0-groovy-2.4') {

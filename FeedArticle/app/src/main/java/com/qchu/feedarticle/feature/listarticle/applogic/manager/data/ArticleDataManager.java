@@ -18,9 +18,9 @@ import rx.functions.Func1;
 public class ArticleDataManager implements ArticleInteractor.DataAdapter{
 
 	public void getArticles(List<SiteConfig> siteConfigList,
-	                        final ArticleInteractor.GetArticleListCallback getArticleListCallback){
+	                        final ArticleInteractor.GetArticleListListener getArticleListListener){
 
-		getArticleListCallback.onBegin();
+		getArticleListListener.onBegin();
 		Observable.from(siteConfigList)
 			.flatMap(new Func1<SiteConfig, Observable<Site>>() {
 				@Override
@@ -37,7 +37,7 @@ public class ArticleDataManager implements ArticleInteractor.DataAdapter{
 			.subscribe(new Subscriber<Site>() {
 				@Override
 				public void onCompleted() {
-					getArticleListCallback.onFinish();
+					getArticleListListener.onFinish();
 				}
 
 				@Override
@@ -47,7 +47,7 @@ public class ArticleDataManager implements ArticleInteractor.DataAdapter{
 
 				@Override
 				public void onNext(Site site) {
-					getArticleListCallback.onNext(site.getSiteConfig(), site.getArticleList(), site);
+					getArticleListListener.onNext(site.getSiteConfig(), site.getArticleList(), site);
 				}
 			});
 	}

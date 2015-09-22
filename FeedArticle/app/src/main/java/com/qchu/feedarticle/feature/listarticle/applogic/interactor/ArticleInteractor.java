@@ -5,6 +5,7 @@ import com.qchu.feedarticle.feature.listarticle.applogic.entity.Site;
 import com.qchu.feedarticle.feature.listarticle.applogic.entity.SiteConfig;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by quocdungchu on 07/09/15.
@@ -17,18 +18,23 @@ public class ArticleInteractor {
 		mDataAdapter = dataAdapter;
 	}
 
-	public void getArticle(List<SiteConfig> siteConfigList, GetArticleListCallback getArticleListCallback){
-		mDataAdapter.getArticles(siteConfigList, getArticleListCallback);
+	public void getArticle(List<SiteConfig> siteConfigList,
+	                       GetArticleListListener getArticleListListener){
+		mDataAdapter.getArticles(siteConfigList, getArticleListListener);
 	}
 
 	public interface DataAdapter {
-		void getArticles(List<SiteConfig> siteConfigList, GetArticleListCallback getArticleListCallback);
+		void getArticles(List<SiteConfig> siteConfigList, GetArticleListListener getArticleListListener);
 	}
 
-	public interface GetArticleListCallback {
+	public interface GetArticleListListener {
 		void onBegin();
 		void onNext(SiteConfig siteConfig, List<Article> articles, Site site);
 		void onFinish();
+	}
+
+	public interface BroadcastAdapter {
+		void sendBroadcast(String name, Map<String, Object> userInfo);
 	}
 
 }
