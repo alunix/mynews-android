@@ -1,6 +1,7 @@
 package com.qchu.feedarticle.feature.listarticle.ui.wireframe;
 
 import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 
 import com.qchu.feedarticle.common.Wireframe;
 
@@ -9,7 +10,7 @@ import com.qchu.feedarticle.common.Wireframe;
  */
 public class ListArticleWireframe extends Wireframe {
 
-	public ListArticleWireframe(Activity fromActivity) {
+	public ListArticleWireframe(AppCompatActivity fromActivity) {
 		super(fromActivity);
 	}
 }
