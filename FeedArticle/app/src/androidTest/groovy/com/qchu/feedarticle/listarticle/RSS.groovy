@@ -1,4 +1,4 @@
-package com.qchu.feedarticle
+package com.qchu.feedarticle.listarticle
 
 import android.widget.Button
 import com.andrewreitz.spock.android.AndroidSpecification

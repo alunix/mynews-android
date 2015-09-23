@@ -69,7 +69,7 @@ dependencies {
 	//test
 	androidTestCompile 'org.codehaus.groovy:groovy:2.4.1:grooid'
 
-	androidTestCompile "com.andrewreitz:spock-android:1.1.0"
+	androidTestCompile "com.andrewreitz:spock-android:1.2.1"
 	androidTestCompile('org.spockframework:spock-core:1.0-groovy-2.4') {
 		exclude group: 'org.codehaus.groovy'
 		exclude group: 'junit'

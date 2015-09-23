@@ -1,4 +1,4 @@
-package com.qchu.feedarticle.mock
+package com.qchu.feedarticle.listarticle.mock
 
 import com.qchu.feedarticle.feature.listarticle.applogic.entity.SiteConfig
 
