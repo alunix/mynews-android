@@ -29,23 +29,20 @@ http://feeds.feedburner.com/RayWenderlich
 
 def aSiteConfigs =
 	[
-		/*
 		SiteConfig.builder()
-		  .host("http://feeds.feedburner.com")
-		  .path("CocoaDevBlog")
+		  .url("http://feeds.feedburner.com/CocoaDevBlog")
 		  .build(),
 	  SiteConfig.builder()
-		  .host("http://feeds.feedburner.com")
-		  .path("RayWenderlich")
+		  .url("http://feeds.feedburner.com/RayWenderlich")
 		  .build(),
-		  */
-
 	  SiteConfig.builder()
 		  .url("http://feeds.feedburner.com/vmwstudios")
 		  .build(),
+		/*
 	  SiteConfig.builder()
 		  .url("https://developer.apple.com/swift/blog/news.rss")
 		  .build(),
+		  */
 	];
 
 

@@ -12,8 +12,7 @@ import rx.Subscriber;
 
 
 SiteConfig siteConfig = SiteConfig.builder()
-.host("http://feeds.feedburner.com/")
-.path("CocoaDevBlog")
+.url("http://feeds.feedburner.com/CocoaDevBlog")
 .build();
 
 
