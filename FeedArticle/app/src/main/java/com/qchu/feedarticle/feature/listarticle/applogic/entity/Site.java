@@ -1,5 +1,6 @@
 package com.qchu.feedarticle.feature.listarticle.applogic.entity;
 
+import java.util.Date;
 import java.util.List;
 
 import lombok.Builder;
@@ -16,6 +17,7 @@ public class Site {
 	String id;
 	String title;
 	String url;
+	Date updateDate;
 
 	List<Article> articleList;
 	SiteConfig siteConfig;

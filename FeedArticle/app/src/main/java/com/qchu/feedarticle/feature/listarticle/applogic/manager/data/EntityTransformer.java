@@ -1,5 +1,6 @@
 package com.qchu.feedarticle.feature.listarticle.applogic.manager.data;
 
+import com.qchu.feedarticle.common.DateDeserializer;
 import com.qchu.feedarticle.feature.listarticle.applogic.entity.Article;
 import com.qchu.feedarticle.feature.listarticle.applogic.entity.Image;
 import com.qchu.feedarticle.feature.listarticle.applogic.entity.Site;
@@ -57,6 +58,7 @@ public class EntityTransformer {
 				.description(parsedItem.getDescription())
 				.content(parsedItem.getContent())
 				.webUrl(parsedItem.getLink())
+				.publicationDate(DateDeserializer.get().deserialize(parsedItem.getPubDate()))
 				.mainImage(images.isEmpty() ? null : images.get(0))
 				.imageList(images)
 				.build());

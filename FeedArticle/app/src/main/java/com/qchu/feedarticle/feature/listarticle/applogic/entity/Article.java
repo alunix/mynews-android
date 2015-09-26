@@ -2,6 +2,7 @@ package com.qchu.feedarticle.feature.listarticle.applogic.entity;
 
 import org.simpleframework.xml.Root;
 
+import java.util.Date;
 import java.util.List;
 
 import lombok.Builder;
@@ -20,6 +21,7 @@ public class Article {
 	String description;
 	String content;
 	String webUrl;
+	Date publicationDate;
 	Image mainImage;
 	List<Image> imageList;
 }

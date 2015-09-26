@@ -33,6 +33,6 @@ public class ParsedChannel {
 	@Element(name = "ttl", required = false)
 	int ttl;
 
-	@Element(name = "pubDate", required = false)
-	String pubDate;
+	@Element(name = "lastBuildDate", required = false)
+	String lastBuildDate;
 }

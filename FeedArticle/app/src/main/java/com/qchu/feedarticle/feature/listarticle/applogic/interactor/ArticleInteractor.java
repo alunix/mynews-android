@@ -8,19 +8,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by quocdungchu on 07/09/15.
  */
 public class ArticleInteractor {
-
-	Comparator<Article> mSortArticleComparator = new Comparator<Article>() {
-		@Override
-		public int compare(Article lhs, Article rhs) {
-			return 0;
-		}
-	};
 
 	DataAdapter mDataAdapter;
 
@@ -45,7 +37,7 @@ public class ArticleInteractor {
 
 			@Override
 			public void onFinish() {
-				Collections.sort(allArticleList, mSortArticleComparator);
+				Collections.sort(allArticleList, new DescentDateSortArticleComparator());
 				getArticleListListener.onFinish(ArticleInteractor.this, allArticleList);
 			}
 		});

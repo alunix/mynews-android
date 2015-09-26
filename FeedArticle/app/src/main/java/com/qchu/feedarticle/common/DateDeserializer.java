@@ -41,7 +41,7 @@ public class DateDeserializer {
 
 	DateDeserializer(){}
 
-	public Date deserialize(String dateString) throws Exception {
+	public Date deserialize(String dateString) {
 
 		for(SimpleDateFormat simpleDateFormat: mReusedDateFormat) {
 			try {
@@ -62,9 +62,15 @@ public class DateDeserializer {
 				return date;
 			} catch (Exception e) {
 				e.printStackTrace();
+				Exception parseException = new Exception("Unparseable date: \"" + dateString
+					+ "\". Supported formats: \n" + Arrays.toString(DATE_FORMATS));
+				parseException.printStackTrace();
 			}
 		}
+		return null;
+		/*
 		throw new Exception("Unparseable date: \"" + dateString
 			+ "\". Supported formats: \n" + Arrays.toString(DATE_FORMATS));
+			*/
 	}
 }
