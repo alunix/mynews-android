@@ -18,7 +18,8 @@ import rx.functions.Func1;
 public class ArticleDataManager implements ArticleInteractor.DataAdapter{
 
 	public void getArticles(List<SiteConfig> siteConfigList,
-	                        final ArticleInteractor.GetArticleListListener getArticleListListener){
+	                        final ArticleInteractor.DataAdapter.GetArticleListListener
+		                        getArticleListListener){
 
 		getArticleListListener.onBegin();
 		Observable.from(siteConfigList)

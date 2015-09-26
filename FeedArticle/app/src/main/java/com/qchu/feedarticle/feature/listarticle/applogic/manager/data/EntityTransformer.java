@@ -52,9 +52,11 @@ public class EntityTransformer {
 			}
 
 			articles.add(Article.builder()
+				.id(parsedItem.getLink())
 				.title(parsedItem.getTitle())
 				.description(parsedItem.getDescription())
 				.content(parsedItem.getContent())
+				.webUrl(parsedItem.getLink())
 				.mainImage(images.isEmpty() ? null : images.get(0))
 				.imageList(images)
 				.build());

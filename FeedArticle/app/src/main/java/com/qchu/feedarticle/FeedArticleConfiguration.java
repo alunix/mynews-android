@@ -12,9 +12,9 @@ public class FeedArticleConfiguration {
 
 	static FeedArticleConfiguration sFeedArticleConfiguration;
 
-	@Getter ArticleInteractor mArticleInteractor;
+	@Getter ArticleInteractor articleInteractor;
 
-	public FeedArticleConfiguration get() {
+	public static FeedArticleConfiguration get() {
 		if(sFeedArticleConfiguration == null) {
 			sFeedArticleConfiguration = new FeedArticleConfiguration();
 		}
@@ -22,6 +22,6 @@ public class FeedArticleConfiguration {
 	}
 
 	FeedArticleConfiguration(){
-		mArticleInteractor = new ArticleInteractor(new ArticleDataManager());
+		articleInteractor = new ArticleInteractor(new ArticleDataManager());
 	}
 }

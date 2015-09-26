@@ -32,7 +32,6 @@ public class MenuPresenter extends Presenter implements MenuUserInterfaceEventHa
 
 	}
 
-
 	@Override
 	public void onClickMenuItem(MenuWireframeInterface.MenuItem menuItem) {
 		mMenuWireframeInterface.presentUserInterfaceForMenuItem(menuItem);

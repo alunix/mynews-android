@@ -15,9 +15,11 @@ import lombok.ToString;
 @Getter
 @ToString(includeFieldNames=true)
 public class Article {
+	String id;
 	String title;
 	String description;
 	String content;
+	String webUrl;
 	Image mainImage;
 	List<Image> imageList;
 }
