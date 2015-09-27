@@ -75,7 +75,7 @@ Observable.from(aSiteConfigs)
 
 	@Override
 	void onNext(Site site) {
-		println("onNext " + Thread.currentThread())
+		println("onNextSite " + Thread.currentThread())
 		println("rss " + site)
 	}
 })

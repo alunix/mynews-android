@@ -35,7 +35,7 @@ parsedRSSObservable.subscribe(new Subscriber<ParsedRSS>() {
 
 	@Override
 	void onNext(ParsedRSS parsedRSS) {
-		println("onNext " + Thread.currentThread())
+		println("onNextSite " + Thread.currentThread())
 
 		println("rss " + parsedRSS)
 

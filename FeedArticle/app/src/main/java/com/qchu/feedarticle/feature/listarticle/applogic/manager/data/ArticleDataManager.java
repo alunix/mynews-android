@@ -7,13 +7,10 @@ import com.qchu.feedarticle.feature.listarticle.applogic.manager.data.rss.RSSFee
 import com.qchu.feedarticle.feature.listarticle.applogic.manager.data.rss.parser.xml.ParsedRSS;
 
 import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 
 import rx.Observable;
 import rx.Scheduler;
 import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 
 /**
@@ -25,7 +22,7 @@ public abstract class ArticleDataManager implements ArticleInteractor.DataAdapte
 	                        final ArticleInteractor.DataAdapter.GetArticleListListener
 		                        getArticleListListener){
 
-		getArticleListListener.onBegin();
+		getArticleListListener.onBegin(this);
 		Observable.from(siteConfigList)
 			.flatMap(new Func1<SiteConfig, Observable<Site>>() {
 				@Override
@@ -41,19 +38,19 @@ public abstract class ArticleDataManager implements ArticleInteractor.DataAdapte
 			})
 			.observeOn(observingScheduler())
 			.subscribe(new Subscriber<Site>() {
-				@Override
-				public void onCompleted() {
-					getArticleListListener.onFinish();
-				}
 
 				@Override
 				public void onError(Throwable e) {
-
 				}
 
 				@Override
 				public void onNext(Site site) {
-					getArticleListListener.onNext(site.getSiteConfig(), site.getArticleList(), site);
+					getArticleListListener.onNext(ArticleDataManager.this, site.getSiteConfig(), site);
+				}
+
+				@Override
+				public void onCompleted() {
+					getArticleListListener.onComplete(ArticleDataManager.this);
 				}
 			});
 	}

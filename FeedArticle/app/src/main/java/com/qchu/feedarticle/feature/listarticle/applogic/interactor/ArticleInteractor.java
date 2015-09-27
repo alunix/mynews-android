@@ -6,7 +6,6 @@ import com.qchu.feedarticle.feature.listarticle.applogic.entity.SiteConfig;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -23,22 +22,24 @@ public class ArticleInteractor {
 	public void getArticle(List<SiteConfig> siteConfigList,
 	                       final GetArticleListListener getArticleListListener){
 
-		final List<Article> allArticleList = new ArrayList<>();
+		final List<Article> allArticleSortedList = new ArrayList<>();
 		mDataAdapter.getArticles(siteConfigList, new DataAdapter.GetArticleListListener() {
 			@Override
-			public void onBegin() {
+			public void onBegin(DataAdapter dataAdapter) {
 				getArticleListListener.onBegin(ArticleInteractor.this);
 			}
 
 			@Override
-			public void onNext(SiteConfig siteConfig, List<Article> siteArticles, Site site) {
-				allArticleList.addAll(siteArticles);
+			public void onNext(DataAdapter dataAdapter,SiteConfig siteConfig, Site site) {
+				allArticleSortedList.addAll(site.getArticleList());
+				Collections.sort(allArticleSortedList, new DescentDateSortArticleComparator());
+				getArticleListListener.onNextSite(ArticleInteractor.this, site, allArticleSortedList);
 			}
 
 			@Override
-			public void onFinish() {
-				Collections.sort(allArticleList, new DescentDateSortArticleComparator());
-				getArticleListListener.onFinish(ArticleInteractor.this, allArticleList);
+			public void onComplete(DataAdapter dataAdapter) {
+				Collections.sort(allArticleSortedList, new DescentDateSortArticleComparator());
+				getArticleListListener.onComplete(ArticleInteractor.this, allArticleSortedList);
 			}
 		});
 	}
@@ -47,15 +48,17 @@ public class ArticleInteractor {
 		void getArticles(List<SiteConfig> siteConfigList,
 		                 GetArticleListListener getArticleListListener);
 		interface GetArticleListListener {
-			void onBegin();
-			void onNext(SiteConfig siteConfig, List<Article> articles, Site site);
-			void onFinish();
+			void onBegin(DataAdapter dataAdapter);
+			void onNext(DataAdapter dataAdapter, SiteConfig siteConfig, Site site);
+			void onComplete(DataAdapter dataAdapter);
 		}
 	}
 
 	public interface GetArticleListListener {
 		void onBegin(ArticleInteractor articleInteractor);
-		void onFinish(ArticleInteractor articleInteractor, List<Article> articleList);
+		void onNextSite(ArticleInteractor articleInteractor, Site site,
+		                List<Article> allArticleSortedList);
+		void onComplete(ArticleInteractor articleInteractor, List<Article> articleList);
 	}
 
 }

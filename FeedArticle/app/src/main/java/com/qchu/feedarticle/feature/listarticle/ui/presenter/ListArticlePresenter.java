@@ -2,6 +2,7 @@ package com.qchu.feedarticle.feature.listarticle.ui.presenter;
 
 import com.qchu.feedarticle.common.Presenter;
 import com.qchu.feedarticle.feature.listarticle.applogic.entity.Article;
+import com.qchu.feedarticle.feature.listarticle.applogic.entity.Site;
 import com.qchu.feedarticle.feature.listarticle.applogic.entity.SiteConfig;
 import com.qchu.feedarticle.feature.listarticle.applogic.interactor.ArticleInteractor;
 
@@ -55,6 +56,11 @@ public class ListArticlePresenter extends Presenter
 		siteConfigList.add(SiteConfig.builder()
 			.url("http://feeds.feedburner.com/RayWenderlich")
 			.build());
+
+		siteConfigList.add(SiteConfig.builder()
+			.url("http://feeds.feedburner.com/CocoaDevBlog")
+			.build());
+
 		mArticleInteractor.getArticle(siteConfigList, new ArticleInteractor.GetArticleListListener() {
 			@Override
 			public void onBegin(ArticleInteractor articleInteractor) {
@@ -62,8 +68,14 @@ public class ListArticlePresenter extends Presenter
 			}
 
 			@Override
-			public void onFinish(ArticleInteractor articleInteractor, List<Article> articleList) {
-				mListArticleUserInterface.bindArticles(articleList);
+			public void onNextSite(ArticleInteractor articleInteractor,
+			                       Site site, List<Article> allArticleSortedList) {
+				mListArticleUserInterface.bindArticles(allArticleSortedList);
+			}
+
+			@Override
+			public void onComplete(ArticleInteractor articleInteractor,
+			                       List<Article> allArticleSortedList) {
 				mListArticleUserInterface.endSwipeRefreshingLayout(ListArticlePresenter.this);
 			}
 		});

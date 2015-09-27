@@ -14,10 +14,10 @@ public class RSS extends AndroidSpecification{
 		def subcriber = Mock(Subscriber)
 		when:
 		parsedRSSObservable.subscribe(subcriber)
-		////subcriber.onNext(null)
-		//callback.onNext(null)
+		////subcriber.onNextSite(null)
+		//callback.onNextSite(null)
 		then:
-		1 * subcriber.onNext(_)
+		1 * subcriber.onNextSite(_)
 	}
 	*/
 	def "I'm mocking on Android!"() {
