@@ -39,4 +39,14 @@ public class ListArticleActivity extends AppCompatActivity implements ListArticl
 	public void bindArticles(List<Article> articleList) {
 
 	}
+
+	@Override
+	public void beginSwipeRefreshingLayout(ListArticlePresenter listArticlePresenter) {
+
+	}
+
+	@Override
+	public void endSwipeRefreshingLayout(ListArticlePresenter listArticlePresenter) {
+
+	}
 }

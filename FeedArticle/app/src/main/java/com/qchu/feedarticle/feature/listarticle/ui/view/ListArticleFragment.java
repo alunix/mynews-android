@@ -4,8 +4,10 @@ import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -56,6 +58,14 @@ public class ListArticleFragment extends Fragment implements ListArticleUserInte
 			FeedArticleConfiguration.get().getArticleInteractor(),
 			this,
 			new ListArticleWireframe(getActivity()));
+
+		mListArticleFragmentDataBinding.swipeRefreshLayout.setOnRefreshListener(
+			new SwipeRefreshLayout.OnRefreshListener() {
+				@Override
+				public void onRefresh() {
+					mListArticlePresenter.onSwipeRefreshEvent(ListArticleFragment.this);
+				}
+			});
 	}
 
 	@Override
@@ -79,5 +89,20 @@ public class ListArticleFragment extends Fragment implements ListArticleUserInte
 		}
 	}
 
+	@Override
+	public void beginSwipeRefreshingLayout(ListArticlePresenter listArticlePresenter) {
+		if(!mListArticleFragmentDataBinding.swipeRefreshLayout.isRefreshing()) {
+			new Handler().post(new Runnable() {
+				@Override
+				public void run() {
+					mListArticleFragmentDataBinding.swipeRefreshLayout.setRefreshing(true);
+				}
+			});
+		}
+	}
 
+	@Override
+	public void endSwipeRefreshingLayout(ListArticlePresenter listArticlePresenter) {
+		mListArticleFragmentDataBinding.swipeRefreshLayout.setRefreshing(false);
+	}
 }

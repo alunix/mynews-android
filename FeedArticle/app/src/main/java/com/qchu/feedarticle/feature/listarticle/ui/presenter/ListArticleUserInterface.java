@@ -18,4 +18,6 @@ public interface ListArticleUserInterface {
 	                              */
 
 	void bindArticles(List<Article> articleList);
+	void beginSwipeRefreshingLayout(ListArticlePresenter listArticlePresenter);
+	void endSwipeRefreshingLayout(ListArticlePresenter listArticlePresenter);
 }
