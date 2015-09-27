@@ -1,8 +1,8 @@
-package com.qchu.feedarticle.feature.listarticle.applogic.manager.data.rss;
+package com.qchu.feedarticle.feature.article.applogic.manager.data.rss;
 
 
-import com.qchu.feedarticle.feature.listarticle.applogic.entity.SiteConfig;
-import com.qchu.feedarticle.feature.listarticle.applogic.manager.data.rss.parser.xml.ParsedRSS;
+import com.qchu.feedarticle.feature.article.applogic.entity.SiteConfig;
+import com.qchu.feedarticle.feature.article.applogic.manager.data.rss.parser.xml.ParsedRSS;
 
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;

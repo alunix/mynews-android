@@ -1,8 +1,8 @@
-package com.qchu.feedarticle.feature.listarticle.applogic.interactor;
+package com.qchu.feedarticle.feature.article.applogic.interactor;
 
-import com.qchu.feedarticle.feature.listarticle.applogic.entity.Article;
-import com.qchu.feedarticle.feature.listarticle.applogic.entity.Site;
-import com.qchu.feedarticle.feature.listarticle.applogic.entity.SiteConfig;
+import com.qchu.feedarticle.feature.article.applogic.entity.Article;
+import com.qchu.feedarticle.feature.article.applogic.entity.Site;
+import com.qchu.feedarticle.feature.article.applogic.entity.SiteConfig;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,10 +1,10 @@
 package com.qchu.feedarticle.feature.listarticle.ui.presenter;
 
 import com.qchu.feedarticle.common.Presenter;
-import com.qchu.feedarticle.feature.listarticle.applogic.entity.Article;
-import com.qchu.feedarticle.feature.listarticle.applogic.entity.Site;
-import com.qchu.feedarticle.feature.listarticle.applogic.entity.SiteConfig;
-import com.qchu.feedarticle.feature.listarticle.applogic.interactor.ArticleInteractor;
+import com.qchu.feedarticle.feature.article.applogic.entity.Article;
+import com.qchu.feedarticle.feature.article.applogic.entity.Site;
+import com.qchu.feedarticle.feature.article.applogic.entity.SiteConfig;
+import com.qchu.feedarticle.feature.article.applogic.interactor.ArticleInteractor;
 
 import java.util.ArrayList;
 import java.util.List;

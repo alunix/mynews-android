@@ -1,10 +1,10 @@
-package com.qchu.feedarticle.feature.listarticle.applogic.manager.data;
+package com.qchu.feedarticle.feature.article.applogic.manager.data;
 
-import com.qchu.feedarticle.feature.listarticle.applogic.entity.Site;
-import com.qchu.feedarticle.feature.listarticle.applogic.entity.SiteConfig;
-import com.qchu.feedarticle.feature.listarticle.applogic.interactor.ArticleInteractor;
-import com.qchu.feedarticle.feature.listarticle.applogic.manager.data.rss.RSSFeed;
-import com.qchu.feedarticle.feature.listarticle.applogic.manager.data.rss.parser.xml.ParsedRSS;
+import com.qchu.feedarticle.feature.article.applogic.entity.Site;
+import com.qchu.feedarticle.feature.article.applogic.entity.SiteConfig;
+import com.qchu.feedarticle.feature.article.applogic.interactor.ArticleInteractor;
+import com.qchu.feedarticle.feature.article.applogic.manager.data.rss.RSSFeed;
+import com.qchu.feedarticle.feature.article.applogic.manager.data.rss.parser.xml.ParsedRSS;
 
 import java.util.List;
 

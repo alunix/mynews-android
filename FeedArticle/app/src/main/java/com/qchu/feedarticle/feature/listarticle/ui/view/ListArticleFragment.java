@@ -1,24 +1,18 @@
 package com.qchu.feedarticle.feature.listarticle.ui.view;
 
-import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.qchu.feedarticle.FeedArticleConfiguration;
 import com.qchu.feedarticle.R;
-import com.qchu.feedarticle.feature.listarticle.applogic.entity.Article;
+import com.qchu.feedarticle.feature.article.applogic.entity.Article;
 import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticlePresenter;
 import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticleUserInterface;
 import com.qchu.feedarticle.feature.listarticle.ui.view.databinding.BoundArticle;
@@ -26,7 +20,6 @@ import com.qchu.feedarticle.feature.listarticle.ui.view.databinding.EntityTransf
 import com.qchu.feedarticle.feature.listarticle.ui.view.databinding.ListArticleFragmentDataBinding;
 import com.qchu.feedarticle.feature.listarticle.ui.wireframe.ListArticleWireframe;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

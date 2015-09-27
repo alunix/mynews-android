@@ -1,12 +1,12 @@
 package com.qchu.feedarticle.listarticle.mock
 
-import com.qchu.feedarticle.feature.listarticle.applogic.entity.SiteConfig
+import com.qchu.feedarticle.feature.article.applogic.entity.SiteConfig
 
-import com.qchu.feedarticle.feature.listarticle.applogic.manager.data.rss.RSSFeed
-import com.qchu.feedarticle.feature.listarticle.applogic.manager.data.rss.parser.html.HtmlParser
-import com.qchu.feedarticle.feature.listarticle.applogic.manager.data.rss.parser.html.ParsedImage
-import com.qchu.feedarticle.feature.listarticle.applogic.manager.data.rss.parser.xml.ParsedItem
-import com.qchu.feedarticle.feature.listarticle.applogic.manager.data.rss.parser.xml.ParsedRSS
+import com.qchu.feedarticle.feature.article.applogic.manager.data.rss.RSSFeed
+import com.qchu.feedarticle.feature.article.applogic.manager.data.rss.parser.html.HtmlParser
+import com.qchu.feedarticle.feature.article.applogic.manager.data.rss.parser.html.ParsedImage
+import com.qchu.feedarticle.feature.article.applogic.manager.data.rss.parser.xml.ParsedItem
+import com.qchu.feedarticle.feature.article.applogic.manager.data.rss.parser.xml.ParsedRSS
 import rx.Observable
 import rx.Subscriber;
 

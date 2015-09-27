@@ -1,4 +1,4 @@
-package com.qchu.feedarticle.feature.listarticle.applogic.entity;
+package com.qchu.feedarticle.feature.article.applogic.entity;
 
 import java.util.Date;
 import java.util.List;

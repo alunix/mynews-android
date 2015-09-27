@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.qchu.feedarticle.FeedArticleConfiguration;
 import com.qchu.feedarticle.R;
-import com.qchu.feedarticle.feature.listarticle.applogic.entity.Article;
+import com.qchu.feedarticle.feature.article.applogic.entity.Article;
 import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticlePresenter;
 import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticleUserInterface;
 import com.qchu.feedarticle.feature.listarticle.ui.wireframe.ListArticleWireframe;

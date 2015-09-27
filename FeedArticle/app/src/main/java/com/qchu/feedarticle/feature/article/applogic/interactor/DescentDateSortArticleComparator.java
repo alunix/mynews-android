@@ -1,6 +1,6 @@
-package com.qchu.feedarticle.feature.listarticle.applogic.interactor;
+package com.qchu.feedarticle.feature.article.applogic.interactor;
 
-import com.qchu.feedarticle.feature.listarticle.applogic.entity.Article;
+import com.qchu.feedarticle.feature.article.applogic.entity.Article;
 
 import java.util.Comparator;
 

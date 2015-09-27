@@ -1,4 +1,4 @@
-package com.qchu.feedarticle.feature.listarticle.applogic.manager.data.rss.parser.xml;
+package com.qchu.feedarticle.feature.article.applogic.manager.data.rss.parser.xml;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Root;
