@@ -61,7 +61,5 @@ public class ListArticleRecycleViewAdapter extends RecyclerView.Adapter {
 		void bind(BoundArticle boundArticle) {
 			mArticleItemDataBinding.setArticle(boundArticle);
 		}
-
-
 	}
 }
