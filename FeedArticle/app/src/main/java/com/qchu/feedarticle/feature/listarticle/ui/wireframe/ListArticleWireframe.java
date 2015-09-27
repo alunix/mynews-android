@@ -11,7 +11,7 @@ import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticleWirefram
  */
 public class ListArticleWireframe extends Wireframe implements ListArticleWireframeInterface{
 
-	public ListArticleWireframe(AppCompatActivity fromActivity) {
+	public ListArticleWireframe(Activity fromActivity) {
 		super(fromActivity);
 	}
 }

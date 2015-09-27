@@ -50,6 +50,7 @@ android {
 
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
+	compile 'com.android.support:recyclerview-v7:22.2.0'
 	compile 'com.android.support:design:22.2.0'
 
 	compile 'com.squareup.retrofit:retrofit:2.0.0-beta1'
@@ -63,6 +64,8 @@ dependencies {
 	}
 	compile 'org.jsoup:jsoup:1.8.3'
 	compile 'io.reactivex:rxjava:1.0.10'
+	compile 'io.reactivex:rxandroid:1.0.1'
+	compile 'com.github.bumptech.glide:glide:3.6.1'
 	compile 'org.projectlombok:lombok:1.16.+'
 
 

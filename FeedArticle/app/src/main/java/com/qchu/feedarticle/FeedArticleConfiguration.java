@@ -4,6 +4,8 @@ import com.qchu.feedarticle.feature.listarticle.applogic.interactor.ArticleInter
 import com.qchu.feedarticle.feature.listarticle.applogic.manager.data.ArticleDataManager;
 
 import lombok.Getter;
+import rx.Scheduler;
+import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * Created by quocdungchu on 20/09/15.
@@ -22,6 +24,12 @@ public class FeedArticleConfiguration {
 	}
 
 	FeedArticleConfiguration(){
-		articleInteractor = new ArticleInteractor(new ArticleDataManager());
+		articleInteractor = new ArticleInteractor(new ArticleDataManager(){
+
+			@Override
+			public Scheduler observingScheduler() {
+				return AndroidSchedulers.mainThread();
+			}
+		});
 	}
 }

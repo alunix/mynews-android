@@ -16,7 +16,7 @@ public class FragmentWireframe extends Wireframe {
 	}
 
 	protected void replaceFragment(Fragment fragment){
-		AppCompatActivity fromActivity = getFromActivity();
+		AppCompatActivity fromActivity = (AppCompatActivity)getFromActivity();
 		if(fromActivity != null) {
 			fromActivity.getSupportFragmentManager()
 				.beginTransaction()
@@ -26,7 +26,7 @@ public class FragmentWireframe extends Wireframe {
 	}
 
 	protected void addFragment(Fragment fragment){
-		AppCompatActivity fromActivity = getFromActivity();
+		AppCompatActivity fromActivity = (AppCompatActivity)getFromActivity();
 		if(fromActivity != null) {
 			fromActivity.getSupportFragmentManager()
 				.beginTransaction()

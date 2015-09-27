@@ -7,15 +7,19 @@ import com.qchu.feedarticle.feature.listarticle.applogic.manager.data.rss.RSSFee
 import com.qchu.feedarticle.feature.listarticle.applogic.manager.data.rss.parser.xml.ParsedRSS;
 
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 import rx.Observable;
+import rx.Scheduler;
 import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 
 /**
  * Created by quocdungchu on 07/09/15.
  */
-public class ArticleDataManager implements ArticleInteractor.DataAdapter{
+public abstract class ArticleDataManager implements ArticleInteractor.DataAdapter{
 
 	public void getArticles(List<SiteConfig> siteConfigList,
 	                        final ArticleInteractor.DataAdapter.GetArticleListListener
@@ -35,6 +39,7 @@ public class ArticleDataManager implements ArticleInteractor.DataAdapter{
 						});
 				}
 			})
+			.observeOn(observingScheduler())
 			.subscribe(new Subscriber<Site>() {
 				@Override
 				public void onCompleted() {
@@ -52,5 +57,7 @@ public class ArticleDataManager implements ArticleInteractor.DataAdapter{
 				}
 			});
 	}
+
+	public abstract Scheduler observingScheduler();
 
 }

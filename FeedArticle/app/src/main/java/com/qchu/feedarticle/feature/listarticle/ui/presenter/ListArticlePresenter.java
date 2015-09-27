@@ -44,7 +44,7 @@ public class ListArticlePresenter extends Presenter
 	protected void onCreate() {
 		List<SiteConfig> siteConfigList = new ArrayList<>();
 		siteConfigList.add(SiteConfig.builder()
-			.url("https://developer.apple.com/swift/blog/news.rss")
+			.url("http://feeds.feedburner.com/RayWenderlich")
 			.build());
 		mArticleInteractor.getArticle(siteConfigList, new ArticleInteractor.GetArticleListListener() {
 			@Override
@@ -54,7 +54,7 @@ public class ListArticlePresenter extends Presenter
 
 			@Override
 			public void onFinish(ArticleInteractor articleInteractor, List<Article> articleList) {
-
+				mListArticleUserInterface.bindArticles(articleList);
 			}
 		});
 	}

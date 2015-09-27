@@ -1,13 +1,17 @@
 package com.qchu.feedarticle.feature.main.ui.view;
 
+import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.qchu.feedarticle.R;
 import com.qchu.feedarticle.feature.listarticle.ui.view.ListArticleFragment;
 import com.qchu.feedarticle.feature.main.ui.view.databinding.MainActivityBinding;

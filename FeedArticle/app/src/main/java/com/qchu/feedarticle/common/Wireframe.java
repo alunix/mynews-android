@@ -12,9 +12,9 @@ import java.lang.ref.WeakReference;
  */
 public abstract class Wireframe {
 
-	WeakReference<AppCompatActivity> mFromActivityRef;
+	WeakReference<Activity> mFromActivityRef;
 
-	protected Wireframe(AppCompatActivity fromActivity) {
+	protected Wireframe(Activity fromActivity) {
 		mFromActivityRef = new WeakReference<>(fromActivity);
 	}
 
@@ -25,7 +25,7 @@ public abstract class Wireframe {
 		}
 	}
 
-	protected AppCompatActivity getFromActivity(){
+	protected Activity getFromActivity(){
 		return mFromActivityRef.get();
 	}
 }
