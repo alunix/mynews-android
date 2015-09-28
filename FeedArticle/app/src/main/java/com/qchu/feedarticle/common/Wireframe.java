@@ -18,7 +18,7 @@ public abstract class Wireframe {
 		mFromActivityRef = new WeakReference<>(fromActivity);
 	}
 
-	protected void startActivity(Class<Activity> destinationActivityClass) {
+	protected void startActivity(Class<? extends Activity> destinationActivityClass) {
 		Activity fromActivity = mFromActivityRef.get();
 		if(fromActivity != null) {
 			fromActivity.startActivity(new Intent(fromActivity, destinationActivityClass));
