@@ -14,37 +14,48 @@ import java.util.List;
 public class ArticleInteractor {
 
 	NetworkAdapter mNetworkAdapter;
+	RepositoryAdapter mRepositoryAdapter;
 
-	public ArticleInteractor(NetworkAdapter networkAdapter) {
+	public ArticleInteractor(NetworkAdapter networkAdapter, RepositoryAdapter repositoryAdapter) {
 		mNetworkAdapter = networkAdapter;
+		mRepositoryAdapter = repositoryAdapter;
 	}
 
-	public void getArticle(List<SiteConfig> siteConfigList,
-	                       final GetArticleListListener getArticleListListener){
+	public List<Article> getArticleListInRepository(List<String> siteIdList){
+		List<Article> sortedArticleList = mRepositoryAdapter.getArticleBySiteIdList(siteIdList);
+		Collections.sort(sortedArticleList, new DescentDateSortArticleComparator());
+		return sortedArticleList;
+	}
+
+	public void refreshArticles(List<SiteConfig> siteConfigList,
+	                            final RefreshArticleListListener refreshArticleListListener){
 
 		final List<Article> allArticleSortedList = new ArrayList<>();
 		mNetworkAdapter.getArticles(siteConfigList, new NetworkAdapter.GetArticleListListener() {
 			@Override
 			public void onBegin(NetworkAdapter networkAdapter) {
-				getArticleListListener.onBegin(ArticleInteractor.this);
+				refreshArticleListListener.onBegin(ArticleInteractor.this);
 			}
 
 			@Override
 			public void onNext(NetworkAdapter networkAdapter,SiteConfig siteConfig, Site site) {
+				//update repository
+				mRepositoryAdapter.updateSite(site);
+
 				allArticleSortedList.addAll(site.getArticleList());
 				Collections.sort(allArticleSortedList, new DescentDateSortArticleComparator());
-				getArticleListListener.onNextSite(ArticleInteractor.this, site, allArticleSortedList);
+				refreshArticleListListener.onNextSite(ArticleInteractor.this, site, allArticleSortedList);
 			}
 
 			@Override
 			public void onComplete(NetworkAdapter networkAdapter) {
 				Collections.sort(allArticleSortedList, new DescentDateSortArticleComparator());
-				getArticleListListener.onComplete(ArticleInteractor.this, allArticleSortedList);
+				refreshArticleListListener.onComplete(ArticleInteractor.this, allArticleSortedList);
 			}
 		});
 	}
 
-	public interface GetArticleListListener {
+	public interface RefreshArticleListListener {
 		void onBegin(ArticleInteractor articleInteractor);
 		void onNextSite(ArticleInteractor articleInteractor, Site site,
 		                List<Article> allArticleSortedList);

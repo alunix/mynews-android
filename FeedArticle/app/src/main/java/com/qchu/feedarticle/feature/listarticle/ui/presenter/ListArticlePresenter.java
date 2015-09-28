@@ -70,7 +70,7 @@ public class ListArticlePresenter extends Presenter
 			.url("http://feeds.feedburner.com/CocoaDevBlog")
 			.build());
 
-		mArticleInteractor.getArticle(siteConfigList, new ArticleInteractor.GetArticleListListener() {
+		mArticleInteractor.refreshArticles(siteConfigList, new ArticleInteractor.RefreshArticleListListener() {
 			@Override
 			public void onBegin(ArticleInteractor articleInteractor) {
 				//mArticleList = new ArrayList<Article>();

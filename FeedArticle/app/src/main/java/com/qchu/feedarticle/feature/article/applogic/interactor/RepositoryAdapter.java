@@ -12,4 +12,5 @@ public interface RepositoryAdapter {
 	Article getArticleById(String articleId);
 	List<Article> getArticleBySiteIdList(List<String> siteIdList);
 	void updateSiteList(List<Site> siteList);
+	void updateSite(Site site);
 }

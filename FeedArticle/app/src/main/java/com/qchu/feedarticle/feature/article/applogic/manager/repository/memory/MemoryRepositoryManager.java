@@ -35,10 +35,15 @@ public class MemoryRepositoryManager implements RepositoryAdapter {
 	@Override
 	public void updateSiteList(List<Site> siteList) {
 		for(Site site: siteList) {
-			mSiteMap.put(site.getId(), site);
-			for(Article article: site.getArticleList()) {
-				mArticleMap.put(article.getId(), article);
-			}
+			updateSite(site);
+		}
+	}
+
+	@Override
+	public void updateSite(Site site) {
+		mSiteMap.put(site.getId(), site);
+		for(Article article: site.getArticleList()) {
+			mArticleMap.put(article.getId(), article);
 		}
 	}
 }
