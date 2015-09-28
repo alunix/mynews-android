@@ -59,6 +59,7 @@ public class ListArticleFragment extends Fragment implements ListArticleUserInte
 					mListArticlePresenter.onSwipeRefreshEvent(ListArticleFragment.this);
 				}
 			});
+
 	}
 
 	@Override
@@ -75,7 +76,13 @@ public class ListArticleFragment extends Fragment implements ListArticleUserInte
 			(ListArticleRecycleViewAdapter) mListArticleFragmentDataBinding.recycleView.getAdapter();
 
 		if(listArticleRecycleViewAdapter == null) {
-			listArticleRecycleViewAdapter = new ListArticleRecycleViewAdapter(boundArticleList);
+			listArticleRecycleViewAdapter = new ListArticleRecycleViewAdapter(boundArticleList,
+				new ListArticleRecycleViewAdapter.OnItemClick() {
+				@Override
+				public void onItemClickAtPosition(View itemView, int position) {
+					mListArticlePresenter.onArticleItemClickEvent(ListArticleFragment.this, position);
+				}
+			});
 			mListArticleFragmentDataBinding.recycleView.setAdapter(listArticleRecycleViewAdapter);
 		} else {
 			listArticleRecycleViewAdapter.reload(boundArticleList);

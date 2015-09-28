@@ -5,4 +5,5 @@ package com.qchu.feedarticle.feature.listarticle.ui.presenter;
  */
 public interface ListArticleUserInterfaceEventHandler {
 	void onSwipeRefreshEvent(ListArticleUserInterface listArticleUserInterface);
+	void onArticleItemClickEvent(ListArticleUserInterface listArticleUserInterface, int position);
 }

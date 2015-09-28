@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class ListArticlePresenter extends Presenter
 	implements ListArticleUserInterfaceEventHandler {
-
+	
 	ArticleInteractor mArticleInteractor;
 	ListArticleUserInterface mListArticleUserInterface;
 	ListArticleWireframeInterface mListArticleWireframeInterface;
@@ -51,6 +51,15 @@ public class ListArticlePresenter extends Presenter
 		refreshContent();
 	}
 
+	@Override
+	public void onArticleItemClickEvent(ListArticleUserInterface listArticleUserInterface,
+	                                    int position) {
+	//TODO
+		mListArticleWireframeInterface.presentDetailArticleUserInterface(
+			this, null);
+	}
+
+
 	private void refreshContent(){
 		List<SiteConfig> siteConfigList = new ArrayList<>();
 		siteConfigList.add(SiteConfig.builder()
@@ -64,12 +73,14 @@ public class ListArticlePresenter extends Presenter
 		mArticleInteractor.getArticle(siteConfigList, new ArticleInteractor.GetArticleListListener() {
 			@Override
 			public void onBegin(ArticleInteractor articleInteractor) {
+				mArticleList = new ArrayList<Article>();
 				mListArticleUserInterface.beginSwipeRefreshingLayout(ListArticlePresenter.this);
 			}
 
 			@Override
 			public void onNextSite(ArticleInteractor articleInteractor,
 			                       Site site, List<Article> allArticleSortedList) {
+				mArticleList = allArticleSortedList;
 				mListArticleUserInterface.bindArticles(allArticleSortedList);
 			}
 

@@ -3,6 +3,7 @@ package com.qchu.feedarticle.feature.listarticle.ui.view;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.qchu.feedarticle.R;
@@ -18,9 +19,12 @@ import java.util.List;
 public class ListArticleRecycleViewAdapter extends RecyclerView.Adapter {
 
 	List<BoundArticle> mBoundArticleList;
+	OnItemClick mOnItemClick;
 
-	public ListArticleRecycleViewAdapter(List<BoundArticle> boundArticleList) {
+	public ListArticleRecycleViewAdapter(List<BoundArticle> boundArticleList,
+	                                     OnItemClick onItemClick) {
 		mBoundArticleList = boundArticleList;
+		mOnItemClick = onItemClick;
 	}
 
 	public void reload(List<BoundArticle> boundArticleList) {
@@ -39,9 +43,19 @@ public class ListArticleRecycleViewAdapter extends RecyclerView.Adapter {
 	}
 
 	@Override
-	public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-		BoundArticle boundArticle = mBoundArticleList.get(i);
-		((ArticleViewHolder)viewHolder).bind(boundArticle);
+	public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int position) {
+		BoundArticle boundArticle = mBoundArticleList.get(position);
+
+		ArticleItemDataBinding articleItemDataBinding =
+			((ArticleViewHolder)viewHolder).mArticleItemDataBinding;
+
+		articleItemDataBinding.setArticle(boundArticle);
+		articleItemDataBinding.getRoot().setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				mOnItemClick.onItemClickAtPosition(view, position);
+			}
+		});
 	}
 
 	@Override
@@ -53,13 +67,13 @@ public class ListArticleRecycleViewAdapter extends RecyclerView.Adapter {
 
 		ArticleItemDataBinding mArticleItemDataBinding;
 
-		public ArticleViewHolder(ArticleItemDataBinding articleItemDataBinding) {
+		ArticleViewHolder(ArticleItemDataBinding articleItemDataBinding) {
 			super(articleItemDataBinding.getRoot());
 			mArticleItemDataBinding = articleItemDataBinding;
 		}
+	}
 
-		void bind(BoundArticle boundArticle) {
-			mArticleItemDataBinding.setArticle(boundArticle);
-		}
+	public interface OnItemClick {
+		void onItemClickAtPosition(View itemView, int position);
 	}
 }
