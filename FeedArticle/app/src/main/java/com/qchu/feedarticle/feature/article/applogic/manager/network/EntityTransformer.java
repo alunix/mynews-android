@@ -1,15 +1,15 @@
-package com.qchu.feedarticle.feature.article.applogic.manager.data;
+package com.qchu.feedarticle.feature.article.applogic.manager.network;
 
 import com.qchu.feedarticle.common.DateDeserializer;
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
 import com.qchu.feedarticle.feature.article.applogic.entity.Image;
 import com.qchu.feedarticle.feature.article.applogic.entity.Site;
 import com.qchu.feedarticle.feature.article.applogic.entity.SiteConfig;
-import com.qchu.feedarticle.feature.article.applogic.manager.data.rss.parser.html.HtmlParser;
-import com.qchu.feedarticle.feature.article.applogic.manager.data.rss.parser.html.ParsedImage;
-import com.qchu.feedarticle.feature.article.applogic.manager.data.rss.parser.xml.ParsedItem;
-import com.qchu.feedarticle.feature.article.applogic.manager.data.rss.parser.xml.ParsedLink;
-import com.qchu.feedarticle.feature.article.applogic.manager.data.rss.parser.xml.ParsedRSS;
+import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.parser.html.HtmlParser;
+import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.parser.html.ParsedImage;
+import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.parser.xml.ParsedItem;
+import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.parser.xml.ParsedLink;
+import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.parser.xml.ParsedRSS;
 
 import java.util.ArrayList;
 import java.util.List;

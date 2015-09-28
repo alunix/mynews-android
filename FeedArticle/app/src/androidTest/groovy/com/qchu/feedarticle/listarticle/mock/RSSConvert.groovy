@@ -2,9 +2,9 @@ package com.qchu.feedarticle.listarticle.mock
 
 import com.qchu.feedarticle.feature.article.applogic.entity.Site
 import com.qchu.feedarticle.feature.article.applogic.entity.SiteConfig
-import com.qchu.feedarticle.feature.article.applogic.manager.data.EntityTransformer
-import com.qchu.feedarticle.feature.article.applogic.manager.data.rss.RSSFeed
-import com.qchu.feedarticle.feature.article.applogic.manager.data.rss.parser.xml.ParsedRSS
+import com.qchu.feedarticle.feature.article.applogic.manager.network.EntityTransformer
+import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.RSSFeed
+import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.parser.xml.ParsedRSS
 import rx.Observable
 import rx.Subscriber
 import rx.functions.Func1;

@@ -1,7 +1,7 @@
 package com.qchu.feedarticle;
 
 import com.qchu.feedarticle.feature.article.applogic.interactor.ArticleInteractor;
-import com.qchu.feedarticle.feature.article.applogic.manager.data.ArticleDataManager;
+import com.qchu.feedarticle.feature.article.applogic.manager.network.NetworkManager;
 
 import lombok.Getter;
 import rx.Scheduler;
@@ -24,7 +24,7 @@ public class FeedArticleConfiguration {
 	}
 
 	FeedArticleConfiguration(){
-		articleInteractor = new ArticleInteractor(new ArticleDataManager(){
+		articleInteractor = new ArticleInteractor(new NetworkManager(){
 
 			@Override
 			public Scheduler observingScheduler() {

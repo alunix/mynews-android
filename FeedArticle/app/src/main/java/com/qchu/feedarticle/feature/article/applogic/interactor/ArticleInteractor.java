@@ -13,45 +13,35 @@ import java.util.List;
  */
 public class ArticleInteractor {
 
-	DataAdapter mDataAdapter;
+	NetworkAdapter mNetworkAdapter;
 
-	public ArticleInteractor(DataAdapter dataAdapter) {
-		mDataAdapter = dataAdapter;
+	public ArticleInteractor(NetworkAdapter networkAdapter) {
+		mNetworkAdapter = networkAdapter;
 	}
 
 	public void getArticle(List<SiteConfig> siteConfigList,
 	                       final GetArticleListListener getArticleListListener){
 
 		final List<Article> allArticleSortedList = new ArrayList<>();
-		mDataAdapter.getArticles(siteConfigList, new DataAdapter.GetArticleListListener() {
+		mNetworkAdapter.getArticles(siteConfigList, new NetworkAdapter.GetArticleListListener() {
 			@Override
-			public void onBegin(DataAdapter dataAdapter) {
+			public void onBegin(NetworkAdapter networkAdapter) {
 				getArticleListListener.onBegin(ArticleInteractor.this);
 			}
 
 			@Override
-			public void onNext(DataAdapter dataAdapter,SiteConfig siteConfig, Site site) {
+			public void onNext(NetworkAdapter networkAdapter,SiteConfig siteConfig, Site site) {
 				allArticleSortedList.addAll(site.getArticleList());
 				Collections.sort(allArticleSortedList, new DescentDateSortArticleComparator());
 				getArticleListListener.onNextSite(ArticleInteractor.this, site, allArticleSortedList);
 			}
 
 			@Override
-			public void onComplete(DataAdapter dataAdapter) {
+			public void onComplete(NetworkAdapter networkAdapter) {
 				Collections.sort(allArticleSortedList, new DescentDateSortArticleComparator());
 				getArticleListListener.onComplete(ArticleInteractor.this, allArticleSortedList);
 			}
 		});
-	}
-
-	public interface DataAdapter {
-		void getArticles(List<SiteConfig> siteConfigList,
-		                 GetArticleListListener getArticleListListener);
-		interface GetArticleListListener {
-			void onBegin(DataAdapter dataAdapter);
-			void onNext(DataAdapter dataAdapter, SiteConfig siteConfig, Site site);
-			void onComplete(DataAdapter dataAdapter);
-		}
 	}
 
 	public interface GetArticleListListener {

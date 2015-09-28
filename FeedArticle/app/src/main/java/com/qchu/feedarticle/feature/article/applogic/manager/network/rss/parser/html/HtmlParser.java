@@ -1,4 +1,4 @@
-package com.qchu.feedarticle.feature.article.applogic.manager.data.rss.parser.html;
+package com.qchu.feedarticle.feature.article.applogic.manager.network.rss.parser.html;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

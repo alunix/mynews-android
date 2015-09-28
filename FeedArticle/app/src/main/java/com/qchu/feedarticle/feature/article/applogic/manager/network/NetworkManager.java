@@ -1,10 +1,10 @@
-package com.qchu.feedarticle.feature.article.applogic.manager.data;
+package com.qchu.feedarticle.feature.article.applogic.manager.network;
 
 import com.qchu.feedarticle.feature.article.applogic.entity.Site;
 import com.qchu.feedarticle.feature.article.applogic.entity.SiteConfig;
-import com.qchu.feedarticle.feature.article.applogic.interactor.ArticleInteractor;
-import com.qchu.feedarticle.feature.article.applogic.manager.data.rss.RSSFeed;
-import com.qchu.feedarticle.feature.article.applogic.manager.data.rss.parser.xml.ParsedRSS;
+import com.qchu.feedarticle.feature.article.applogic.interactor.NetworkAdapter;
+import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.RSSFeed;
+import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.parser.xml.ParsedRSS;
 
 import java.util.List;
 
@@ -16,10 +16,10 @@ import rx.functions.Func1;
 /**
  * Created by quocdungchu on 07/09/15.
  */
-public abstract class ArticleDataManager implements ArticleInteractor.DataAdapter{
+public abstract class NetworkManager implements NetworkAdapter{
 
 	public void getArticles(List<SiteConfig> siteConfigList,
-	                        final ArticleInteractor.DataAdapter.GetArticleListListener
+	                        final NetworkAdapter.GetArticleListListener
 		                        getArticleListListener){
 
 		getArticleListListener.onBegin(this);
@@ -45,12 +45,12 @@ public abstract class ArticleDataManager implements ArticleInteractor.DataAdapte
 
 				@Override
 				public void onNext(Site site) {
-					getArticleListListener.onNext(ArticleDataManager.this, site.getSiteConfig(), site);
+					getArticleListListener.onNext(NetworkManager.this, site.getSiteConfig(), site);
 				}
 
 				@Override
 				public void onCompleted() {
-					getArticleListListener.onComplete(ArticleDataManager.this);
+					getArticleListListener.onComplete(NetworkManager.this);
 				}
 			});
 	}
