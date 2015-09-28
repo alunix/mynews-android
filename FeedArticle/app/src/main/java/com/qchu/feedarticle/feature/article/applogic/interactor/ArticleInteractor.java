@@ -21,8 +21,14 @@ public class ArticleInteractor {
 		mRepositoryAdapter = repositoryAdapter;
 	}
 
-	public List<Article> getArticleListInRepository(List<String> siteIdList){
-		List<Article> sortedArticleList = mRepositoryAdapter.getArticleBySiteIdList(siteIdList);
+	public List<Article> getArticleListInRepositoryBySiteIds(List<String> siteIdList){
+		List<Article> sortedArticleList = mRepositoryAdapter.getArticleBySiteIds(siteIdList);
+		Collections.sort(sortedArticleList, new DescentDateSortArticleComparator());
+		return sortedArticleList;
+	}
+
+	public List<Article> getArticleListInRepositoryByArticleIds(List<String> articleIdList){
+		List<Article> sortedArticleList = mRepositoryAdapter.getArticleByArticleIds(articleIdList);
 		Collections.sort(sortedArticleList, new DescentDateSortArticleComparator());
 		return sortedArticleList;
 	}

@@ -15,6 +15,8 @@ import java.util.List;
 public class ListArticlePresenter extends Presenter
 	implements ListArticleUserInterfaceEventHandler {
 
+	List<String> mArticleIdList = new ArrayList<>();
+
 	ArticleInteractor mArticleInteractor;
 	ListArticleUserInterface mListArticleUserInterface;
 	ListArticleWireframeInterface mListArticleWireframeInterface;
@@ -54,9 +56,9 @@ public class ListArticlePresenter extends Presenter
 	@Override
 	public void onArticleItemClickEvent(ListArticleUserInterface listArticleUserInterface,
 	                                    int position) {
-	//TODO
+
 		mListArticleWireframeInterface.presentDetailArticleUserInterface(
-			this, null);
+			this, mArticleIdList, position);
 	}
 
 
@@ -73,22 +75,31 @@ public class ListArticlePresenter extends Presenter
 		mArticleInteractor.refreshArticles(siteConfigList, new ArticleInteractor.RefreshArticleListListener() {
 			@Override
 			public void onBegin(ArticleInteractor articleInteractor) {
-				//mArticleList = new ArrayList<Article>();
+				mArticleIdList = new ArrayList<>();
 				mListArticleUserInterface.beginSwipeRefreshingLayout(ListArticlePresenter.this);
 			}
 
 			@Override
 			public void onNextSite(ArticleInteractor articleInteractor,
 			                       Site site, List<Article> allArticleSortedList) {
-				//mArticleList = allArticleSortedList;
+				mArticleIdList = articleIdsFromArticles(allArticleSortedList);
 				mListArticleUserInterface.bindArticles(allArticleSortedList);
 			}
 
 			@Override
 			public void onComplete(ArticleInteractor articleInteractor,
 			                       List<Article> allArticleSortedList) {
+				mArticleIdList = articleIdsFromArticles(allArticleSortedList);
 				mListArticleUserInterface.endSwipeRefreshingLayout(ListArticlePresenter.this);
 			}
 		});
+	}
+
+	List<String> articleIdsFromArticles(List<Article> articleList) {
+		List<String> articleIdList = new ArrayList<>();
+		for(Article article: articleList) {
+			articleIdList.add(article.getId());
+		}
+		return articleIdList;
 	}
 }

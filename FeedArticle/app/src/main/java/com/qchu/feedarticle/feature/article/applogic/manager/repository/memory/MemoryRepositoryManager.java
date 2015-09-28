@@ -23,11 +23,20 @@ public class MemoryRepositoryManager implements RepositoryAdapter {
 	}
 
 	@Override
-	public List<Article> getArticleBySiteIdList(List<String> siteIdList) {
+	public List<Article> getArticleBySiteIds(List<String> siteIdList) {
 		List<Article> articleList = new ArrayList<>();
 		for(String siteId: siteIdList) {
 			Site site = mSiteMap.get(siteId);
 			articleList.addAll(site.getArticleList());
+		}
+		return articleList;
+	}
+
+	@Override
+	public List<Article> getArticleByArticleIds(List<String> articleIdList) {
+		List<Article> articleList = new ArrayList<>();
+		for(String articleId: articleIdList) {
+			articleList.add(mArticleMap.get(articleId));
 		}
 		return articleList;
 	}

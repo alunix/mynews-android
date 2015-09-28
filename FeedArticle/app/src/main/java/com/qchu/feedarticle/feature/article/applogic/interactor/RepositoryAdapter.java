@@ -10,7 +10,8 @@ import java.util.List;
  */
 public interface RepositoryAdapter {
 	Article getArticleById(String articleId);
-	List<Article> getArticleBySiteIdList(List<String> siteIdList);
+	List<Article> getArticleBySiteIds(List<String> siteIdList);
+	List<Article> getArticleByArticleIds(List<String> articleIdList);
 	void updateSiteList(List<Site> siteList);
 	void updateSite(Site site);
 }
