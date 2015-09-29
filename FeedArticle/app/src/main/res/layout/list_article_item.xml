@@ -4,7 +4,7 @@
     <data class=".feature.listarticle.ui.view.databinding.ArticleItemDataBinding">
         <variable
             name="article"
-            type="com.qchu.feedarticle.feature.listarticle.ui.view.databinding.BoundArticle"/>
+            type="com.qchu.feedarticle.feature.listarticle.ui.view.databinding.BindableArticle"/>
     </data>
     <LinearLayout
         android:orientation="horizontal"

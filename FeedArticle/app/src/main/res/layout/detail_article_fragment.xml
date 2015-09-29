@@ -3,7 +3,7 @@
     <data class=".feature.detailarticle.ui.view.databinding.DetailArticleFragmentDataBinding">
         <variable
             name="article"
-            type="com.qchu.feedarticle.feature.listarticle.ui.view.databinding.BindableArticle"/>
+            type="com.qchu.feedarticle.feature.detailarticle.ui.view.databinding.BindableArticle"/>
     </data>
     <LinearLayout
         android:orientation="vertical"

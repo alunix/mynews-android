@@ -15,7 +15,7 @@ import com.qchu.feedarticle.R;
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
 import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticlePresenter;
 import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticleUserInterface;
-import com.qchu.feedarticle.feature.listarticle.ui.view.databinding.BoundArticle;
+import com.qchu.feedarticle.feature.listarticle.ui.view.databinding.BindableArticle;
 import com.qchu.feedarticle.feature.listarticle.ui.view.databinding.EntityTransformer;
 import com.qchu.feedarticle.feature.listarticle.ui.view.databinding.ListArticleFragmentDataBinding;
 import com.qchu.feedarticle.feature.listarticle.ui.wireframe.ListArticleWireframe;
@@ -70,13 +70,13 @@ public class ListArticleFragment extends Fragment implements ListArticleUserInte
 
 	@Override
 	public void bindArticles(List<Article> articleList) {
-		List<BoundArticle> boundArticleList = EntityTransformer.boundArticleList(articleList);
+		List<BindableArticle> bindableArticleList = EntityTransformer.boundArticleList(articleList);
 
 		ListArticleRecycleViewAdapter listArticleRecycleViewAdapter =
 			(ListArticleRecycleViewAdapter) mListArticleFragmentDataBinding.recycleView.getAdapter();
 
 		if(listArticleRecycleViewAdapter == null) {
-			listArticleRecycleViewAdapter = new ListArticleRecycleViewAdapter(boundArticleList,
+			listArticleRecycleViewAdapter = new ListArticleRecycleViewAdapter(bindableArticleList,
 				new ListArticleRecycleViewAdapter.OnItemClick() {
 				@Override
 				public void onItemClickAtPosition(View itemView, int position) {
@@ -85,7 +85,7 @@ public class ListArticleFragment extends Fragment implements ListArticleUserInte
 			});
 			mListArticleFragmentDataBinding.recycleView.setAdapter(listArticleRecycleViewAdapter);
 		} else {
-			listArticleRecycleViewAdapter.reload(boundArticleList);
+			listArticleRecycleViewAdapter.reload(bindableArticleList);
 		}
 	}
 

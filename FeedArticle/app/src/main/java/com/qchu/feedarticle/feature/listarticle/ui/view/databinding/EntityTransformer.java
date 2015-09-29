@@ -9,11 +9,11 @@ import java.util.List;
  * Created by quocdungchu on 26/09/15.
  */
 public class EntityTransformer {
-	public static List<BoundArticle> boundArticleList(List<Article> articleList) {
-		List<BoundArticle> boundArticleList = new ArrayList<>();
+	public static List<BindableArticle> boundArticleList(List<Article> articleList) {
+		List<BindableArticle> bindableArticleList = new ArrayList<>();
 
 		for(Article article: articleList) {
-			boundArticleList.add(BoundArticle.builder()
+			bindableArticleList.add(BindableArticle.builder()
 				.title(article.getTitle())
 				.publicationDate("")
 				.imageURL(article.getMainImage() != null? article.getMainImage().getUrl(): null)
@@ -22,6 +22,6 @@ public class EntityTransformer {
 				.build());
 		}
 
-		return boundArticleList;
+		return bindableArticleList;
 	}
 }

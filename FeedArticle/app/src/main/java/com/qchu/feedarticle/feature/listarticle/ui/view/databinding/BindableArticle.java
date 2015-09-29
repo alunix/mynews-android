@@ -10,7 +10,7 @@ import lombok.ToString;
  */
 @Builder
 @ToString(includeFieldNames=true)
-public class BoundArticle {
+public class BindableArticle {
 	String title;
 	String publicationDate;
 	String imageURL;

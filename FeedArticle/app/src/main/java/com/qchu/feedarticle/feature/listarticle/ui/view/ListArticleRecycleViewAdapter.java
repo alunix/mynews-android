@@ -7,9 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.qchu.feedarticle.R;
-import com.qchu.feedarticle.feature.article.applogic.entity.Article;
 import com.qchu.feedarticle.feature.listarticle.ui.view.databinding.ArticleItemDataBinding;
-import com.qchu.feedarticle.feature.listarticle.ui.view.databinding.BoundArticle;
+import com.qchu.feedarticle.feature.listarticle.ui.view.databinding.BindableArticle;
 
 import java.util.List;
 
@@ -18,17 +17,17 @@ import java.util.List;
  */
 public class ListArticleRecycleViewAdapter extends RecyclerView.Adapter {
 
-	List<BoundArticle> mBoundArticleList;
+	List<BindableArticle> mBindableArticleList;
 	OnItemClick mOnItemClick;
 
-	public ListArticleRecycleViewAdapter(List<BoundArticle> boundArticleList,
+	public ListArticleRecycleViewAdapter(List<BindableArticle> bindableArticleList,
 	                                     OnItemClick onItemClick) {
-		mBoundArticleList = boundArticleList;
+		mBindableArticleList = bindableArticleList;
 		mOnItemClick = onItemClick;
 	}
 
-	public void reload(List<BoundArticle> boundArticleList) {
-		mBoundArticleList = boundArticleList;
+	public void reload(List<BindableArticle> bindableArticleList) {
+		mBindableArticleList = bindableArticleList;
 		notifyDataSetChanged();
 	}
 
@@ -44,12 +43,12 @@ public class ListArticleRecycleViewAdapter extends RecyclerView.Adapter {
 
 	@Override
 	public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int position) {
-		BoundArticle boundArticle = mBoundArticleList.get(position);
+		BindableArticle bindableArticle = mBindableArticleList.get(position);
 
 		ArticleItemDataBinding articleItemDataBinding =
 			((ArticleViewHolder)viewHolder).mArticleItemDataBinding;
 
-		articleItemDataBinding.setArticle(boundArticle);
+		articleItemDataBinding.setArticle(bindableArticle);
 		articleItemDataBinding.getRoot().setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -60,7 +59,7 @@ public class ListArticleRecycleViewAdapter extends RecyclerView.Adapter {
 
 	@Override
 	public int getItemCount() {
-		return mBoundArticleList.size();
+		return mBindableArticleList.size();
 	}
 
 	static class ArticleViewHolder extends RecyclerView.ViewHolder {
