@@ -10,7 +10,7 @@ import com.qchu.feedarticle.R;
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
 import com.qchu.feedarticle.feature.detailarticle.ui.presenter.DetailArticlePresenter;
 import com.qchu.feedarticle.feature.detailarticle.ui.presenter.DetailArticleUserInterface;
-import com.qchu.feedarticle.feature.detailarticle.ui.view.databinding.DetailArticleFragmentDataBinding;
+import com.qchu.feedarticle.feature.detailarticle.ui.view.databinding.DetailArticlePagerActivityDataBinding;
 import com.qchu.feedarticle.feature.detailarticle.ui.wireframe.DetailArticleWireframe;
 
 import java.util.List;
@@ -25,15 +25,15 @@ public class DetailArticlePagerActivity extends AppCompatActivity
 	public static final String ARTICLE_LIST = "ARTICLE_LIST";
 
 	DetailArticlePresenter mDetailArticlePresenter;
-	DetailArticleFragmentDataBinding mDetailArticleFragmentDataBinding;
+	DetailArticlePagerActivityDataBinding mDetailArticlePagerActivityDataBinding;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		mDetailArticleFragmentDataBinding =
+		mDetailArticlePagerActivityDataBinding =
 			DataBindingUtil.setContentView(this, R.layout.detail_article_pager_activity);
-		setSupportActionBar(mDetailArticleFragmentDataBinding.toolbar);
+		setSupportActionBar(mDetailArticlePagerActivityDataBinding.toolbar);
 
 		final ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
