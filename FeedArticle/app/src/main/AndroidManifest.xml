@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".feature.detailarticle.ui.view.DetailArticleActivity"/>
+            android:name=".feature.detailarticle.ui.view.DetailArticlePagerActivity"/>
     </application>
 
 </manifest>

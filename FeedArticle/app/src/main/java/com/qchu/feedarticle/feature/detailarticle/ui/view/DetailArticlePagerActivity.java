@@ -1,7 +1,5 @@
 package com.qchu.feedarticle.feature.detailarticle.ui.view;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -15,13 +13,12 @@ import com.qchu.feedarticle.feature.detailarticle.ui.presenter.DetailArticleUser
 import com.qchu.feedarticle.feature.detailarticle.ui.view.databinding.DetailArticleFragmentDataBinding;
 import com.qchu.feedarticle.feature.detailarticle.ui.wireframe.DetailArticleWireframe;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by quocdungchu on 27/09/15.
  */
-public class DetailArticleActivity extends AppCompatActivity
+public class DetailArticlePagerActivity extends AppCompatActivity
 	implements DetailArticleUserInterface {
 
 	public static final String CURRENT_INDEX = "CURRENT_INDEX";
@@ -35,7 +32,7 @@ public class DetailArticleActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 
 		mDetailArticleFragmentDataBinding =
-			DataBindingUtil.setContentView(this, R.layout.detail_article_activity);
+			DataBindingUtil.setContentView(this, R.layout.detail_article_pager_activity);
 		setSupportActionBar(mDetailArticleFragmentDataBinding.toolbar);
 
 		final ActionBar actionBar = getSupportActionBar();

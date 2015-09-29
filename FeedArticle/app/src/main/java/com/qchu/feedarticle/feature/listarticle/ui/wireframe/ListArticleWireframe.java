@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.qchu.feedarticle.common.Wireframe;
-import com.qchu.feedarticle.feature.detailarticle.ui.view.DetailArticleActivity;
+import com.qchu.feedarticle.feature.detailarticle.ui.view.DetailArticlePagerActivity;
 import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticlePresenter;
 import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticleWireframeInterface;
 
@@ -24,9 +24,9 @@ public class ListArticleWireframe extends Wireframe implements ListArticleWirefr
 	public void presentDetailArticleUserInterface(ListArticlePresenter listArticlePresenter,
 	                                              List<String> articleIdList, int currentIndex) {
 		getFromActivity().startActivity(
-			new Intent(getFromActivity(), DetailArticleActivity.class)
-				.putExtra(DetailArticleActivity.CURRENT_INDEX, currentIndex)
-				.putStringArrayListExtra(DetailArticleActivity.ARTICLE_LIST,
+			new Intent(getFromActivity(), DetailArticlePagerActivity.class)
+				.putExtra(DetailArticlePagerActivity.CURRENT_INDEX, currentIndex)
+				.putStringArrayListExtra(DetailArticlePagerActivity.ARTICLE_LIST,
 					(ArrayList<String>) articleIdList));
 	}
 }
