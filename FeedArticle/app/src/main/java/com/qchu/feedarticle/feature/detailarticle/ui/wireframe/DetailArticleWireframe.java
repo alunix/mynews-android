@@ -10,7 +10,7 @@ import com.qchu.feedarticle.feature.detailarticle.ui.presenter.DetailArticleWire
  */
 public class DetailArticleWireframe extends Wireframe implements DetailArticleWireframeInterface {
 
-	protected DetailArticleWireframe(Activity fromActivity) {
+	public DetailArticleWireframe(Activity fromActivity) {
 		super(fromActivity);
 	}
 }
