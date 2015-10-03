@@ -10,7 +10,8 @@ import java.util.List;
 /**
  * Created by quocdungchu on 27/09/15.
  */
-public class DetailArticlePresenter extends Presenter {
+public class DetailArticlePresenter extends Presenter
+	implements DetailArticleUserInterfaceEventHandler{
 
 	List<String> mArticleIdList;
 	int mCurrentIndex;
@@ -41,13 +42,21 @@ public class DetailArticlePresenter extends Presenter {
 
 	@Override
 	protected void onCreate() {
-		mDetailArticleUserInterface.bindArticles(
+		mDetailArticleUserInterface.bindArticles(this,
 			mArticleInteractor.getArticleListInRepositoryByArticleIds(mArticleIdList));
-		mDetailArticleUserInterface.selectIndex(mCurrentIndex, false);
+		mDetailArticleUserInterface.selectIndex(this, mCurrentIndex, false);
 	}
 
 	@Override
 	protected void onDestroy() {
 
+	}
+
+	@Override
+	public void onScrollToPageIndexEvent(DetailArticleUserInterface detailArticleUserInterface,
+	                                     int pageIndex) {
+
+		mDetailArticleUserInterface.updateWithCurrentArticle(this,
+			mArticleInteractor.getArticleInRepositoryByArticleId(mArticleIdList.get(pageIndex)));
 	}
 }

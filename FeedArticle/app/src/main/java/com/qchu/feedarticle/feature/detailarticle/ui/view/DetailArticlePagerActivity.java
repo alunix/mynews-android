@@ -56,7 +56,8 @@ public class DetailArticlePagerActivity extends AppCompatActivity
 	}
 
 	@Override
-	public void bindArticles(List<Article> articleList) {
+	public void bindArticles(DetailArticlePresenter detailArticlePresenter,
+	                         List<Article> articleList) {
 		List<BindableArticle> bindableArticleList = EntityTransformer.bindableArticleList(articleList);
 
 		PagerAdapter pagerAdapter = mDetailArticlePagerActivityDataBinding.viewpager.getAdapter();
@@ -70,7 +71,14 @@ public class DetailArticlePagerActivity extends AppCompatActivity
 	}
 
 	@Override
-	public void selectIndex(int selectedIndex, boolean animated) {
+	public void selectIndex(DetailArticlePresenter detailArticlePresenter,
+	                        int selectedIndex, boolean animated) {
+		mDetailArticlePagerActivityDataBinding.viewpager.setCurrentItem(selectedIndex, animated);
+	}
+
+	@Override
+	public void updateWithCurrentArticle(DetailArticlePresenter detailArticlePresenter,
+	                                     Article article) {
 
 	}
 }

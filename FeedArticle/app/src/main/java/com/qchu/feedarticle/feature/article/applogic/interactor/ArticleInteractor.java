@@ -33,6 +33,10 @@ public class ArticleInteractor {
 		return sortedArticleList;
 	}
 
+	public Article getArticleInRepositoryByArticleId(String articleId) {
+		return mRepositoryAdapter.getArticleById(articleId);
+	}
+
 	public void refreshArticles(List<SiteConfig> siteConfigList,
 	                            final RefreshArticleListListener refreshArticleListListener){
 

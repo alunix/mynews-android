@@ -8,6 +8,8 @@ import java.util.List;
  * Created by quocdungchu on 27/09/15.
  */
 public interface DetailArticleUserInterface {
-	void bindArticles(List<Article> articleList);
-	void selectIndex(int selectedIndex, boolean animated);
+	void bindArticles(DetailArticlePresenter detailArticlePresenter, List<Article> articleList);
+	void selectIndex(DetailArticlePresenter detailArticlePresenter,
+	                 int selectedIndex, boolean animated);
+	void updateWithCurrentArticle(DetailArticlePresenter detailArticlePresenter, Article article);
 }
