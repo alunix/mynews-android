@@ -2,6 +2,7 @@ package com.qchu.feedarticle.feature.detailarticle.ui.view;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 
@@ -10,7 +11,9 @@ import com.qchu.feedarticle.R;
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
 import com.qchu.feedarticle.feature.detailarticle.ui.presenter.DetailArticlePresenter;
 import com.qchu.feedarticle.feature.detailarticle.ui.presenter.DetailArticleUserInterface;
+import com.qchu.feedarticle.feature.detailarticle.ui.view.databinding.BindableArticle;
 import com.qchu.feedarticle.feature.detailarticle.ui.view.databinding.DetailArticlePagerActivityDataBinding;
+import com.qchu.feedarticle.feature.detailarticle.ui.view.databinding.EntityTransformer;
 import com.qchu.feedarticle.feature.detailarticle.ui.wireframe.DetailArticleWireframe;
 
 import java.util.List;
@@ -54,7 +57,16 @@ public class DetailArticlePagerActivity extends AppCompatActivity
 
 	@Override
 	public void bindArticles(List<Article> articleList) {
+		List<BindableArticle> bindableArticleList = EntityTransformer.bindableArticleList(articleList);
 
+		PagerAdapter pagerAdapter = mDetailArticlePagerActivityDataBinding.viewpager.getAdapter();
+		if(pagerAdapter == null) {
+			pagerAdapter = new DetailArticleViewPagerAdater(
+				getSupportFragmentManager(), bindableArticleList);
+			mDetailArticlePagerActivityDataBinding.viewpager.setAdapter(pagerAdapter);
+		} else {
+			((DetailArticleViewPagerAdater)pagerAdapter).reload(bindableArticleList);
+		}
 	}
 
 	@Override
