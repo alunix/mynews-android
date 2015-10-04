@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.qchu.feedarticle.FeedArticleConfiguration;
 import com.qchu.feedarticle.R;
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
+import com.qchu.feedarticle.feature.article.applogic.interactor.ArticleInteractor;
 import com.qchu.feedarticle.feature.detailarticle.ui.presenter.DetailArticlePresenter;
 import com.qchu.feedarticle.feature.detailarticle.ui.presenter.DetailArticleUserInterface;
 import com.qchu.feedarticle.feature.detailarticle.ui.view.databinding.BindableArticle;
@@ -77,8 +78,25 @@ public class DetailArticlePagerActivity extends AppCompatActivity
 	}
 
 	@Override
-	public void updateWithCurrentArticle(DetailArticlePresenter detailArticlePresenter,
-	                                     Article article) {
+	public void updateWithCurrentArticle(
+		DetailArticlePresenter detailArticlePresenter, Article article) {
 
 	}
+
+	@Override
+	public void updateWhenCurrentArticleFinishUpdateInFavorite(
+		DetailArticlePresenter detailArticlePresenter,
+		ArticleInteractor.UpdateFavoriteActionResult updateFavoriteActionResult) {
+
+
+	}
+
+
+	@Override
+	public void showMessageToCompleteUpdateCurrentArticleInFavorite(
+		DetailArticlePresenter detailArticlePresenter,
+		ArticleInteractor.UpdateFavoriteActionResult updateFavoriteActionResult) {
+
+	}
+
 }

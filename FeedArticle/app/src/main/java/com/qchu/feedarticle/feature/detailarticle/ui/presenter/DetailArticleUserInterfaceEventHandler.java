@@ -6,4 +6,6 @@ package com.qchu.feedarticle.feature.detailarticle.ui.presenter;
 public interface DetailArticleUserInterfaceEventHandler {
 	void onScrollToPageIndexEvent(DetailArticleUserInterface detailArticleUserInterface,
 	                              int pageIndex);
+	void onAddOrRemoveCurrentArticleInFavoriteEvent(DetailArticlePresenter detailArticlePresenter);
+	void onShareCurrentArticleEvent(DetailArticlePresenter detailArticlePresenter);
 }

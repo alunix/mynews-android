@@ -13,6 +13,20 @@ import java.util.List;
  */
 public class ArticleInteractor {
 
+	public enum UpdateFavoriteAction {
+		ADD,
+		REMOVE
+	}
+
+	public enum UpdateFavoriteActionResult {
+		ADD_SUCCESSFUL,
+		ADD_FAILED_REASON_EXIST_ALREADY,
+		ADD_FAILED_REASON_OTHER,
+		REMOVE_SUCCESSFUL,
+		REMOVE_FAILED_REASON_NOT_EXIST,
+		REMOVE_FAILED_REASON_OTHER
+	}
+
 	NetworkAdapter mNetworkAdapter;
 	RepositoryAdapter mRepositoryAdapter;
 
@@ -35,6 +49,37 @@ public class ArticleInteractor {
 
 	public Article getArticleInRepositoryByArticleId(String articleId) {
 		return mRepositoryAdapter.getArticleById(articleId);
+	}
+
+	public List<Article> getFavoriteArticlesInRepository() {
+		return mRepositoryAdapter.getFavoriteArticles();
+	}
+
+	public boolean isFavoriteArticleInRepository(String articleId) {
+		return mRepositoryAdapter.isFavoriteArticle(articleId);
+	}
+
+	/*
+	public UpdateFavoriteActionResult addFavoriteArticleInRepository(String articleId) {
+		if(!isFavoriteArticleInRepository(articleId)) {
+			return mRepositoryAdapter.addFavoriteArticle(articleId);
+		} else {
+			return UpdateFavoriteActionResult.ADD_FAILED_REASON_EXIST_ALREADY;
+		}
+	}
+
+	public UpdateFavoriteActionResult removeFavoriteArticleInRepository(String articleId) {
+		if(isFavoriteArticleInRepository(articleId)) {
+			return mRepositoryAdapter.removeFavoriteArticle(articleId);
+		} else {
+			return UpdateFavoriteActionResult.REMOVE_FAILED_REASON_NOT_EXIST;
+		}
+	}
+	*/
+
+	public UpdateFavoriteActionResult updateArticleInFavoriteRepository(
+		UpdateFavoriteAction updateFavoriteAction, String articleId) {
+		return mRepositoryAdapter.updateArticleInFavorite(updateFavoriteAction, articleId);
 	}
 
 	public void refreshArticles(List<SiteConfig> siteConfigList,

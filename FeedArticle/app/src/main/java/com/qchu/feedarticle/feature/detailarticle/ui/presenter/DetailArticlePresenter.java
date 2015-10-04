@@ -2,8 +2,6 @@ package com.qchu.feedarticle.feature.detailarticle.ui.presenter;
 
 import com.qchu.feedarticle.common.Presenter;
 import com.qchu.feedarticle.feature.article.applogic.interactor.ArticleInteractor;
-import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticleUserInterface;
-import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticleWireframeInterface;
 
 import java.util.List;
 
@@ -11,7 +9,7 @@ import java.util.List;
  * Created by quocdungchu on 27/09/15.
  */
 public class DetailArticlePresenter extends Presenter
-	implements DetailArticleUserInterfaceEventHandler{
+	implements DetailArticleUserInterfaceEventHandler {
 
 	List<String> mArticleIdList;
 	int mCurrentIndex;
@@ -56,7 +54,35 @@ public class DetailArticlePresenter extends Presenter
 	public void onScrollToPageIndexEvent(DetailArticleUserInterface detailArticleUserInterface,
 	                                     int pageIndex) {
 
+		mCurrentIndex = pageIndex;
 		mDetailArticleUserInterface.updateWithCurrentArticle(this,
-			mArticleInteractor.getArticleInRepositoryByArticleId(mArticleIdList.get(pageIndex)));
+			mArticleInteractor.getArticleInRepositoryByArticleId(currentArticleId()));
 	}
+
+	@Override
+	public void onAddOrRemoveCurrentArticleInFavoriteEvent(
+		DetailArticlePresenter detailArticlePresenter) {
+
+		ArticleInteractor.UpdateFavoriteActionResult result;
+		if(mArticleInteractor.isFavoriteArticleInRepository(currentArticleId())) {
+			result = mArticleInteractor.updateArticleInFavoriteRepository(
+				ArticleInteractor.UpdateFavoriteAction.REMOVE, currentArticleId());
+		} else {
+			result = mArticleInteractor.updateArticleInFavoriteRepository(
+				ArticleInteractor.UpdateFavoriteAction.ADD, currentArticleId());
+		}
+
+		mDetailArticleUserInterface.updateWhenCurrentArticleFinishUpdateInFavorite(this, result);
+		mDetailArticleUserInterface.showMessageToCompleteUpdateCurrentArticleInFavorite(this, result);
+	}
+
+	@Override
+	public void onShareCurrentArticleEvent(DetailArticlePresenter detailArticlePresenter) {
+
+	}
+
+	String currentArticleId() {
+		return mArticleIdList.get(mCurrentIndex);
+	}
+
 }
