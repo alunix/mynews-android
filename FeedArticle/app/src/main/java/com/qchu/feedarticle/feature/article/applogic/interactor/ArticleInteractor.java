@@ -59,24 +59,6 @@ public class ArticleInteractor {
 		return mRepositoryAdapter.isFavoriteArticle(articleId);
 	}
 
-	/*
-	public UpdateFavoriteActionResult addFavoriteArticleInRepository(String articleId) {
-		if(!isFavoriteArticleInRepository(articleId)) {
-			return mRepositoryAdapter.addFavoriteArticle(articleId);
-		} else {
-			return UpdateFavoriteActionResult.ADD_FAILED_REASON_EXIST_ALREADY;
-		}
-	}
-
-	public UpdateFavoriteActionResult removeFavoriteArticleInRepository(String articleId) {
-		if(isFavoriteArticleInRepository(articleId)) {
-			return mRepositoryAdapter.removeFavoriteArticle(articleId);
-		} else {
-			return UpdateFavoriteActionResult.REMOVE_FAILED_REASON_NOT_EXIST;
-		}
-	}
-	*/
-
 	public UpdateFavoriteActionResult updateArticleInFavoriteRepository(
 		UpdateFavoriteAction updateFavoriteAction, String articleId) {
 		return mRepositoryAdapter.updateArticleInFavorite(updateFavoriteAction, articleId);
