@@ -39,7 +39,12 @@ public class EntityTransformer {
 		List<Article> articles = new ArrayList<>();
 
 		for(ParsedItem parsedItem: parsedRSS.getChannel().getItems()) {
-			List<ParsedImage> parsedImageList = HtmlParser.getImagesFromHtml(parsedItem.getContent());
+
+			String content = parsedItem.getContent() != null ?
+				parsedItem.getContent():
+				parsedItem.getDescription();
+
+			List<ParsedImage> parsedImageList = HtmlParser.getImagesFromHtml(content);
 
 			List<Image> images = new ArrayList<>();
 			for(ParsedImage parsedImage: parsedImageList) {
@@ -56,7 +61,7 @@ public class EntityTransformer {
 				.id(parsedItem.getLink())
 				.title(parsedItem.getTitle())
 				.description(parsedItem.getDescription())
-				.content(parsedItem.getContent())
+				.content(content)
 				.webUrl(parsedItem.getLink())
 				.publicationDate(DateDeserializer.get().deserialize(parsedItem.getPubDate()))
 				.mainImage(images.isEmpty() ? null : images.get(0))

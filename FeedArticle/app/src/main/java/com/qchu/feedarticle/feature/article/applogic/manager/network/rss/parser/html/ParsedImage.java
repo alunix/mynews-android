@@ -16,6 +16,6 @@ public class ParsedImage {
 	float height;
 
 	public boolean isValid(){
-		return src != null && !src.equals("") && width > 1 && height > 1;
+		return src != null && !src.equals("");
 	}
 }
