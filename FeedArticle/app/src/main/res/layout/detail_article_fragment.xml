@@ -64,15 +64,15 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/sizing.mul_2"
+                    android:layout_margin="@dimen/sizing.mul_1"
                     android:textSize="28sp"
                     android:text="@{article.title}"/>
                 <WebView
                     android:id="@+id/webview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/sizing.mul_2"
-                    android:layout_marginRight="@dimen/sizing.mul_2"
+                    android:layout_marginLeft="@dimen/sizing.mul_0_5"
+                    android:layout_marginRight="@dimen/sizing.mul_0_5"
                     android:nestedScrollingEnabled="false"
                     app:html="@{article.content}"/>
             </LinearLayout>
