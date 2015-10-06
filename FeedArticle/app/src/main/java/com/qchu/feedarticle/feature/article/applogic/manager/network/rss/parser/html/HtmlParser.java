@@ -14,21 +14,23 @@ import java.util.List;
 public class HtmlParser {
 
 	public static List<ParsedImage> getImagesFromHtml(String htmlString) {
-		Document document = Jsoup.parse(htmlString);
-		Elements elements = document.select("img[src]");
-
 		List<ParsedImage> parsedImages = new ArrayList<>();
 
-		for(Element element: elements) {
-			ParsedImage parsedImage = ParsedImage.builder()
-				.src(element.attr("src"))
-				.width(floatValueFromString(element.attr("width")))
-				.height(floatValueFromString(element.attr("height")))
-				.build();
+		if(htmlString != null) {
+			Document document = Jsoup.parse(htmlString);
+			Elements elements = document.select("img[src]");
 
-			parsedImages.add(parsedImage);
+			for(Element element: elements) {
+				ParsedImage parsedImage = ParsedImage.builder()
+					.src(element.attr("src"))
+					.width(floatValueFromString(element.attr("width")))
+					.height(floatValueFromString(element.attr("height")))
+					.build();
+
+				parsedImages.add(parsedImage);
+			}
 		}
-
+		
 		return parsedImages;
 	}
 
