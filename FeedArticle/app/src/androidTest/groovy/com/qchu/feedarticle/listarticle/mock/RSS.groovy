@@ -12,7 +12,7 @@ import rx.Subscriber;
 
 
 SiteConfig siteConfig = SiteConfig.builder()
-.url("http://feeds.feedburner.com/CocoaDevBlog")
+.url("http://thethaovanhoa.vn/trang-chu.rss")
 .build();
 
 
@@ -29,7 +29,8 @@ parsedRSSObservable.subscribe(new Subscriber<ParsedRSS>() {
 
 	@Override
 	void onError(Throwable e) {
-		println("onError "+ Thread.currentThread())
+
+		println("onError "+e.getLocalizedMessage() +" "+ Thread.currentThread())
 
 	}
 
@@ -40,8 +41,12 @@ parsedRSSObservable.subscribe(new Subscriber<ParsedRSS>() {
 		println("rss " + parsedRSS)
 
 		for(ParsedItem parsedItem:parsedRSS.getChannel().getItems()) {
-			List<ParsedImage> parsedImageList = HtmlParser.getImagesFromHtml(parsedItem.getContent());
-			println(parsedImageList.toString());
+				List<ParsedImage> parsedImageList = HtmlParser.getImagesFromHtml(parsedItem.getContent() != null ?
+					parsedItem.getContent(): parsedItem.getDescription());
+				println(parsedImageList.toString())
 		}
+
+		println("finish on next ")
+
 	}
 })
