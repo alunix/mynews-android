@@ -64,12 +64,13 @@ public class ListArticlePresenter extends Presenter
 
 	private void refreshContent(){
 		List<SiteConfig> siteConfigList = new ArrayList<>();
+		
 		siteConfigList.add(SiteConfig.builder()
 			.url("http://feeds.feedburner.com/RayWenderlich")
 			.build());
 
 		siteConfigList.add(SiteConfig.builder()
-			.url("http://feeds.feedburner.com/CocoaDevBlog")
+			.url("http://thethaovanhoa.vn/trang-chu.rss")
 			.build());
 
 		mArticleInteractor.refreshArticles(siteConfigList, new ArticleInteractor.RefreshArticleListListener() {
