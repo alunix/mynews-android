@@ -22,6 +22,8 @@ public class BindableArticle{
 	String title;
 	String content;
 	String publicationDate;
+	String imageURL;
+
 
 	public String getTitle(){
 		return title;
@@ -34,4 +36,9 @@ public class BindableArticle{
 	public String getPublicationDate(){
 		return publicationDate;
 	}
+
+	public String getImageURL(){
+		return imageURL;
+	}
+
 }

@@ -17,6 +17,7 @@ public class EntityTransformer {
 				.title(article.getTitle())
 				.content(article.getContent())
 				.publicationDate("")
+				.imageURL(article.getMainImage() != null? article.getMainImage().getUrl(): null)
 				.build());
 		}
 

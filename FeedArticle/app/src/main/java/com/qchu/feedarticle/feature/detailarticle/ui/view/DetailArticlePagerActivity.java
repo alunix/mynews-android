@@ -41,6 +41,7 @@ public class DetailArticlePagerActivity extends AppCompatActivity
 
 		final ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setTitle(null);
 
 		mDetailArticlePresenter = DetailArticlePresenter.create(
 			FeedArticleConfiguration.get().getArticleInteractor(),

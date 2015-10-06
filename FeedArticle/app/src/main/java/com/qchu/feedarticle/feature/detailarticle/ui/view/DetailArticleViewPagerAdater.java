@@ -29,9 +29,12 @@ public class DetailArticleViewPagerAdater extends FragmentPagerAdapter {
 
 	@Override
 	public Fragment getItem(int position) {
+
 		return new DetailArticleFragmentBuilder(
 			mBindableArticleList.get(position))
 			.build();
+
+		//return new CheesePageDetailFragment();
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.qchu.feedarticle.feature.detailarticle.ui.view;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -46,6 +47,8 @@ public class DetailArticleFragment extends Fragment {
 			DataBindingUtil.inflate(inflater, R.layout.detail_article_fragment, null, false);
 
 		mDetailArticleFragmentDataBinding.webview.getSettings().setLoadWithOverviewMode(true);
+		mDetailArticleFragmentDataBinding.webview.setBackgroundColor(Color.TRANSPARENT);
+
 		return mDetailArticleFragmentDataBinding.getRoot();
 	}
 
