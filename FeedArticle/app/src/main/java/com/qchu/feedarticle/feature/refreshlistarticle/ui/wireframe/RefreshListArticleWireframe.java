@@ -1,12 +1,12 @@
-package com.qchu.feedarticle.feature.listarticle.ui.wireframe;
+package com.qchu.feedarticle.feature.refreshlistarticle.ui.wireframe;
 
 import android.app.Activity;
 import android.content.Intent;
 
 import com.qchu.feedarticle.common.Wireframe;
 import com.qchu.feedarticle.feature.detailarticle.ui.view.DetailArticlePagerActivity;
-import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticlePresenter;
-import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticleWireframeInterface;
+import com.qchu.feedarticle.feature.refreshlistarticle.ui.presenter.RefreshRefreshListArticlePresenter;
+import com.qchu.feedarticle.feature.refreshlistarticle.ui.presenter.RefreshListArticleWireframeInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,14 +14,14 @@ import java.util.List;
 /**
  * Created by quocdungchu on 07/09/15.
  */
-public class ListArticleWireframe extends Wireframe implements ListArticleWireframeInterface{
+public class RefreshListArticleWireframe extends Wireframe implements RefreshListArticleWireframeInterface {
 
-	public ListArticleWireframe(Activity fromActivity) {
+	public RefreshListArticleWireframe(Activity fromActivity) {
 		super(fromActivity);
 	}
 
 	@Override
-	public void presentDetailArticleUserInterface(ListArticlePresenter listArticlePresenter,
+	public void presentDetailArticleUserInterface(RefreshRefreshListArticlePresenter refreshListArticlePresenter,
 	                                              List<String> articleIdList, int currentIndex) {
 		getFromActivity().startActivity(
 			new Intent(getFromActivity(), DetailArticlePagerActivity.class)

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
-    <data class=".feature.listarticle.ui.view.databinding.ArticleItemDataBinding">
+    <data class=".feature.refreshlistarticle.ui.view.databinding.ArticleItemDataBinding">
         <variable
             name="article"
-            type="com.qchu.feedarticle.feature.listarticle.ui.view.databinding.BindableArticle"/>
+            type="com.qchu.feedarticle.feature.refreshlistarticle.ui.view.databinding.BindableArticle"/>
     </data>
     <LinearLayout
         android:orientation="horizontal"

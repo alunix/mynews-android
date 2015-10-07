@@ -1,6 +1,4 @@
-package com.qchu.feedarticle.feature.listarticle.ui.view.databinding;
-
-import java.util.Date;
+package com.qchu.feedarticle.feature.refreshlistarticle.ui.view.databinding;
 
 import lombok.Builder;
 import lombok.ToString;

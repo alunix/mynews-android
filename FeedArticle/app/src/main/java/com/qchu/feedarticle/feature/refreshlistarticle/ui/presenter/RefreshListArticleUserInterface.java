@@ -1,4 +1,4 @@
-package com.qchu.feedarticle.feature.listarticle.ui.presenter;
+package com.qchu.feedarticle.feature.refreshlistarticle.ui.presenter;
 
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
 
@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by quocdungchu on 07/09/15.
  */
-public interface ListArticleUserInterface {
+public interface RefreshListArticleUserInterface {
 	/*
 	void addArticleItemAtIndex(ListArticlePresenter listArticlePresenter,
 	                           Article article, int itemIndex);
@@ -18,6 +18,6 @@ public interface ListArticleUserInterface {
 	                              */
 
 	void bindArticles(List<Article> articleList);
-	void beginSwipeRefreshingLayout(ListArticlePresenter listArticlePresenter);
-	void endSwipeRefreshingLayout(ListArticlePresenter listArticlePresenter);
+	void beginSwipeRefreshingLayout(RefreshRefreshListArticlePresenter refreshListArticlePresenter);
+	void endSwipeRefreshingLayout(RefreshRefreshListArticlePresenter refreshListArticlePresenter);
 }

@@ -1,4 +1,4 @@
-package com.qchu.feedarticle.feature.listarticle.ui.view;
+package com.qchu.feedarticle.feature.refreshlistarticle.ui.view;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -13,21 +13,21 @@ import android.view.ViewGroup;
 import com.qchu.feedarticle.FeedArticleConfiguration;
 import com.qchu.feedarticle.R;
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
-import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticlePresenter;
-import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticleUserInterface;
-import com.qchu.feedarticle.feature.listarticle.ui.view.databinding.BindableArticle;
-import com.qchu.feedarticle.feature.listarticle.ui.view.databinding.EntityTransformer;
-import com.qchu.feedarticle.feature.listarticle.ui.view.databinding.ListArticleFragmentDataBinding;
-import com.qchu.feedarticle.feature.listarticle.ui.wireframe.ListArticleWireframe;
+import com.qchu.feedarticle.feature.refreshlistarticle.ui.presenter.RefreshRefreshListArticlePresenter;
+import com.qchu.feedarticle.feature.refreshlistarticle.ui.presenter.RefreshListArticleUserInterface;
+import com.qchu.feedarticle.feature.refreshlistarticle.ui.view.databinding.BindableArticle;
+import com.qchu.feedarticle.feature.refreshlistarticle.ui.view.databinding.EntityTransformer;
+import com.qchu.feedarticle.feature.refreshlistarticle.ui.view.databinding.ListArticleFragmentDataBinding;
+import com.qchu.feedarticle.feature.refreshlistarticle.ui.wireframe.RefreshListArticleWireframe;
 
 import java.util.List;
 
 /**
  * Created by quocdungchu on 22/09/15.
  */
-public class ListArticleFragment extends Fragment implements ListArticleUserInterface {
+public class RefreshListArticleFragment extends Fragment implements RefreshListArticleUserInterface {
 
-	ListArticlePresenter mListArticlePresenter;
+	RefreshRefreshListArticlePresenter mRefreshListArticlePresenter;
 	ListArticleFragmentDataBinding mListArticleFragmentDataBinding;
 
 	@Override
@@ -47,16 +47,16 @@ public class ListArticleFragment extends Fragment implements ListArticleUserInte
 	public void onViewCreated(View view, Bundle savedInstanceState){
 		super.onViewCreated(view, savedInstanceState);
 
-		mListArticlePresenter = ListArticlePresenter.create(
+		mRefreshListArticlePresenter = RefreshRefreshListArticlePresenter.create(
 			FeedArticleConfiguration.get().getArticleInteractor(),
 			this,
-			new ListArticleWireframe(getActivity()));
+			new RefreshListArticleWireframe(getActivity()));
 
 		mListArticleFragmentDataBinding.swipeRefreshLayout.setOnRefreshListener(
 			new SwipeRefreshLayout.OnRefreshListener() {
 				@Override
 				public void onRefresh() {
-					mListArticlePresenter.onSwipeRefreshEvent(ListArticleFragment.this);
+					mRefreshListArticlePresenter.onSwipeRefreshEvent(RefreshListArticleFragment.this);
 				}
 			});
 
@@ -65,7 +65,7 @@ public class ListArticleFragment extends Fragment implements ListArticleUserInte
 	@Override
 	public void onDestroy(){
 		super.onDestroy();
-		mListArticlePresenter.finish();
+		mRefreshListArticlePresenter.finish();
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class ListArticleFragment extends Fragment implements ListArticleUserInte
 				new ListArticleRecycleViewAdapter.OnItemClick() {
 				@Override
 				public void onItemClickAtPosition(View itemView, int position) {
-					mListArticlePresenter.onArticleItemClickEvent(ListArticleFragment.this, position);
+					mRefreshListArticlePresenter.onArticleItemClickEvent(RefreshListArticleFragment.this, position);
 				}
 			});
 			mListArticleFragmentDataBinding.recycleView.setAdapter(listArticleRecycleViewAdapter);
@@ -90,7 +90,7 @@ public class ListArticleFragment extends Fragment implements ListArticleUserInte
 	}
 
 	@Override
-	public void beginSwipeRefreshingLayout(ListArticlePresenter listArticlePresenter) {
+	public void beginSwipeRefreshingLayout(RefreshRefreshListArticlePresenter refreshListArticlePresenter) {
 		if(!mListArticleFragmentDataBinding.swipeRefreshLayout.isRefreshing()) {
 			new Handler().post(new Runnable() {
 				@Override
@@ -102,7 +102,7 @@ public class ListArticleFragment extends Fragment implements ListArticleUserInte
 	}
 
 	@Override
-	public void endSwipeRefreshingLayout(ListArticlePresenter listArticlePresenter) {
+	public void endSwipeRefreshingLayout(RefreshRefreshListArticlePresenter refreshListArticlePresenter) {
 		mListArticleFragmentDataBinding.swipeRefreshLayout.setRefreshing(false);
 	}
 }

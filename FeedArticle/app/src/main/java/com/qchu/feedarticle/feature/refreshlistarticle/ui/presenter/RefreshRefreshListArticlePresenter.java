@@ -1,4 +1,4 @@
-package com.qchu.feedarticle.feature.listarticle.ui.presenter;
+package com.qchu.feedarticle.feature.refreshlistarticle.ui.presenter;
 
 import com.qchu.feedarticle.common.Presenter;
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
@@ -12,31 +12,31 @@ import java.util.List;
 /**
  * Created by quocdungchu on 07/09/15.
  */
-public class ListArticlePresenter extends Presenter
-	implements ListArticleUserInterfaceEventHandler {
+public class RefreshRefreshListArticlePresenter extends Presenter
+	implements RefreshListArticleUserInterfaceEventHandler {
 
 	List<String> mArticleIdList = new ArrayList<>();
 
 	ArticleInteractor mArticleInteractor;
-	ListArticleUserInterface mListArticleUserInterface;
-	ListArticleWireframeInterface mListArticleWireframeInterface;
+	RefreshListArticleUserInterface mListArticleUserInterface;
+	RefreshListArticleWireframeInterface mRefreshListArticleWireframeInterface;
 
-	public static ListArticlePresenter create(
+	public static RefreshRefreshListArticlePresenter create(
 		ArticleInteractor articleInteractor,
-		ListArticleUserInterface listArticleUserInterface,
-		ListArticleWireframeInterface listArticleWireframeInterface) {
+		RefreshListArticleUserInterface listArticleUserInterface,
+		RefreshListArticleWireframeInterface refreshListArticleWireframeInterface) {
 
-		ListArticlePresenter listArticlePresenter = new ListArticlePresenter();
-		listArticlePresenter.mArticleInteractor = articleInteractor;
-		listArticlePresenter.mListArticleUserInterface = listArticleUserInterface;
-		listArticlePresenter.mListArticleWireframeInterface = listArticleWireframeInterface;
+		RefreshRefreshListArticlePresenter refreshListArticlePresenter = new RefreshRefreshListArticlePresenter();
+		refreshListArticlePresenter.mArticleInteractor = articleInteractor;
+		refreshListArticlePresenter.mListArticleUserInterface = listArticleUserInterface;
+		refreshListArticlePresenter.mRefreshListArticleWireframeInterface = refreshListArticleWireframeInterface;
 
-		listArticlePresenter.onCreate();
+		refreshListArticlePresenter.onCreate();
 
-		return listArticlePresenter;
+		return refreshListArticlePresenter;
 	}
 
-	ListArticlePresenter(){}
+	RefreshRefreshListArticlePresenter(){}
 
 	@Override
 	protected void onCreate() {
@@ -49,15 +49,15 @@ public class ListArticlePresenter extends Presenter
 	}
 
 	@Override
-	public void onSwipeRefreshEvent(ListArticleUserInterface listArticleUserInterface) {
+	public void onSwipeRefreshEvent(RefreshListArticleUserInterface listArticleUserInterface) {
 		refreshContent();
 	}
 
 	@Override
-	public void onArticleItemClickEvent(ListArticleUserInterface listArticleUserInterface,
+	public void onArticleItemClickEvent(RefreshListArticleUserInterface listArticleUserInterface,
 	                                    int position) {
 
-		mListArticleWireframeInterface.presentDetailArticleUserInterface(
+		mRefreshListArticleWireframeInterface.presentDetailArticleUserInterface(
 			this, mArticleIdList, position);
 	}
 
@@ -77,7 +77,7 @@ public class ListArticlePresenter extends Presenter
 			@Override
 			public void onBegin(ArticleInteractor articleInteractor) {
 				mArticleIdList = new ArrayList<>();
-				mListArticleUserInterface.beginSwipeRefreshingLayout(ListArticlePresenter.this);
+				mListArticleUserInterface.beginSwipeRefreshingLayout(RefreshRefreshListArticlePresenter.this);
 			}
 
 			@Override
@@ -91,7 +91,7 @@ public class ListArticlePresenter extends Presenter
 			public void onComplete(ArticleInteractor articleInteractor,
 			                       List<Article> allArticleSortedList) {
 				mArticleIdList = articleIdsFromArticles(allArticleSortedList);
-				mListArticleUserInterface.endSwipeRefreshingLayout(ListArticlePresenter.this);
+				mListArticleUserInterface.endSwipeRefreshingLayout(RefreshRefreshListArticlePresenter.this);
 			}
 		});
 	}

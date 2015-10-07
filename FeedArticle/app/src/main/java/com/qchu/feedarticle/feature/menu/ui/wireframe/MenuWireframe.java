@@ -1,12 +1,9 @@
 package com.qchu.feedarticle.feature.menu.ui.wireframe;
 
-import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 
 import com.qchu.feedarticle.common.FragmentWireframe;
-import com.qchu.feedarticle.common.Wireframe;
-import com.qchu.feedarticle.feature.listarticle.ui.view.ListArticleFragment;
-import com.qchu.feedarticle.feature.menu.ui.presenter.MenuPresenter;
+import com.qchu.feedarticle.feature.refreshlistarticle.ui.view.RefreshListArticleFragment;
 import com.qchu.feedarticle.feature.menu.ui.presenter.MenuWireframeInterface;
 
 /**
@@ -21,6 +18,6 @@ public class MenuWireframe extends FragmentWireframe implements MenuWireframeInt
 
 	@Override
 	public void presentUserInterfaceForMenuItem(MenuItem menuItem) {
-		replaceFragment(new ListArticleFragment());
+		replaceFragment(new RefreshListArticleFragment());
 	}
 }
