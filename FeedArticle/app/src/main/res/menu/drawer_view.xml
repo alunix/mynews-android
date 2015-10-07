@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/mainItems"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
             android:title="Home" />
         <item
-            android:id="@+id/nav_messages"
-            android:title="Messages" />
+            android:id="@+id/nav_favorite"
+            android:title="My articles" />
         <item
             android:id="@+id/nav_friends"
             android:title="Friends" />
@@ -16,12 +18,14 @@
             android:title="Discussion" />
     </group>
 
-    <item android:title="Sub items">
+    <item
+        android:id="@+id/extrasItems"
+        android:title="Extras items">
         <menu>
             <item
-                android:title="Sub item 1" />
+                android:title="Extras item 1" />
             <item
-                android:title="Sub item 2" />
+                android:title="Extras item 2" />
         </menu>
     </item>
 
