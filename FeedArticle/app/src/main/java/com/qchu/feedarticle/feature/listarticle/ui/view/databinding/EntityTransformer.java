@@ -1,4 +1,4 @@
-package com.qchu.feedarticle.feature.refreshlistarticle.ui.view.databinding;
+package com.qchu.feedarticle.feature.listarticle.ui.view.databinding;
 
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
 

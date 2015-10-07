@@ -13,11 +13,12 @@ import android.view.ViewGroup;
 import com.qchu.feedarticle.FeedArticleConfiguration;
 import com.qchu.feedarticle.R;
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
+import com.qchu.feedarticle.feature.listarticle.ui.view.ListArticleRecycleViewAdapter;
 import com.qchu.feedarticle.feature.refreshlistarticle.ui.presenter.RefreshListArticlePresenter;
 import com.qchu.feedarticle.feature.refreshlistarticle.ui.presenter.RefreshListArticleUserInterface;
-import com.qchu.feedarticle.feature.refreshlistarticle.ui.view.databinding.BindableArticle;
-import com.qchu.feedarticle.feature.refreshlistarticle.ui.view.databinding.EntityTransformer;
-import com.qchu.feedarticle.feature.refreshlistarticle.ui.view.databinding.ListArticleFragmentDataBinding;
+import com.qchu.feedarticle.feature.listarticle.ui.view.databinding.BindableArticle;
+import com.qchu.feedarticle.feature.listarticle.ui.view.databinding.EntityTransformer;
+import com.qchu.feedarticle.feature.listarticle.ui.view.databinding.ListArticleFragmentDataBinding;
 import com.qchu.feedarticle.feature.refreshlistarticle.ui.wireframe.RefreshListArticleWireframe;
 
 import java.util.List;

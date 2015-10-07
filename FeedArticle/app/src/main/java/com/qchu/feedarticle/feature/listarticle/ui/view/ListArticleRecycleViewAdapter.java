@@ -1,4 +1,4 @@
-package com.qchu.feedarticle.feature.refreshlistarticle.ui.view;
+package com.qchu.feedarticle.feature.listarticle.ui.view;
 
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.qchu.feedarticle.R;
-import com.qchu.feedarticle.feature.refreshlistarticle.ui.view.databinding.ArticleItemDataBinding;
-import com.qchu.feedarticle.feature.refreshlistarticle.ui.view.databinding.BindableArticle;
+import com.qchu.feedarticle.feature.listarticle.ui.view.databinding.ArticleItemDataBinding;
+import com.qchu.feedarticle.feature.listarticle.ui.view.databinding.BindableArticle;
 
 import java.util.List;
 
