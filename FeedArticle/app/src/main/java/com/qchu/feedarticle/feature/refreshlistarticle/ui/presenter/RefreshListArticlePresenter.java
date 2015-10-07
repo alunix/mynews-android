@@ -18,17 +18,17 @@ public class RefreshListArticlePresenter extends Presenter
 	List<String> mArticleIdList = new ArrayList<>();
 
 	ArticleInteractor mArticleInteractor;
-	RefreshListArticleUserInterface mListArticleUserInterface;
+	RefreshListArticleUserInterface mRefreshListArticleUserInterface;
 	RefreshListArticleWireframeInterface mRefreshListArticleWireframeInterface;
 
 	public static RefreshListArticlePresenter create(
 		ArticleInteractor articleInteractor,
-		RefreshListArticleUserInterface listArticleUserInterface,
+		RefreshListArticleUserInterface refreshListArticleUserInterface,
 		RefreshListArticleWireframeInterface refreshListArticleWireframeInterface) {
 
 		RefreshListArticlePresenter refreshListArticlePresenter = new RefreshListArticlePresenter();
 		refreshListArticlePresenter.mArticleInteractor = articleInteractor;
-		refreshListArticlePresenter.mListArticleUserInterface = listArticleUserInterface;
+		refreshListArticlePresenter.mRefreshListArticleUserInterface = refreshListArticleUserInterface;
 		refreshListArticlePresenter.mRefreshListArticleWireframeInterface = refreshListArticleWireframeInterface;
 
 		refreshListArticlePresenter.onCreate();
@@ -77,21 +77,21 @@ public class RefreshListArticlePresenter extends Presenter
 			@Override
 			public void onBegin(ArticleInteractor articleInteractor) {
 				mArticleIdList = new ArrayList<>();
-				mListArticleUserInterface.beginSwipeRefreshingLayout(RefreshListArticlePresenter.this);
+				mRefreshListArticleUserInterface.beginSwipeRefreshingLayout(RefreshListArticlePresenter.this);
 			}
 
 			@Override
 			public void onNextSite(ArticleInteractor articleInteractor,
 			                       Site site, List<Article> allArticleSortedList) {
 				mArticleIdList = articleIdsFromArticles(allArticleSortedList);
-				mListArticleUserInterface.bindArticles(allArticleSortedList);
+				mRefreshListArticleUserInterface.bindArticles(allArticleSortedList);
 			}
 
 			@Override
 			public void onComplete(ArticleInteractor articleInteractor,
 			                       List<Article> allArticleSortedList) {
 				mArticleIdList = articleIdsFromArticles(allArticleSortedList);
-				mListArticleUserInterface.endSwipeRefreshingLayout(RefreshListArticlePresenter.this);
+				mRefreshListArticleUserInterface.endSwipeRefreshingLayout(RefreshListArticlePresenter.this);
 			}
 		});
 	}
