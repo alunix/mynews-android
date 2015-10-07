@@ -16,9 +16,8 @@ public interface DetailArticleUserInterface {
 
 	void updateWithCurrentArticle(DetailArticlePresenter detailArticlePresenter, Article article);
 
-	void updateWhenCurrentArticleFinishUpdateInFavorite(
-		DetailArticlePresenter detailArticlePresenter,
-		ArticleInteractor.UpdateFavoriteActionResult updateFavoriteActionResult);
+	void updateFavoriteStateOfCurrentArticle(DetailArticlePresenter detailArticlePresenter,
+	                                         boolean isInFavorite);
 
 	void showMessageToCompleteUpdateCurrentArticleInFavorite(
 		DetailArticlePresenter detailArticlePresenter,

@@ -43,6 +43,7 @@ public class DetailArticlePresenter extends Presenter
 		mDetailArticleUserInterface.bindArticles(this,
 			mArticleInteractor.getArticleListInRepositoryByArticleIds(mArticleIdList));
 		mDetailArticleUserInterface.selectIndex(this, mCurrentIndex, false);
+		updateCurrentArticleUserInterface();
 	}
 
 	@Override
@@ -51,17 +52,16 @@ public class DetailArticlePresenter extends Presenter
 	}
 
 	@Override
-	public void onScrollToPageIndexEvent(DetailArticleUserInterface detailArticleUserInterface,
-	                                     int pageIndex) {
+	public void onPageSelectedEvent(DetailArticleUserInterface detailArticleUserInterface,
+	                                int pageIndex) {
 
 		mCurrentIndex = pageIndex;
-		mDetailArticleUserInterface.updateWithCurrentArticle(this,
-			mArticleInteractor.getArticleInRepositoryByArticleId(currentArticleId()));
+		updateCurrentArticleUserInterface();
 	}
 
 	@Override
 	public void onAddOrRemoveCurrentArticleInFavoriteEvent(
-		DetailArticlePresenter detailArticlePresenter) {
+		DetailArticleUserInterface detailArticleUserInterface) {
 
 		ArticleInteractor.UpdateFavoriteActionResult result;
 		if(mArticleInteractor.isFavoriteArticleInRepository(currentArticleId())) {
@@ -72,13 +72,22 @@ public class DetailArticlePresenter extends Presenter
 				ArticleInteractor.UpdateFavoriteAction.ADD, currentArticleId());
 		}
 
-		mDetailArticleUserInterface.updateWhenCurrentArticleFinishUpdateInFavorite(this, result);
+		mDetailArticleUserInterface.updateFavoriteStateOfCurrentArticle(
+			this, mArticleInteractor.isFavoriteArticleInRepository(currentArticleId()));
+
 		mDetailArticleUserInterface.showMessageToCompleteUpdateCurrentArticleInFavorite(this, result);
 	}
 
 	@Override
 	public void onShareCurrentArticleEvent(DetailArticlePresenter detailArticlePresenter) {
 
+	}
+
+	void updateCurrentArticleUserInterface(){
+		mDetailArticleUserInterface.updateWithCurrentArticle(this,
+			mArticleInteractor.getArticleInRepositoryByArticleId(currentArticleId()));
+		mDetailArticleUserInterface.updateFavoriteStateOfCurrentArticle(
+			this,mArticleInteractor.isFavoriteArticleInRepository(currentArticleId()));
 	}
 
 	String currentArticleId() {

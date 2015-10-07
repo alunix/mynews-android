@@ -3,8 +3,10 @@ package com.qchu.feedarticle.feature.detailarticle.ui.view;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.qchu.feedarticle.FeedArticleConfiguration;
 import com.qchu.feedarticle.R;
@@ -39,22 +41,54 @@ public class DetailArticlePagerActivity extends AppCompatActivity
 			DataBindingUtil.setContentView(this, R.layout.detail_article_pager_activity);
 		setSupportActionBar(mDetailArticlePagerActivityDataBinding.toolbar);
 
+		//setup action bar
 		final ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setTitle(null);
 
+		//setup viewpager
+		mDetailArticlePagerActivityDataBinding.viewpager.addOnPageChangeListener(
+			new ViewPager.OnPageChangeListener() {
+
+				@Override
+				public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+				}
+
+				@Override
+				public void onPageSelected(int position) {
+					if(mDetailArticlePresenter != null) {
+						mDetailArticlePresenter.onPageSelectedEvent(
+							DetailArticlePagerActivity.this,
+							mDetailArticlePagerActivityDataBinding.viewpager.getCurrentItem());
+					}
+				}
+
+				@Override
+				public void onPageScrollStateChanged(int state) {
+
+				}
+			});
+
+		//setup presenter
 		mDetailArticlePresenter = DetailArticlePresenter.create(
 			FeedArticleConfiguration.get().getArticleInteractor(),
 			this,
 			new DetailArticleWireframe(this),
 			getIntent().getStringArrayListExtra(ARTICLE_LIST),
 			getIntent().getIntExtra(CURRENT_INDEX,-1));
+
+
 	}
 
 	@Override
 	protected void onDestroy(){
 		super.onDestroy();
 		mDetailArticlePresenter.finish();
+	}
+
+	public void onFavoriteButtonClick(View view){
+		mDetailArticlePresenter.onAddOrRemoveCurrentArticleInFavoriteEvent(this);
 	}
 
 	@Override
@@ -85,11 +119,10 @@ public class DetailArticlePagerActivity extends AppCompatActivity
 	}
 
 	@Override
-	public void updateWhenCurrentArticleFinishUpdateInFavorite(
-		DetailArticlePresenter detailArticlePresenter,
-		ArticleInteractor.UpdateFavoriteActionResult updateFavoriteActionResult) {
+	public void updateFavoriteStateOfCurrentArticle(
+		DetailArticlePresenter detailArticlePresenter, boolean isInFavorite) {
 
-
+		mDetailArticlePagerActivityDataBinding.favoriteButton.setSelected(isInFavorite);
 	}
 
 
