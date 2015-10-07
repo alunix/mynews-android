@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import com.qchu.feedarticle.FeedArticleConfiguration;
 import com.qchu.feedarticle.R;
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
-import com.qchu.feedarticle.feature.refreshlistarticle.ui.presenter.RefreshRefreshListArticlePresenter;
+import com.qchu.feedarticle.feature.refreshlistarticle.ui.presenter.RefreshListArticlePresenter;
 import com.qchu.feedarticle.feature.refreshlistarticle.ui.presenter.RefreshListArticleUserInterface;
 import com.qchu.feedarticle.feature.refreshlistarticle.ui.view.databinding.BindableArticle;
 import com.qchu.feedarticle.feature.refreshlistarticle.ui.view.databinding.EntityTransformer;
@@ -27,7 +27,7 @@ import java.util.List;
  */
 public class RefreshListArticleFragment extends Fragment implements RefreshListArticleUserInterface {
 
-	RefreshRefreshListArticlePresenter mRefreshListArticlePresenter;
+	RefreshListArticlePresenter mRefreshListArticlePresenter;
 	ListArticleFragmentDataBinding mListArticleFragmentDataBinding;
 
 	@Override
@@ -47,7 +47,7 @@ public class RefreshListArticleFragment extends Fragment implements RefreshListA
 	public void onViewCreated(View view, Bundle savedInstanceState){
 		super.onViewCreated(view, savedInstanceState);
 
-		mRefreshListArticlePresenter = RefreshRefreshListArticlePresenter.create(
+		mRefreshListArticlePresenter = RefreshListArticlePresenter.create(
 			FeedArticleConfiguration.get().getArticleInteractor(),
 			this,
 			new RefreshListArticleWireframe(getActivity()));
@@ -90,7 +90,7 @@ public class RefreshListArticleFragment extends Fragment implements RefreshListA
 	}
 
 	@Override
-	public void beginSwipeRefreshingLayout(RefreshRefreshListArticlePresenter refreshListArticlePresenter) {
+	public void beginSwipeRefreshingLayout(RefreshListArticlePresenter refreshListArticlePresenter) {
 		if(!mListArticleFragmentDataBinding.swipeRefreshLayout.isRefreshing()) {
 			new Handler().post(new Runnable() {
 				@Override
@@ -102,7 +102,7 @@ public class RefreshListArticleFragment extends Fragment implements RefreshListA
 	}
 
 	@Override
-	public void endSwipeRefreshingLayout(RefreshRefreshListArticlePresenter refreshListArticlePresenter) {
+	public void endSwipeRefreshingLayout(RefreshListArticlePresenter refreshListArticlePresenter) {
 		mListArticleFragmentDataBinding.swipeRefreshLayout.setRefreshing(false);
 	}
 }

@@ -1,9 +1,6 @@
 package com.qchu.feedarticle.feature.refreshlistarticle.ui.presenter;
 
-import com.qchu.feedarticle.feature.article.applogic.entity.Article;
 import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticleUserInterface;
-
-import java.util.List;
 
 /**
  * Created by quocdungchu on 07/09/15.
@@ -17,6 +14,6 @@ public interface RefreshListArticleUserInterface extends ListArticleUserInterfac
 	void removeArticleItemAtIndex(ListArticlePresenter listArticlePresenter,
 	                              Article article, int itemIndex);
 	                              */
-	void beginSwipeRefreshingLayout(RefreshRefreshListArticlePresenter refreshListArticlePresenter);
-	void endSwipeRefreshingLayout(RefreshRefreshListArticlePresenter refreshListArticlePresenter);
+	void beginSwipeRefreshingLayout(RefreshListArticlePresenter refreshListArticlePresenter);
+	void endSwipeRefreshingLayout(RefreshListArticlePresenter refreshListArticlePresenter);
 }

@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by quocdungchu on 07/09/15.
  */
-public class RefreshRefreshListArticlePresenter extends Presenter
+public class RefreshListArticlePresenter extends Presenter
 	implements RefreshListArticleUserInterfaceEventHandler {
 
 	List<String> mArticleIdList = new ArrayList<>();
@@ -21,12 +21,12 @@ public class RefreshRefreshListArticlePresenter extends Presenter
 	RefreshListArticleUserInterface mListArticleUserInterface;
 	RefreshListArticleWireframeInterface mRefreshListArticleWireframeInterface;
 
-	public static RefreshRefreshListArticlePresenter create(
+	public static RefreshListArticlePresenter create(
 		ArticleInteractor articleInteractor,
 		RefreshListArticleUserInterface listArticleUserInterface,
 		RefreshListArticleWireframeInterface refreshListArticleWireframeInterface) {
 
-		RefreshRefreshListArticlePresenter refreshListArticlePresenter = new RefreshRefreshListArticlePresenter();
+		RefreshListArticlePresenter refreshListArticlePresenter = new RefreshListArticlePresenter();
 		refreshListArticlePresenter.mArticleInteractor = articleInteractor;
 		refreshListArticlePresenter.mListArticleUserInterface = listArticleUserInterface;
 		refreshListArticlePresenter.mRefreshListArticleWireframeInterface = refreshListArticleWireframeInterface;
@@ -36,7 +36,7 @@ public class RefreshRefreshListArticlePresenter extends Presenter
 		return refreshListArticlePresenter;
 	}
 
-	RefreshRefreshListArticlePresenter(){}
+	RefreshListArticlePresenter(){}
 
 	@Override
 	protected void onCreate() {
@@ -77,7 +77,7 @@ public class RefreshRefreshListArticlePresenter extends Presenter
 			@Override
 			public void onBegin(ArticleInteractor articleInteractor) {
 				mArticleIdList = new ArrayList<>();
-				mListArticleUserInterface.beginSwipeRefreshingLayout(RefreshRefreshListArticlePresenter.this);
+				mListArticleUserInterface.beginSwipeRefreshingLayout(RefreshListArticlePresenter.this);
 			}
 
 			@Override
@@ -91,7 +91,7 @@ public class RefreshRefreshListArticlePresenter extends Presenter
 			public void onComplete(ArticleInteractor articleInteractor,
 			                       List<Article> allArticleSortedList) {
 				mArticleIdList = articleIdsFromArticles(allArticleSortedList);
-				mListArticleUserInterface.endSwipeRefreshingLayout(RefreshRefreshListArticlePresenter.this);
+				mListArticleUserInterface.endSwipeRefreshingLayout(RefreshListArticlePresenter.this);
 			}
 		});
 	}
