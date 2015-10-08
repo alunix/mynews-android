@@ -8,6 +8,6 @@ import java.util.List;
  * Created by quocdungchu on 07/10/15.
  */
 public interface ListArticleWireframeInterface {
-	void presentDetailArticleUserInterface(RefreshListArticlePresenter refreshListArticlePresenter,
+	void presentDetailArticleUserInterface(ListArticlePresenter listArticlePresenter,
 	                                       List<String> articleIdList, int currentIndex);
 }

@@ -26,7 +26,8 @@ import java.util.List;
 /**
  * Created by quocdungchu on 22/09/15.
  */
-public class RefreshListArticleFragment extends Fragment implements RefreshListArticleUserInterface {
+public class RefreshListArticleFragment extends Fragment
+	implements RefreshListArticleUserInterface {
 
 	RefreshListArticlePresenter mRefreshListArticlePresenter;
 	ListArticleFragmentDataBinding mListArticleFragmentDataBinding;

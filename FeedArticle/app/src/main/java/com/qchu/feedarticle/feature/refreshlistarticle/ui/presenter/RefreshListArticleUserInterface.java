@@ -6,14 +6,7 @@ import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticleUserInte
  * Created by quocdungchu on 07/09/15.
  */
 public interface RefreshListArticleUserInterface extends ListArticleUserInterface {
-	/*
-	void addArticleItemAtIndex(ListArticlePresenter listArticlePresenter,
-	                           Article article, int itemIndex);
-	void updateArticleItemAtIndex(ListArticlePresenter listArticlePresenter,
-	                              Article article, int itemIndex);
-	void removeArticleItemAtIndex(ListArticlePresenter listArticlePresenter,
-	                              Article article, int itemIndex);
-	                              */
+
 	void beginSwipeRefreshingLayout(RefreshListArticlePresenter refreshListArticlePresenter);
 	void endSwipeRefreshingLayout(RefreshListArticlePresenter refreshListArticlePresenter);
 }

@@ -6,5 +6,5 @@ import com.qchu.feedarticle.feature.refreshlistarticle.ui.presenter.RefreshListA
  * Created by quocdungchu on 07/10/15.
  */
 public interface ListArticleUserInterfaceEventHandler {
-	void onArticleItemClickEvent(RefreshListArticleUserInterface listArticleUserInterface, int position);
+	void onArticleItemClickEvent(ListArticleUserInterface listArticleUserInterface, int position);
 }
