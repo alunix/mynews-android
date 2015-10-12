@@ -1,0 +1,22 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '6.0'
+
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'feedarticle' do
+
+pod 'j2objc-shared-debug', :configuration => ['Debug'], :path => '/Users/quocdungchu/Projects/git/quocdungchu/android-sample/android-sample-FeedArticle/FeedArticle/shared/build'
+pod 'j2objc-shared-release', :configuration => ['Release'], :path => '/Users/quocdungchu/Projects/git/quocdungchu/android-sample/android-sample-FeedArticle/FeedArticle/shared/build'
+end
+
+target 'feedarticleTests' do
+
+pod 'j2objc-shared-debug', :configuration => ['Debug'], :path => '/Users/quocdungchu/Projects/git/quocdungchu/android-sample/android-sample-FeedArticle/FeedArticle/shared/build'
+pod 'j2objc-shared-release', :configuration => ['Release'], :path => '/Users/quocdungchu/Projects/git/quocdungchu/android-sample/android-sample-FeedArticle/FeedArticle/shared/build'
+end
+
+target 'feedarticleUITests' do
+
+pod 'j2objc-shared-debug', :configuration => ['Debug'], :path => '/Users/quocdungchu/Projects/git/quocdungchu/android-sample/android-sample-FeedArticle/FeedArticle/shared/build'
+pod 'j2objc-shared-release', :configuration => ['Release'], :path => '/Users/quocdungchu/Projects/git/quocdungchu/android-sample/android-sample-FeedArticle/FeedArticle/shared/build'
+end

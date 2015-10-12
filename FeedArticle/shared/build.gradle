@@ -1,0 +1,33 @@
+
+plugins {
+	id 'java'
+	id 'com.github.j2objccontrib.j2objcgradle' version '0.4.3-alpha'
+}
+
+
+j2objcConfig {
+	supportedArchs += ['ios_i386']
+
+	translateArgs (
+		'-use-arc',
+		'--prefixes', 'prefixes.properties',
+	)
+	extraObjcCompilerArgs '-fobjc-arc'
+
+	translateClasspaths ('libs/auto-value-1.2-SNAPSHOT.jar')
+
+	xcodeProjectDir '../ios/feedarticle'
+	xcodeTarget 'feedarticle'
+
+	autoConfigureDeps true
+
+	finalConfigure()
+}
+
+dependencies {
+	compile fileTree(dir: 'libs', include: ['*.jar'])
+
+	compile 'org.projectlombok:lombok:1.16.+'
+	compile 'com.google.auto.value:auto-value:1.2-SNAPSHOT'
+
+}
