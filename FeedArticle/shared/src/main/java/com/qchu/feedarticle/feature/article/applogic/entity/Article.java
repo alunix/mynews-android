@@ -1,6 +1,8 @@
 package com.qchu.feedarticle.feature.article.applogic.entity;
 
 import com.google.auto.value.AutoValue;
+import javax.annotation.Nullable;
+
 
 import java.util.Date;
 import java.util.List;
@@ -22,6 +24,7 @@ public abstract class Article {
 	public abstract String content();
 	public abstract String webUrl();
 	public abstract Date publicationDate();
+	@Nullable
 	public abstract Image mainImage();
 	public abstract List<Image> imageList();
 
@@ -33,7 +36,7 @@ public abstract class Article {
 		public abstract Builder content (String content);
 		public abstract Builder webUrl (String webUrl);
 		public abstract Builder publicationDate (Date publicationDate);
-		public abstract Builder mainImage (Image mainImage);
+		public abstract Builder mainImage (@Nullable Image mainImage);
 		public abstract Builder imageList (List<Image> imageList);
 
 		public abstract Article build();

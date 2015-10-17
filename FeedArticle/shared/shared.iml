@@ -30,6 +30,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="lombok-1.16.6" level="project" />
     <orderEntry type="library" exported="" name="auto-value-1.2-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="guava-18.0" level="project" />
+    <orderEntry type="library" exported="" name="jsr305-3.0.1" level="project" />
     <orderEntry type="library" exported="" name="auto-value-1.2-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="lombok" level="project" />
     <orderEntry type="library" exported="" name="shared.shared" level="project" />

@@ -19,7 +19,7 @@ import rx.Observable;
 public class RSSFeed {
 
 	public static Observable<ParsedRSS> rssObservable(SiteConfig siteConfig) {
-		return retrofit(siteConfig.getUrl())
+		return retrofit(siteConfig.url())
 			.create(RSSService.class)
 			.getRssObservable("");
 	}

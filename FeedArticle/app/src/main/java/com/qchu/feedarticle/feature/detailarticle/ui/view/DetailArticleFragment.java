@@ -19,6 +19,7 @@ import com.hannesdorfmann.fragmentargs.FragmentArgs;
 import com.hannesdorfmann.fragmentargs.annotation.Arg;
 import com.hannesdorfmann.fragmentargs.bundler.ParcelerArgsBundler;
 import com.qchu.feedarticle.R;
+import com.qchu.feedarticle.common.ParcelableArgsBundler;
 import com.qchu.feedarticle.feature.detailarticle.ui.view.databinding.BindableArticle;
 import com.qchu.feedarticle.feature.detailarticle.ui.view.databinding.DetailArticleFragmentDataBinding;
 
@@ -29,7 +30,7 @@ import org.parceler.Parcels;
  */
 public class DetailArticleFragment extends Fragment {
 
-	@Arg( bundler = ParcelerArgsBundler.class )
+	@Arg( bundler = ParcelableArgsBundler.class )
 	BindableArticle mBindableArticle;
 
 	DetailArticleFragmentDataBinding mDetailArticleFragmentDataBinding;

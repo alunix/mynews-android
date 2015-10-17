@@ -1,5 +1,7 @@
 package com.qchu.feedarticle.feature.article.applogic.manager.network;
 
+import android.util.Log;
+
 import com.qchu.feedarticle.feature.article.applogic.entity.Site;
 import com.qchu.feedarticle.feature.article.applogic.entity.SiteConfig;
 import com.qchu.feedarticle.feature.article.applogic.interactor.NetworkAdapter;
@@ -41,15 +43,19 @@ public abstract class NetworkManager implements NetworkAdapter{
 
 				@Override
 				public void onError(Throwable e) {
+					Log.d("onError Network", "Error "+e);
+
 				}
 
 				@Override
 				public void onNext(Site site) {
-					getArticleListListener.onNext(NetworkManager.this, site.getSiteConfig(), site);
+					Log.d("onNext Network", "Site "+site);
+					getArticleListListener.onNext(NetworkManager.this, site.siteConfig(), site);
 				}
 
 				@Override
 				public void onCompleted() {
+					Log.d("onCompleted Network", "Completed");
 					getArticleListListener.onComplete(NetworkManager.this);
 				}
 			});

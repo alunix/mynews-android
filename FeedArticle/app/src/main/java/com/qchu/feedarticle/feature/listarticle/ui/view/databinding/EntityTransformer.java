@@ -14,11 +14,11 @@ public class EntityTransformer {
 
 		for(Article article: articleList) {
 			bindableArticleList.add(BindableArticle.builder()
-				.title(article.getTitle())
+				.title(article.title())
 				.publicationDate("")
-				.imageURL(article.getMainImage() != null? article.getMainImage().getUrl(): null)
-				.imageWidth(article.getMainImage() != null? article.getMainImage().getWidth(): 0)
-				.imageHeight(article.getMainImage() != null? article.getMainImage().getHeight(): 0)
+				.imageURL(article.mainImage() != null? article.mainImage().url(): null)
+				.imageWidth(article.mainImage() != null? article.mainImage().width(): 0)
+				.imageHeight(article.mainImage() != null? article.mainImage().height(): 0)
 				.build());
 		}
 

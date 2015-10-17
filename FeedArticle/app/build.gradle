@@ -9,6 +9,9 @@ repositories {
 	maven { url 'https://dl.bintray.com/quocdungchu/maven/' }
 }
 
+//sourceCompatibility = 1.8
+//targetCompatibility = 1.8
+
 android {
 	compileSdkVersion 23
 	buildToolsVersion "23.0.0 rc2"
@@ -16,7 +19,7 @@ android {
 	defaultConfig {
 		applicationId "com.qchu.feedarticle"
 		minSdkVersion 15
-		targetSdkVersion 22
+		targetSdkVersion 23
 		versionCode 1
 		versionName "1.0"
 
@@ -29,6 +32,9 @@ android {
 	packagingOptions {
 		exclude 'META-INF/services/org.codehaus.groovy.transform.ASTTransformation'
 		exclude 'LICENSE.txt'
+
+		//conflict beetween lombok and autovalue
+		exclude 'META-INF/services/javax.annotation.processing.Processor'
 	}
 
 	buildTypes {
@@ -52,6 +58,8 @@ android {
 
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
+
+
 	compile 'com.android.support:recyclerview-v7:23.0.1'
 	compile 'com.android.support:design:23.0.1'
 	compile 'com.android.support:support-annotations:23.0.1'
@@ -79,6 +87,11 @@ dependencies {
 	compile "org.parceler:parceler-api:1.0.+"
 	apt 'org.parceler:parceler:1.0.+'
 
+	//autoparcel
+	//https://github.com/frankiesardo/auto-parcel
+	compile 'com.github.frankiesardo:auto-parcel:0.3'
+	apt 'com.github.frankiesardo:auto-parcel-processor:0.3'
+
 	//Fragment annotation library
 	compile 'com.hannesdorfmann.fragmentargs:annotation:2.1.+'
 	apt 'com.hannesdorfmann.fragmentargs:processor:2.1.+'
@@ -86,6 +99,9 @@ dependencies {
 
 
 	compile "com.gitlab.quocdungchu.material-design-kit:base:0.1.+"
+
+	compile project(':shared')
+
 
 	//test
 	androidTestCompile 'org.codehaus.groovy:groovy:2.4.1:grooid'

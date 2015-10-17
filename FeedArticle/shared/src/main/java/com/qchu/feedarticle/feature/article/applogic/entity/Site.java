@@ -18,7 +18,7 @@ public abstract class Site {
 	public abstract String id();
 	public abstract String title();
 	public abstract String url();
-	public abstract Date updateDate();
+	//public abstract Date updateDate();
 
 	public abstract List<Article> articleList();
 	public abstract SiteConfig siteConfig();
@@ -28,7 +28,7 @@ public abstract class Site {
 		public abstract Builder id (String id);
 		public abstract Builder title (String title);
 		public abstract Builder url (String url);
-		public abstract Builder updateDate (Date updateDate);
+		//public abstract Builder updateDate (Date updateDate);
 
 		public abstract Builder articleList (List<Article> articleList);
 		public abstract Builder siteConfig (SiteConfig siteConfig);

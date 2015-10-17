@@ -18,7 +18,6 @@ import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticleUserInte
 import com.qchu.feedarticle.feature.listarticle.ui.view.ListArticleRecycleViewAdapter;
 import com.qchu.feedarticle.feature.listarticle.ui.view.databinding.BindableArticle;
 import com.qchu.feedarticle.feature.listarticle.ui.view.databinding.EntityTransformer;
-import com.qchu.feedarticle.feature.listarticle.ui.view.databinding.ListArticleFragmentDataBinding;
 import com.qchu.feedarticle.feature.refreshlistarticle.ui.presenter.RefreshListArticlePresenter;
 import com.qchu.feedarticle.feature.refreshlistarticle.ui.wireframe.RefreshListArticleWireframe;
 

@@ -30,6 +30,7 @@ public class EntityTransformer {
 		return Site.builder()
 			.siteConfig(siteConfig)
 			.id(siteUrl)
+			.title(parsedRSS.getChannel().getTitle())
 			.url(siteUrl)
 			.articleList(articlesFromRSS(parsedRSS))
 			.build();
@@ -58,9 +59,9 @@ public class EntityTransformer {
 			}
 
 			articles.add(Article.builder()
-				.id(parsedItem.getLink())
+				.identifier(parsedItem.getLink())
 				.title(parsedItem.getTitle())
-				.description(parsedItem.getDescription())
+				.summary(parsedItem.getDescription())
 				.content(content)
 				.webUrl(parsedItem.getLink())
 				.publicationDate(DateDeserializer.get().deserialize(parsedItem.getPubDate()))
