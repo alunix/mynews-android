@@ -1,6 +1,5 @@
 package com.qchu.feedarticle.feature.article.applogic.interactor;
 
-import com.google.auto.value.AutoValue;
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
 import com.qchu.feedarticle.feature.article.applogic.entity.Site;
 import com.qchu.feedarticle.feature.article.applogic.entity.SiteConfig;
@@ -12,8 +11,7 @@ import java.util.List;
 /**
  * Created by quocdungchu on 07/09/15.
  */
-@AutoValue
-public abstract class ArticleInteractor {
+public class ArticleInteractor {
 
 	public enum UpdateFavoriteAction {
 		ADD,
@@ -29,57 +27,57 @@ public abstract class ArticleInteractor {
 		REMOVE_FAILED_REASON_OTHER
 	}
 
-	public static ArticleInteractor create (NetworkAdapter networkAdapter,
-	                                 RepositoryAdapter repositoryAdapter){
-		return new AutoValue_ArticleInteractor(networkAdapter, repositoryAdapter);
+	NetworkAdapter mNetworkAdapter;
+	RepositoryAdapter mRepositoryAdapter;
+
+	public ArticleInteractor(NetworkAdapter networkAdapter, RepositoryAdapter repositoryAdapter) {
+		mNetworkAdapter = networkAdapter;
+		mRepositoryAdapter = repositoryAdapter;
 	}
 
-	abstract NetworkAdapter networkAdapter();
-	abstract RepositoryAdapter repositoryAdapter();
-
 	public List<Article> getArticleListInRepositoryBySiteIds(List<String> siteIdList){
-		List<Article> sortedArticleList = repositoryAdapter().getArticleBySiteIds(siteIdList);
+		List<Article> sortedArticleList = mRepositoryAdapter.getArticleBySiteIds(siteIdList);
 		Collections.sort(sortedArticleList, new DescentDateSortArticleComparator());
 		return sortedArticleList;
 	}
 
 	public List<Article> getArticleListInRepositoryByArticleIds(List<String> articleIdList){
-		List<Article> sortedArticleList = repositoryAdapter().getArticleByArticleIds(articleIdList);
+		List<Article> sortedArticleList = mRepositoryAdapter.getArticleByArticleIds(articleIdList);
 		Collections.sort(sortedArticleList, new DescentDateSortArticleComparator());
 		return sortedArticleList;
 	}
 
 	public Article getArticleInRepositoryByArticleId(String articleId) {
-		return repositoryAdapter().getArticleById(articleId);
+		return mRepositoryAdapter.getArticleById(articleId);
 	}
 
 	public List<Article> getFavoriteArticlesInRepository() {
-		return repositoryAdapter().getFavoriteArticles();
+		return mRepositoryAdapter.getFavoriteArticles();
 	}
 
 	public boolean isFavoriteArticleInRepository(String articleId) {
-		return repositoryAdapter().isFavoriteArticle(articleId);
+		return mRepositoryAdapter.isFavoriteArticle(articleId);
 	}
 
 	public UpdateFavoriteActionResult updateArticleInFavoriteRepository(
 		UpdateFavoriteAction updateFavoriteAction, String articleId) {
-		return repositoryAdapter().updateArticleInFavorite(updateFavoriteAction, articleId);
+		return mRepositoryAdapter.updateArticleInFavorite(updateFavoriteAction, articleId);
 	}
 
 	public void refreshArticles(List<SiteConfig> siteConfigList,
 	                            final RefreshArticleListListener refreshArticleListListener){
 
 		final List<Article> allArticleSortedList = new ArrayList<>();
-		networkAdapter().getArticles(siteConfigList, new NetworkAdapter.GetArticleListListener() {
+		mNetworkAdapter.getArticles(siteConfigList, new NetworkAdapter.GetArticleListListener() {
 			@Override
 			public void onBegin(NetworkAdapter networkAdapter) {
 				refreshArticleListListener.onBegin(ArticleInteractor.this);
 			}
 
 			@Override
-			public void onNext(NetworkAdapter networkAdapter, SiteConfig siteConfig, Site site) {
+			public void onNext(NetworkAdapter networkAdapter,SiteConfig siteConfig, Site site) {
 				//update repository
-				repositoryAdapter().updateSite(site);
+				mRepositoryAdapter.updateSite(site);
 
 				allArticleSortedList.addAll(site.articleList());
 				Collections.sort(allArticleSortedList, new DescentDateSortArticleComparator());

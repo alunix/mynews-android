@@ -25,7 +25,7 @@ public class FeedArticleConfiguration {
 	}
 
 	FeedArticleConfiguration(){
-		articleInteractor = ArticleInteractor.create(new NetworkManager(){
+		articleInteractor = new ArticleInteractor(new NetworkManager(){
 
 			@Override
 			public Scheduler observingScheduler() {
