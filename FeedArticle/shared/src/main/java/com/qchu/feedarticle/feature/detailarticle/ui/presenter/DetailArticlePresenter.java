@@ -2,6 +2,9 @@ package com.qchu.feedarticle.feature.detailarticle.ui.presenter;
 
 import com.qchu.feedarticle.common.Presenter;
 import com.qchu.feedarticle.feature.article.applogic.interactor.ArticleInteractor;
+import com.qchu.feedarticle.feature.favorite.applogic.interactor.FavoriteAction;
+import com.qchu.feedarticle.feature.favorite.applogic.interactor.FavoriteActionResult;
+import com.qchu.feedarticle.feature.favorite.applogic.interactor.FavoriteInteractor;
 
 import java.util.List;
 
@@ -15,17 +18,20 @@ public class DetailArticlePresenter extends Presenter
 	int mCurrentIndex;
 
 	ArticleInteractor mArticleInteractor;
+	FavoriteInteractor favoriteInteractor;
 	DetailArticleUserInterface mDetailArticleUserInterface;
 	DetailArticleWireframeInterface mDetailArticleWireframeInterface;
 
 	public static DetailArticlePresenter create(
 		ArticleInteractor articleInteractor,
+		FavoriteInteractor favoriteInteractor,
 		DetailArticleUserInterface detailArticleUserInterface,
 		DetailArticleWireframeInterface detailArticleWireframeInterface,
 		List<String> articleIdList, int currentIndex) {
 
 		DetailArticlePresenter detailArticlePresenter = new DetailArticlePresenter();
 		detailArticlePresenter.mArticleInteractor = articleInteractor;
+		detailArticlePresenter.favoriteInteractor = favoriteInteractor;
 		detailArticlePresenter.mDetailArticleUserInterface = detailArticleUserInterface;
 		detailArticlePresenter.mDetailArticleWireframeInterface = detailArticleWireframeInterface;
 		detailArticlePresenter.mArticleIdList = articleIdList;
@@ -63,17 +69,17 @@ public class DetailArticlePresenter extends Presenter
 	public void onAddOrRemoveCurrentArticleInFavoriteEvent(
 		DetailArticleUserInterface detailArticleUserInterface) {
 
-		ArticleInteractor.UpdateFavoriteActionResult result;
-		if(mArticleInteractor.isFavoriteArticleInRepository(currentArticleId())) {
-			result = mArticleInteractor.updateArticleInFavoriteRepository(
-				ArticleInteractor.UpdateFavoriteAction.REMOVE, currentArticleId());
+		FavoriteActionResult result;
+		if(this.favoriteInteractor.isFavoriteArticleInRepository(currentArticleId())) {
+			result = this.favoriteInteractor.updateArticleInFavoriteRepository(
+				FavoriteAction.REMOVE, currentArticleId());
 		} else {
-			result = mArticleInteractor.updateArticleInFavoriteRepository(
-				ArticleInteractor.UpdateFavoriteAction.ADD, currentArticleId());
+			result = this.favoriteInteractor.updateArticleInFavoriteRepository(
+				FavoriteAction.ADD, currentArticleId());
 		}
 
 		mDetailArticleUserInterface.updateFavoriteStateOfCurrentArticle(
-			this, mArticleInteractor.isFavoriteArticleInRepository(currentArticleId()));
+			this, this.favoriteInteractor.isFavoriteArticleInRepository(currentArticleId()));
 
 		mDetailArticleUserInterface.showMessageToCompleteUpdateCurrentArticleInFavorite(this, result);
 	}
@@ -87,7 +93,7 @@ public class DetailArticlePresenter extends Presenter
 		mDetailArticleUserInterface.updateWithCurrentArticle(this,
 			mArticleInteractor.getArticleInRepositoryByArticleId(currentArticleId()));
 		mDetailArticleUserInterface.updateFavoriteStateOfCurrentArticle(
-			this,mArticleInteractor.isFavoriteArticleInRepository(currentArticleId()));
+			this, this.favoriteInteractor.isFavoriteArticleInRepository(currentArticleId()));
 	}
 
 	String currentArticleId() {

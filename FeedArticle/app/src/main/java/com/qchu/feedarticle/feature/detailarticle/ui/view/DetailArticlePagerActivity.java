@@ -18,6 +18,7 @@ import com.qchu.feedarticle.feature.detailarticle.ui.view.databinding.BindableAr
 import com.qchu.feedarticle.feature.detailarticle.ui.view.databinding.DetailArticlePagerActivityDataBinding;
 import com.qchu.feedarticle.feature.detailarticle.ui.view.databinding.EntityTransformer;
 import com.qchu.feedarticle.feature.detailarticle.ui.wireframe.DetailArticleWireframe;
+import com.qchu.feedarticle.feature.favorite.applogic.interactor.FavoriteActionResult;
 
 import java.util.List;
 
@@ -73,6 +74,7 @@ public class DetailArticlePagerActivity extends AppCompatActivity
 		//setup presenter
 		mDetailArticlePresenter = DetailArticlePresenter.create(
 			FeedArticleConfiguration.get().getArticleInteractor(),
+			FeedArticleConfiguration.get().getFavoriteInteractor(),
 			this,
 			new DetailArticleWireframe(this),
 			getIntent().getStringArrayListExtra(ARTICLE_LIST),
@@ -129,7 +131,7 @@ public class DetailArticlePagerActivity extends AppCompatActivity
 	@Override
 	public void showMessageToCompleteUpdateCurrentArticleInFavorite(
 		DetailArticlePresenter detailArticlePresenter,
-		ArticleInteractor.UpdateFavoriteActionResult updateFavoriteActionResult) {
+		FavoriteActionResult updateFavoriteActionResult) {
 
 	}
 

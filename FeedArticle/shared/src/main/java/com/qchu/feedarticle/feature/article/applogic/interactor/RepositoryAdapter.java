@@ -14,12 +14,4 @@ public interface RepositoryAdapter {
 	List<Article> getArticleByArticleIds(List<String> articleIdList);
 	void updateSiteList(List<Site> siteList);
 	void updateSite(Site site);
-
-	List<Article> getFavoriteArticles();
-	boolean isFavoriteArticle(String articleId);
-	//ArticleInteractor.UpdateFavoriteActionResult addFavoriteArticle(String articleId);
-	//ArticleInteractor.UpdateFavoriteActionResult removeFavoriteArticle(String articleId);
-
-	ArticleInteractor.UpdateFavoriteActionResult updateArticleInFavorite(
-		ArticleInteractor.UpdateFavoriteAction updateFavoriteAction, String articleId);
 }

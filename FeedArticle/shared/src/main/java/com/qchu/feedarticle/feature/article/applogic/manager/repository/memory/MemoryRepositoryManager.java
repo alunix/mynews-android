@@ -4,6 +4,9 @@ import com.qchu.feedarticle.feature.article.applogic.entity.Article;
 import com.qchu.feedarticle.feature.article.applogic.entity.Site;
 import com.qchu.feedarticle.feature.article.applogic.interactor.ArticleInteractor;
 import com.qchu.feedarticle.feature.article.applogic.interactor.RepositoryAdapter;
+import com.qchu.feedarticle.feature.favorite.applogic.interactor.FavoriteAction;
+import com.qchu.feedarticle.feature.favorite.applogic.interactor.FavoriteActionResult;
+import com.qchu.feedarticle.feature.favorite.applogic.interactor.FavoriteRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +16,7 @@ import java.util.Map;
 /**
  * Created by quocdungchu on 28/09/15.
  */
-public class MemoryRepositoryManager implements RepositoryAdapter {
+public class MemoryRepositoryManager implements RepositoryAdapter, FavoriteRepository {
 
 	Map<String, Site> mSiteMap = new HashMap<>();
 	Map<String, Article> mArticleMap = new HashMap<>();
@@ -74,51 +77,27 @@ public class MemoryRepositoryManager implements RepositoryAdapter {
 	}
 
 	@Override
-	public ArticleInteractor.UpdateFavoriteActionResult updateArticleInFavorite(
-		ArticleInteractor.UpdateFavoriteAction updateFavoriteAction, String articleId) {
+	public FavoriteActionResult updateArticleInFavorite(
+		FavoriteAction updateFavoriteAction, String articleId) {
 
-		if(updateFavoriteAction == ArticleInteractor.UpdateFavoriteAction.REMOVE) {
+		if(updateFavoriteAction == FavoriteAction.REMOVE) {
 			//Remove action
 			if(mFavoriteArticleIdList.contains(articleId)) {
 				return mFavoriteArticleIdList.remove(articleId) ?
-					ArticleInteractor.UpdateFavoriteActionResult.REMOVE_SUCCESSFUL:
-					ArticleInteractor.UpdateFavoriteActionResult.REMOVE_FAILED_REASON_OTHER;
+					FavoriteActionResult.REMOVE_SUCCESSFUL:
+					FavoriteActionResult.REMOVE_FAILED_REASON_OTHER;
 			} else {
-				return ArticleInteractor.UpdateFavoriteActionResult.REMOVE_FAILED_REASON_NOT_EXIST;
+				return FavoriteActionResult.REMOVE_FAILED_REASON_NOT_EXIST;
 			}
 		} else {
 			//Add action
 			if(!mFavoriteArticleIdList.contains(articleId)) {
 				return mFavoriteArticleIdList.add(articleId) ?
-					ArticleInteractor.UpdateFavoriteActionResult.ADD_SUCCESSFUL:
-					ArticleInteractor.UpdateFavoriteActionResult.ADD_FAILED_REASON_OTHER;
+					FavoriteActionResult.ADD_SUCCESSFUL:
+					FavoriteActionResult.ADD_FAILED_REASON_OTHER;
 			} else {
-				return ArticleInteractor.UpdateFavoriteActionResult.ADD_FAILED_REASON_EXIST_ALREADY;
+				return FavoriteActionResult.ADD_FAILED_REASON_EXIST_ALREADY;
 			}
 		}
 	}
-
-	/*
-	@Override
-	public ArticleInteractor.UpdateFavoriteActionResult addFavoriteArticle(String articleId) {
-		if(!mFavoriteArticleIdList.contains(articleId)) {
-			return mFavoriteArticleIdList.add(articleId) ?
-				ArticleInteractor.UpdateFavoriteActionResult.ADD_SUCCESSFUL:
-				ArticleInteractor.UpdateFavoriteActionResult.ADD_FAILED_REASON_OTHER;
-		} else {
-			return ArticleInteractor.UpdateFavoriteActionResult.ADD_FAILED_REASON_EXIST_ALREADY;
-		}
-	}
-
-	@Override
-	public ArticleInteractor.UpdateFavoriteActionResult removeFavoriteArticle(String articleId) {
-		if(mFavoriteArticleIdList.contains(articleId)) {
-			return mFavoriteArticleIdList.remove(articleId) ?
-				ArticleInteractor.UpdateFavoriteActionResult.REMOVE_SUCCESSFUL:
-				ArticleInteractor.UpdateFavoriteActionResult.REMOVE_FAILED_REASON_OTHER;
-		} else {
-			return ArticleInteractor.UpdateFavoriteActionResult.REMOVE_FAILED_REASON_NOT_EXIST;
-		}
-	}
-	*/
 }
