@@ -13,44 +13,44 @@ import java.util.List;
  */
 public class ArticleInteractor {
 
-	NetworkAdapter mNetworkAdapter;
-	RepositoryAdapter mRepositoryAdapter;
+	SourceRepository mSourceRepository;
+	ArticleRepository mArticleRepository;
 
-	public ArticleInteractor(NetworkAdapter networkAdapter, RepositoryAdapter repositoryAdapter) {
-		mNetworkAdapter = networkAdapter;
-		mRepositoryAdapter = repositoryAdapter;
+	public ArticleInteractor(SourceRepository sourceRepository, ArticleRepository articleRepository) {
+		mSourceRepository = sourceRepository;
+		mArticleRepository = articleRepository;
 	}
 
 	public List<Article> getArticleListInRepositoryBySiteIds(List<String> siteIdList){
-		List<Article> sortedArticleList = mRepositoryAdapter.getArticleBySiteIds(siteIdList);
+		List<Article> sortedArticleList = mArticleRepository.getArticleBySiteIds(siteIdList);
 		Collections.sort(sortedArticleList, new DescentDateSortArticleComparator());
 		return sortedArticleList;
 	}
 
 	public List<Article> getArticleListInRepositoryByArticleIds(List<String> articleIdList){
-		List<Article> sortedArticleList = mRepositoryAdapter.getArticleByArticleIds(articleIdList);
+		List<Article> sortedArticleList = mArticleRepository.getArticleByArticleIds(articleIdList);
 		Collections.sort(sortedArticleList, new DescentDateSortArticleComparator());
 		return sortedArticleList;
 	}
 
 	public Article getArticleInRepositoryByArticleId(String articleId) {
-		return mRepositoryAdapter.getArticleById(articleId);
+		return mArticleRepository.getArticleById(articleId);
 	}
 
 	public void refreshArticles(List<SiteConfig> siteConfigList,
 	                            final RefreshArticleListListener refreshArticleListListener){
 
 		final List<Article> allArticleSortedList = new ArrayList<>();
-		mNetworkAdapter.getArticles(siteConfigList, new NetworkAdapter.GetArticleListListener() {
+		mSourceRepository.getArticles(siteConfigList, new SourceRepository.GetArticleListListener() {
 			@Override
-			public void onBegin(NetworkAdapter networkAdapter) {
+			public void onBegin(SourceRepository sourceRepository) {
 				refreshArticleListListener.onBegin(ArticleInteractor.this);
 			}
 
 			@Override
-			public void onNext(NetworkAdapter networkAdapter,SiteConfig siteConfig, Site site) {
+			public void onNext(SourceRepository sourceRepository, SiteConfig siteConfig, Site site) {
 				//update repository
-				mRepositoryAdapter.updateSite(site);
+				mArticleRepository.updateSite(site);
 
 				allArticleSortedList.addAll(site.articleList());
 				Collections.sort(allArticleSortedList, new DescentDateSortArticleComparator());
@@ -58,7 +58,7 @@ public class ArticleInteractor {
 			}
 
 			@Override
-			public void onComplete(NetworkAdapter networkAdapter) {
+			public void onComplete(SourceRepository sourceRepository) {
 				Collections.sort(allArticleSortedList, new DescentDateSortArticleComparator());
 				refreshArticleListListener.onComplete(ArticleInteractor.this, allArticleSortedList);
 			}

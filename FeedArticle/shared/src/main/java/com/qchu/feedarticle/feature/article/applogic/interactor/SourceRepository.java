@@ -8,12 +8,12 @@ import java.util.List;
 /**
  * Created by quocdungchu on 28/09/15.
  */
-public interface NetworkAdapter {
+public interface SourceRepository {
 	void getArticles(List<SiteConfig> siteConfigList,
 	                 GetArticleListListener getArticleListListener);
 	interface GetArticleListListener {
-		void onBegin(NetworkAdapter networkAdapter);
-		void onNext(NetworkAdapter networkAdapter, SiteConfig siteConfig, Site site);
-		void onComplete(NetworkAdapter networkAdapter);
+		void onBegin(SourceRepository sourceRepository);
+		void onNext(SourceRepository sourceRepository, SiteConfig siteConfig, Site site);
+		void onComplete(SourceRepository sourceRepository);
 	}
 }

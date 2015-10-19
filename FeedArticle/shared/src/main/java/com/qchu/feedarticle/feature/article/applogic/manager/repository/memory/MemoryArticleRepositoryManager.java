@@ -2,8 +2,7 @@ package com.qchu.feedarticle.feature.article.applogic.manager.repository.memory;
 
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
 import com.qchu.feedarticle.feature.article.applogic.entity.Site;
-import com.qchu.feedarticle.feature.article.applogic.interactor.ArticleInteractor;
-import com.qchu.feedarticle.feature.article.applogic.interactor.RepositoryAdapter;
+import com.qchu.feedarticle.feature.article.applogic.interactor.ArticleRepository;
 import com.qchu.feedarticle.feature.favorite.applogic.interactor.FavoriteAction;
 import com.qchu.feedarticle.feature.favorite.applogic.interactor.FavoriteActionResult;
 import com.qchu.feedarticle.feature.favorite.applogic.interactor.FavoriteRepository;
@@ -16,7 +15,7 @@ import java.util.Map;
 /**
  * Created by quocdungchu on 28/09/15.
  */
-public class MemoryRepositoryManager implements RepositoryAdapter, FavoriteRepository {
+public class MemoryArticleRepositoryManager implements ArticleRepository, FavoriteRepository {
 
 	Map<String, Site> mSiteMap = new HashMap<>();
 	Map<String, Article> mArticleMap = new HashMap<>();

@@ -1,10 +1,8 @@
 package com.qchu.feedarticle;
 
-import com.qchu.feedarticle.feature.article.applogic.entity.Article;
 import com.qchu.feedarticle.feature.article.applogic.interactor.ArticleInteractor;
-import com.qchu.feedarticle.feature.article.applogic.interactor.RepositoryAdapter;
 import com.qchu.feedarticle.feature.article.applogic.manager.network.NetworkManager;
-import com.qchu.feedarticle.feature.article.applogic.manager.repository.memory.MemoryRepositoryManager;
+import com.qchu.feedarticle.feature.article.applogic.manager.repository.memory.MemoryArticleRepositoryManager;
 import com.qchu.feedarticle.feature.favorite.applogic.interactor.FavoriteInteractor;
 
 import rx.Scheduler;
@@ -18,7 +16,7 @@ public class FeedArticleConfiguration {
 	static FeedArticleConfiguration sFeedArticleConfiguration;
 
 	ArticleInteractor articleInteractor;
-	private FavoriteInteractor favoriteInteractor;
+	FavoriteInteractor favoriteInteractor;
 
 	public static FeedArticleConfiguration get() {
 		if(sFeedArticleConfiguration == null) {
@@ -29,17 +27,18 @@ public class FeedArticleConfiguration {
 
 	FeedArticleConfiguration(){
 
-		MemoryRepositoryManager memoryRepositoryManager = new MemoryRepositoryManager();
+		MemoryArticleRepositoryManager memoryArticleRepositoryManager =
+			new MemoryArticleRepositoryManager();
 
-		articleInteractor = new ArticleInteractor(new NetworkManager(){
+		this.articleInteractor = new ArticleInteractor(new NetworkManager(){
 
 			@Override
 			public Scheduler observingScheduler() {
 				return AndroidSchedulers.mainThread();
 			}
-		}, memoryRepositoryManager);
+		}, memoryArticleRepositoryManager);
 
-		favoriteInteractor = FavoriteInteractor.create(memoryRepositoryManager);
+		this.favoriteInteractor = FavoriteInteractor.create(memoryArticleRepositoryManager);
 	}
 
 	public ArticleInteractor getArticleInteractor(){

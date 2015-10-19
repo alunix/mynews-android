@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by quocdungchu on 28/09/15.
  */
-public interface RepositoryAdapter {
+public interface ArticleRepository {
 	Article getArticleById(String articleId);
 	List<Article> getArticleBySiteIds(List<String> siteIdList);
 	List<Article> getArticleByArticleIds(List<String> articleIdList);

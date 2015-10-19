@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.qchu.feedarticle.feature.article.applogic.entity.Site;
 import com.qchu.feedarticle.feature.article.applogic.entity.SiteConfig;
-import com.qchu.feedarticle.feature.article.applogic.interactor.NetworkAdapter;
+import com.qchu.feedarticle.feature.article.applogic.interactor.SourceRepository;
 import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.RSSFeed;
 import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.parser.xml.ParsedRSS;
 
@@ -18,10 +18,10 @@ import rx.functions.Func1;
 /**
  * Created by quocdungchu on 07/09/15.
  */
-public abstract class NetworkManager implements NetworkAdapter{
+public abstract class NetworkManager implements SourceRepository {
 
 	public void getArticles(List<SiteConfig> siteConfigList,
-	                        final NetworkAdapter.GetArticleListListener
+	                        final SourceRepository.GetArticleListListener
 		                        getArticleListListener){
 
 		getArticleListListener.onBegin(this);
