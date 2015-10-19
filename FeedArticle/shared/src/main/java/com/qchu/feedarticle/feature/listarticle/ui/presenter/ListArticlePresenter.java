@@ -16,7 +16,7 @@ public class ListArticlePresenter extends Presenter
 	final ListArticleUserInterface mListArticleUserInterface;
 	final ListArticleWireframeInterface mListArticleWireframeInterface;
 
-	public ListArticlePresenter(ListArticleUserInterface listArticleUserInterface,
+	protected ListArticlePresenter(ListArticleUserInterface listArticleUserInterface,
 	                            ListArticleWireframeInterface listArticleWireframeInterface){
 
 		mListArticleUserInterface = listArticleUserInterface;

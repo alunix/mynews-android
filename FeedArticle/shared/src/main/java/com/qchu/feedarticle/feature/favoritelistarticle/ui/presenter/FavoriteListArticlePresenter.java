@@ -12,7 +12,7 @@ import com.qchu.feedarticle.feature.refreshlistarticle.ui.presenter.RefreshListA
  */
 public class FavoriteListArticlePresenter extends ListArticlePresenter {
 
-	public FavoriteListArticlePresenter(
+	protected FavoriteListArticlePresenter(
 		ListArticleUserInterface listArticleUserInterface,
 		ListArticleWireframeInterface listArticleWireframeInterface) {
 

@@ -32,7 +32,7 @@ public class RefreshListArticlePresenter extends ListArticlePresenter
 		return refreshListArticlePresenter;
 	}
 
-	public RefreshListArticlePresenter(
+	protected RefreshListArticlePresenter(
 		ArticleInteractor articleInteractor,
 		RefreshListArticleUserInterface refreshListArticleUserInterface,
 		RefreshListArticleWireframeInterface refreshListArticleWireframeInterface) {
