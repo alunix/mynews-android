@@ -24,6 +24,10 @@ public class FavoriteInteractor {
 		return this.favoriteRepository.getFavoriteArticles();
 	}
 
+	public List<String> getFavoriteArticleIdsInRepository(){
+		return this.favoriteRepository.getFavoriteArticleIds();
+	}
+
 	public boolean isFavoriteArticleInRepository(String articleId) {
 		return this.favoriteRepository.isFavoriteArticle(articleId);
 	}

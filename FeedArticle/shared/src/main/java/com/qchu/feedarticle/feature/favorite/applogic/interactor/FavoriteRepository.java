@@ -10,6 +10,7 @@ import java.util.List;
  */
 public interface FavoriteRepository {
 	List<Article> getFavoriteArticles();
+	List<String> getFavoriteArticleIds();
 	boolean isFavoriteArticle(String articleId);
 	FavoriteActionResult updateArticleInFavorite(FavoriteAction favoriteAction, String articleId);
 }
