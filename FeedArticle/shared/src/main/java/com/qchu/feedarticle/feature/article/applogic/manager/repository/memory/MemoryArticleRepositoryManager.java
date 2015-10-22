@@ -1,5 +1,7 @@
 package com.qchu.feedarticle.feature.article.applogic.manager.repository.memory;
 
+import com.google.common.base.Function;
+import com.google.common.collect.Lists;
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
 import com.qchu.feedarticle.feature.article.applogic.entity.Site;
 import com.qchu.feedarticle.feature.article.applogic.interactor.ArticleRepository;
@@ -11,6 +13,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * Created by quocdungchu on 28/09/15.
@@ -63,11 +68,16 @@ public class MemoryArticleRepositoryManager implements ArticleRepository, Favori
 
 	@Override
 	public List<Article> getFavoriteArticles() {
-		List<Article> articleList = new ArrayList<>();
-		for(String articleId: mFavoriteArticleIdList) {
-			articleList.add(mArticleMap.get(articleId));
-		}
-		return articleList;
+		return Lists.transform(mFavoriteArticleIdList, new Function<String, Article>() {
+			@Nullable @Override public Article apply(String articleId) {
+				return mArticleMap.get(articleId);
+			}
+		});
+	}
+
+	@Override
+	public List<String> getFavoriteArticleIds() {
+		return mFavoriteArticleIdList;
 	}
 
 	@Override

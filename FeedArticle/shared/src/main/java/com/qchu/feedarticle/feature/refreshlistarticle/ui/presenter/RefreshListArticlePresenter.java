@@ -1,9 +1,12 @@
 package com.qchu.feedarticle.feature.refreshlistarticle.ui.presenter;
 
+import com.google.common.collect.Collections2;
+import com.google.common.collect.Lists;
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
 import com.qchu.feedarticle.feature.article.applogic.entity.Site;
 import com.qchu.feedarticle.feature.article.applogic.entity.SiteConfig;
 import com.qchu.feedarticle.feature.article.applogic.interactor.ArticleInteractor;
+import com.qchu.feedarticle.feature.article.applogic.util.ArticleIdTransformFunction;
 import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticlePresenter;
 
 import java.util.ArrayList;
@@ -81,24 +84,20 @@ public class RefreshListArticlePresenter extends ListArticlePresenter
 			@Override
 			public void onNextSite(ArticleInteractor articleInteractor,
 			                       Site site, List<Article> allArticleSortedList) {
-				mArticleIdList = articleIdsFromArticles(allArticleSortedList);
+				mArticleIdList = Lists.newArrayList(Lists.transform(allArticleSortedList,
+					new ArticleIdTransformFunction()));
 				mRefreshListArticleUserInterface.bindArticles(allArticleSortedList);
 			}
 
 			@Override
 			public void onComplete(ArticleInteractor articleInteractor,
 			                       List<Article> allArticleSortedList) {
-				mArticleIdList = articleIdsFromArticles(allArticleSortedList);
+				
+				mArticleIdList = Lists.newArrayList(Lists.transform(allArticleSortedList,
+					new ArticleIdTransformFunction()));
 				mRefreshListArticleUserInterface.endSwipeRefreshingLayout(RefreshListArticlePresenter.this);
 			}
 		});
 	}
 
-	List<String> articleIdsFromArticles(List<Article> articleList) {
-		List<String> articleIdList = new ArrayList<>();
-		for(Article article: articleList) {
-			articleIdList.add(article.identifier());
-		}
-		return articleIdList;
-	}
 }
