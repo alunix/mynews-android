@@ -12,7 +12,7 @@ import java.util.List;
  * Created by quocdungchu on 27/09/15.
  */
 public class DetailArticlePresenter extends Presenter
-	implements DetailArticleUserInterfaceEventHandler {
+	implements DetailArticleUserEventHandler {
 
 	List<String> articleIdList;
 	int currentIndex;

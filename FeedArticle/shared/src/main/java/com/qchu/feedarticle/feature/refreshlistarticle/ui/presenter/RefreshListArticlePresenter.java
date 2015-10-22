@@ -15,7 +15,7 @@ import java.util.List;
  * Created by quocdungchu on 07/09/15.
  */
 public class RefreshListArticlePresenter extends ListArticlePresenter
-	implements RefreshListArticleUserInterfaceEventHandler {
+	implements RefreshListArticleUserEventHandler {
 
 	final ArticleInteractor articleInteractor;
 	final RefreshListArticleUserInterface refreshListArticleUserInterface;

@@ -9,7 +9,7 @@ import java.util.List;
  * Created by quocdungchu on 07/10/15.
  */
 public class ListArticlePresenter extends Presenter
-	implements ListArticleUserInterfaceEventHandler{
+	implements ListArticleUserEventHandler {
 
 	protected List<String> articleIdList = new ArrayList<>();
 
