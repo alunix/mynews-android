@@ -50,9 +50,9 @@ public class RefreshListArticleFragment extends Fragment
 		super.onViewCreated(view, savedInstanceState);
 
 		mRefreshListArticlePresenter = RefreshListArticlePresenter.create(
-			FeedArticleConfiguration.get().getArticleInteractor(),
 			this,
-			new RefreshListArticleWireframe(getActivity()));
+			new RefreshListArticleWireframe(getActivity()),
+			FeedArticleConfiguration.get().getArticleInteractor());
 
 		mListArticleFragmentDataBinding.swipeRefreshLayout.setOnRefreshListener(
 			new SwipeRefreshLayout.OnRefreshListener() {

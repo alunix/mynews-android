@@ -11,7 +11,7 @@ import java.util.List;
 public class ListArticlePresenter extends Presenter
 	implements ListArticleUserInterfaceEventHandler{
 
-	protected List<String> mArticleIdList = new ArrayList<>();
+	protected List<String> articleIdList = new ArrayList<>();
 
 	final ListArticleUserInterface mListArticleUserInterface;
 	final ListArticleWireframeInterface mListArticleWireframeInterface;
@@ -37,9 +37,9 @@ public class ListArticlePresenter extends Presenter
 	public void onArticleItemClickEvent(
 		ListArticleUserInterface listArticleUserInterface, int position) {
 
-		if(0 <= position && position < mArticleIdList.size()) {
+		if(0 <= position && position < articleIdList.size()) {
 			mListArticleWireframeInterface.presentDetailArticleUserInterface(
-				this, mArticleIdList, position);
+				this, articleIdList, position);
 		}
 	}
 }

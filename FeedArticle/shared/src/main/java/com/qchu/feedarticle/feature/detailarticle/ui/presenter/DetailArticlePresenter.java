@@ -14,13 +14,13 @@ import java.util.List;
 public class DetailArticlePresenter extends Presenter
 	implements DetailArticleUserInterfaceEventHandler {
 
-	List<String> mArticleIdList;
-	int mCurrentIndex;
+	List<String> articleIdList;
+	int currentIndex;
 
-	ArticleInteractor mArticleInteractor;
+	ArticleInteractor articleInteractor;
 	FavoriteInteractor favoriteInteractor;
-	DetailArticleUserInterface mDetailArticleUserInterface;
-	DetailArticleWireframeInterface mDetailArticleWireframeInterface;
+	DetailArticleUserInterface detailArticleUserInterface;
+	DetailArticleWireframeInterface detailArticleWireframeInterface;
 
 	public static DetailArticlePresenter create(
 		ArticleInteractor articleInteractor,
@@ -30,12 +30,12 @@ public class DetailArticlePresenter extends Presenter
 		List<String> articleIdList, int currentIndex) {
 
 		DetailArticlePresenter detailArticlePresenter = new DetailArticlePresenter();
-		detailArticlePresenter.mArticleInteractor = articleInteractor;
+		detailArticlePresenter.articleInteractor = articleInteractor;
 		detailArticlePresenter.favoriteInteractor = favoriteInteractor;
-		detailArticlePresenter.mDetailArticleUserInterface = detailArticleUserInterface;
-		detailArticlePresenter.mDetailArticleWireframeInterface = detailArticleWireframeInterface;
-		detailArticlePresenter.mArticleIdList = articleIdList;
-		detailArticlePresenter.mCurrentIndex = currentIndex;
+		detailArticlePresenter.detailArticleUserInterface = detailArticleUserInterface;
+		detailArticlePresenter.detailArticleWireframeInterface = detailArticleWireframeInterface;
+		detailArticlePresenter.articleIdList = articleIdList;
+		detailArticlePresenter.currentIndex = currentIndex;
 
 		detailArticlePresenter.onCreate();
 
@@ -46,9 +46,9 @@ public class DetailArticlePresenter extends Presenter
 
 	@Override
 	protected void onCreate() {
-		mDetailArticleUserInterface.bindArticles(this,
-			mArticleInteractor.getArticleListInRepositoryByArticleIds(mArticleIdList));
-		mDetailArticleUserInterface.selectIndex(this, mCurrentIndex, false);
+		detailArticleUserInterface.bindArticles(this,
+			articleInteractor.getArticleListInRepositoryByArticleIds(articleIdList));
+		detailArticleUserInterface.selectIndex(this, currentIndex, false);
 		updateCurrentArticleUserInterface();
 	}
 
@@ -61,7 +61,7 @@ public class DetailArticlePresenter extends Presenter
 	public void onPageSelectedEvent(DetailArticleUserInterface detailArticleUserInterface,
 	                                int pageIndex) {
 
-		mCurrentIndex = pageIndex;
+		currentIndex = pageIndex;
 		updateCurrentArticleUserInterface();
 	}
 
@@ -78,10 +78,10 @@ public class DetailArticlePresenter extends Presenter
 				FavoriteAction.ADD, currentArticleId());
 		}
 
-		mDetailArticleUserInterface.updateFavoriteStateOfCurrentArticle(
+		this.detailArticleUserInterface.updateFavoriteStateOfCurrentArticle(
 			this, this.favoriteInteractor.isFavoriteArticleInRepository(currentArticleId()));
 
-		mDetailArticleUserInterface.showMessageToCompleteUpdateCurrentArticleInFavorite(this, result);
+		this.detailArticleUserInterface.showMessageToCompleteUpdateCurrentArticleInFavorite(this, result);
 	}
 
 	@Override
@@ -90,14 +90,14 @@ public class DetailArticlePresenter extends Presenter
 	}
 
 	void updateCurrentArticleUserInterface(){
-		mDetailArticleUserInterface.updateWithCurrentArticle(this,
-			mArticleInteractor.getArticleInRepositoryByArticleId(currentArticleId()));
-		mDetailArticleUserInterface.updateFavoriteStateOfCurrentArticle(
+		detailArticleUserInterface.updateWithCurrentArticle(this,
+			articleInteractor.getArticleInRepositoryByArticleId(currentArticleId()));
+		detailArticleUserInterface.updateFavoriteStateOfCurrentArticle(
 			this, this.favoriteInteractor.isFavoriteArticleInRepository(currentArticleId()));
 	}
 
 	String currentArticleId() {
-		return mArticleIdList.get(mCurrentIndex);
+		return articleIdList.get(currentIndex);
 	}
 
 }

@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
@@ -22,21 +21,21 @@ import javax.annotation.Nullable;
  */
 public class MemoryArticleRepositoryManager implements ArticleRepository, FavoriteRepository {
 
-	Map<String, Site> mSiteMap = new HashMap<>();
-	Map<String, Article> mArticleMap = new HashMap<>();
+	Map<String, Site> siteMap = new HashMap<>();
+	Map<String, Article> articleMap = new HashMap<>();
 
-	List<String> mFavoriteArticleIdList = new ArrayList<>();
+	List<String> favoriteArticleIdList = new ArrayList<>();
 
 	@Override
 	public Article getArticleById(String articleId) {
-		return mArticleMap.get(articleId);
+		return articleMap.get(articleId);
 	}
 
 	@Override
 	public List<Article> getArticleBySiteIds(List<String> siteIdList) {
 		List<Article> articleList = new ArrayList<>();
 		for(String siteId: siteIdList) {
-			Site site = mSiteMap.get(siteId);
+			Site site = siteMap.get(siteId);
 			articleList.addAll(site.articleList());
 		}
 		return articleList;
@@ -46,7 +45,7 @@ public class MemoryArticleRepositoryManager implements ArticleRepository, Favori
 	public List<Article> getArticleByArticleIds(List<String> articleIdList) {
 		List<Article> articleList = new ArrayList<>();
 		for(String articleId: articleIdList) {
-			articleList.add(mArticleMap.get(articleId));
+			articleList.add(articleMap.get(articleId));
 		}
 		return articleList;
 	}
@@ -60,29 +59,29 @@ public class MemoryArticleRepositoryManager implements ArticleRepository, Favori
 
 	@Override
 	public void updateSite(Site site) {
-		mSiteMap.put(site.id(), site);
+		siteMap.put(site.id(), site);
 		for(Article article: site.articleList()) {
-			mArticleMap.put(article.identifier(), article);
+			articleMap.put(article.identifier(), article);
 		}
 	}
 
 	@Override
 	public List<Article> getFavoriteArticles() {
-		return Lists.transform(mFavoriteArticleIdList, new Function<String, Article>() {
+		return Lists.transform(favoriteArticleIdList, new Function<String, Article>() {
 			@Nullable @Override public Article apply(String articleId) {
-				return mArticleMap.get(articleId);
+				return articleMap.get(articleId);
 			}
 		});
 	}
 
 	@Override
 	public List<String> getFavoriteArticleIds() {
-		return mFavoriteArticleIdList;
+		return favoriteArticleIdList;
 	}
 
 	@Override
 	public boolean isFavoriteArticle(String articleId) {
-		return mFavoriteArticleIdList.contains(articleId);
+		return favoriteArticleIdList.contains(articleId);
 	}
 
 	@Override
@@ -91,8 +90,8 @@ public class MemoryArticleRepositoryManager implements ArticleRepository, Favori
 
 		if(updateFavoriteAction == FavoriteAction.REMOVE) {
 			//Remove action
-			if(mFavoriteArticleIdList.contains(articleId)) {
-				return mFavoriteArticleIdList.remove(articleId) ?
+			if(favoriteArticleIdList.contains(articleId)) {
+				return favoriteArticleIdList.remove(articleId) ?
 					FavoriteActionResult.REMOVE_SUCCESSFUL:
 					FavoriteActionResult.REMOVE_FAILED_REASON_OTHER;
 			} else {
@@ -100,8 +99,8 @@ public class MemoryArticleRepositoryManager implements ArticleRepository, Favori
 			}
 		} else {
 			//Add action
-			if(!mFavoriteArticleIdList.contains(articleId)) {
-				return mFavoriteArticleIdList.add(articleId) ?
+			if(!favoriteArticleIdList.contains(articleId)) {
+				return favoriteArticleIdList.add(articleId) ?
 					FavoriteActionResult.ADD_SUCCESSFUL:
 					FavoriteActionResult.ADD_FAILED_REASON_OTHER;
 			} else {

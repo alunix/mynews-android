@@ -13,35 +13,35 @@ import java.util.List;
  */
 public class ArticleInteractor {
 
-	SourceRepository mSourceRepository;
-	ArticleRepository mArticleRepository;
+	SourceRepository sourceRepository;
+	ArticleRepository articleRepository;
 
 	public ArticleInteractor(SourceRepository sourceRepository, ArticleRepository articleRepository) {
-		mSourceRepository = sourceRepository;
-		mArticleRepository = articleRepository;
+		this.sourceRepository = sourceRepository;
+		this.articleRepository = articleRepository;
 	}
 
 	public List<Article> getArticleListInRepositoryBySiteIds(List<String> siteIdList){
-		List<Article> sortedArticleList = mArticleRepository.getArticleBySiteIds(siteIdList);
+		List<Article> sortedArticleList = articleRepository.getArticleBySiteIds(siteIdList);
 		Collections.sort(sortedArticleList, new DescentDateSortArticleComparator());
 		return sortedArticleList;
 	}
 
 	public List<Article> getArticleListInRepositoryByArticleIds(List<String> articleIdList){
-		List<Article> sortedArticleList = mArticleRepository.getArticleByArticleIds(articleIdList);
+		List<Article> sortedArticleList = articleRepository.getArticleByArticleIds(articleIdList);
 		Collections.sort(sortedArticleList, new DescentDateSortArticleComparator());
 		return sortedArticleList;
 	}
 
 	public Article getArticleInRepositoryByArticleId(String articleId) {
-		return mArticleRepository.getArticleById(articleId);
+		return articleRepository.getArticleById(articleId);
 	}
 
 	public void refreshArticles(List<SiteConfig> siteConfigList,
 	                            final RefreshArticleListListener refreshArticleListListener){
 
 		final List<Article> allArticleSortedList = new ArrayList<>();
-		mSourceRepository.getArticles(siteConfigList, new SourceRepository.GetArticleListListener() {
+		sourceRepository.getArticles(siteConfigList, new SourceRepository.GetArticleListListener() {
 			@Override
 			public void onBegin(SourceRepository sourceRepository) {
 				refreshArticleListListener.onBegin(ArticleInteractor.this);
@@ -50,7 +50,7 @@ public class ArticleInteractor {
 			@Override
 			public void onNext(SourceRepository sourceRepository, SiteConfig siteConfig, Site site) {
 				//update repository
-				mArticleRepository.updateSite(site);
+				articleRepository.updateSite(site);
 
 				allArticleSortedList.addAll(site.articleList());
 				Collections.sort(allArticleSortedList, new DescentDateSortArticleComparator());

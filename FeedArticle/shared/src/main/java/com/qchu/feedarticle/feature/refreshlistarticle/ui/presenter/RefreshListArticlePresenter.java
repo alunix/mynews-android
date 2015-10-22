@@ -1,6 +1,5 @@
 package com.qchu.feedarticle.feature.refreshlistarticle.ui.presenter;
 
-import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
 import com.qchu.feedarticle.feature.article.applogic.entity.Site;
@@ -18,33 +17,35 @@ import java.util.List;
 public class RefreshListArticlePresenter extends ListArticlePresenter
 	implements RefreshListArticleUserInterfaceEventHandler {
 
-
-	final ArticleInteractor mArticleInteractor;
-	final RefreshListArticleUserInterface mRefreshListArticleUserInterface;
-	final RefreshListArticleWireframeInterface mRefreshListArticleWireframeInterface;
+	final ArticleInteractor articleInteractor;
+	final RefreshListArticleUserInterface refreshListArticleUserInterface;
+	final RefreshListArticleWireframeInterface refreshListArticleWireframeInterface;
 
 	public static RefreshListArticlePresenter create(
-		ArticleInteractor articleInteractor,
 		RefreshListArticleUserInterface refreshListArticleUserInterface,
-		RefreshListArticleWireframeInterface refreshListArticleWireframeInterface) {
+		RefreshListArticleWireframeInterface refreshListArticleWireframeInterface,
+		ArticleInteractor articleInteractor) {
 
-		RefreshListArticlePresenter refreshListArticlePresenter = new RefreshListArticlePresenter(
-			articleInteractor, refreshListArticleUserInterface, refreshListArticleWireframeInterface);
+		RefreshListArticlePresenter refreshListArticlePresenter =
+			new RefreshListArticlePresenter(
+				refreshListArticleUserInterface,
+				refreshListArticleWireframeInterface,
+				articleInteractor);
 
 		refreshListArticlePresenter.onCreate();
 		return refreshListArticlePresenter;
 	}
 
 	protected RefreshListArticlePresenter(
-		ArticleInteractor articleInteractor,
 		RefreshListArticleUserInterface refreshListArticleUserInterface,
-		RefreshListArticleWireframeInterface refreshListArticleWireframeInterface) {
+		RefreshListArticleWireframeInterface refreshListArticleWireframeInterface,
+		ArticleInteractor articleInteractor) {
 
 		super(refreshListArticleUserInterface, refreshListArticleWireframeInterface);
 
-		mArticleInteractor = articleInteractor;
-		mRefreshListArticleUserInterface = refreshListArticleUserInterface;
-		mRefreshListArticleWireframeInterface = refreshListArticleWireframeInterface;
+		this.articleInteractor = articleInteractor;
+		this.refreshListArticleUserInterface = refreshListArticleUserInterface;
+		this.refreshListArticleWireframeInterface = refreshListArticleWireframeInterface;
 	}
 
 
@@ -74,28 +75,28 @@ public class RefreshListArticlePresenter extends ListArticlePresenter
 			.url("http://thethaovanhoa.vn/trang-chu.rss")
 			.build());
 
-		mArticleInteractor.refreshArticles(siteConfigList, new ArticleInteractor.RefreshArticleListListener() {
+		this.articleInteractor.refreshArticles(siteConfigList, new ArticleInteractor.RefreshArticleListListener() {
 			@Override
 			public void onBegin(ArticleInteractor articleInteractor) {
-				mArticleIdList = new ArrayList<>();
-				mRefreshListArticleUserInterface.beginSwipeRefreshingLayout(RefreshListArticlePresenter.this);
+				articleIdList = new ArrayList<>();
+				refreshListArticleUserInterface.beginSwipeRefreshingLayout(RefreshListArticlePresenter.this);
 			}
 
 			@Override
 			public void onNextSite(ArticleInteractor articleInteractor,
 			                       Site site, List<Article> allArticleSortedList) {
-				mArticleIdList = Lists.newArrayList(Lists.transform(allArticleSortedList,
+				articleIdList = Lists.newArrayList(Lists.transform(allArticleSortedList,
 					new ArticleIdTransformFunction()));
-				mRefreshListArticleUserInterface.bindArticles(allArticleSortedList);
+				refreshListArticleUserInterface.bindArticles(allArticleSortedList);
 			}
 
 			@Override
 			public void onComplete(ArticleInteractor articleInteractor,
 			                       List<Article> allArticleSortedList) {
-				
-				mArticleIdList = Lists.newArrayList(Lists.transform(allArticleSortedList,
+
+				articleIdList = Lists.newArrayList(Lists.transform(allArticleSortedList,
 					new ArticleIdTransformFunction()));
-				mRefreshListArticleUserInterface.endSwipeRefreshingLayout(RefreshListArticlePresenter.this);
+				refreshListArticleUserInterface.endSwipeRefreshingLayout(RefreshListArticlePresenter.this);
 			}
 		});
 	}

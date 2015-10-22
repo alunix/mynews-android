@@ -8,14 +8,14 @@ import com.qchu.feedarticle.common.Presenter;
 public class MenuPresenter extends Presenter implements MenuUserInterfaceEventHandler {
 
 
-	MenuUserInterface mMenuUserInterface;
-	MenuWireframeInterface mMenuWireframeInterface;
+	MenuUserInterface menuUserInterface;
+	MenuWireframeInterface menuWireframeInterface;
 
 	public static MenuPresenter create(MenuUserInterface menuUserInterface,
 	                                   MenuWireframeInterface menuWireframeInterface){
 		MenuPresenter menuPresenter = new MenuPresenter();
-		menuPresenter.mMenuUserInterface = menuUserInterface;
-		menuPresenter.mMenuWireframeInterface = menuWireframeInterface;
+		menuPresenter.menuUserInterface = menuUserInterface;
+		menuPresenter.menuWireframeInterface = menuWireframeInterface;
 
 		menuPresenter.onCreate();
 
@@ -24,7 +24,7 @@ public class MenuPresenter extends Presenter implements MenuUserInterfaceEventHa
 
 	@Override
 	protected void onCreate() {
-		mMenuWireframeInterface.presentUserInterfaceForMenuItem(MenuWireframeInterface.MenuItem.HOME);
+		menuWireframeInterface.presentUserInterfaceForMenuItem(MenuWireframeInterface.MenuItem.HOME);
 	}
 
 	@Override
@@ -34,6 +34,6 @@ public class MenuPresenter extends Presenter implements MenuUserInterfaceEventHa
 
 	@Override
 	public void onClickMenuItem(MenuWireframeInterface.MenuItem menuItem) {
-		mMenuWireframeInterface.presentUserInterfaceForMenuItem(menuItem);
+		menuWireframeInterface.presentUserInterfaceForMenuItem(menuItem);
 	}
 }
