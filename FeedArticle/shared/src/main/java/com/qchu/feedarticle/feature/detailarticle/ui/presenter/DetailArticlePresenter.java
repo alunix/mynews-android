@@ -8,60 +8,38 @@ import com.qchu.feedarticle.feature.favorite.applogic.interactor.FavoriteInterac
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * Created by quocdungchu on 27/09/15.
  */
 public class DetailArticlePresenter extends Presenter
 	implements DetailArticleUserEventHandler {
 
-	List<String> articleIdList;
-	int currentIndex;
+	@Inject ArticleInteractor articleInteractor;
+	@Inject FavoriteInteractor favoriteInteractor;
 
-	final ArticleInteractor articleInteractor;
-	final FavoriteInteractor favoriteInteractor;
 	final DetailArticleUserInterface detailArticleUserInterface;
 	final DetailArticleWireframeInterface detailArticleWireframeInterface;
 
-	public static DetailArticlePresenter create(
+	List<String> articleIdList;
+	int currentIndex;
+
+	public DetailArticlePresenter(
 		DetailArticleUserInterface detailArticleUserInterface,
 		DetailArticleWireframeInterface detailArticleWireframeInterface,
-		ArticleInteractor articleInteractor,
-		FavoriteInteractor favoriteInteractor,
-		List<String> articleIdList,
-		int currentIndex) {
-
-		DetailArticlePresenter detailArticlePresenter =
-			new DetailArticlePresenter(
-				detailArticleUserInterface,
-				detailArticleWireframeInterface,
-				articleInteractor,
-				favoriteInteractor,
-				articleIdList,
-				currentIndex);
-		detailArticlePresenter.onCreate();
-
-		return detailArticlePresenter;
-	}
-
-	DetailArticlePresenter(
-		DetailArticleUserInterface detailArticleUserInterface,
-		DetailArticleWireframeInterface detailArticleWireframeInterface,
-		ArticleInteractor articleInteractor,
-		FavoriteInteractor favoriteInteractor,
 		List<String> articleIdList,
 		int currentIndex){
 
 		this.detailArticleUserInterface = detailArticleUserInterface;
 		this.detailArticleWireframeInterface = detailArticleWireframeInterface;
 
-		this.articleInteractor = articleInteractor;
-		this.favoriteInteractor = favoriteInteractor;
 		this.articleIdList = articleIdList;
 		this.currentIndex = currentIndex;
 	}
 
 	@Override
-	protected void onCreate() {
+	public void onCreate() {
 		detailArticleUserInterface.bindArticles(this,
 			articleInteractor.getArticleListInRepositoryByArticleIds(articleIdList));
 		detailArticleUserInterface.selectIndex(this, currentIndex, false);

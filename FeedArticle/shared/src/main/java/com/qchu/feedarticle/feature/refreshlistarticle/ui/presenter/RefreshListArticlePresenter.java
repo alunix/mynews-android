@@ -23,22 +23,6 @@ public class RefreshListArticlePresenter extends ListArticlePresenter
 	final RefreshListArticleUserInterface refreshListArticleUserInterface;
 	final RefreshListArticleWireframeInterface refreshListArticleWireframeInterface;
 
-
-	public static RefreshListArticlePresenter create(
-		RefreshListArticleUserInterface refreshListArticleUserInterface,
-		RefreshListArticleWireframeInterface refreshListArticleWireframeInterface,
-		ArticleInteractor articleInteractor) {
-
-		RefreshListArticlePresenter refreshListArticlePresenter =
-			new RefreshListArticlePresenter(
-				refreshListArticleUserInterface,
-				refreshListArticleWireframeInterface,
-				articleInteractor);
-
-		refreshListArticlePresenter.onCreate();
-		return refreshListArticlePresenter;
-	}
-
 	public RefreshListArticlePresenter(
 		RefreshListArticleUserInterface refreshListArticleUserInterface,
 		RefreshListArticleWireframeInterface refreshListArticleWireframeInterface) {
@@ -48,19 +32,6 @@ public class RefreshListArticlePresenter extends ListArticlePresenter
 		this.refreshListArticleUserInterface = refreshListArticleUserInterface;
 		this.refreshListArticleWireframeInterface = refreshListArticleWireframeInterface;
 	}
-
-	protected RefreshListArticlePresenter(
-		RefreshListArticleUserInterface refreshListArticleUserInterface,
-		RefreshListArticleWireframeInterface refreshListArticleWireframeInterface,
-		ArticleInteractor articleInteractor) {
-
-		super(refreshListArticleUserInterface, refreshListArticleWireframeInterface);
-
-		this.articleInteractor = articleInteractor;
-		this.refreshListArticleUserInterface = refreshListArticleUserInterface;
-		this.refreshListArticleWireframeInterface = refreshListArticleWireframeInterface;
-	}
-
 
 	@Override
 	public void onCreate() {

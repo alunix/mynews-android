@@ -1,7 +1,9 @@
 package com.qchu.feedarticle.dagger;
 
 import com.qchu.feedarticle.feature.article.applogic.interactor.ArticleInteractor;
+import com.qchu.feedarticle.feature.detailarticle.ui.presenter.DetailArticlePresenter;
 import com.qchu.feedarticle.feature.favorite.applogic.interactor.FavoriteInteractor;
+import com.qchu.feedarticle.feature.favoritelistarticle.ui.presenter.FavoriteListArticlePresenter;
 import com.qchu.feedarticle.feature.refreshlistarticle.ui.presenter.RefreshListArticlePresenter;
 
 import javax.inject.Singleton;
@@ -17,5 +19,8 @@ public interface AppLogicComponent {
 	ArticleInteractor articleInteractor();
 	FavoriteInteractor favoriteInteractor();
 
+	void inject(FavoriteListArticlePresenter favoriteListArticlePresenter);
 	void inject(RefreshListArticlePresenter refreshListArticlePresenter);
+	void inject(DetailArticlePresenter detailArticlePresenter);
+
 }

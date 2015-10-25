@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.qchu.feedarticle.FeedArticleApplication;
 import com.qchu.feedarticle.FeedArticleConfiguration;
 import com.qchu.feedarticle.R;
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
@@ -72,13 +73,14 @@ public class DetailArticlePagerActivity extends AppCompatActivity
 			});
 
 		//setup presenter
-		mDetailArticlePresenter = DetailArticlePresenter.create(
+		mDetailArticlePresenter = new DetailArticlePresenter(
 			this,
 			new DetailArticleWireframe(this),
-			FeedArticleConfiguration.get().getArticleInteractor(),
-			FeedArticleConfiguration.get().getFavoriteInteractor(),
 			getIntent().getStringArrayListExtra(ARTICLE_LIST),
 			getIntent().getIntExtra(CURRENT_INDEX,-1));
+		((FeedArticleApplication)getApplication()).appLogicComponent()
+			.inject(mDetailArticlePresenter);
+		mDetailArticlePresenter.onCreate();
 	}
 
 	@Override
