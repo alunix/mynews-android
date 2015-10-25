@@ -17,32 +17,48 @@ public class DetailArticlePresenter extends Presenter
 	List<String> articleIdList;
 	int currentIndex;
 
-	ArticleInteractor articleInteractor;
-	FavoriteInteractor favoriteInteractor;
-	DetailArticleUserInterface detailArticleUserInterface;
-	DetailArticleWireframeInterface detailArticleWireframeInterface;
+	final ArticleInteractor articleInteractor;
+	final FavoriteInteractor favoriteInteractor;
+	final DetailArticleUserInterface detailArticleUserInterface;
+	final DetailArticleWireframeInterface detailArticleWireframeInterface;
 
 	public static DetailArticlePresenter create(
-		ArticleInteractor articleInteractor,
-		FavoriteInteractor favoriteInteractor,
 		DetailArticleUserInterface detailArticleUserInterface,
 		DetailArticleWireframeInterface detailArticleWireframeInterface,
-		List<String> articleIdList, int currentIndex) {
+		ArticleInteractor articleInteractor,
+		FavoriteInteractor favoriteInteractor,
+		List<String> articleIdList,
+		int currentIndex) {
 
-		DetailArticlePresenter detailArticlePresenter = new DetailArticlePresenter();
-		detailArticlePresenter.articleInteractor = articleInteractor;
-		detailArticlePresenter.favoriteInteractor = favoriteInteractor;
-		detailArticlePresenter.detailArticleUserInterface = detailArticleUserInterface;
-		detailArticlePresenter.detailArticleWireframeInterface = detailArticleWireframeInterface;
-		detailArticlePresenter.articleIdList = articleIdList;
-		detailArticlePresenter.currentIndex = currentIndex;
-
+		DetailArticlePresenter detailArticlePresenter =
+			new DetailArticlePresenter(
+				detailArticleUserInterface,
+				detailArticleWireframeInterface,
+				articleInteractor,
+				favoriteInteractor,
+				articleIdList,
+				currentIndex);
 		detailArticlePresenter.onCreate();
 
 		return detailArticlePresenter;
 	}
 
-	DetailArticlePresenter(){}
+	DetailArticlePresenter(
+		DetailArticleUserInterface detailArticleUserInterface,
+		DetailArticleWireframeInterface detailArticleWireframeInterface,
+		ArticleInteractor articleInteractor,
+		FavoriteInteractor favoriteInteractor,
+		List<String> articleIdList,
+		int currentIndex){
+
+		this.detailArticleUserInterface = detailArticleUserInterface;
+		this.detailArticleWireframeInterface = detailArticleWireframeInterface;
+
+		this.articleInteractor = articleInteractor;
+		this.favoriteInteractor = favoriteInteractor;
+		this.articleIdList = articleIdList;
+		this.currentIndex = currentIndex;
+	}
 
 	@Override
 	protected void onCreate() {

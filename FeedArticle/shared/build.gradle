@@ -1,15 +1,39 @@
+apply plugin: 'java'
 
-plugins {
-	id 'java'
-	id 'com.github.j2objccontrib.j2objcgradle' version '0.4.3-alpha'
+
+buildscript {
+	repositories {
+		jcenter()
+	}
+	dependencies {
+		//Using j2objc gradle in local
+		//TODO using the version stable of j2objc gradle
+		//https://github.com/j2objc-contrib/j2objc-gradle
+		classpath fileTree(dir: '../libs', include: ['*.jar'])
+	}
 }
 
-//sourceCompatibility = 1.8
-//targetCompatibility = 1.8
+apply plugin: 'com.github.j2objccontrib.j2objcgradle'
 
+
+dependencies {
+	compile fileTree(dir: 'libs', include: ['*.jar'])
+
+	//for translating j2objc
+	compile project (':third_party_dagger2')
+
+	compile 'com.google.auto.value:auto-value:1.2-SNAPSHOT'
+
+	compile 'com.google.guava:guava:18.0'
+	compile 'com.google.code.findbugs:jsr305:3.0.1'
+
+	//dagger2
+	//compile 'com.google.dagger:dagger:2.0.1'
+	//compile 'com.google.dagger:dagger-compiler:2.0.1'
+}
 
 j2objcConfig {
-	supportedArchs += ['ios_i386']
+	//supportedArchs += ['ios_i386']
 
 	translateArgs (
 		'-use-arc',
@@ -20,20 +44,18 @@ j2objcConfig {
 	translateClasspaths ('libs/auto-value-1.2-SNAPSHOT.jar')
 
 	xcodeProjectDir '../ios/feedarticle'
-	xcodeTarget 'feedarticle'
+	xcodeTargetsIos 'feedarticle'
 
 	autoConfigureDeps true
+
+	forceFilenameCollisionCheck false
+	// For now, default config links in prebuilt Guava; that defeats the point.
+	translateJ2objcLibs.remove("j2objc_guava.jar")
+	linkJ2objcLibs.remove("guava")
+
+	// Almost always there are no tests provided in an external source jar.
+	testMinExpectedTests 0
 
 	finalConfigure()
 }
 
-dependencies {
-	compile fileTree(dir: 'libs', include: ['*.jar'])
-
-	compile 'com.google.auto.value:auto-value:1.2-SNAPSHOT'
-
-	compile 'com.google.guava:guava:18.0'
-	compile 'com.google.code.findbugs:jsr305:3.0.1'
-
-
-}

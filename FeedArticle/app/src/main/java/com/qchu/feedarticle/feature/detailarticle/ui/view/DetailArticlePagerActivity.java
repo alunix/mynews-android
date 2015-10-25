@@ -73,14 +73,12 @@ public class DetailArticlePagerActivity extends AppCompatActivity
 
 		//setup presenter
 		mDetailArticlePresenter = DetailArticlePresenter.create(
-			FeedArticleConfiguration.get().getArticleInteractor(),
-			FeedArticleConfiguration.get().getFavoriteInteractor(),
 			this,
 			new DetailArticleWireframe(this),
+			FeedArticleConfiguration.get().getArticleInteractor(),
+			FeedArticleConfiguration.get().getFavoriteInteractor(),
 			getIntent().getStringArrayListExtra(ARTICLE_LIST),
 			getIntent().getIntExtra(CURRENT_INDEX,-1));
-
-
 	}
 
 	@Override
