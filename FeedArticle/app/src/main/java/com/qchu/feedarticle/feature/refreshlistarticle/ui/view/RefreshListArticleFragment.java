@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.qchu.feedarticle.FeedArticleApplication;
-import com.qchu.feedarticle.FeedArticleConfiguration;
 import com.qchu.feedarticle.R;
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
 import com.qchu.feedarticle.feature.listarticle.ui.view.ListArticleRecycleViewAdapter;

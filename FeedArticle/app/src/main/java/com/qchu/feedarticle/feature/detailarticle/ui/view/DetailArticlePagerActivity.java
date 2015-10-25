@@ -9,10 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.qchu.feedarticle.FeedArticleApplication;
-import com.qchu.feedarticle.FeedArticleConfiguration;
 import com.qchu.feedarticle.R;
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
-import com.qchu.feedarticle.feature.article.applogic.interactor.ArticleInteractor;
 import com.qchu.feedarticle.feature.detailarticle.ui.presenter.DetailArticlePresenter;
 import com.qchu.feedarticle.feature.detailarticle.ui.presenter.DetailArticleUserInterface;
 import com.qchu.feedarticle.feature.detailarticle.ui.view.databinding.BindableArticle;
