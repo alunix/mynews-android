@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.qchu.feedarticle.FeedArticleApplication;
 import com.qchu.feedarticle.FeedArticleConfiguration;
 import com.qchu.feedarticle.R;
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
@@ -49,10 +50,13 @@ public class RefreshListArticleFragment extends Fragment
 	public void onViewCreated(View view, Bundle savedInstanceState){
 		super.onViewCreated(view, savedInstanceState);
 
-		mRefreshListArticlePresenter = RefreshListArticlePresenter.create(
+		//setup presenter
+		mRefreshListArticlePresenter = new RefreshListArticlePresenter(
 			this,
-			new RefreshListArticleWireframe(getActivity()),
-			FeedArticleConfiguration.get().getArticleInteractor());
+			new RefreshListArticleWireframe(getActivity()));
+		((FeedArticleApplication)getActivity().getApplication()).appLogicComponent()
+			.inject(mRefreshListArticlePresenter);
+		mRefreshListArticlePresenter.onCreate();
 
 		mListArticleFragmentDataBinding.swipeRefreshLayout.setOnRefreshListener(
 			new SwipeRefreshLayout.OnRefreshListener() {

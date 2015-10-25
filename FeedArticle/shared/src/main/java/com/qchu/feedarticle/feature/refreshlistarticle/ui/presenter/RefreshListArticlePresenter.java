@@ -11,15 +11,18 @@ import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticlePresente
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * Created by quocdungchu on 07/09/15.
  */
 public class RefreshListArticlePresenter extends ListArticlePresenter
 	implements RefreshListArticleUserEventHandler {
 
-	final ArticleInteractor articleInteractor;
+	@Inject ArticleInteractor articleInteractor;
 	final RefreshListArticleUserInterface refreshListArticleUserInterface;
 	final RefreshListArticleWireframeInterface refreshListArticleWireframeInterface;
+
 
 	public static RefreshListArticlePresenter create(
 		RefreshListArticleUserInterface refreshListArticleUserInterface,
@@ -36,6 +39,16 @@ public class RefreshListArticlePresenter extends ListArticlePresenter
 		return refreshListArticlePresenter;
 	}
 
+	public RefreshListArticlePresenter(
+		RefreshListArticleUserInterface refreshListArticleUserInterface,
+		RefreshListArticleWireframeInterface refreshListArticleWireframeInterface) {
+
+		super(refreshListArticleUserInterface, refreshListArticleWireframeInterface);
+
+		this.refreshListArticleUserInterface = refreshListArticleUserInterface;
+		this.refreshListArticleWireframeInterface = refreshListArticleWireframeInterface;
+	}
+
 	protected RefreshListArticlePresenter(
 		RefreshListArticleUserInterface refreshListArticleUserInterface,
 		RefreshListArticleWireframeInterface refreshListArticleWireframeInterface,
@@ -50,7 +63,7 @@ public class RefreshListArticlePresenter extends ListArticlePresenter
 
 
 	@Override
-	protected void onCreate() {
+	public void onCreate() {
 		refreshContent();
 	}
 
