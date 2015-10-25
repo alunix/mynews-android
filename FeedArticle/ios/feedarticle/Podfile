@@ -3,20 +3,28 @@
 
 source 'https://github.com/CocoaPods/Specs.git'
 
-target 'feedarticle' do
+# J2ObjC Gradle Plugin - DO NOT MODIFY from here to the first target
+def j2objc_shared
+    pod 'j2objc-shared-debug', :configuration => ['Debug'], :path => '../../shared/build'
+    pod 'j2objc-shared-release', :configuration => ['Release'], :path => '../../shared/build'
+end
 
-pod 'j2objc-shared-debug', :configuration => ['Debug'], :path => '/Users/quocdungchu/Projects/git/quocdungchu/android-sample/android-sample-FeedArticle/FeedArticle/shared/build'
-pod 'j2objc-shared-release', :configuration => ['Release'], :path => '/Users/quocdungchu/Projects/git/quocdungchu/android-sample/android-sample-FeedArticle/FeedArticle/shared/build'
+def j2objc_third_party_dagger2
+    pod 'j2objc-third_party_dagger2-debug', :configuration => ['Debug'], :path => '../../third_party_dagger2/build'
+    pod 'j2objc-third_party_dagger2-release', :configuration => ['Release'], :path => '../../third_party_dagger2/build'
+end
+
+target 'feedarticle' do
+    platform :ios, '6.0'
+    j2objc_shared
+    j2objc_third_party_dagger2
+
 end
 
 target 'feedarticleTests' do
 
-pod 'j2objc-shared-debug', :configuration => ['Debug'], :path => '/Users/quocdungchu/Projects/git/quocdungchu/android-sample/android-sample-FeedArticle/FeedArticle/shared/build'
-pod 'j2objc-shared-release', :configuration => ['Release'], :path => '/Users/quocdungchu/Projects/git/quocdungchu/android-sample/android-sample-FeedArticle/FeedArticle/shared/build'
 end
 
 target 'feedarticleUITests' do
 
-pod 'j2objc-shared-debug', :configuration => ['Debug'], :path => '/Users/quocdungchu/Projects/git/quocdungchu/android-sample/android-sample-FeedArticle/FeedArticle/shared/build'
-pod 'j2objc-shared-release', :configuration => ['Release'], :path => '/Users/quocdungchu/Projects/git/quocdungchu/android-sample/android-sample-FeedArticle/FeedArticle/shared/build'
 end

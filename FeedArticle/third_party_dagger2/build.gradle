@@ -33,6 +33,15 @@ dependencies {
 }
 
 j2objcConfig {
+	translateArgs (
+		'-use-arc',
+		//'--prefixes', 'prefixes.properties',
+	)
+	extraObjcCompilerArgs '-fobjc-arc'
+
+	xcodeProjectDir '../ios/feedarticle'
+	xcodeTargetsIos 'feedarticle'
+
 	autoConfigureDeps true
 
 	forceFilenameCollisionCheck false
