@@ -8,15 +8,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 /**
  * Created by quocdungchu on 07/09/15.
  */
+@Singleton
 public class ArticleInteractor {
 
 	SourceRepository sourceRepository;
 	ArticleRepository articleRepository;
 
-	public ArticleInteractor(SourceRepository sourceRepository, ArticleRepository articleRepository) {
+	@Inject public ArticleInteractor(SourceRepository sourceRepository,
+	                                 ArticleRepository articleRepository) {
 		this.sourceRepository = sourceRepository;
 		this.articleRepository = articleRepository;
 	}

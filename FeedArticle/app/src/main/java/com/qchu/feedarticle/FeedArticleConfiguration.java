@@ -33,13 +33,8 @@ public class FeedArticleConfiguration {
 		MemoryArticleRepositoryManager memoryArticleRepositoryManager =
 			new MemoryArticleRepositoryManager();
 
-		this.articleInteractor = new ArticleInteractor(new NetworkManager(){
-
-			@Override
-			public Scheduler observingScheduler() {
-				return AndroidSchedulers.mainThread();
-			}
-		}, memoryArticleRepositoryManager);
+		this.articleInteractor = new ArticleInteractor(
+			new NetworkManager(AndroidSchedulers.mainThread()), memoryArticleRepositoryManager);
 
 		this.favoriteInteractor = FavoriteInteractor.create(memoryArticleRepositoryManager);
 	}

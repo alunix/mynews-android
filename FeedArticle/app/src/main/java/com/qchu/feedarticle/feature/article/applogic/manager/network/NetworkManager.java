@@ -10,6 +10,8 @@ import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.parser.
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import rx.Observable;
 import rx.Scheduler;
 import rx.Subscriber;
@@ -18,7 +20,13 @@ import rx.functions.Func1;
 /**
  * Created by quocdungchu on 07/09/15.
  */
-public abstract class NetworkManager implements SourceRepository {
+public class NetworkManager implements SourceRepository {
+
+	Scheduler observingScheduler;
+
+	public NetworkManager(Scheduler observingScheduler) {
+		this.observingScheduler = observingScheduler;
+	}
 
 	public void getArticles(List<SiteConfig> siteConfigList,
 	                        final SourceRepository.GetArticleListListener
@@ -38,18 +46,18 @@ public abstract class NetworkManager implements SourceRepository {
 						});
 				}
 			})
-			.observeOn(observingScheduler())
+			.observeOn(observingScheduler)
 			.subscribe(new Subscriber<Site>() {
 
 				@Override
 				public void onError(Throwable e) {
-					Log.d("onError Network", "Error "+e);
+					Log.d("onError Network", "Error " + e);
 
 				}
 
 				@Override
 				public void onNext(Site site) {
-					Log.d("onNext Network", "Site "+site);
+					Log.d("onNext Network", "Site " + site);
 					getArticleListListener.onNext(NetworkManager.this, site.siteConfig(), site);
 				}
 
@@ -60,7 +68,4 @@ public abstract class NetworkManager implements SourceRepository {
 				}
 			});
 	}
-
-	public abstract Scheduler observingScheduler();
-
 }
