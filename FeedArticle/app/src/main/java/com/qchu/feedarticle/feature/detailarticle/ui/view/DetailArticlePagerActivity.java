@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.qchu.feedarticle.FeedArticleApplication;
 import com.qchu.feedarticle.R;
+import com.qchu.feedarticle.common.BaseActivity;
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
 import com.qchu.feedarticle.feature.detailarticle.ui.presenter.DetailArticlePresenter;
 import com.qchu.feedarticle.feature.detailarticle.ui.presenter.DetailArticleUserInterface;
@@ -24,7 +25,7 @@ import java.util.List;
 /**
  * Created by quocdungchu on 27/09/15.
  */
-public class DetailArticlePagerActivity extends AppCompatActivity
+public class DetailArticlePagerActivity extends BaseActivity
 	implements DetailArticleUserInterface {
 
 	public static final String CURRENT_INDEX = "CURRENT_INDEX";
@@ -72,12 +73,12 @@ public class DetailArticlePagerActivity extends AppCompatActivity
 
 		//setup presenter
 		mDetailArticlePresenter = new DetailArticlePresenter(
+			appLogicComponent().articleInteractor(),
+			appLogicComponent().favoriteInteractor(),
 			this,
 			new DetailArticleWireframe(this),
 			getIntent().getStringArrayListExtra(ARTICLE_LIST),
 			getIntent().getIntExtra(CURRENT_INDEX,-1));
-		((FeedArticleApplication)getApplication()).appLogicComponent()
-			.inject(mDetailArticlePresenter);
 		mDetailArticlePresenter.onCreate();
 	}
 

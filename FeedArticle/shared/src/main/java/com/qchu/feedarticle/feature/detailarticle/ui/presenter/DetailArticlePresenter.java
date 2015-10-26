@@ -16,9 +16,8 @@ import javax.inject.Inject;
 public class DetailArticlePresenter extends Presenter
 	implements DetailArticleUserEventHandler {
 
-	@Inject ArticleInteractor articleInteractor;
-	@Inject FavoriteInteractor favoriteInteractor;
-
+	final ArticleInteractor articleInteractor;
+	final FavoriteInteractor favoriteInteractor;
 	final DetailArticleUserInterface detailArticleUserInterface;
 	final DetailArticleWireframeInterface detailArticleWireframeInterface;
 
@@ -26,10 +25,15 @@ public class DetailArticlePresenter extends Presenter
 	int currentIndex;
 
 	public DetailArticlePresenter(
+		ArticleInteractor articleInteractor,
+		FavoriteInteractor favoriteInteractor,
 		DetailArticleUserInterface detailArticleUserInterface,
 		DetailArticleWireframeInterface detailArticleWireframeInterface,
 		List<String> articleIdList,
 		int currentIndex){
+
+		this.articleInteractor = articleInteractor;
+		this.favoriteInteractor = favoriteInteractor;
 
 		this.detailArticleUserInterface = detailArticleUserInterface;
 		this.detailArticleWireframeInterface = detailArticleWireframeInterface;

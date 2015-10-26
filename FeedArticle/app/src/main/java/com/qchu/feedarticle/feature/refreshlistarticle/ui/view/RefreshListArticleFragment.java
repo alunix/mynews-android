@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 
 import com.qchu.feedarticle.FeedArticleApplication;
 import com.qchu.feedarticle.R;
+import com.qchu.feedarticle.common.BaseFragment;
+import com.qchu.feedarticle.dagger.AppLogicComponent;
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
 import com.qchu.feedarticle.feature.listarticle.ui.view.ListArticleRecycleViewAdapter;
 import com.qchu.feedarticle.feature.refreshlistarticle.ui.presenter.RefreshListArticlePresenter;
@@ -26,7 +28,7 @@ import java.util.List;
 /**
  * Created by quocdungchu on 22/09/15.
  */
-public class RefreshListArticleFragment extends Fragment
+public class RefreshListArticleFragment extends BaseFragment
 	implements RefreshListArticleUserInterface {
 
 	RefreshListArticlePresenter mRefreshListArticlePresenter;
@@ -51,10 +53,9 @@ public class RefreshListArticleFragment extends Fragment
 
 		//setup presenter
 		mRefreshListArticlePresenter = new RefreshListArticlePresenter(
+			appLogicComponent().articleInteractor(),
 			this,
 			new RefreshListArticleWireframe(getActivity()));
-		((FeedArticleApplication)getActivity().getApplication()).appLogicComponent()
-			.inject(mRefreshListArticlePresenter);
 		mRefreshListArticlePresenter.onCreate();
 
 		mListArticleFragmentDataBinding.swipeRefreshLayout.setOnRefreshListener(
@@ -64,7 +65,6 @@ public class RefreshListArticleFragment extends Fragment
 					mRefreshListArticlePresenter.onSwipeRefreshEvent(RefreshListArticleFragment.this);
 				}
 			});
-
 	}
 
 	@Override

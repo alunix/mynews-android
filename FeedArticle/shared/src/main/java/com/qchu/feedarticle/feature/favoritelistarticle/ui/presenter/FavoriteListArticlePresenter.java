@@ -24,26 +24,10 @@ public class FavoriteListArticlePresenter extends ListArticlePresenter
 	final FavoriteInteractor favoriteInteractor;
 	final FavoriteListArticleUserInterface favoriteListArticleUserInterface;
 
-	public static FavoriteListArticlePresenter create(
-		FavoriteListArticleUserInterface favoriteListArticleUserInterface,
-		ListArticleWireframeInterface listArticleWireframeInterface,
-		FavoriteInteractor favoriteInteractor) {
-
-		FavoriteListArticlePresenter favoriteListArticlePresenter =
-			new FavoriteListArticlePresenter(
-				favoriteListArticleUserInterface,
-				listArticleWireframeInterface,
-				favoriteInteractor);
-
-		favoriteListArticlePresenter.onCreate();
-
-		return favoriteListArticlePresenter;
-	}
-
 	protected FavoriteListArticlePresenter(
+		FavoriteInteractor favoriteInteractor,
 		FavoriteListArticleUserInterface favoriteListArticleUserInterface,
-		ListArticleWireframeInterface listArticleWireframeInterface,
-		FavoriteInteractor favoriteInteractor) {
+		ListArticleWireframeInterface listArticleWireframeInterface) {
 
 		super(favoriteListArticleUserInterface, listArticleWireframeInterface);
 
@@ -53,7 +37,7 @@ public class FavoriteListArticlePresenter extends ListArticlePresenter
 	}
 
 	@Override
-	protected void onCreate() {
+	public void onCreate() {
 		this.articleIdList = this.favoriteInteractor.getFavoriteArticleIdsInRepository();
 		this.articleList = this.favoriteInteractor.getFavoriteArticlesInRepository();
 		this.favoriteListArticleUserInterface.bindArticles(this.articleList);

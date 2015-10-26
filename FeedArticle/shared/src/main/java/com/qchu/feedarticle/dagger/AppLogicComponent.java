@@ -18,9 +18,4 @@ import dagger.Component;
 public interface AppLogicComponent {
 	ArticleInteractor articleInteractor();
 	FavoriteInteractor favoriteInteractor();
-
-	void inject(FavoriteListArticlePresenter favoriteListArticlePresenter);
-	void inject(RefreshListArticlePresenter refreshListArticlePresenter);
-	void inject(DetailArticlePresenter detailArticlePresenter);
-
 }

@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.qchu.feedarticle.R;
+import com.qchu.feedarticle.common.BaseActivity;
 import com.qchu.feedarticle.feature.main.ui.view.databinding.MainActivityBinding;
 import com.qchu.feedarticle.feature.menu.ui.presenter.MenuPresenter;
 import com.qchu.feedarticle.feature.menu.ui.presenter.MenuUserInterface;
@@ -18,7 +19,7 @@ import com.qchu.feedarticle.feature.menu.ui.wireframe.MenuWireframe;
 /**
  * Created by quocdungchu on 20/09/15.
  */
-public class MainActivity extends AppCompatActivity implements MenuUserInterface {
+public class MainActivity extends BaseActivity implements MenuUserInterface {
 
 	MenuPresenter mMenuPresenter;
 

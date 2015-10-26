@@ -19,16 +19,18 @@ import javax.inject.Inject;
 public class RefreshListArticlePresenter extends ListArticlePresenter
 	implements RefreshListArticleUserEventHandler {
 
-	@Inject ArticleInteractor articleInteractor;
+	final ArticleInteractor articleInteractor;
 	final RefreshListArticleUserInterface refreshListArticleUserInterface;
 	final RefreshListArticleWireframeInterface refreshListArticleWireframeInterface;
 
 	public RefreshListArticlePresenter(
+		ArticleInteractor articleInteractor,
 		RefreshListArticleUserInterface refreshListArticleUserInterface,
 		RefreshListArticleWireframeInterface refreshListArticleWireframeInterface) {
 
 		super(refreshListArticleUserInterface, refreshListArticleWireframeInterface);
 
+		this.articleInteractor = articleInteractor;
 		this.refreshListArticleUserInterface = refreshListArticleUserInterface;
 		this.refreshListArticleWireframeInterface = refreshListArticleWireframeInterface;
 	}
