@@ -12,15 +12,12 @@ public class MenuPresenter
 	MenuUserInterface menuUserInterface;
 	MenuWireframeInterface menuWireframeInterface;
 
-	public static MenuPresenter create(MenuUserInterface menuUserInterface,
-	                                   MenuWireframeInterface menuWireframeInterface){
-		MenuPresenter menuPresenter = new MenuPresenter();
-		menuPresenter.menuUserInterface = menuUserInterface;
-		menuPresenter.menuWireframeInterface = menuWireframeInterface;
+	public MenuPresenter(
+		MenuUserInterface menuUserInterface,
+		MenuWireframeInterface menuWireframeInterface){
 
-		menuPresenter.onCreate();
-
-		return menuPresenter;
+		this.menuUserInterface = menuUserInterface;
+		this.menuWireframeInterface = menuWireframeInterface;
 	}
 
 	@Override

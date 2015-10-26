@@ -38,8 +38,9 @@ public class MainActivity extends BaseActivity implements MenuUserInterface {
 
 		setupDrawerContent(mMainActivityBinding.navView);
 
-		mMenuPresenter = MenuPresenter.create(this,
+		mMenuPresenter = new MenuPresenter(this,
 			new MenuWireframe(this, R.id.fragmentContainer));
+		mMenuPresenter.onCreate();
 	}
 
 	protected void onDestroy(){
