@@ -15,11 +15,6 @@ public class FavoriteInteractor {
 
 	final FavoriteRepository favoriteRepository;
 
-	public static FavoriteInteractor create(FavoriteRepository favoriteRepository) {
-		FavoriteInteractor favoriteInteractor = new FavoriteInteractor(favoriteRepository);
-		return favoriteInteractor;
-	}
-
 	@Inject
 	FavoriteInteractor(FavoriteRepository favoriteRepository){
 		this.favoriteRepository = favoriteRepository;
