@@ -41,7 +41,7 @@ public class RefreshListArticlePresenter extends ListArticlePresenter
 	}
 
 	@Override
-	protected void onDestroy() {
+	public void onDestroy() {
 
 	}
 

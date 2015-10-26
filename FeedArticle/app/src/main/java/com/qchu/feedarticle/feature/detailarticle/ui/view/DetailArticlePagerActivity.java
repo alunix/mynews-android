@@ -85,7 +85,7 @@ public class DetailArticlePagerActivity extends BaseActivity
 	@Override
 	protected void onDestroy(){
 		super.onDestroy();
-		mDetailArticlePresenter.finish();
+		mDetailArticlePresenter.onDestroy();
 	}
 
 	public void onFavoriteButtonClick(View view){

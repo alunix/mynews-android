@@ -8,8 +8,8 @@ import java.util.List;
 /**
  * Created by quocdungchu on 07/10/15.
  */
-public class ListArticlePresenter extends Presenter
-	implements ListArticleUserEventHandler {
+public class ListArticlePresenter
+	implements Presenter, ListArticleUserEventHandler {
 
 	protected List<String> articleIdList = new ArrayList<>();
 
@@ -24,12 +24,12 @@ public class ListArticlePresenter extends Presenter
 	}
 
 	@Override
-	protected void onCreate() {
+	public void onCreate() {
 
 	}
 
 	@Override
-	protected void onDestroy() {
+	public void onDestroy() {
 
 	}
 

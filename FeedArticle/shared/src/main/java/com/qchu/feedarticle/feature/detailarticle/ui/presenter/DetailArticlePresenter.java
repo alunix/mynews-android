@@ -13,8 +13,8 @@ import javax.inject.Inject;
 /**
  * Created by quocdungchu on 27/09/15.
  */
-public class DetailArticlePresenter extends Presenter
-	implements DetailArticleUserEventHandler {
+public class DetailArticlePresenter
+	implements Presenter, DetailArticleUserEventHandler {
 
 	final ArticleInteractor articleInteractor;
 	final FavoriteInteractor favoriteInteractor;
@@ -51,7 +51,7 @@ public class DetailArticlePresenter extends Presenter
 	}
 
 	@Override
-	protected void onDestroy() {
+	public void onDestroy() {
 
 	}
 

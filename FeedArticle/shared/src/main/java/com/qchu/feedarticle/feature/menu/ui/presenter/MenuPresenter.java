@@ -5,7 +5,8 @@ import com.qchu.feedarticle.common.Presenter;
 /**
  * Created by quocdungchu on 20/09/15.
  */
-public class MenuPresenter extends Presenter implements MenuUserInterfaceEventHandler {
+public class MenuPresenter
+	implements Presenter,MenuUserInterfaceEventHandler {
 
 
 	MenuUserInterface menuUserInterface;
@@ -23,12 +24,12 @@ public class MenuPresenter extends Presenter implements MenuUserInterfaceEventHa
 	}
 
 	@Override
-	protected void onCreate() {
+	public void onCreate() {
 		menuWireframeInterface.presentUserInterfaceForMenuItem(MenuWireframeInterface.MenuItem.HOME);
 	}
 
 	@Override
-	protected void onDestroy() {
+	public void onDestroy() {
 
 	}
 

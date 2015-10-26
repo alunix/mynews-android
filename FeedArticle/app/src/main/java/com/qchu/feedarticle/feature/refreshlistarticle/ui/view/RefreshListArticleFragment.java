@@ -70,7 +70,7 @@ public class RefreshListArticleFragment extends BaseFragment
 	@Override
 	public void onDestroy(){
 		super.onDestroy();
-		mRefreshListArticlePresenter.finish();
+		mRefreshListArticlePresenter.onDestroy();
 	}
 
 	@Override

@@ -44,7 +44,7 @@ public class FavoriteListArticlePresenter extends ListArticlePresenter
 	}
 
 	@Override
-	protected void onDestroy() {
+	public void onDestroy() {
 
 	}
 

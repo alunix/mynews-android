@@ -44,7 +44,7 @@ public class MainActivity extends BaseActivity implements MenuUserInterface {
 
 	protected void onDestroy(){
 		super.onDestroy();
-		mMenuPresenter.finish();
+		mMenuPresenter.onDestroy();
 	}
 
 	@Override
