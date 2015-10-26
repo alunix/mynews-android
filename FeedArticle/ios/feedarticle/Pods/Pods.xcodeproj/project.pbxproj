@@ -16,14 +16,16 @@
 		3B93D1FEF81C15C176EA764A8CF63E3D /* Pods-feedarticle-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-feedarticle-acknowledgements.markdown"; sourceTree = "<group>"; };
 		3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		42786A395F3A1DBC20230327FD60B1C9 /* Pods-feedarticle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-feedarticle.release.xcconfig"; sourceTree = "<group>"; };
+		4CC1ED4873AFA0D7B426FCFE38DE35DD /* libshared-j2objc.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = "libshared-j2objc.a"; path = "j2objcOutputs/lib/iosDebug/libshared-j2objc.a"; sourceTree = "<group>"; };
+		6AFE04E09F6620F053D42394F5E48FCB /* libshared-j2objc.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = "libshared-j2objc.a"; path = "j2objcOutputs/lib/iosRelease/libshared-j2objc.a"; sourceTree = "<group>"; };
 		75AB72AF239D386851B22DAA2A10B4F7 /* Pods-feedarticle-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-feedarticle-resources.sh"; sourceTree = "<group>"; };
 		7D775E2760B0F213616985A8E013239A /* Pods-feedarticle-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-feedarticle-acknowledgements.plist"; sourceTree = "<group>"; };
-		814590918CADC6533F1B6E9D3C7E549E /* libthird_party_dagger2-j2objc.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = "libthird_party_dagger2-j2objc.a"; path = "j2objcOutputs/lib/iosRelease/libthird_party_dagger2-j2objc.a"; sourceTree = "<group>"; };
+		8D5C72F3D7C09177D624C18796840429 /* libthird_party_dagger2-j2objc.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = "libthird_party_dagger2-j2objc.a"; path = "j2objcOutputs/lib/iosRelease/libthird_party_dagger2-j2objc.a"; sourceTree = "<group>"; };
 		99AD25421DD33CEF001F1DDF5D89F5B8 /* Pods-feedarticle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-feedarticle.debug.xcconfig"; sourceTree = "<group>"; };
 		AA67AC3444CE899BD5E488AE0E4F8C4B /* libPods-feedarticle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-feedarticle.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		E45C1A38E61A33B9AE59B9F3B5A488CB /* libthird_party_dagger2-j2objc.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = "libthird_party_dagger2-j2objc.a"; path = "j2objcOutputs/lib/iosDebug/libthird_party_dagger2-j2objc.a"; sourceTree = "<group>"; };
 		E75E86076EBE32A4132115E17F5D64E9 /* Pods-feedarticle-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-feedarticle-dummy.m"; sourceTree = "<group>"; };
-		EF0D05D727E8BD6165A2035B6584FA04 /* libthird_party_dagger2-j2objc.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = "libthird_party_dagger2-j2objc.a"; path = "j2objcOutputs/lib/iosDebug/libthird_party_dagger2-j2objc.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +48,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		04A51C35EDF4232965C23A604F22CBAD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E45C1A38E61A33B9AE59B9F3B5A488CB /* libthird_party_dagger2-j2objc.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0FEBF6209BB7BCE3F397FD7EB862F746 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -54,67 +64,57 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		137347E77A6DEDEEFCDDE4735CEC6964 /* Development Pods */ = {
+		3E23096BC1BE499A1C41B8EFA41EA587 /* j2objc-third_party_dagger2-release */ = {
 			isa = PBXGroup;
 			children = (
-				A63DAA85B72F64035DBEAD1D326575E2 /* j2objc-shared-debug */,
-				B85516B5524B6F439769D7EF9E925F8F /* j2objc-shared-release */,
-				BC8F67CAA4D917AE19521D9EC75D2159 /* j2objc-third_party_dagger2-debug */,
-				6AAF2DD9C7BFE06C21B675D0AB12BD50 /* j2objc-third_party_dagger2-release */,
+				54869E6D1CC8C8FD820DE2D83D7904C2 /* Frameworks */,
 			);
-			name = "Development Pods";
+			name = "j2objc-third_party_dagger2-release";
+			path = ../../../third_party_dagger2/build;
 			sourceTree = "<group>";
 		};
-		1DE13D8792436BDF0869D83B43DF54F0 /* Frameworks */ = {
+		48513606E261EED09720820A43765E24 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				814590918CADC6533F1B6E9D3C7E549E /* libthird_party_dagger2-j2objc.a */,
+				6AFE04E09F6620F053D42394F5E48FCB /* libshared-j2objc.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6AAF2DD9C7BFE06C21B675D0AB12BD50 /* j2objc-third_party_dagger2-release */ = {
+		4DC49A5FBF3F6EB7DFE60FEE370D2204 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1DE13D8792436BDF0869D83B43DF54F0 /* Frameworks */,
+				4CC1ED4873AFA0D7B426FCFE38DE35DD /* libshared-j2objc.a */,
 			);
-			name = "j2objc-third_party_dagger2-release";
-			path = ../../../third_party_dagger2/build;
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		54869E6D1CC8C8FD820DE2D83D7904C2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8D5C72F3D7C09177D624C18796840429 /* libthird_party_dagger2-j2objc.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
-				137347E77A6DEDEEFCDDE4735CEC6964 /* Development Pods */,
+				DBD05008398A051063CF3F5706D7E2F4 /* Development Pods */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
 				0138469F3A3BA1C225C92DC6E32C3DB7 /* Products */,
 				0FEBF6209BB7BCE3F397FD7EB862F746 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		92F18F548B756A0383E8D3FF52390184 /* Frameworks */ = {
+		B92F1807C0DA0A6622D36CF75C8F2CEB /* j2objc-third_party_dagger2-debug */ = {
 			isa = PBXGroup;
 			children = (
-				EF0D05D727E8BD6165A2035B6584FA04 /* libthird_party_dagger2-j2objc.a */,
+				04A51C35EDF4232965C23A604F22CBAD /* Frameworks */,
 			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		A63DAA85B72F64035DBEAD1D326575E2 /* j2objc-shared-debug */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "j2objc-shared-debug";
-			path = ../../../shared/build;
-			sourceTree = "<group>";
-		};
-		B85516B5524B6F439769D7EF9E925F8F /* j2objc-shared-release */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "j2objc-shared-release";
-			path = ../../../shared/build;
+			name = "j2objc-third_party_dagger2-debug";
+			path = ../../../third_party_dagger2/build;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -125,21 +125,41 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BC8F67CAA4D917AE19521D9EC75D2159 /* j2objc-third_party_dagger2-debug */ = {
-			isa = PBXGroup;
-			children = (
-				92F18F548B756A0383E8D3FF52390184 /* Frameworks */,
-			);
-			name = "j2objc-third_party_dagger2-debug";
-			path = ../../../third_party_dagger2/build;
-			sourceTree = "<group>";
-		};
 		BF6342C8B29F4CEEA088EFF7AB4DE362 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
 				3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		DBD05008398A051063CF3F5706D7E2F4 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E26697D51F8B9EE6A0D63925F19B6D28 /* j2objc-shared-debug */,
+				E88F8F2B4B6267C1C523971811C26BB3 /* j2objc-shared-release */,
+				B92F1807C0DA0A6622D36CF75C8F2CEB /* j2objc-third_party_dagger2-debug */,
+				3E23096BC1BE499A1C41B8EFA41EA587 /* j2objc-third_party_dagger2-release */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		E26697D51F8B9EE6A0D63925F19B6D28 /* j2objc-shared-debug */ = {
+			isa = PBXGroup;
+			children = (
+				4DC49A5FBF3F6EB7DFE60FEE370D2204 /* Frameworks */,
+			);
+			name = "j2objc-shared-debug";
+			path = ../../../shared/build;
+			sourceTree = "<group>";
+		};
+		E88F8F2B4B6267C1C523971811C26BB3 /* j2objc-shared-release */ = {
+			isa = PBXGroup;
+			children = (
+				48513606E261EED09720820A43765E24 /* Frameworks */,
+			);
+			name = "j2objc-shared-release";
+			path = ../../../shared/build;
 			sourceTree = "<group>";
 		};
 		ED43AD4C682A543F31FD5C8D30B28DEE /* Pods-feedarticle */ = {
