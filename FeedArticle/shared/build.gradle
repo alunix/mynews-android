@@ -59,3 +59,7 @@ j2objcConfig {
 	finalConfigure()
 }
 
+j2objcTest {
+	enabled = false
+}
+
