@@ -584,8 +584,21 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2CA0D6EEBB5CFB1CDB65C1EE /* Pods-feedarticle.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				HEADER_SEARCH_PATHS = (
+					"/Users/quocdungchu/Dev/j2objc/j2objc-0.9.8.2.1/include",
+					"/Users/quocdungchu/Projects/git/quocdungchu/android-sample/android-sample-FeedArticle/FeedArticle/shared/build/j2objcOutputs/src/main/objc",
+					"/Users/quocdungchu/Dev/j2objc/j2objc-0.9.8.2.1/include",
+					"/Users/quocdungchu/Projects/git/quocdungchu/android-sample/android-sample-FeedArticle/FeedArticle/third_party_dagger2/build/j2objcOutputs/src/main/objc",
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/j2objc-shared-debug\"",
+					"\"${PODS_ROOT}/Headers/Public/j2objc-shared-release\"",
+					"\"${PODS_ROOT}/Headers/Public/j2objc-third_party_dagger2-debug\"",
+					"\"${PODS_ROOT}/Headers/Public/j2objc-third_party_dagger2-release\"",
+				);
 				INFOPLIST_FILE = feedarticle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
@@ -593,6 +606,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "feedarticle/feedarticle-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
@@ -601,13 +615,27 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 63E2ADF7C67D2A8F8DBBFDF9 /* Pods-feedarticle.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				HEADER_SEARCH_PATHS = (
+					"/Users/quocdungchu/Dev/j2objc/j2objc-0.9.8.2.1/include",
+					"/Users/quocdungchu/Projects/git/quocdungchu/android-sample/android-sample-FeedArticle/FeedArticle/shared/build/j2objcOutputs/src/main/objc",
+					"/Users/quocdungchu/Dev/j2objc/j2objc-0.9.8.2.1/include",
+					"/Users/quocdungchu/Projects/git/quocdungchu/android-sample/android-sample-FeedArticle/FeedArticle/third_party_dagger2/build/j2objcOutputs/src/main/objc",
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/j2objc-shared-debug\"",
+					"\"${PODS_ROOT}/Headers/Public/j2objc-shared-release\"",
+					"\"${PODS_ROOT}/Headers/Public/j2objc-third_party_dagger2-debug\"",
+					"\"${PODS_ROOT}/Headers/Public/j2objc-third_party_dagger2-release\"",
+				);
 				INFOPLIST_FILE = feedarticle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qchu.feedarticle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "feedarticle/feedarticle-Bridging-Header.h";
+				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
@@ -616,12 +644,33 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7EC0FD0898B32FDEE1C604C0 /* Pods-feedarticleTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				HEADER_SEARCH_PATHS = (
+					"/Users/quocdungchu/Dev/j2objc/j2objc-0.9.8.2.1/include",
+					"/Users/quocdungchu/Projects/git/quocdungchu/android-sample/android-sample-FeedArticle/FeedArticle/shared/build/j2objcOutputs/src/main/objc",
+					"/Users/quocdungchu/Dev/j2objc/j2objc-0.9.8.2.1/include",
+					"/Users/quocdungchu/Projects/git/quocdungchu/android-sample/android-sample-FeedArticle/FeedArticle/third_party_dagger2/build/j2objcOutputs/src/main/objc",
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/j2objc-shared-debug\"",
+					"\"${PODS_ROOT}/Headers/Public/j2objc-shared-release\"",
+					"\"${PODS_ROOT}/Headers/Public/j2objc-third_party_dagger2-debug\"",
+					"\"${PODS_ROOT}/Headers/Public/j2objc-third_party_dagger2-release\"",
+				);
 				INFOPLIST_FILE = feedarticleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"/Users/quocdungchu/Dev/j2objc/j2objc-0.9.8.2.1/lib",
+					"$(inherited)",
+					"\"${PODS_ROOT}/../../../shared/build/j2objcOutputs/lib/iosDebug\"",
+					"$(inherited)",
+					"\"${PODS_ROOT}/../../../third_party_dagger2/build/j2objcOutputs/lib/iosDebug\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.qchu.feedarticleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/feedarticle.app/feedarticle";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -629,12 +678,33 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B02C77021BC0359805C7A9A7 /* Pods-feedarticleTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				HEADER_SEARCH_PATHS = (
+					"/Users/quocdungchu/Dev/j2objc/j2objc-0.9.8.2.1/include",
+					"/Users/quocdungchu/Projects/git/quocdungchu/android-sample/android-sample-FeedArticle/FeedArticle/shared/build/j2objcOutputs/src/main/objc",
+					"/Users/quocdungchu/Dev/j2objc/j2objc-0.9.8.2.1/include",
+					"/Users/quocdungchu/Projects/git/quocdungchu/android-sample/android-sample-FeedArticle/FeedArticle/third_party_dagger2/build/j2objcOutputs/src/main/objc",
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/j2objc-shared-debug\"",
+					"\"${PODS_ROOT}/Headers/Public/j2objc-shared-release\"",
+					"\"${PODS_ROOT}/Headers/Public/j2objc-third_party_dagger2-debug\"",
+					"\"${PODS_ROOT}/Headers/Public/j2objc-third_party_dagger2-release\"",
+				);
 				INFOPLIST_FILE = feedarticleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"/Users/quocdungchu/Dev/j2objc/j2objc-0.9.8.2.1/lib",
+					"$(inherited)",
+					"\"${PODS_ROOT}/../../../shared/build/j2objcOutputs/lib/iosRelease\"",
+					"$(inherited)",
+					"\"${PODS_ROOT}/../../../third_party_dagger2/build/j2objcOutputs/lib/iosRelease\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.qchu.feedarticleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/feedarticle.app/feedarticle";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};

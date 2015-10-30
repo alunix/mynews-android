@@ -6,12 +6,8 @@
 
 #import "java/util/ArrayList.h"
 
-#import "ArticleInteractor.h"
-#import "NetworkAdapter.h"
-#import "RepositoryAdapter.h"
-
-
-#import "Article.h"
+//#import "com/qchu/feedarticle/feature/article/applogic/interactor/ArticleInteractor.h"
+//#import "com/qchu/feedarticle/feature/article/applogic/entity/Article.h"
 
 
 

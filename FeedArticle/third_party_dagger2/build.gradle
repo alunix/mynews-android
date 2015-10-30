@@ -54,3 +54,7 @@ j2objcConfig {
 	testMinExpectedTests 0
 	finalConfigure()
 }
+
+j2objcTest {
+	enabled = false
+}

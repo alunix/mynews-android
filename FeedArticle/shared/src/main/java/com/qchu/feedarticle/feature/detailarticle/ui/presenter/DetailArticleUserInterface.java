@@ -1,7 +1,6 @@
 package com.qchu.feedarticle.feature.detailarticle.ui.presenter;
 
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
-import com.qchu.feedarticle.feature.article.applogic.interactor.ArticleInteractor;
 import com.qchu.feedarticle.feature.favorite.applogic.interactor.FavoriteActionResult;
 
 import java.util.List;

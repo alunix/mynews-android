@@ -8,8 +8,6 @@ import com.qchu.feedarticle.feature.favorite.applogic.interactor.FavoriteInterac
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 /**
  * Created by quocdungchu on 27/09/15.
  */

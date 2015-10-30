@@ -30,6 +30,13 @@ dependencies {
 	//dagger2
 	//compile 'com.google.dagger:dagger:2.0.1'
 	compile 'com.google.dagger:dagger-compiler:2.0.1'
+
+	compile ('junit:junit:4.11'){
+		exclude group: 'org.hamcrest'
+	}
+	compile ('org.mockito:mockito-all:2.0.2-beta') {
+		exclude group: 'org.hamcrest'
+	}
 }
 
 j2objcConfig {
@@ -38,13 +45,14 @@ j2objcConfig {
 	translateArgs (
 		'-use-arc',
 		'--prefixes', 'prefixes.properties',
+		//'--no-package-directories'
 	)
 	extraObjcCompilerArgs '-fobjc-arc'
 
 	translateClasspaths ('libs/auto-value-1.2-SNAPSHOT.jar')
 
 	xcodeProjectDir '../ios/feedarticle'
-	xcodeTargetsIos 'feedarticle'
+	xcodeTargetsIos 'feedarticle', 'feedarticleTests'
 
 	autoConfigureDeps true
 

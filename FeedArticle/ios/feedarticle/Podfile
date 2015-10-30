@@ -22,6 +22,9 @@ target 'feedarticle' do
 end
 
 target 'feedarticleTests' do
+    platform :ios, '6.0'
+    j2objc_shared
+    j2objc_third_party_dagger2
 
 end
 

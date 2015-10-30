@@ -11,8 +11,6 @@ import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticlePresente
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 /**
  * Created by quocdungchu on 07/09/15.
  */

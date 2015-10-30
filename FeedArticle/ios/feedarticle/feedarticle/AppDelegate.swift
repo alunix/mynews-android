@@ -18,12 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-//        let article = FAArticle.builder()
-//            .identifierWithNSString("1")
-//            .build()
-//        
-//        print("\(article.identifier())")
-                
+        let article = FAArticle.builder()
+            .identifierWithNSString("1")
+            .build()
+        
+        print("\(article.identifier())")
+        
         return true
     }
 
