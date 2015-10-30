@@ -1,4 +1,4 @@
-package com.qchu.feedarticle.feature.search;
+package com.qchu.feedarticle.feature.search.applogic.interactor;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
