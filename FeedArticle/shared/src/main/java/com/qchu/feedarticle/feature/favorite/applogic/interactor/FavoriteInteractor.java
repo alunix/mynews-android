@@ -4,36 +4,17 @@ import com.qchu.feedarticle.feature.article.applogic.entity.Article;
 
 import java.util.List;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
 /**
- * Created by quocdungchu on 17/10/15.
+ * Created by quocdungchu on 30/10/15.
  */
-@Singleton
-public class FavoriteInteractor {
+public interface FavoriteInteractor {
+	List<Article> getFavoriteArticlesInRepository();
 
-	final FavoriteRepository favoriteRepository;
+	List<String> getFavoriteArticleIdsInRepository();
 
-	@Inject
-	FavoriteInteractor(FavoriteRepository favoriteRepository){
-		this.favoriteRepository = favoriteRepository;
-	}
+	boolean isFavoriteArticleInRepository(String articleId);
 
-	public List<Article> getFavoriteArticlesInRepository() {
-		return this.favoriteRepository.getFavoriteArticles();
-	}
-
-	public List<String> getFavoriteArticleIdsInRepository(){
-		return this.favoriteRepository.getFavoriteArticleIds();
-	}
-
-	public boolean isFavoriteArticleInRepository(String articleId) {
-		return this.favoriteRepository.isFavoriteArticle(articleId);
-	}
-
-	public FavoriteActionResult updateArticleInFavoriteRepository(
-		FavoriteAction updateFavoriteAction, String articleId) {
-		return this.favoriteRepository.updateArticleInFavorite(updateFavoriteAction, articleId);
-	}
+	FavoriteActionResult updateArticleInFavoriteRepository(
+		FavoriteAction updateFavoriteAction,
+		String articleId);
 }

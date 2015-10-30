@@ -1,7 +1,7 @@
 package com.qchu.feedarticle.dagger;
 
 import com.qchu.feedarticle.feature.article.applogic.interactor.ArticleInteractor;
-import com.qchu.feedarticle.feature.article.applogic.interactor.DefaultArticleInteractor;
+import com.qchu.feedarticle.feature.favorite.applogic.interactor.DefaultFavoriteInteractor;
 import com.qchu.feedarticle.feature.favorite.applogic.interactor.FavoriteInteractor;
 
 import javax.inject.Singleton;
