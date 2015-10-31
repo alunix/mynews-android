@@ -22,7 +22,7 @@ public class FavoriteInteractorSpec {
 		this.favoriteRepository = mock(FavoriteRepository.class);
 		this.favoriteInteractor = new DefaultFavoriteInteractor(this.favoriteRepository);
 	}
-
+	
 	@Test public void addSuccess(){
 		given(this.favoriteRepository
 			.updateArticleInFavorite(FavoriteAction.ADD, "article1"))
@@ -51,6 +51,26 @@ public class FavoriteInteractorSpec {
 		when(this.favoriteInteractor.updateArticleInFavoriteRepository(
 			FavoriteAction.ADD, "article3"))
 			.thenReturn(FavoriteActionResult.ADD_FAILED_REASON_OTHER);
+	}
+
+	@Test public void removeSuccess(){
+		given(this.favoriteRepository
+			.updateArticleInFavorite(FavoriteAction.REMOVE, "article1"))
+			.willReturn(FavoriteActionResult.REMOVE_SUCCESSFUL);
+
+		when(this.favoriteInteractor.updateArticleInFavoriteRepository(
+			FavoriteAction.REMOVE, "article1"))
+			.thenReturn(FavoriteActionResult.REMOVE_SUCCESSFUL);
+	}
+
+	@Test public void removeFailed_because_not_exist(){
+		given(this.favoriteRepository
+			.updateArticleInFavorite(FavoriteAction.REMOVE, "article2"))
+			.willReturn(FavoriteActionResult.REMOVE_FAILED_REASON_NOT_EXIST);
+
+		when(this.favoriteInteractor.updateArticleInFavoriteRepository(
+			FavoriteAction.REMOVE, "article2"))
+			.thenReturn(FavoriteActionResult.REMOVE_FAILED_REASON_NOT_EXIST);
 	}
 
 }
