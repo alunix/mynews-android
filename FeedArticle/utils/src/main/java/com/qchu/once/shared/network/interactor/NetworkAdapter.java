@@ -1,4 +1,4 @@
-package com.qchu.once.shared.network.base;
+package com.qchu.once.shared.network.interactor;
 
 import com.qchu.once.shared.network.interactor.Request;
 

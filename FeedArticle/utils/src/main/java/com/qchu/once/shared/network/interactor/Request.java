@@ -1,6 +1,8 @@
 package com.qchu.once.shared.network.interactor;
 
 import com.google.auto.value.AutoValue;
+import javax.annotation.Nullable;
+
 
 import java.util.Map;
 
@@ -13,10 +15,14 @@ public abstract class Request {
 		OPTIONS, GET, HEAD, POST, PUT, PATCH, DELETE, TRACE, CONNECT
 	}
 
+	public static Builder builder(){
+		return new AutoValue_Request.Builder();
+	}
+
 	public abstract Method method();
 	public abstract String baseUrl();
-	public abstract Map<String,String> parameters();
-	public abstract Map<String,String> headers();
+	@Nullable public abstract Map<String,String> parameters();
+	@Nullable public abstract Map<String,String> headers();
 
 
 	@AutoValue.Builder

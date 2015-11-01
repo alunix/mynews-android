@@ -11,6 +11,6 @@ public interface NetworkInteractor {
 		OnResponseListener<Parsed> onResponseListener);
 
 	interface OnResponseListener<Parsed> {
-		void onResponse(Response<Parsed> response);
+		void onResponse(Response<Parsed> response, String errorMessage);
 	}
 }
