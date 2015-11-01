@@ -1,21 +1,19 @@
-package com.qchu.once.shared.network;
-
-import com.google.auto.value.AutoValue;
+package com.qchu.once.shared.network.interactor;
 
 /**
  * Created by quocdungchu on 31/10/15.
  */
-public class Response <T> {
+public class Response <Parsed> {
 
-	T body;
+	Parsed body;
 	int statusCode;
 
-	public Response (T body, int statusCode){
+	public Response (Parsed body, int statusCode){
 		this.body = body;
 		this.statusCode = statusCode;
 	}
 
-	public T body() {
+	public Parsed body() {
 		return this.body;
 	}
 
