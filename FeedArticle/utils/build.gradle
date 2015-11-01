@@ -1,0 +1,43 @@
+apply plugin: 'java'
+
+
+buildscript {
+	repositories {
+		jcenter()
+	}
+	dependencies {
+		//Using j2objc gradle in local
+		//TODO using the version stable of j2objc gradle
+		//https://github.com/j2objc-contrib/j2objc-gradle
+		classpath fileTree(dir: '../libs', include: ['*.jar'])
+	}
+}
+
+apply plugin: 'com.github.j2objccontrib.j2objcgradle'
+
+dependencies {
+	compile fileTree(dir: 'libs', include: ['*.jar'])
+
+	compile 'com.google.auto.value:auto-value:1.2-SNAPSHOT'
+
+}
+
+j2objcConfig {
+	translateArgs (
+		'-use-arc',
+		//'--prefixes', 'prefixes.properties',
+	)
+	extraObjcCompilerArgs '-fobjc-arc'
+
+	autoConfigureDeps true
+
+	forceFilenameCollisionCheck false
+	// For now, default config links in prebuilt Guava; that defeats the point.
+	//translateJ2objcLibs.remove("j2objc_guava.jar")
+	//linkJ2objcLibs.remove("guava")
+
+	// Almost always there are no tests provided in an external source jar.
+	testMinExpectedTests 0
+
+	finalConfigure()
+}

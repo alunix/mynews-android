@@ -1,1 +1,1 @@
-include ':app', ':shared', ':third_party_dagger2'
+include ':app', ':shared', ':third_party_dagger2', ':utils'
