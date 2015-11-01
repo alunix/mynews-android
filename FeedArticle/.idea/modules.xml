@@ -4,10 +4,11 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FeedArticle.iml" filepath="$PROJECT_DIR$/FeedArticle.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mylibrary/mylibrary.iml" filepath="$PROJECT_DIR$/mylibrary/mylibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/shared/shared.iml" filepath="$PROJECT_DIR$/shared/shared.iml" />
       <module fileurl="file://$PROJECT_DIR$/third_party_dagger2/third_party_dagger2.iml" filepath="$PROJECT_DIR$/third_party_dagger2/third_party_dagger2.iml" />
       <module fileurl="file://$PROJECT_DIR$/utils/utils.iml" filepath="$PROJECT_DIR$/utils/utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/utils_network_adapter_retrofit/utils_network_adapter_retrofit.iml" filepath="$PROJECT_DIR$/utils_network_adapter_retrofit/utils_network_adapter_retrofit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/utils_network_adapter_retrofit/utils_network_adapter_retrofit.iml" filepath="$PROJECT_DIR$/utils_network_adapter_retrofit/utils_network_adapter_retrofit.iml" />
     </modules>
   </component>
 </project>

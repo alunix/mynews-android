@@ -1,1 +1,1 @@
-include ':app', ':shared', ':third_party_dagger2', ':utils'
+include ':app', ':shared', ':third_party_dagger2', ':utils', ':utils_network_adapter_retrofit'
