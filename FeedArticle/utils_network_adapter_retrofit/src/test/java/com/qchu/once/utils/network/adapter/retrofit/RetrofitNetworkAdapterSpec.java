@@ -1,8 +1,7 @@
 package com.qchu.once.utils.network.adapter.retrofit;
 
+import com.google.common.collect.ImmutableMap;
 import com.qchu.once.shared.network.interactor.NetworkAdapterOnResponseListener;
-import com.qchu.once.shared.network.interactor.NetworkInteractor;
-import com.qchu.once.shared.network.interactor.Parser;
 import com.qchu.once.shared.network.interactor.Request;
 import com.squareup.okhttp.Cache;
 
@@ -16,17 +15,15 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.mockito.BDDMockito.then;
 import static org.mockito.Matchers.isNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 
-import static org.junit.Assert.*;
+import static com.google.common.truth.Truth.assertThat;
 
 /**
  * Created by quocdungchu on 01/11/15.
@@ -35,9 +32,9 @@ import static org.junit.Assert.*;
 public class RetrofitNetworkAdapterSpec {
 
 
-	@Captor ArgumentCaptor<String> argumentCaptorResponse;
-	@Captor ArgumentCaptor<Integer> argumentCaptorStatusCode;
-	@Captor ArgumentCaptor<String> argumentCaptorErrorMessage;
+	@Captor ArgumentCaptor<String> responseCaptor;
+	@Captor ArgumentCaptor<Integer> statusCodeCaptor;
+	@Captor ArgumentCaptor<String> errorMessageCaptor;
 	@Mock NetworkAdapterOnResponseListener networkAdapterOnResponseListener;
 	RetrofitNetworkAdapter retrofitNetworkAdapter;
 	Cache cache;
@@ -50,7 +47,8 @@ public class RetrofitNetworkAdapterSpec {
 	@After public void tearDown(){
 		
 	}
-	@Test public void githubAPI(){
+	@Test
+	public void githubAPI() {
 
 		retrofitNetworkAdapter.send(
 			Request.builder()
@@ -60,42 +58,46 @@ public class RetrofitNetworkAdapterSpec {
 			networkAdapterOnResponseListener);
 
 		verify(networkAdapterOnResponseListener, timeout(10 * 1000).times(1))
-			.onResponse(argumentCaptorResponse.capture(),
-				argumentCaptorStatusCode.capture(),
-				argumentCaptorErrorMessage.capture());
+			.onResponse(responseCaptor.capture(),
+				statusCodeCaptor.capture(),
+				errorMessageCaptor.capture());
 
-		System.out.println("response : " + argumentCaptorResponse.getValue());
-		System.out.println("status code : " + argumentCaptorStatusCode.getValue());
-		System.out.println("error message : " + argumentCaptorErrorMessage.getValue());
+		System.out.println("response : " + responseCaptor.getValue());
+		System.out.println("status code : " + statusCodeCaptor.getValue());
+		System.out.println("error message : " + errorMessageCaptor.getValue());
 
-		assertNotNull(argumentCaptorResponse.getValue());
-		assertEquals(argumentCaptorStatusCode.getValue(), Integer.valueOf(200));
-		assertNull(argumentCaptorErrorMessage.getValue());
+		assertThat(responseCaptor.getValue())
+			.isNotNull();
+		assertThat(statusCodeCaptor.getValue())
+			.isEqualTo(Integer.valueOf(200));
+		assertThat(errorMessageCaptor.getValue())
+			.isNull();
 	}
-	@Test public void githubSearch(){
 
-		Map<String, String> parameters = new HashMap<>();
-		parameters.put("q","j2objc");
+	@Test public void githubSearch(){
 
 		retrofitNetworkAdapter.send(
 			Request.builder()
 				.url("https://api.github.com/search/repositories")
-				.parameters(parameters)
+				.parameters(ImmutableMap.of("q", "j2objc"))
 				.method(Request.Method.GET)
 				.build(),
 			networkAdapterOnResponseListener);
 
 		verify(networkAdapterOnResponseListener, timeout(10 * 1000).times(1))
-			.onResponse(argumentCaptorResponse.capture(),
-				argumentCaptorStatusCode.capture(),
-				argumentCaptorErrorMessage.capture());
+			.onResponse(responseCaptor.capture(),
+				statusCodeCaptor.capture(),
+				errorMessageCaptor.capture());
 
-		System.out.println("response : " + argumentCaptorResponse.getValue());
-		System.out.println("status code : " + argumentCaptorStatusCode.getValue());
-		System.out.println("error message : " + argumentCaptorErrorMessage.getValue());
+		System.out.println("response : " + responseCaptor.getValue());
+		System.out.println("status code : " + statusCodeCaptor.getValue());
+		System.out.println("error message : " + errorMessageCaptor.getValue());
 
-		assertNotNull(argumentCaptorResponse.getValue());
-		assertEquals(argumentCaptorStatusCode.getValue(), Integer.valueOf(200));
-		assertNull(argumentCaptorErrorMessage.getValue());
+		assertThat(responseCaptor.getValue())
+			.isNotNull();
+		assertThat(statusCodeCaptor.getValue())
+			.isEqualTo(Integer.valueOf(200));
+		assertThat(errorMessageCaptor.getValue())
+			.isNull();
 	}
 }
