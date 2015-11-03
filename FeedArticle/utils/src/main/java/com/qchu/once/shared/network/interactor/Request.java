@@ -20,7 +20,7 @@ public abstract class Request {
 	}
 
 	public abstract Method method();
-	public abstract String baseUrl();
+	public abstract String url();
 	@Nullable public abstract Map<String,String> parameters();
 	@Nullable public abstract Map<String,String> headers();
 
@@ -29,7 +29,7 @@ public abstract class Request {
 	public abstract static class Builder {
 
 		public abstract Builder method (Method method);
-		public abstract Builder baseUrl (String baseString);
+		public abstract Builder url (String url);
 		public abstract Builder parameters (Map<String,String> parameters);
 		public abstract Builder headers (Map<String,String> headers);
 

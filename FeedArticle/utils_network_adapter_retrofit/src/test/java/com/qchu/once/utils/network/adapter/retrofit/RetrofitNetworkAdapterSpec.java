@@ -17,6 +17,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Matchers.isNotNull;
@@ -48,12 +50,37 @@ public class RetrofitNetworkAdapterSpec {
 	@After public void tearDown(){
 		
 	}
-
-	@Test public void github(){
+	@Test public void githubAPI(){
 
 		retrofitNetworkAdapter.send(
 			Request.builder()
-				.baseUrl("https://api.github.com/")
+				.url("https://api.github.com/")
+				.method(Request.Method.GET)
+				.build(),
+			networkAdapterOnResponseListener);
+
+		verify(networkAdapterOnResponseListener, timeout(10 * 1000).times(1))
+			.onResponse(argumentCaptorResponse.capture(),
+				argumentCaptorStatusCode.capture(),
+				argumentCaptorErrorMessage.capture());
+
+		System.out.println("response : " + argumentCaptorResponse.getValue());
+		System.out.println("status code : " + argumentCaptorStatusCode.getValue());
+		System.out.println("error message : " + argumentCaptorErrorMessage.getValue());
+
+		assertNotNull(argumentCaptorResponse.getValue());
+		assertEquals(argumentCaptorStatusCode.getValue(), Integer.valueOf(200));
+		assertNull(argumentCaptorErrorMessage.getValue());
+	}
+	@Test public void githubSearch(){
+
+		Map<String, String> parameters = new HashMap<>();
+		parameters.put("q","j2objc");
+
+		retrofitNetworkAdapter.send(
+			Request.builder()
+				.url("https://api.github.com/search/repositories")
+				.parameters(parameters)
 				.method(Request.Method.GET)
 				.build(),
 			networkAdapterOnResponseListener);

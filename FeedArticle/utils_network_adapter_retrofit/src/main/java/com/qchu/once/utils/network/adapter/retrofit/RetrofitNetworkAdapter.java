@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.util.Map;
 
 import javax.annotation.Nonnull;
-import javax.sql.rowset.CachedRowSet;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -24,6 +23,7 @@ import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.QueryMap;
+import retrofit.http.Url;
 
 public class RetrofitNetworkAdapter implements NetworkAdapter {
 
@@ -57,7 +57,7 @@ public class RetrofitNetworkAdapter implements NetworkAdapter {
 		}
 
 		Retrofit retrofit = new Retrofit.Builder()
-			.baseUrl(request.baseUrl())
+			.baseUrl(request.url())
 			.client(httpClient)
 			.build();
 
@@ -95,12 +95,12 @@ public class RetrofitNetworkAdapter implements NetworkAdapter {
 
 		switch (request.method()) {
 			case GET:
-				service.responseForGET(request.parameters())
+				service.responseForGET(request.url(), request.parameters())
 					.enqueue(callback);
 				break;
 
 			case POST:
-				service.responseForPOST(request.parameters())
+				service.responseForPOST(request.url(), request.parameters())
 					.enqueue(callback);
 				break;
 
@@ -111,10 +111,10 @@ public class RetrofitNetworkAdapter implements NetworkAdapter {
 
 	interface Service {
 
-		@GET("/")
-		Call<ResponseBody> responseForGET(@QueryMap Map<String, String> queries);
+		@GET
+		Call<ResponseBody> responseForGET(@Url String url, @QueryMap Map<String, String> queries);
 
-		@POST("/")
-		Call<ResponseBody> responseForPOST(@Body Map<String, String> bodies);
+		@POST
+		Call<ResponseBody> responseForPOST(@Url String url, @Body Map<String, String> bodies);
 	}
 }
