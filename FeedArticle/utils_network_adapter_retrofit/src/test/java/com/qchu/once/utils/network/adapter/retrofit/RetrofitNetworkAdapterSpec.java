@@ -31,7 +31,6 @@ import static com.google.common.truth.Truth.assertThat;
 @RunWith(MockitoJUnitRunner.class)
 public class RetrofitNetworkAdapterSpec {
 
-
 	@Captor ArgumentCaptor<String> responseCaptor;
 	@Captor ArgumentCaptor<Integer> statusCodeCaptor;
 	@Captor ArgumentCaptor<String> errorMessageCaptor;
@@ -80,6 +79,64 @@ public class RetrofitNetworkAdapterSpec {
 			Request.builder()
 				.url("https://api.github.com/search/repositories")
 				.parameters(ImmutableMap.of("q", "j2objc"))
+				.method(Request.Method.GET)
+				.build(),
+			networkAdapterOnResponseListener);
+
+		verify(networkAdapterOnResponseListener, timeout(10 * 1000).times(1))
+			.onResponse(responseCaptor.capture(),
+				statusCodeCaptor.capture(),
+				errorMessageCaptor.capture());
+
+		System.out.println("response : " + responseCaptor.getValue());
+		System.out.println("status code : " + statusCodeCaptor.getValue());
+		System.out.println("error message : " + errorMessageCaptor.getValue());
+
+		assertThat(responseCaptor.getValue())
+			.isNotNull();
+		assertThat(statusCodeCaptor.getValue())
+			.isEqualTo(Integer.valueOf(200));
+		assertThat(errorMessageCaptor.getValue())
+			.isNull();
+	}
+
+	@Test public void googleFeedSearch(){
+
+		retrofitNetworkAdapter.send(
+			Request.builder()
+				.url("https://ajax.googleapis.com/ajax/services/feed/find")
+				.parameters(ImmutableMap.of(
+					"v","1.0",
+					"q", "football"))
+				.method(Request.Method.GET)
+				.build(),
+			networkAdapterOnResponseListener);
+
+		verify(networkAdapterOnResponseListener, timeout(10 * 1000).times(1))
+			.onResponse(responseCaptor.capture(),
+				statusCodeCaptor.capture(),
+				errorMessageCaptor.capture());
+
+		System.out.println("response : " + responseCaptor.getValue());
+		System.out.println("status code : " + statusCodeCaptor.getValue());
+		System.out.println("error message : " + errorMessageCaptor.getValue());
+
+		assertThat(responseCaptor.getValue())
+			.isNotNull();
+		assertThat(statusCodeCaptor.getValue())
+			.isEqualTo(Integer.valueOf(200));
+		assertThat(errorMessageCaptor.getValue())
+			.isNull();
+	}
+
+	@Test public void googleFeedLoad(){
+
+		retrofitNetworkAdapter.send(
+			Request.builder()
+				.url("https://ajax.googleapis.com/ajax/services/feed/load")
+				.parameters(ImmutableMap.of(
+					"v","1.0",
+					"q", "http://www.digg.com/rss/index.xml"))
 				.method(Request.Method.GET)
 				.build(),
 			networkAdapterOnResponseListener);
