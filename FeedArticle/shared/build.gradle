@@ -51,7 +51,7 @@ j2objcConfig {
 
 	translateClasspaths (
 		'libs/auto-value-1.2-SNAPSHOT.jar',
-		'mockito-all-2.0.2-beta.jar'
+		//'mockito-all-2.0.2-beta.jar'
 	)
 
 	xcodeProjectDir '../ios/feedarticle'
