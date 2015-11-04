@@ -22,8 +22,13 @@ dependencies {
 	compile 'com.google.guava:guava:18.0'
 	compile 'com.google.code.findbugs:jsr305:3.0.1'
 
-	compile ('junit:junit:4.11')
-	compile ('org.mockito:mockito-all:2.0.2-beta')
+	compile ('junit:junit:4.11'){
+		exclude group: 'org.hamcrest'
+	}
+	compile ('org.mockito:mockito-all:2.0.2-beta') {
+		exclude group: 'org.hamcrest'
+	}
+
 	compile ('com.google.truth:truth:0.27')
 
 }
@@ -31,9 +36,18 @@ dependencies {
 j2objcConfig {
 	translateArgs (
 		'-use-arc',
-		//'--prefixes', 'prefixes.properties',
+		'--prefixes', 'prefixes.properties',
+		//'--no-package-directories'
 	)
 	extraObjcCompilerArgs '-fobjc-arc'
+
+	translateClasspaths (
+		'libs/auto-value-1.2-SNAPSHOT.jar',
+		'mockito-all-2.0.2-beta.jar'
+	)
+
+	//xcodeProjectDir '../ios/feedarticle'
+	//xcodeTargetsIos 'feedarticle', 'feedarticleTests'
 
 	autoConfigureDeps true
 
@@ -46,4 +60,8 @@ j2objcConfig {
 	testMinExpectedTests 0
 
 	finalConfigure()
+}
+
+j2objcTest {
+	enabled = false
 }

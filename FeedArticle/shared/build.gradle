@@ -49,7 +49,10 @@ j2objcConfig {
 	)
 	extraObjcCompilerArgs '-fobjc-arc'
 
-	translateClasspaths ('libs/auto-value-1.2-SNAPSHOT.jar')
+	translateClasspaths (
+		'libs/auto-value-1.2-SNAPSHOT.jar',
+		'mockito-all-2.0.2-beta.jar'
+	)
 
 	xcodeProjectDir '../ios/feedarticle'
 	xcodeTargetsIos 'feedarticle', 'feedarticleTests'

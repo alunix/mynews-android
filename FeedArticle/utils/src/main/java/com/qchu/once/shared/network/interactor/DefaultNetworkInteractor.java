@@ -9,7 +9,7 @@ import com.qchu.once.shared.network.interactor.Response;
 /**
  * Created by quocdungchu on 31/10/15.
  */
-public abstract class DefaultNetworkInteractor<T> implements NetworkInteractor {
+public class DefaultNetworkInteractor implements NetworkInteractor {
 
 	Connectivity connectivity;
 	ErrorMessageProvider errorMessageProvider;
