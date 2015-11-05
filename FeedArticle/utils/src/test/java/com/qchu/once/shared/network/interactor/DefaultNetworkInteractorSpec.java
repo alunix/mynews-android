@@ -1,6 +1,5 @@
 package com.qchu.once.shared.network.interactor;
 
-import com.google.common.truth.Truth;
 import com.qchu.once.shared.connectivity.Connectivity;
 
 import org.hamcrest.core.AnyOf;
@@ -8,19 +7,29 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.BDDMockito;
 import org.mockito.Matchers;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.internal.matchers.Null;
 import org.mockito.invocation.InvocationOnMock;
+import org.mockito.junit.MockitoJUnit;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 
 import java.util.List;
 
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsEqual.equalTo;
+import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willAnswer;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Matchers.isA;
+import static org.mockito.Matchers.isNull;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -92,7 +101,7 @@ public class DefaultNetworkInteractorSpec {
 		ArgumentCaptor<String> jsonArgumentCaptor = ArgumentCaptor.forClass(String.class);
 		verify(parsedPersonParser, times(1)).parse(jsonArgumentCaptor.capture());
 
-		Truth.assertThat(jsonArgumentCaptor.getValue()).isEqualTo("any Json");
+		assertThat(jsonArgumentCaptor.getValue(), is("any Json"));
 
 		ArgumentCaptor<Response> parsedPersonArgumentCaptor = ArgumentCaptor.forClass(Response.class);
 		ArgumentCaptor<String> errorArgumentCaptor = ArgumentCaptor.forClass(String.class);
@@ -101,13 +110,10 @@ public class DefaultNetworkInteractorSpec {
 			parsedPersonArgumentCaptor.capture(),
 			errorArgumentCaptor.capture());
 		ParsedPerson parsedPerson = (ParsedPerson)parsedPersonArgumentCaptor.getValue().body();
-		Truth.assertThat(parsedPerson.firstName)
-			.isEqualTo("Barrack");
-		Truth.assertThat(parsedPerson.lastName)
-			.isEqualTo("Obama");
+		assertThat(parsedPerson.firstName, is("Barrack"));
+		assertThat(parsedPerson.lastName, is("Obama"));
 
-		Truth.assertThat(errorArgumentCaptor.getValue())
-			.isNull();
+		assertThat(errorArgumentCaptor.getValue(), is(Null.NULL));
 	}
 
 	static class ParsedPerson {
@@ -119,4 +125,5 @@ public class DefaultNetworkInteractorSpec {
 			this.lastName = lastName;
 		}
 	}
+
 }
