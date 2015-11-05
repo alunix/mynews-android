@@ -1,10 +1,8 @@
 package com.qchu.once.shared.network.interactor;
 
 import com.qchu.once.shared.connectivity.Connectivity;
-import com.qchu.once.shared.network.interactor.NetworkInteractor;
-import com.qchu.once.shared.network.interactor.Parser;
-import com.qchu.once.shared.network.interactor.Request;
-import com.qchu.once.shared.network.interactor.Response;
+import com.qchu.once.shared.network.entity.Request;
+import com.qchu.once.shared.network.entity.Response;
 
 /**
  * Created by quocdungchu on 31/10/15.

@@ -3,7 +3,7 @@ package com.qchu.once.utils.network.adapter.retrofit;
 
 import com.qchu.once.shared.network.interactor.NetworkAdapter;
 import com.qchu.once.shared.network.interactor.NetworkAdapterOnResponseListener;
-import com.qchu.once.shared.network.interactor.Request;
+import com.qchu.once.shared.network.entity.Request;
 import com.squareup.okhttp.Cache;
 import com.squareup.okhttp.Headers;
 import com.squareup.okhttp.Interceptor;

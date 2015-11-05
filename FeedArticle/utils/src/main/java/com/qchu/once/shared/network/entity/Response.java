@@ -1,4 +1,4 @@
-package com.qchu.once.shared.network.interactor;
+package com.qchu.once.shared.network.entity;
 
 /**
  * Created by quocdungchu on 31/10/15.

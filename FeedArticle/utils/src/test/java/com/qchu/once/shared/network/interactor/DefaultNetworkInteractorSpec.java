@@ -1,26 +1,16 @@
 package com.qchu.once.shared.network.interactor;
 
 import com.qchu.once.shared.connectivity.Connectivity;
+import com.qchu.once.shared.network.entity.Response;
 
-import org.hamcrest.core.AnyOf;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
-import org.mockito.BDDMockito;
-import org.mockito.Matchers;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.internal.matchers.Null;
 import org.mockito.invocation.InvocationOnMock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.runners.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 
-import java.util.List;
-
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willAnswer;
@@ -28,13 +18,10 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
-import static org.mockito.Matchers.isA;
 import static org.mockito.Matchers.isNull;
-import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 /**
  * Created by quocdungchu on 01/11/15.
@@ -65,7 +52,7 @@ public class DefaultNetworkInteractorSpec {
 
 		networkAdapter = new NetworkAdapter() {
 			@Override
-			public void send(Request request, NetworkAdapterOnResponseListener networkAdapterOnResponseListener) {
+			public void send(com.qchu.once.shared.network.entity.Request request, NetworkAdapterOnResponseListener networkAdapterOnResponseListener) {
 				networkAdapterOnResponseListener.onResponse(
 					"any Json",
 					200,
@@ -90,8 +77,8 @@ public class DefaultNetworkInteractorSpec {
 		}).given(parsedPersonParser).parse(anyString());
 
 		defaultNetworkInteractor.send(
-			Request.builder()
-				.method(Request.Method.GET)
+			com.qchu.once.shared.network.entity.Request.builder()
+				.method(com.qchu.once.shared.network.entity.Request.Method.GET)
 				.url("https://anyHost.com/")
 				.build(),
 			parsedPersonParser,
@@ -103,7 +90,7 @@ public class DefaultNetworkInteractorSpec {
 
 		assertThat(jsonArgumentCaptor.getValue(), is("any Json"));
 
-		ArgumentCaptor<Response> parsedPersonArgumentCaptor = ArgumentCaptor.forClass(Response.class);
+		ArgumentCaptor<com.qchu.once.shared.network.entity.Response> parsedPersonArgumentCaptor = ArgumentCaptor.forClass(Response.class);
 		ArgumentCaptor<String> errorArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
 		verify(onResponseListener, times(1)).onResponse(

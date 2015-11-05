@@ -1,12 +1,14 @@
 package com.qchu.once.shared.network.interactor;
 
+import com.qchu.once.shared.network.entity.Response;
+
 /**
  * Created by quocdungchu on 31/10/15.
  */
 public interface NetworkInteractor {
 
 	<Parsed> void send(
-		Request request,
+		com.qchu.once.shared.network.entity.Request request,
 		Parser<Parsed> parser,
 		OnResponseListener<Parsed> onResponseListener);
 

@@ -2,7 +2,7 @@ package com.qchu.once.utils.network.adapter.retrofit;
 
 import com.google.common.collect.ImmutableMap;
 import com.qchu.once.shared.network.interactor.NetworkAdapterOnResponseListener;
-import com.qchu.once.shared.network.interactor.Request;
+import com.qchu.once.shared.network.entity.Request;
 import com.squareup.okhttp.Cache;
 
 import org.junit.After;
@@ -15,8 +15,6 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.mockito.Matchers.isNotNull;
 import static org.mockito.Mockito.mock;

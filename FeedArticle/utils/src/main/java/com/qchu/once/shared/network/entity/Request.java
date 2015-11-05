@@ -1,6 +1,7 @@
-package com.qchu.once.shared.network.interactor;
+package com.qchu.once.shared.network.entity;
 
 import com.google.auto.value.AutoValue;
+
 import javax.annotation.Nullable;
 
 
