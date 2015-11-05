@@ -23,13 +23,13 @@ dependencies {
 	compile 'com.google.code.findbugs:jsr305:3.0.1'
 
 	compile ('junit:junit:4.11'){
-		exclude group: 'org.hamcrest'
+		//exclude group: 'org.hamcrest'
 	}
 	compile ('org.mockito:mockito-all:2.0.2-beta') {
-		exclude group: 'org.hamcrest'
+		//exclude group: 'org.hamcrest'
 	}
 
-	compile ('com.google.truth:truth:0.27')
+	//compile ('com.google.truth:truth:0.27')
 
 }
 
@@ -42,12 +42,12 @@ j2objcConfig {
 	extraObjcCompilerArgs '-fobjc-arc'
 
 	translateClasspaths (
-		'libs/auto-value-1.2-SNAPSHOT.jar',
+		//'libs/auto-value-1.2-SNAPSHOT.jar',
 		//'mockito-all-2.0.2-beta.jar'
 	)
 
-	//xcodeProjectDir '../ios/feedarticle'
-	//xcodeTargetsIos 'feedarticle', 'feedarticleTests'
+	xcodeProjectDir '../ios/feedarticle'
+	xcodeTargetsIos 'feedarticle', 'feedarticleTests'
 
 	autoConfigureDeps true
 
