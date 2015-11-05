@@ -29,7 +29,7 @@ public abstract class Request {
 	public abstract static class Builder {
 
 		public abstract Builder method (Method method);
-		public abstract Builder url (String url);
+		public abstract Builder url (String baseString);
 		public abstract Builder parameters (Map<String,String> parameters);
 		public abstract Builder headers (Map<String,String> headers);
 
