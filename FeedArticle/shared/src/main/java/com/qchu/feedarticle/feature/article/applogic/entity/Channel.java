@@ -2,17 +2,16 @@ package com.qchu.feedarticle.feature.article.applogic.entity;
 
 import com.google.auto.value.AutoValue;
 
-import java.util.Date;
 import java.util.List;
 
 /**
  * Created by quocdungchu on 19/09/15.
  */
 @AutoValue
-public abstract class Site {
+public abstract class Channel {
 
 	public static Builder builder(){
-		return new AutoValue_Site.Builder();
+		return new AutoValue_Channel.Builder();
 	}
 
 	public abstract String id();
@@ -21,7 +20,7 @@ public abstract class Site {
 	//public abstract Date updateDate();
 
 	public abstract List<Article> articleList();
-	public abstract SiteConfig siteConfig();
+	public abstract ChannelConfig siteConfig();
 
 	@AutoValue.Builder
 	public abstract static class Builder {
@@ -31,8 +30,8 @@ public abstract class Site {
 		//public abstract Builder updateDate (Date updateDate);
 
 		public abstract Builder articleList (List<Article> articleList);
-		public abstract Builder siteConfig (SiteConfig siteConfig);
+		public abstract Builder siteConfig (ChannelConfig channelConfig);
 
-		public abstract Site build();
+		public abstract Channel build();
 	}
 }

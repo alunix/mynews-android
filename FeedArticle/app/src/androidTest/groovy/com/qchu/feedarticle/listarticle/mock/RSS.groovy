@@ -1,6 +1,6 @@
 package com.qchu.feedarticle.listarticle.mock
 
-import com.qchu.feedarticle.feature.article.applogic.entity.SiteConfig
+import com.qchu.feedarticle.feature.article.applogic.entity.ChannelConfig
 
 import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.RSSFeed
 import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.parser.html.HtmlParser
@@ -11,7 +11,7 @@ import rx.Observable
 import rx.Subscriber;
 
 
-SiteConfig siteConfig = SiteConfig.builder()
+ChannelConfig siteConfig = ChannelConfig.builder()
 .url("http://thethaovanhoa.vn/trang-chu.rss")
 .build();
 

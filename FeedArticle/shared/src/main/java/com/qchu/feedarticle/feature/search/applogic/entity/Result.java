@@ -1,6 +1,6 @@
 package com.qchu.feedarticle.feature.search.applogic.entity;
 
-import com.qchu.feedarticle.feature.article.applogic.entity.Site;
+import com.qchu.feedarticle.feature.article.applogic.entity.Channel;
 
 import java.util.List;
 
@@ -9,6 +9,6 @@ import java.util.List;
  */
 public class Result {
 
-	List<Site> siteList;
+	List<Channel> channelList;
 
 }

@@ -3,7 +3,7 @@ package com.qchu.feedarticle.feature.article.applogic.manager.repository.memory;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
-import com.qchu.feedarticle.feature.article.applogic.entity.Site;
+import com.qchu.feedarticle.feature.article.applogic.entity.Channel;
 import com.qchu.feedarticle.feature.article.applogic.interactor.ArticleRepository;
 import com.qchu.feedarticle.feature.favorite.applogic.interactor.FavoriteAction;
 import com.qchu.feedarticle.feature.favorite.applogic.interactor.FavoriteActionResult;
@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
  */
 public class MemoryArticleRepositoryManager implements ArticleRepository, FavoriteRepository {
 
-	Map<String, Site> siteMap = new HashMap<>();
+	Map<String, Channel> siteMap = new HashMap<>();
 	Map<String, Article> articleMap = new HashMap<>();
 
 	List<String> favoriteArticleIdList = new ArrayList<>();
@@ -35,8 +35,8 @@ public class MemoryArticleRepositoryManager implements ArticleRepository, Favori
 	public List<Article> getArticleBySiteIds(List<String> siteIdList) {
 		List<Article> articleList = new ArrayList<>();
 		for(String siteId: siteIdList) {
-			Site site = siteMap.get(siteId);
-			articleList.addAll(site.articleList());
+			Channel channel = siteMap.get(siteId);
+			articleList.addAll(channel.articleList());
 		}
 		return articleList;
 	}
@@ -51,16 +51,16 @@ public class MemoryArticleRepositoryManager implements ArticleRepository, Favori
 	}
 
 	@Override
-	public void updateSiteList(List<Site> siteList) {
-		for(Site site: siteList) {
-			updateSite(site);
+	public void updateSiteList(List<Channel> channelList) {
+		for(Channel channel : channelList) {
+			updateSite(channel);
 		}
 	}
 
 	@Override
-	public void updateSite(Site site) {
-		siteMap.put(site.id(), site);
-		for(Article article: site.articleList()) {
+	public void updateSite(Channel channel) {
+		siteMap.put(channel.id(), channel);
+		for(Article article: channel.articleList()) {
 			articleMap.put(article.identifier(), article);
 		}
 	}

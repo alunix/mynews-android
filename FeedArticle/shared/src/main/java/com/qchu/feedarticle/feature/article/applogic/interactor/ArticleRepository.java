@@ -1,7 +1,7 @@
 package com.qchu.feedarticle.feature.article.applogic.interactor;
 
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
-import com.qchu.feedarticle.feature.article.applogic.entity.Site;
+import com.qchu.feedarticle.feature.article.applogic.entity.Channel;
 
 import java.util.List;
 
@@ -12,6 +12,6 @@ public interface ArticleRepository {
 	Article getArticleById(String articleId);
 	List<Article> getArticleBySiteIds(List<String> siteIdList);
 	List<Article> getArticleByArticleIds(List<String> articleIdList);
-	void updateSiteList(List<Site> siteList);
-	void updateSite(Site site);
+	void updateSiteList(List<Channel> channelList);
+	void updateSite(Channel channel);
 }

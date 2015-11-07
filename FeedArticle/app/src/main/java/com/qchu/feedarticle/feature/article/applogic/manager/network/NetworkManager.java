@@ -2,15 +2,13 @@ package com.qchu.feedarticle.feature.article.applogic.manager.network;
 
 import android.util.Log;
 
-import com.qchu.feedarticle.feature.article.applogic.entity.Site;
-import com.qchu.feedarticle.feature.article.applogic.entity.SiteConfig;
+import com.qchu.feedarticle.feature.article.applogic.entity.Channel;
+import com.qchu.feedarticle.feature.article.applogic.entity.ChannelConfig;
 import com.qchu.feedarticle.feature.article.applogic.interactor.SourceRepository;
 import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.RSSFeed;
 import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.parser.xml.ParsedRSS;
 
 import java.util.List;
-
-import javax.inject.Inject;
 
 import rx.Observable;
 import rx.Scheduler;
@@ -28,26 +26,26 @@ public class NetworkManager implements SourceRepository {
 		this.observingScheduler = observingScheduler;
 	}
 
-	public void getArticles(List<SiteConfig> siteConfigList,
+	public void getArticles(List<ChannelConfig> channelConfigList,
 	                        final SourceRepository.GetArticleListListener
 		                        getArticleListListener){
 
 		getArticleListListener.onBegin(this);
-		Observable.from(siteConfigList)
-			.flatMap(new Func1<SiteConfig, Observable<Site>>() {
+		Observable.from(channelConfigList)
+			.flatMap(new Func1<ChannelConfig, Observable<Channel>>() {
 				@Override
-				public Observable<Site> call(final SiteConfig siteConfig) {
-					return RSSFeed.rssObservable(siteConfig)
-						.flatMap(new Func1<ParsedRSS, Observable<Site>>() {
+				public Observable<Channel> call(final ChannelConfig channelConfig) {
+					return RSSFeed.rssObservable(channelConfig)
+						.flatMap(new Func1<ParsedRSS, Observable<Channel>>() {
 							@Override
-							public Observable<Site> call(ParsedRSS parsedRSS) {
-								return Observable.just(EntityTransformer.siteFrom(siteConfig, parsedRSS));
+							public Observable<Channel> call(ParsedRSS parsedRSS) {
+								return Observable.just(EntityTransformer.siteFrom(channelConfig, parsedRSS));
 							}
 						});
 				}
 			})
 			.observeOn(observingScheduler)
-			.subscribe(new Subscriber<Site>() {
+			.subscribe(new Subscriber<Channel>() {
 
 				@Override
 				public void onError(Throwable e) {
@@ -56,9 +54,9 @@ public class NetworkManager implements SourceRepository {
 				}
 
 				@Override
-				public void onNext(Site site) {
-					Log.d("onNext Network", "Site " + site);
-					getArticleListListener.onNext(NetworkManager.this, site.siteConfig(), site);
+				public void onNext(Channel channel) {
+					Log.d("onNext Network", "Site " + channel);
+					getArticleListListener.onNext(NetworkManager.this, channel.siteConfig(), channel);
 				}
 
 				@Override

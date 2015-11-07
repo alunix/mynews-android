@@ -6,10 +6,10 @@ import com.google.auto.value.AutoValue;
  * Created by quocdungchu on 19/09/15.
  */
 @AutoValue
-public abstract class SiteConfig {
+public abstract class ChannelConfig {
 
 	public static Builder builder(){
-		return new AutoValue_SiteConfig.Builder();
+		return new AutoValue_ChannelConfig.Builder();
 	}
 
 	public abstract String url();
@@ -17,6 +17,6 @@ public abstract class SiteConfig {
 	@AutoValue.Builder
 	public abstract static class Builder{
 		public abstract Builder url (String url);
-		public abstract SiteConfig build();
+		public abstract ChannelConfig build();
 	}
 }

@@ -3,8 +3,8 @@ package com.qchu.feedarticle.feature.article.applogic.manager.network;
 import com.qchu.feedarticle.common.DateDeserializer;
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
 import com.qchu.feedarticle.feature.article.applogic.entity.Image;
-import com.qchu.feedarticle.feature.article.applogic.entity.Site;
-import com.qchu.feedarticle.feature.article.applogic.entity.SiteConfig;
+import com.qchu.feedarticle.feature.article.applogic.entity.Channel;
+import com.qchu.feedarticle.feature.article.applogic.entity.ChannelConfig;
 import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.parser.html.HtmlParser;
 import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.parser.html.ParsedImage;
 import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.parser.xml.ParsedItem;
@@ -18,7 +18,7 @@ import java.util.List;
  * Created by quocdungchu on 20/09/15.
  */
 public class EntityTransformer {
-	public static Site siteFrom(SiteConfig siteConfig, ParsedRSS parsedRSS) {
+	public static Channel siteFrom(ChannelConfig channelConfig, ParsedRSS parsedRSS) {
 		String siteUrl = null;
 		for(ParsedLink parsedLink: parsedRSS.getChannel().getLinks()) {
 			if(parsedLink.getLink() != null) {
@@ -27,8 +27,8 @@ public class EntityTransformer {
 			}
 		}
 
-		return Site.builder()
-			.siteConfig(siteConfig)
+		return Channel.builder()
+			.siteConfig(channelConfig)
 			.id(siteUrl)
 			.title(parsedRSS.getChannel().getTitle())
 			.url(siteUrl)

@@ -2,8 +2,8 @@ package com.qchu.feedarticle.feature.refreshlistarticle.ui.presenter;
 
 import com.google.common.collect.Lists;
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
-import com.qchu.feedarticle.feature.article.applogic.entity.Site;
-import com.qchu.feedarticle.feature.article.applogic.entity.SiteConfig;
+import com.qchu.feedarticle.feature.article.applogic.entity.Channel;
+import com.qchu.feedarticle.feature.article.applogic.entity.ChannelConfig;
 import com.qchu.feedarticle.feature.article.applogic.interactor.ArticleInteractor;
 import com.qchu.feedarticle.feature.article.applogic.util.ArticleIdTransformFunction;
 import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticlePresenter;
@@ -49,17 +49,17 @@ public class RefreshListArticlePresenter extends ListArticlePresenter
 	}
 
 	private void refreshContent(){
-		List<SiteConfig> siteConfigList = new ArrayList<>();
+		List<ChannelConfig> channelConfigList = new ArrayList<>();
 
-		siteConfigList.add(SiteConfig.builder()
+		channelConfigList.add(ChannelConfig.builder()
 			.url("http://feeds.feedburner.com/RayWenderlich")
 			.build());
 
-		siteConfigList.add(SiteConfig.builder()
+		channelConfigList.add(ChannelConfig.builder()
 			.url("http://thethaovanhoa.vn/trang-chu.rss")
 			.build());
 
-		this.articleInteractor.refreshArticles(siteConfigList, new ArticleInteractor.RefreshArticleListListener() {
+		this.articleInteractor.refreshArticles(channelConfigList, new ArticleInteractor.RefreshArticleListListener() {
 			@Override
 			public void onBegin(ArticleInteractor articleInteractor) {
 				articleIdList = new ArrayList<>();
@@ -68,7 +68,7 @@ public class RefreshListArticlePresenter extends ListArticlePresenter
 
 			@Override
 			public void onNextSite(ArticleInteractor articleInteractor,
-			                       Site site, List<Article> allArticleSortedList) {
+			                       Channel channel, List<Article> allArticleSortedList) {
 				articleIdList = Lists.newArrayList(Lists.transform(allArticleSortedList,
 					new ArticleIdTransformFunction()));
 				refreshListArticleUserInterface.bindArticles(allArticleSortedList);

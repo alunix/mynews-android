@@ -1,8 +1,8 @@
 package com.qchu.feedarticle.feature.article.applogic.interactor;
 
 import com.qchu.feedarticle.feature.article.applogic.entity.Article;
-import com.qchu.feedarticle.feature.article.applogic.entity.Site;
-import com.qchu.feedarticle.feature.article.applogic.entity.SiteConfig;
+import com.qchu.feedarticle.feature.article.applogic.entity.Channel;
+import com.qchu.feedarticle.feature.article.applogic.entity.ChannelConfig;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,24 +46,24 @@ public class DefaultArticleInteractor implements ArticleInteractor{
 	}
 
 	@Override
-	public void refreshArticles(List<SiteConfig> siteConfigList,
+	public void refreshArticles(List<ChannelConfig> channelConfigList,
 	                            final RefreshArticleListListener refreshArticleListListener){
 
 		final List<Article> allArticleSortedList = new ArrayList<>();
-		sourceRepository.getArticles(siteConfigList, new SourceRepository.GetArticleListListener() {
+		sourceRepository.getArticles(channelConfigList, new SourceRepository.GetArticleListListener() {
 			@Override
 			public void onBegin(SourceRepository sourceRepository) {
 				refreshArticleListListener.onBegin(DefaultArticleInteractor.this);
 			}
 
 			@Override
-			public void onNext(SourceRepository sourceRepository, SiteConfig siteConfig, Site site) {
+			public void onNext(SourceRepository sourceRepository, ChannelConfig channelConfig, Channel channel) {
 				//update repository
-				articleRepository.updateSite(site);
+				articleRepository.updateSite(channel);
 
-				allArticleSortedList.addAll(site.articleList());
+				allArticleSortedList.addAll(channel.articleList());
 				Collections.sort(allArticleSortedList, new DescentDateSortArticleComparator());
-				refreshArticleListListener.onNextSite(DefaultArticleInteractor.this, site, allArticleSortedList);
+				refreshArticleListListener.onNextSite(DefaultArticleInteractor.this, channel, allArticleSortedList);
 			}
 
 			@Override

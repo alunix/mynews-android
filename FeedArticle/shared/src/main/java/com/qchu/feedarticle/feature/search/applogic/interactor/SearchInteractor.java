@@ -1,6 +1,5 @@
 package com.qchu.feedarticle.feature.search.applogic.interactor;
 
-import com.qchu.feedarticle.feature.article.applogic.entity.Site;
 import com.qchu.feedarticle.feature.search.applogic.entity.Result;
 import com.qchu.feedarticle.feature.search.applogic.entity.Search;
 

@@ -1,7 +1,7 @@
 package com.qchu.feedarticle.listarticle.mock
 
-import com.qchu.feedarticle.feature.article.applogic.entity.Site
-import com.qchu.feedarticle.feature.article.applogic.entity.SiteConfig
+import com.qchu.feedarticle.feature.article.applogic.entity.Channel
+import com.qchu.feedarticle.feature.article.applogic.entity.ChannelConfig
 import com.qchu.feedarticle.feature.article.applogic.manager.network.EntityTransformer
 import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.RSSFeed
 import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.parser.xml.ParsedRSS
@@ -29,13 +29,13 @@ http://feeds.feedburner.com/RayWenderlich
 
 def aSiteConfigs =
 	[
-		SiteConfig.builder()
+		ChannelConfig.builder()
 		  .url("http://feeds.feedburner.com/CocoaDevBlog")
 		  .build(),
-	  SiteConfig.builder()
+	  ChannelConfig.builder()
 		  .url("http://feeds.feedburner.com/RayWenderlich")
 		  .build(),
-	  SiteConfig.builder()
+	  ChannelConfig.builder()
 		  .url("http://feeds.feedburner.com/vmwstudios")
 		  .build(),
 		/*
@@ -49,19 +49,19 @@ def aSiteConfigs =
 
 
 Observable.from(aSiteConfigs)
-	.flatMap(new Func1<SiteConfig, Observable<Site>>() {
+	.flatMap(new Func1<ChannelConfig, Observable<Channel>>() {
 	@Override
-	public Observable<Site> call(final SiteConfig siteConfig) {
+	public Observable<Channel> call(final ChannelConfig siteConfig) {
 		return RSSFeed.rssObservable(siteConfig)
-			.flatMap(new Func1<ParsedRSS, Observable<Site>>() {
+			.flatMap(new Func1<ParsedRSS, Observable<Channel>>() {
 			@Override
-			public Observable<Site> call(ParsedRSS parsedRSS) {
+			public Observable<Channel> call(ParsedRSS parsedRSS) {
 				return Observable.just(EntityTransformer.siteFrom(siteConfig, parsedRSS));
 			}
 		});
 	}
 })
-	.subscribe(new Subscriber<Site>() {
+	.subscribe(new Subscriber<Channel>() {
 	@Override
 	void onCompleted() {
 		println("onCompleted " + Thread.currentThread())
@@ -74,7 +74,7 @@ Observable.from(aSiteConfigs)
 	}
 
 	@Override
-	void onNext(Site site) {
+	void onNext(Channel site) {
 		println("onNextSite " + Thread.currentThread())
 		println("rss " + site)
 	}

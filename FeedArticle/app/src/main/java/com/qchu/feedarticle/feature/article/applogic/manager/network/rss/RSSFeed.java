@@ -1,7 +1,7 @@
 package com.qchu.feedarticle.feature.article.applogic.manager.network.rss;
 
 
-import com.qchu.feedarticle.feature.article.applogic.entity.SiteConfig;
+import com.qchu.feedarticle.feature.article.applogic.entity.ChannelConfig;
 import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.parser.xml.ParsedRSS;
 
 import retrofit.GsonConverterFactory;
@@ -18,8 +18,8 @@ import rx.Observable;
  */
 public class RSSFeed {
 
-	public static Observable<ParsedRSS> rssObservable(SiteConfig siteConfig) {
-		return retrofit(siteConfig.url())
+	public static Observable<ParsedRSS> rssObservable(ChannelConfig channelConfig) {
+		return retrofit(channelConfig.url())
 			.create(RSSService.class)
 			.getRssObservable("");
 	}
