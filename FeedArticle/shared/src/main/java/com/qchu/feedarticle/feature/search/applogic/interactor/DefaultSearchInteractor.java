@@ -6,7 +6,7 @@ import com.qchu.once.shared.connectivity.Connectivity;
 /**
  * Created by quocdungchu on 30/10/15.
  */
-public class DefaultSearchInteractor<T> implements SearchInteractor<T> {
+public class DefaultSearchInteractor implements SearchInteractor {
 
 	private SearchService searchService;
 	private Connectivity connectivity;
@@ -21,7 +21,7 @@ public class DefaultSearchInteractor<T> implements SearchInteractor<T> {
 
 
 	@Override
-	public void launch(Search search, OnResultListener<T> onResultListener) {
+	public void launch(Search search, OnResultListener onResultListener) {
 
 	}
 }

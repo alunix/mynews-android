@@ -9,13 +9,13 @@ import java.util.List;
 /**
  * Created by quocdungchu on 27/10/15.
  */
-public interface SearchInteractor<T> {
+public interface SearchInteractor {
 
 	void launch (
 		Search search,
-		OnResultListener<T> onResultListener);
+		OnResultListener onResultListener);
 
-	interface OnResultListener<T>{
-		void onResult (List<Result<T>> resultList);
+	interface OnResultListener{
+		void onResult (List<Result> resultList);
 	}
 }
