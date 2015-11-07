@@ -42,6 +42,5 @@
     <orderEntry type="library" exported="" name="dagger-producers-2.0-beta" level="project" />
     <orderEntry type="library" exported="" name="auto-value-1.2-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="mockito-all-2.0.2-beta" level="project" />
-    <orderEntry type="library" exported="" name="shared.shared" level="project" />
   </component>
 </module>
