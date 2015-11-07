@@ -1,6 +1,6 @@
 apply plugin: 'java'
 
-
+/*
 buildscript {
 	repositories {
 		jcenter()
@@ -14,7 +14,7 @@ buildscript {
 }
 
 apply plugin: 'com.github.j2objccontrib.j2objcgradle'
-
+*/
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -24,6 +24,7 @@ dependencies {
 
 }
 
+/*
 j2objcConfig {
 	translateArgs (
 		'-use-arc',
@@ -52,3 +53,4 @@ j2objcConfig {
 
 	finalConfigure()
 }
+*/
