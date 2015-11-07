@@ -22,6 +22,6 @@ public class DefaultSearchInteractor<T> implements SearchInteractor<T> {
 
 	@Override
 	public void launch(Search search, OnResultListener<T> onResultListener) {
-		
+
 	}
 }

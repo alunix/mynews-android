@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/third_party_dagger2" />
             <option value="$PROJECT_DIR$/utils" />
             <option value="$PROJECT_DIR$/utils_network_adapter_retrofit" />
+            <option value="$PROJECT_DIR$/utils_test" />
           </set>
         </option>
       </GradleProjectSettings>
