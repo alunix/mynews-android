@@ -4,6 +4,8 @@ import com.qchu.feedarticle.domain.article.interactor.ArticleInteractor;
 import com.qchu.feedarticle.domain.article.interactor.DefaultArticleInteractor;
 import com.qchu.feedarticle.domain.favorite.interactor.DefaultFavoriteInteractor;
 import com.qchu.feedarticle.domain.favorite.interactor.FavoriteInteractor;
+import com.qchu.once.shared.network.interactor.DefaultNetworkInteractor;
+import com.qchu.once.shared.network.interactor.NetworkInteractor;
 
 import javax.inject.Singleton;
 
@@ -13,7 +15,7 @@ import dagger.Provides;
 /**
  * Created by quocdungchu on 30/10/15.
  */
-@Module(includes = RepositoryModule.class)
+@Module(includes = {RepositoryModule.class, ServiceModule.class})
 public class InteractorModule {
 	@Provides @Singleton ArticleInteractor provideArticleInteractor(
 		DefaultArticleInteractor defaultArticleInteractor){

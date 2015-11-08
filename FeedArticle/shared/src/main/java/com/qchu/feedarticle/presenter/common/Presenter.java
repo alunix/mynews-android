@@ -1,4 +1,4 @@
-package com.qchu.feedarticle.common;
+package com.qchu.feedarticle.presenter.common;
 
 /**
  * Created by quocdungchu on 22/08/15.

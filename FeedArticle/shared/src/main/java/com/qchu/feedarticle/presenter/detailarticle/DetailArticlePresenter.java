@@ -1,6 +1,6 @@
 package com.qchu.feedarticle.presenter.detailarticle;
 
-import com.qchu.feedarticle.common.Presenter;
+import com.qchu.feedarticle.presenter.common.Presenter;
 import com.qchu.feedarticle.domain.article.interactor.ArticleInteractor;
 import com.qchu.feedarticle.domain.favorite.interactor.FavoriteAction;
 import com.qchu.feedarticle.domain.favorite.interactor.FavoriteActionResult;

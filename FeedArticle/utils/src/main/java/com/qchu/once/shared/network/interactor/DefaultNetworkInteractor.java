@@ -4,6 +4,8 @@ import com.qchu.once.shared.connectivity.Connectivity;
 import com.qchu.once.shared.network.entity.Request;
 import com.qchu.once.shared.network.entity.Response;
 
+import javax.inject.Inject;
+
 /**
  * Created by quocdungchu on 31/10/15.
  */
@@ -13,7 +15,7 @@ public class DefaultNetworkInteractor implements NetworkInteractor {
 	ErrorMessageProvider errorMessageProvider;
 	NetworkAdapter networkAdapter;
 
-	public DefaultNetworkInteractor(
+	@Inject public DefaultNetworkInteractor(
 		Connectivity connectivity,
 		ErrorMessageProvider errorMessageProvider,
 		NetworkAdapter networkAdapter){

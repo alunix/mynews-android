@@ -1,6 +1,6 @@
 package com.qchu.feedarticle.presenter.listarticle;
 
-import com.qchu.feedarticle.common.Presenter;
+import com.qchu.feedarticle.presenter.common.Presenter;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.qchu.feedarticle.presenter.menu;
 
-import com.qchu.feedarticle.common.Presenter;
+import com.qchu.feedarticle.presenter.common.Presenter;
 
 /**
  * Created by quocdungchu on 20/09/15.
