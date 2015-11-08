@@ -30,6 +30,8 @@
     <orderEntry type="library" exported="" name="auto-value-1.2-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="guava-18.0" level="project" />
     <orderEntry type="library" exported="" name="jsr305-3.0.1" level="project" />
+    <orderEntry type="library" exported="" name="dagger-2.0.1" level="project" />
+    <orderEntry type="library" exported="" name="javax.inject-1" level="project" />
     <orderEntry type="library" exported="" name="auto-value-1.2-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="mockito-all-2.0.2-beta" level="project" />
     <orderEntry type="library" exported="" name="utils.utils" level="project" />
