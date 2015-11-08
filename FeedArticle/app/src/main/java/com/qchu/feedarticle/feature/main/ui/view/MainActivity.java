@@ -5,15 +5,14 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.qchu.feedarticle.R;
 import com.qchu.feedarticle.common.BaseActivity;
 import com.qchu.feedarticle.feature.main.ui.view.databinding.MainActivityBinding;
-import com.qchu.feedarticle.feature.menu.ui.presenter.MenuPresenter;
-import com.qchu.feedarticle.feature.menu.ui.presenter.MenuUserInterface;
-import com.qchu.feedarticle.feature.menu.ui.presenter.MenuWireframeInterface;
+import com.qchu.feedarticle.presenter.menu.MenuPresenter;
+import com.qchu.feedarticle.presenter.menu.MenuUserInterface;
+import com.qchu.feedarticle.presenter.menu.MenuWireframeInterface;
 import com.qchu.feedarticle.feature.menu.ui.wireframe.MenuWireframe;
 
 /**

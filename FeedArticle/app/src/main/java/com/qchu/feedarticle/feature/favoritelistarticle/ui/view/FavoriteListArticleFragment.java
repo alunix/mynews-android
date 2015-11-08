@@ -9,10 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.qchu.feedarticle.R;
-import com.qchu.feedarticle.feature.article.applogic.entity.Article;
-import com.qchu.feedarticle.feature.favoritelistarticle.ui.presenter.FavoriteListArticlePresenter;
+import com.qchu.feedarticle.domain.article.entity.Article;
+import com.qchu.feedarticle.presenter.favoritelistarticle.FavoriteListArticlePresenter;
 import com.qchu.feedarticle.feature.favoritelistarticle.ui.view.databinding.FavoriteListArticleFragmentDataBinding;
-import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticleUserInterface;
+import com.qchu.feedarticle.presenter.listarticle.ListArticleUserInterface;
 import com.qchu.feedarticle.feature.listarticle.ui.view.ListArticleRecycleViewAdapter;
 import com.qchu.feedarticle.feature.listarticle.ui.view.databinding.BindableArticle;
 import com.qchu.feedarticle.feature.listarticle.ui.view.databinding.EntityTransformer;

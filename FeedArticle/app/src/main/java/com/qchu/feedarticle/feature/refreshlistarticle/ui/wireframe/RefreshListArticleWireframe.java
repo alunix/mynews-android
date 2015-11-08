@@ -5,9 +5,8 @@ import android.content.Intent;
 
 import com.qchu.feedarticle.common.Wireframe;
 import com.qchu.feedarticle.feature.detailarticle.ui.view.DetailArticlePagerActivity;
-import com.qchu.feedarticle.feature.listarticle.ui.presenter.ListArticlePresenter;
-import com.qchu.feedarticle.feature.refreshlistarticle.ui.presenter.RefreshListArticlePresenter;
-import com.qchu.feedarticle.feature.refreshlistarticle.ui.presenter.RefreshListArticleWireframeInterface;
+import com.qchu.feedarticle.presenter.listarticle.ListArticlePresenter;
+import com.qchu.feedarticle.presenter.refreshlistarticle.RefreshListArticleWireframeInterface;
 
 import java.util.ArrayList;
 import java.util.List;

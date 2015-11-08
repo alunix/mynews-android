@@ -1,6 +1,6 @@
 package com.qchu.feedarticle.feature.listarticle.ui.view.databinding;
 
-import com.qchu.feedarticle.feature.article.applogic.entity.Article;
+import com.qchu.feedarticle.domain.article.entity.Article;
 
 import java.util.ArrayList;
 import java.util.List;

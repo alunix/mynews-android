@@ -5,20 +5,18 @@ import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.qchu.feedarticle.FeedArticleApplication;
 import com.qchu.feedarticle.R;
 import com.qchu.feedarticle.common.BaseActivity;
-import com.qchu.feedarticle.feature.article.applogic.entity.Article;
-import com.qchu.feedarticle.feature.detailarticle.ui.presenter.DetailArticlePresenter;
-import com.qchu.feedarticle.feature.detailarticle.ui.presenter.DetailArticleUserInterface;
+import com.qchu.feedarticle.domain.article.entity.Article;
+import com.qchu.feedarticle.presenter.detailarticle.DetailArticlePresenter;
+import com.qchu.feedarticle.presenter.detailarticle.DetailArticleUserInterface;
 import com.qchu.feedarticle.feature.detailarticle.ui.view.databinding.BindableArticle;
 import com.qchu.feedarticle.feature.detailarticle.ui.view.databinding.DetailArticlePagerActivityDataBinding;
 import com.qchu.feedarticle.feature.detailarticle.ui.view.databinding.EntityTransformer;
 import com.qchu.feedarticle.feature.detailarticle.ui.wireframe.DetailArticleWireframe;
-import com.qchu.feedarticle.feature.favorite.applogic.interactor.FavoriteActionResult;
+import com.qchu.feedarticle.domain.favorite.interactor.FavoriteActionResult;
 
 import java.util.List;
 

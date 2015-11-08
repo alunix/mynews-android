@@ -1,7 +1,7 @@
 package com.qchu.feedarticle.feature.article.applogic.manager.network.rss;
 
 
-import com.qchu.feedarticle.feature.article.applogic.entity.ChannelConfig;
+import com.qchu.feedarticle.domain.article.entity.ChannelConfig;
 import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.parser.xml.ParsedRSS;
 
 import retrofit.GsonConverterFactory;

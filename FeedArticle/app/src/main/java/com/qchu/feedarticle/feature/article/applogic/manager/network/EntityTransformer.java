@@ -1,10 +1,10 @@
 package com.qchu.feedarticle.feature.article.applogic.manager.network;
 
 import com.qchu.feedarticle.common.DateDeserializer;
-import com.qchu.feedarticle.feature.article.applogic.entity.Article;
-import com.qchu.feedarticle.feature.article.applogic.entity.Image;
-import com.qchu.feedarticle.feature.article.applogic.entity.Channel;
-import com.qchu.feedarticle.feature.article.applogic.entity.ChannelConfig;
+import com.qchu.feedarticle.domain.article.entity.Article;
+import com.qchu.feedarticle.domain.article.entity.Image;
+import com.qchu.feedarticle.domain.article.entity.Channel;
+import com.qchu.feedarticle.domain.article.entity.ChannelConfig;
 import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.parser.html.HtmlParser;
 import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.parser.html.ParsedImage;
 import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.parser.xml.ParsedItem;

@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.qchu.feedarticle.common.FragmentWireframe;
 import com.qchu.feedarticle.feature.refreshlistarticle.ui.view.RefreshListArticleFragment;
-import com.qchu.feedarticle.feature.menu.ui.presenter.MenuWireframeInterface;
+import com.qchu.feedarticle.presenter.menu.MenuWireframeInterface;
 
 /**
  * Created by quocdungchu on 20/09/15.

@@ -1,6 +1,6 @@
 package com.qchu.feedarticle.listarticle.mock
 
-import com.qchu.feedarticle.feature.article.applogic.entity.ChannelConfig
+import com.qchu.feedarticle.domain.article.entity.ChannelConfig
 
 import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.RSSFeed
 import com.qchu.feedarticle.feature.article.applogic.manager.network.rss.parser.html.HtmlParser

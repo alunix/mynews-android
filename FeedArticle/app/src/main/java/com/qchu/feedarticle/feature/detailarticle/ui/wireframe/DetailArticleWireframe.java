@@ -3,7 +3,7 @@ package com.qchu.feedarticle.feature.detailarticle.ui.wireframe;
 import android.app.Activity;
 
 import com.qchu.feedarticle.common.Wireframe;
-import com.qchu.feedarticle.feature.detailarticle.ui.presenter.DetailArticleWireframeInterface;
+import com.qchu.feedarticle.presenter.detailarticle.DetailArticleWireframeInterface;
 
 /**
  * Created by quocdungchu on 27/09/15.
