@@ -10,6 +10,7 @@ import com.qchu.once.shared.network.interactor.Parser;
 import java.util.List;
 
 import javax.annotation.Nonnull;
+import javax.inject.Inject;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -22,7 +23,7 @@ public class GoogleFeedSearchService implements com.qchu.feedarticle.domain.sear
 	private NetworkInteractor networkInteractor;
 	private Parser<List<Channel>> parser;
 
-	public GoogleFeedSearchService(
+	@Inject public GoogleFeedSearchService(
 		@Nonnull NetworkInteractor networkInteractor,
 		@Nonnull Parser<List<Channel>> parser){
 
