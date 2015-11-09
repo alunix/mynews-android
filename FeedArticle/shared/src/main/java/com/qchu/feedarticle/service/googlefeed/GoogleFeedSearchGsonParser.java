@@ -23,7 +23,7 @@ public class GoogleFeedSearchGsonParser implements Parser<List<Channel>> {
 	@Override
 	public List<Channel> parse(String fromString) {
 
-		List<Channel> channelList = Arrays.asList();
+		List<Channel> channelList = new ArrayList<>();
 
 		Gson gson = new Gson();
 		ParsedRoot parsedRoot = gson.fromJson(fromString, ParsedRoot.class);
