@@ -1,5 +1,6 @@
 package com.qchu.feedarticle.service.googlefeed;
 
+import com.google.common.truth.Truth;
 import com.qchu.feedarticle.dagger.InteractorModule;
 import com.qchu.feedarticle.dagger.NetworkModule;
 import com.qchu.feedarticle.dagger.ServiceModule;
@@ -32,9 +33,9 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 
+import static com.google.common.truth.Truth.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
-import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willAnswer;
 import static org.mockito.Matchers.any;
@@ -81,8 +82,8 @@ public class GoogleFeedSearchServiceSpec {
 						"    \"entries\": [\n" +
 						"      {\n" +
 						"        \"url\": \"http://www.bongda365.com.vn/feed/\",\n" +
-						"        \"title\": \"<b>BongDa</b>.com.vn – Tin tức <b>bóng đá</b> số 1 Việt Nam\",\n" +
-						"        \"contentSnippet\": \"<b>BongDa</b>.com.vnn - cập nhật liên tục tin nhanh <b>bóng đá</b>, lịch thi đấu, kết quả, bảng <br>\\nxếp hạng tất cả các giải <b>bóng đá</b>, tin chuyển nhượng, hậu trường cầu thủ.\",\n" +
+						"        \"title\": \"title\",\n" +
+						"        \"contentSnippet\": \"content\",\n" +
 						"        \"link\": \"http://www.bongda365.com.vn/\"\n" +
 						"      }" +
 						"      ]" +
@@ -124,8 +125,12 @@ public class GoogleFeedSearchServiceSpec {
 
 		verify(this.onResultListener, times(1)).onResult(resultCaptor.capture());
 
-		//List<Channel> channelList = resultCaptor.getValue();
-		//assertThat(resultCaptor.getValue().size(), is(equalTo(1)));
+		List<Channel> channelList = resultCaptor.getValue();
+    assertThat(channelList).isNotNull();
+    assertThat(channelList.size()).isEqualTo(Integer.valueOf(1));
+    assertThat(channelList.get(0).url()).isEqualTo("http://www.bongda365.com.vn/feed/");
+    assertThat(channelList.get(0).title()).isEqualTo("title");
+    assertThat(channelList.get(0).id()).isEqualTo("http://www.bongda365.com.vn/feed/");
 
-	}
+  }
 }
