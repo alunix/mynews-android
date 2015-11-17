@@ -22,11 +22,11 @@ public class FavoriteListArticlePresenter extends ListArticlePresenter
 	List<Article> articleList;
 	EditState editState;
 	final FavoriteInteractor favoriteInteractor;
-	final com.qchu.feedarticle.ui.presenter.favoritelistarticle.FavoriteListArticleUserInterface favoriteListArticleUserInterface;
+	final FavoriteListArticleUserInterface favoriteListArticleUserInterface;
 
 	protected FavoriteListArticlePresenter(
 		FavoriteInteractor favoriteInteractor,
-		com.qchu.feedarticle.ui.presenter.favoritelistarticle.FavoriteListArticleUserInterface favoriteListArticleUserInterface,
+		FavoriteListArticleUserInterface favoriteListArticleUserInterface,
 		ListArticleWireframeInterface listArticleWireframeInterface) {
 
 		super(favoriteListArticleUserInterface, listArticleWireframeInterface);
@@ -49,7 +49,7 @@ public class FavoriteListArticlePresenter extends ListArticlePresenter
 	}
 
 	@Override
-	public void onEditEventClick(com.qchu.feedarticle.ui.presenter.favoritelistarticle.FavoriteListArticleUserInterface favoriteListArticleUserInterface) {
+	public void onEditEventClick(FavoriteListArticleUserInterface favoriteListArticleUserInterface) {
 		if(this.editState == EditState.NORMAL) {
 			this.editState = EditState.EDITING;
 		} else {
@@ -60,7 +60,7 @@ public class FavoriteListArticlePresenter extends ListArticlePresenter
 
 	@Override
 	public void onRemoveArticleAtIndex(
-		com.qchu.feedarticle.ui.presenter.favoritelistarticle.FavoriteListArticleUserInterface favoriteListArticleUserInterface,
+		FavoriteListArticleUserInterface favoriteListArticleUserInterface,
 		int removeAtIndex) {
 
 		String removedArticleId = this.articleIdList.get(removeAtIndex);

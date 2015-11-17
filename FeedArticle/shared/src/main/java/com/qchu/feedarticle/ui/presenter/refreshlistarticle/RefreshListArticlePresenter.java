@@ -17,13 +17,13 @@ import java.util.List;
 public class RefreshListArticlePresenter extends ListArticlePresenter
 	implements RefreshListArticleUserEventHandler {
 
-	final ArticleInteractor articleInteractor;
-	final com.qchu.feedarticle.ui.presenter.refreshlistarticle.RefreshListArticleUserInterface refreshListArticleUserInterface;
-	final RefreshListArticleWireframeInterface refreshListArticleWireframeInterface;
+	private final ArticleInteractor articleInteractor;
+	private final RefreshListArticleUserInterface refreshListArticleUserInterface;
+	private final RefreshListArticleWireframeInterface refreshListArticleWireframeInterface;
 
 	public RefreshListArticlePresenter(
 		ArticleInteractor articleInteractor,
-		com.qchu.feedarticle.ui.presenter.refreshlistarticle.RefreshListArticleUserInterface refreshListArticleUserInterface,
+		RefreshListArticleUserInterface refreshListArticleUserInterface,
 		RefreshListArticleWireframeInterface refreshListArticleWireframeInterface) {
 
 		super(refreshListArticleUserInterface, refreshListArticleWireframeInterface);
@@ -44,7 +44,7 @@ public class RefreshListArticlePresenter extends ListArticlePresenter
 	}
 
 	@Override
-	public void onSwipeRefreshEvent(com.qchu.feedarticle.ui.presenter.refreshlistarticle.RefreshListArticleUserInterface listArticleUserInterface) {
+	public void onSwipeRefreshEvent(RefreshListArticleUserInterface listArticleUserInterface) {
 		refreshContent();
 	}
 

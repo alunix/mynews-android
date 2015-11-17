@@ -1,18 +1,20 @@
 package com.qchu.feedarticle.ui.presenter.menu;
 
+import com.qchu.feedarticle.ui.presenter.common.Presenter;
+
 /**
  * Created by quocdungchu on 20/09/15.
  */
 public class MenuPresenter
-	implements com.qchu.feedarticle.ui.presenter.common.Presenter,MenuUserInterfaceEventHandler {
+	implements Presenter,MenuUserInterfaceEventHandler {
 
 
-	com.qchu.feedarticle.ui.presenter.menu.MenuUserInterface menuUserInterface;
-	com.qchu.feedarticle.ui.presenter.menu.MenuWireframeInterface menuWireframeInterface;
+	private final MenuUserInterface menuUserInterface;
+	private final MenuWireframeInterface menuWireframeInterface;
 
 	public MenuPresenter(
-		com.qchu.feedarticle.ui.presenter.menu.MenuUserInterface menuUserInterface,
-		com.qchu.feedarticle.ui.presenter.menu.MenuWireframeInterface menuWireframeInterface){
+		MenuUserInterface menuUserInterface,
+		MenuWireframeInterface menuWireframeInterface){
 
 		this.menuUserInterface = menuUserInterface;
 		this.menuWireframeInterface = menuWireframeInterface;
@@ -20,7 +22,8 @@ public class MenuPresenter
 
 	@Override
 	public void onCreate() {
-		menuWireframeInterface.presentUserInterfaceForMenuItem(com.qchu.feedarticle.ui.presenter.menu.MenuWireframeInterface.MenuItem.HOME);
+		menuWireframeInterface.presentUserInterfaceForMenuItem(
+			MenuWireframeInterface.MenuItem.HOME);
 	}
 
 	@Override
@@ -29,7 +32,7 @@ public class MenuPresenter
 	}
 
 	@Override
-	public void onClickMenuItem(com.qchu.feedarticle.ui.presenter.menu.MenuWireframeInterface.MenuItem menuItem) {
+	public void onClickMenuItem(MenuWireframeInterface.MenuItem menuItem) {
 		menuWireframeInterface.presentUserInterfaceForMenuItem(menuItem);
 	}
 }

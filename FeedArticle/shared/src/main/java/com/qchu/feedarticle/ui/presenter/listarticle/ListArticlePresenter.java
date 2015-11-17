@@ -1,5 +1,7 @@
 package com.qchu.feedarticle.ui.presenter.listarticle;
 
+import com.qchu.feedarticle.ui.presenter.common.Presenter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +9,7 @@ import java.util.List;
  * Created by quocdungchu on 07/10/15.
  */
 public class ListArticlePresenter
-	implements com.qchu.feedarticle.ui.presenter.common.Presenter, ListArticleUserEventHandler {
+	implements Presenter, ListArticleUserEventHandler {
 
 	protected List<String> articleIdList = new ArrayList<>();
 
