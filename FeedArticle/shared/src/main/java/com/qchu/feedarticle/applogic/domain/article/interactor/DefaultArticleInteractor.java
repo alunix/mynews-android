@@ -3,9 +3,11 @@ package com.qchu.feedarticle.applogic.domain.article.interactor;
 import com.qchu.feedarticle.applogic.domain.article.entity.Article;
 import com.qchu.feedarticle.applogic.domain.article.entity.Channel;
 import com.qchu.feedarticle.applogic.domain.article.entity.ChannelConfig;
+import com.qchu.feedarticle.applogic.domain.article.interactor.comparator.Comparators;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -29,19 +31,19 @@ public class DefaultArticleInteractor implements ArticleInteractor {
   @Override
   public List<Article> articlesByChannelIds(List<String> channelIds){
 
-    List<Article> sortedArticleList = articleStorage.articlesByChannelIds(channelIds);
-    Collections.sort(sortedArticleList, new ArticleChronologyComparator());
+    List<Article> sortedArticles = articleStorage.articlesByChannelIds(channelIds);
+    Collections.sort(sortedArticles, Comparators.asArticleChronology());
 
-    return sortedArticleList;
+    return sortedArticles;
   }
 
   @Override
   public List<Article> articlesByArticleIds(List<String> articleIds){
 
-    List<Article> sortedArticleList = articleStorage.articlesByArticleIds(articleIds);
-    Collections.sort(sortedArticleList, new ArticleChronologyComparator());
+    List<Article> sortedArticles = articleStorage.articlesByArticleIds(articleIds);
+    Collections.sort(sortedArticles, Comparators.asArticleChronology());
 
-    return sortedArticleList;
+    return sortedArticles;
   }
 
   @Override
@@ -54,7 +56,7 @@ public class DefaultArticleInteractor implements ArticleInteractor {
     List<ChannelConfig> channelConfigList,
     final OnRefreshListener onRefreshListener){
 
-    final List<Article> allArticleSortedList = new ArrayList<>();
+    final List<Article> allArticlesSorted = new ArrayList<>();
     loadService.loadArticles(channelConfigList, new LoadService.OnLoadListener() {
       @Override
       public void onBegin(LoadService loadService) {
@@ -67,17 +69,17 @@ public class DefaultArticleInteractor implements ArticleInteractor {
         //update repository
         articleStorage.updateChannel(channel);
 
-        allArticleSortedList.addAll(channel.articleList());
-        Collections.sort(allArticleSortedList, new ArticleChronologyComparator());
+        allArticlesSorted.addAll(channel.articleList());
+        Collections.sort(allArticlesSorted, Comparators.asArticleChronology());
         onRefreshListener.onNextSite(
-          DefaultArticleInteractor.this, channel, allArticleSortedList);
+          DefaultArticleInteractor.this, channel, allArticlesSorted);
       }
 
       @Override
       public void onComplete(LoadService loadService) {
-        Collections.sort(allArticleSortedList, new ArticleChronologyComparator());
+        Collections.sort(allArticlesSorted, Comparators.asArticleChronology());
         onRefreshListener.onComplete(
-          DefaultArticleInteractor.this, allArticleSortedList);
+          DefaultArticleInteractor.this, allArticlesSorted);
       }
     });
   }

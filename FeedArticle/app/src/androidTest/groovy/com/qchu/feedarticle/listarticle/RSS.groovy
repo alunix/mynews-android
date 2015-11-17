@@ -9,7 +9,7 @@ public class RSS extends AndroidSpecification{
 		given:
 
 		Observable<ParsedRSS> parsedRSSObservable =
-			RSSFeed.retrofit().create(CocoaDevBlogService.class).getRssObservable();
+			RSSFeed.retrofit().asArticleChronology(CocoaDevBlogService.class).getRssObservable();
 
 		def subcriber = Mock(Subscriber)
 		when:
