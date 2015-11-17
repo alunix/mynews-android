@@ -38,8 +38,8 @@ public class FavoriteListArticlePresenter extends ListArticlePresenter
 
 	@Override
 	public void onCreate() {
-		this.articleIdList = this.favoriteInteractor.getFavoriteArticleIdsInRepository();
-		this.articleList = this.favoriteInteractor.getFavoriteArticlesInRepository();
+		this.articleIdList = this.favoriteInteractor.favoriteArticleIds();
+		this.articleList = this.favoriteInteractor.favoriteArticles();
 		this.favoriteListArticleUserInterface.bindArticles(this.articleList);
 	}
 
@@ -67,7 +67,7 @@ public class FavoriteListArticlePresenter extends ListArticlePresenter
 
 		this.articleIdList.remove(removeAtIndex);
 		this.articleList.remove(removeAtIndex);
-		this.favoriteInteractor.updateArticleInFavoriteRepository(
+		this.favoriteInteractor.updateArticle(
 			FavoriteAction.REMOVE, removedArticleId);
 	}
 }

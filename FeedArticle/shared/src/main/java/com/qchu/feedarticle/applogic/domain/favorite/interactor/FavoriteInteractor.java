@@ -8,13 +8,11 @@ import java.util.List;
  * Created by quocdungchu on 30/10/15.
  */
 public interface FavoriteInteractor {
-	List<Article> getFavoriteArticlesInRepository();
+	List<Article> favoriteArticles();
 
-	List<String> getFavoriteArticleIdsInRepository();
+	List<String> favoriteArticleIds();
 
-	boolean isFavoriteArticleInRepository(String articleId);
+	boolean isFavorite(String articleId);
 
-	FavoriteActionResult updateArticleInFavoriteRepository(
-		FavoriteAction updateFavoriteAction,
-		String articleId);
+	FavoriteActionResult updateArticle(FavoriteAction updateFavoriteAction, String articleId);
 }

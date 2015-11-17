@@ -7,7 +7,7 @@ import com.qchu.feedarticle.applogic.domain.article.entity.Channel;
 import com.qchu.feedarticle.applogic.domain.article.interactor.ArticleStorage;
 import com.qchu.feedarticle.applogic.domain.favorite.interactor.FavoriteAction;
 import com.qchu.feedarticle.applogic.domain.favorite.interactor.FavoriteActionResult;
-import com.qchu.feedarticle.applogic.domain.favorite.interactor.FavoriteRepository;
+import com.qchu.feedarticle.applogic.domain.favorite.interactor.FavoriteStorage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 /**
  * Created by quocdungchu on 28/09/15.
  */
-public class MemoryArticleStorage implements ArticleStorage, FavoriteRepository {
+public class MemoryArticleStorage implements ArticleStorage, FavoriteStorage {
 
 	Map<String, Channel> siteMap = new HashMap<>();
 	Map<String, Article> articleMap = new HashMap<>();
@@ -66,7 +66,7 @@ public class MemoryArticleStorage implements ArticleStorage, FavoriteRepository 
 	}
 
 	@Override
-	public List<Article> getFavoriteArticles() {
+	public List<Article> favoriteArticles() {
 		return Lists.transform(favoriteArticleIdList, new Function<String, Article>() {
 			@Nullable @Override public Article apply(String articleId) {
 				return articleMap.get(articleId);
@@ -75,7 +75,7 @@ public class MemoryArticleStorage implements ArticleStorage, FavoriteRepository 
 	}
 
 	@Override
-	public List<String> getFavoriteArticleIds() {
+	public List<String> favoriteArticleIds() {
 		return favoriteArticleIdList;
 	}
 
@@ -85,7 +85,7 @@ public class MemoryArticleStorage implements ArticleStorage, FavoriteRepository 
 	}
 
 	@Override
-	public FavoriteActionResult updateArticleInFavorite(
+	public FavoriteActionResult updateArticle(
 		FavoriteAction updateFavoriteAction, String articleId) {
 
 		if(updateFavoriteAction == FavoriteAction.REMOVE) {

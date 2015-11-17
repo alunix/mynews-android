@@ -7,9 +7,9 @@ import java.util.List;
 /**
  * Created by quocdungchu on 17/10/15.
  */
-public interface FavoriteRepository {
-	List<Article> getFavoriteArticles();
-	List<String> getFavoriteArticleIds();
+public interface FavoriteStorage {
+	List<Article> favoriteArticles();
+	List<String> favoriteArticleIds();
 	boolean isFavoriteArticle(String articleId);
-	FavoriteActionResult updateArticleInFavorite(FavoriteAction favoriteAction, String articleId);
+	FavoriteActionResult updateArticle(FavoriteAction favoriteAction, String articleId);
 }

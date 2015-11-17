@@ -13,31 +13,31 @@ import javax.inject.Singleton;
 @Singleton
 public class DefaultFavoriteInteractor implements FavoriteInteractor {
 
-	final FavoriteRepository favoriteRepository;
+	private final FavoriteStorage favoriteStorage;
 
 	@Inject
-	public DefaultFavoriteInteractor(FavoriteRepository favoriteRepository){
-		this.favoriteRepository = favoriteRepository;
+	public DefaultFavoriteInteractor(FavoriteStorage favoriteStorage){
+		this.favoriteStorage = favoriteStorage;
 	}
 
 	@Override
-	public List<Article> getFavoriteArticlesInRepository() {
-		return this.favoriteRepository.getFavoriteArticles();
+	public List<Article> favoriteArticles() {
+		return this.favoriteStorage.favoriteArticles();
 	}
 
 	@Override
-	public List<String> getFavoriteArticleIdsInRepository(){
-		return this.favoriteRepository.getFavoriteArticleIds();
+	public List<String> favoriteArticleIds(){
+		return this.favoriteStorage.favoriteArticleIds();
 	}
 
 	@Override
-	public boolean isFavoriteArticleInRepository(String articleId) {
-		return this.favoriteRepository.isFavoriteArticle(articleId);
+	public boolean isFavorite(String articleId) {
+		return this.favoriteStorage.isFavoriteArticle(articleId);
 	}
 
 	@Override
-	public com.qchu.feedarticle.applogic.domain.favorite.interactor.FavoriteActionResult updateArticleInFavoriteRepository(
+	public FavoriteActionResult updateArticle(
 		FavoriteAction updateFavoriteAction, String articleId) {
-		return this.favoriteRepository.updateArticleInFavorite(updateFavoriteAction, articleId);
+		return this.favoriteStorage.updateArticle(updateFavoriteAction, articleId);
 	}
 }

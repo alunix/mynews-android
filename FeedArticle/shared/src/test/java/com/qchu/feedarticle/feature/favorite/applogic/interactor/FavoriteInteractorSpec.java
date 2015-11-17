@@ -1,6 +1,6 @@
 package com.qchu.feedarticle.feature.favorite.applogic.interactor;
 
-import com.qchu.feedarticle.applogic.domain.favorite.interactor.FavoriteRepository;
+import com.qchu.feedarticle.applogic.domain.favorite.interactor.FavoriteStorage;
 import com.qchu.feedarticle.applogic.domain.favorite.interactor.DefaultFavoriteInteractor;
 import com.qchu.feedarticle.applogic.domain.favorite.interactor.FavoriteAction;
 import com.qchu.feedarticle.applogic.domain.favorite.interactor.FavoriteActionResult;
@@ -18,60 +18,60 @@ import static org.mockito.Mockito.when;
  */
 public class FavoriteInteractorSpec {
 
-	FavoriteRepository favoriteRepository;
+	FavoriteStorage favoriteStorage;
 	FavoriteInteractor favoriteInteractor;
 
 	@Before public void setup(){
-		this.favoriteRepository = mock(FavoriteRepository.class);
-		this.favoriteInteractor = new DefaultFavoriteInteractor(this.favoriteRepository);
+		this.favoriteStorage = mock(FavoriteStorage.class);
+		this.favoriteInteractor = new DefaultFavoriteInteractor(this.favoriteStorage);
 	}
 	
 	@Test public void addSuccess(){
-		given(this.favoriteRepository
-			.updateArticleInFavorite(FavoriteAction.ADD, "article1"))
+		given(this.favoriteStorage
+			.updateArticle(FavoriteAction.ADD, "article1"))
 			.willReturn(FavoriteActionResult.ADD_SUCCESSFUL);
 
-		when(this.favoriteInteractor.updateArticleInFavoriteRepository(
+		when(this.favoriteInteractor.updateArticle(
 			FavoriteAction.ADD, "article1"))
 			.thenReturn(FavoriteActionResult.ADD_SUCCESSFUL);
 	}
 
 	@Test public void addFailed_because_exist_already(){
-		given(this.favoriteRepository
-			.updateArticleInFavorite(FavoriteAction.ADD, "article2"))
+		given(this.favoriteStorage
+			.updateArticle(FavoriteAction.ADD, "article2"))
 			.willReturn(FavoriteActionResult.ADD_FAILED_REASON_EXIST_ALREADY);
 
-		when(this.favoriteInteractor.updateArticleInFavoriteRepository(
+		when(this.favoriteInteractor.updateArticle(
 			FavoriteAction.ADD, "article2"))
 			.thenReturn(FavoriteActionResult.ADD_FAILED_REASON_EXIST_ALREADY);
 	}
 
 	@Test public void addFailed_because_other_reason(){
-		given(this.favoriteRepository
-			.updateArticleInFavorite(FavoriteAction.ADD, "article3"))
+		given(this.favoriteStorage
+			.updateArticle(FavoriteAction.ADD, "article3"))
 			.willReturn(FavoriteActionResult.ADD_FAILED_REASON_OTHER);
 
-		when(this.favoriteInteractor.updateArticleInFavoriteRepository(
+		when(this.favoriteInteractor.updateArticle(
 			FavoriteAction.ADD, "article3"))
 			.thenReturn(FavoriteActionResult.ADD_FAILED_REASON_OTHER);
 	}
 
 	@Test public void removeSuccess(){
-		given(this.favoriteRepository
-			.updateArticleInFavorite(FavoriteAction.REMOVE, "article1"))
+		given(this.favoriteStorage
+			.updateArticle(FavoriteAction.REMOVE, "article1"))
 			.willReturn(FavoriteActionResult.REMOVE_SUCCESSFUL);
 
-		when(this.favoriteInteractor.updateArticleInFavoriteRepository(
+		when(this.favoriteInteractor.updateArticle(
 			FavoriteAction.REMOVE, "article1"))
 			.thenReturn(FavoriteActionResult.REMOVE_SUCCESSFUL);
 	}
 
 	@Test public void removeFailed_because_not_exist(){
-		given(this.favoriteRepository
-			.updateArticleInFavorite(FavoriteAction.REMOVE, "article2"))
+		given(this.favoriteStorage
+			.updateArticle(FavoriteAction.REMOVE, "article2"))
 			.willReturn(FavoriteActionResult.REMOVE_FAILED_REASON_NOT_EXIST);
 
-		when(this.favoriteInteractor.updateArticleInFavoriteRepository(
+		when(this.favoriteInteractor.updateArticle(
 			FavoriteAction.REMOVE, "article2"))
 			.thenReturn(FavoriteActionResult.REMOVE_FAILED_REASON_NOT_EXIST);
 	}

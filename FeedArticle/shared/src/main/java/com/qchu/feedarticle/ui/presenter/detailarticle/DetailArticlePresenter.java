@@ -65,16 +65,16 @@ public class DetailArticlePresenter
 		DetailArticleUserInterface detailArticleUserInterface) {
 
 		FavoriteActionResult result;
-		if(this.favoriteInteractor.isFavoriteArticleInRepository(currentArticleId())) {
-			result = this.favoriteInteractor.updateArticleInFavoriteRepository(
+		if(this.favoriteInteractor.isFavorite(currentArticleId())) {
+			result = this.favoriteInteractor.updateArticle(
 				FavoriteAction.REMOVE, currentArticleId());
 		} else {
-			result = this.favoriteInteractor.updateArticleInFavoriteRepository(
+			result = this.favoriteInteractor.updateArticle(
 				FavoriteAction.ADD, currentArticleId());
 		}
 
 		this.detailArticleUserInterface.updateFavoriteStateOfCurrentArticle(
-			this, this.favoriteInteractor.isFavoriteArticleInRepository(currentArticleId()));
+			this, this.favoriteInteractor.isFavorite(currentArticleId()));
 
 		this.detailArticleUserInterface.showMessageToCompleteUpdateCurrentArticleInFavorite(this, result);
 	}
@@ -88,7 +88,7 @@ public class DetailArticlePresenter
 		detailArticleUserInterface.updateWithCurrentArticle(this,
 			articleInteractor.articlesByArticleId(currentArticleId()));
 		detailArticleUserInterface.updateFavoriteStateOfCurrentArticle(
-			this, this.favoriteInteractor.isFavoriteArticleInRepository(currentArticleId()));
+			this, this.favoriteInteractor.isFavorite(currentArticleId()));
 	}
 
 	String currentArticleId() {
