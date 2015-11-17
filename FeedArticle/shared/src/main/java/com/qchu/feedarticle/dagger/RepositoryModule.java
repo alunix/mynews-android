@@ -1,7 +1,7 @@
 package com.qchu.feedarticle.dagger;
 
-import com.qchu.feedarticle.applogic.domain.article.interactor.ArticleRepository;
-import com.qchu.feedarticle.applogic.domain.article.interactor.SourceRepository;
+import com.qchu.feedarticle.applogic.domain.article.interactor.ArticleStorage;
+import com.qchu.feedarticle.applogic.domain.article.interactor.LoadService;
 import com.qchu.feedarticle.applogic.domain.favorite.interactor.FavoriteRepository;
 
 import javax.inject.Singleton;
@@ -15,28 +15,30 @@ import dagger.Provides;
 @Module
 public class RepositoryModule {
 
-	SourceRepository sourceRepository;
-	ArticleRepository articleRepository;
+	LoadService loadService;
+	ArticleStorage articleStorage;
 	FavoriteRepository favoriteRepository;
 
-	public RepositoryModule(SourceRepository sourceRepository,
-	                        ArticleRepository articleRepository,
+	public RepositoryModule(LoadService loadService,
+	                        ArticleStorage articleStorage,
 	                        FavoriteRepository favoriteRepository){
 
-		this.sourceRepository = sourceRepository;
-		this.articleRepository = articleRepository;
+		this.loadService = loadService;
+		this.articleStorage = articleStorage;
 		this.favoriteRepository = favoriteRepository;
 	}
 
-	@Provides @Singleton ArticleRepository provideArticleRepository(){
-		return this.articleRepository;
+	@Provides @Singleton
+	ArticleStorage provideArticleRepository(){
+		return this.articleStorage;
 	}
 
 	@Provides @Singleton FavoriteRepository provideFavoriteRepository(){
 		return this.favoriteRepository;
 	}
 
-	@Provides @Singleton SourceRepository provideSourceRepository(){
-		return this.sourceRepository;
+	@Provides @Singleton
+	LoadService provideSourceRepository(){
+		return this.loadService;
 	}
 }

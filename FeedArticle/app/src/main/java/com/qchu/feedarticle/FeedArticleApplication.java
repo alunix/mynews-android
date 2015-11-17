@@ -6,7 +6,7 @@ import com.qchu.feedarticle.dagger.AppLogicComponent;
 import com.qchu.feedarticle.dagger.DaggerAppLogicComponent;
 import com.qchu.feedarticle.dagger.RepositoryModule;
 import com.qchu.feedarticle.applogic.service.rss.NetworkManager;
-import com.qchu.feedarticle.applogic.repository.memory.MemoryArticleRepository;
+import com.qchu.feedarticle.applogic.repository.memory.MemoryArticleStorage;
 
 import rx.android.schedulers.AndroidSchedulers;
 
@@ -20,8 +20,8 @@ public class FeedArticleApplication extends Application {
 	public void onCreate(){
 		super.onCreate();
 
-		MemoryArticleRepository memoryArticleRepository =
-			new MemoryArticleRepository();
+		MemoryArticleStorage memoryArticleRepository =
+			new MemoryArticleStorage();
 		this.appLogicComponent = DaggerAppLogicComponent.builder()
 			.repositoryModule(new RepositoryModule(new NetworkManager(AndroidSchedulers.mainThread()),
 				memoryArticleRepository, memoryArticleRepository))

@@ -5,7 +5,7 @@ import com.andrewreitz.spock.android.AndroidSpecification
 
 public class RSS extends AndroidSpecification{
 /*
-	def "download articles from rss"() {
+	def "download loadArticles from rss"() {
 		given:
 
 		Observable<ParsedRSS> parsedRSSObservable =

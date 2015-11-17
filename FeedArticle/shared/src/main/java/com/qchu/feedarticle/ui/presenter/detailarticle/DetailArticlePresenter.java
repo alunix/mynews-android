@@ -42,7 +42,7 @@ public class DetailArticlePresenter
 	@Override
 	public void onCreate() {
 		detailArticleUserInterface.bindArticles(this,
-			articleInteractor.getArticleListInRepositoryByArticleIds(articleIdList));
+			articleInteractor.articleByArticleIds(articleIdList));
 		detailArticleUserInterface.selectIndex(this, currentIndex, false);
 		updateCurrentArticleUserInterface();
 	}
@@ -86,7 +86,7 @@ public class DetailArticlePresenter
 
 	void updateCurrentArticleUserInterface(){
 		detailArticleUserInterface.updateWithCurrentArticle(this,
-			articleInteractor.getArticleInRepositoryByArticleId(currentArticleId()));
+			articleInteractor.articlesByArticleId(currentArticleId()));
 		detailArticleUserInterface.updateFavoriteStateOfCurrentArticle(
 			this, this.favoriteInteractor.isFavoriteArticleInRepository(currentArticleId()));
 	}

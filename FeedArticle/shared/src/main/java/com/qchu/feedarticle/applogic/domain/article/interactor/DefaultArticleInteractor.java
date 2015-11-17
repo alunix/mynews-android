@@ -1,5 +1,7 @@
 package com.qchu.feedarticle.applogic.domain.article.interactor;
 
+import com.qchu.feedarticle.applogic.domain.article.entity.Article;
+import com.qchu.feedarticle.applogic.domain.article.entity.Channel;
 import com.qchu.feedarticle.applogic.domain.article.entity.ChannelConfig;
 
 import java.util.ArrayList;
@@ -15,63 +17,70 @@ import javax.inject.Singleton;
 @Singleton
 public class DefaultArticleInteractor implements ArticleInteractor {
 
-	SourceRepository sourceRepository;
-	ArticleRepository articleRepository;
+  private LoadService loadService;
+  private ArticleStorage articleStorage;
 
-	@Inject public DefaultArticleInteractor(SourceRepository sourceRepository,
-	                                        ArticleRepository articleRepository) {
-		this.sourceRepository = sourceRepository;
-		this.articleRepository = articleRepository;
-	}
+  @Inject public DefaultArticleInteractor(
+    LoadService loadService,
+    ArticleStorage articleStorage) {
 
-	@Override
-	public List<com.qchu.feedarticle.applogic.domain.article.entity.Article> getArticleListInRepositoryBySiteIds(List<String> siteIdList){
-		List<com.qchu.feedarticle.applogic.domain.article.entity.Article> sortedArticleList = articleRepository.getArticleBySiteIds(siteIdList);
-		Collections.sort(sortedArticleList, new DescentDateSortArticleComparator());
-		return sortedArticleList;
-	}
+    this.loadService = loadService;
+    this.articleStorage = articleStorage;
+  }
 
-	@Override
-	public List<com.qchu.feedarticle.applogic.domain.article.entity.Article> getArticleListInRepositoryByArticleIds(List<String> articleIdList){
-		List<com.qchu.feedarticle.applogic.domain.article.entity.Article> sortedArticleList = articleRepository.getArticleByArticleIds(articleIdList);
-		Collections.sort(sortedArticleList, new DescentDateSortArticleComparator());
-		return sortedArticleList;
-	}
+  @Override
+  public List<Article> articlesByChannelIds(List<String> channelIds){
 
-	@Override
-	public com.qchu.feedarticle.applogic.domain.article.entity.Article getArticleInRepositoryByArticleId(String articleId) {
-		return articleRepository.getArticleById(articleId);
-	}
+    List<Article> sortedArticleList = articleStorage.articlesByChannelIds(channelIds);
+    Collections.sort(sortedArticleList, new ArticleChronologyComparator());
 
-	@Override
-	public void refreshArticles(List<ChannelConfig> channelConfigList,
-	                            final RefreshArticleListListener refreshArticleListListener){
+    return sortedArticleList;
+  }
 
-		final List<com.qchu.feedarticle.applogic.domain.article.entity.Article> allArticleSortedList = new ArrayList<>();
-		sourceRepository.getArticles(channelConfigList, new SourceRepository.GetArticleListListener() {
-			@Override
-			public void onBegin(SourceRepository sourceRepository) {
-				refreshArticleListListener.onBegin(DefaultArticleInteractor.this);
-			}
+  @Override
+  public List<Article> articleByArticleIds(List<String> articleIdList){
 
-			@Override
-			public void onNext(SourceRepository sourceRepository, ChannelConfig channelConfig, com.qchu.feedarticle.applogic.domain.article.entity.Channel channel) {
-				//update repository
-				articleRepository.updateSite(channel);
+    List<Article> sortedArticleList = articleStorage.articlesByArticleIds(articleIdList);
+    Collections.sort(sortedArticleList, new ArticleChronologyComparator());
 
-				allArticleSortedList.addAll(channel.articleList());
-				Collections.sort(allArticleSortedList, new DescentDateSortArticleComparator());
-				refreshArticleListListener.onNextSite(DefaultArticleInteractor.this, channel, allArticleSortedList);
-			}
+    return sortedArticleList;
+  }
 
-			@Override
-			public void onComplete(SourceRepository sourceRepository) {
-				Collections.sort(allArticleSortedList, new DescentDateSortArticleComparator());
-				refreshArticleListListener.onComplete(DefaultArticleInteractor.this, allArticleSortedList);
-			}
-		});
-	}
+  @Override
+  public Article articlesByArticleId(String articleId) {
+    return articleStorage.articleByArticleId(articleId);
+  }
 
+  @Override
+  public void refreshArticles(
+    List<ChannelConfig> channelConfigList,
+    final RefreshArticleListListener refreshArticleListListener){
 
+    final List<Article> allArticleSortedList = new ArrayList<>();
+    loadService.loadArticles(channelConfigList, new LoadService.OnLoadListener() {
+      @Override
+      public void onBegin(LoadService loadService) {
+        refreshArticleListListener.onBegin(DefaultArticleInteractor.this);
+      }
 
+      @Override
+      public void onNext(LoadService loadService, ChannelConfig channelConfig, Channel channel) {
+
+        //update repository
+        articleStorage.updateChannel(channel);
+
+        allArticleSortedList.addAll(channel.articleList());
+        Collections.sort(allArticleSortedList, new ArticleChronologyComparator());
+        refreshArticleListListener.onNextSite(
+          DefaultArticleInteractor.this, channel, allArticleSortedList);
+      }
+
+      @Override
+      public void onComplete(LoadService loadService) {
+        Collections.sort(allArticleSortedList, new ArticleChronologyComparator());
+        refreshArticleListListener.onComplete(
+          DefaultArticleInteractor.this, allArticleSortedList);
+      }
+    });
+  }
 }

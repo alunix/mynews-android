@@ -4,7 +4,7 @@ import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.qchu.feedarticle.applogic.domain.article.entity.Article;
 import com.qchu.feedarticle.applogic.domain.article.entity.Channel;
-import com.qchu.feedarticle.applogic.domain.article.interactor.ArticleRepository;
+import com.qchu.feedarticle.applogic.domain.article.interactor.ArticleStorage;
 import com.qchu.feedarticle.applogic.domain.favorite.interactor.FavoriteAction;
 import com.qchu.feedarticle.applogic.domain.favorite.interactor.FavoriteActionResult;
 import com.qchu.feedarticle.applogic.domain.favorite.interactor.FavoriteRepository;
@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 /**
  * Created by quocdungchu on 28/09/15.
  */
-public class MemoryArticleRepository implements ArticleRepository, FavoriteRepository {
+public class MemoryArticleStorage implements ArticleStorage, FavoriteRepository {
 
 	Map<String, Channel> siteMap = new HashMap<>();
 	Map<String, Article> articleMap = new HashMap<>();
@@ -27,14 +27,14 @@ public class MemoryArticleRepository implements ArticleRepository, FavoriteRepos
 	List<String> favoriteArticleIdList = new ArrayList<>();
 
 	@Override
-	public Article getArticleById(String articleId) {
+	public Article articleByArticleId(String articleId) {
 		return articleMap.get(articleId);
 	}
 
 	@Override
-	public List<Article> getArticleBySiteIds(List<String> siteIdList) {
+	public List<Article> articlesByChannelIds(List<String> channelIds) {
 		List<Article> articleList = new ArrayList<>();
-		for(String siteId: siteIdList) {
+		for(String siteId: channelIds) {
 			Channel channel = siteMap.get(siteId);
 			articleList.addAll(channel.articleList());
 		}
@@ -42,23 +42,23 @@ public class MemoryArticleRepository implements ArticleRepository, FavoriteRepos
 	}
 
 	@Override
-	public List<Article> getArticleByArticleIds(List<String> articleIdList) {
+	public List<Article> articlesByArticleIds(List<String> articleIds) {
 		List<Article> articleList = new ArrayList<>();
-		for(String articleId: articleIdList) {
+		for(String articleId: articleIds) {
 			articleList.add(articleMap.get(articleId));
 		}
 		return articleList;
 	}
 
 	@Override
-	public void updateSiteList(List<Channel> channelList) {
-		for(Channel channel : channelList) {
-			updateSite(channel);
+	public void updateChannels(List<Channel> channels) {
+		for(Channel channel : channels) {
+			updateChannel(channel);
 		}
 	}
 
 	@Override
-	public void updateSite(Channel channel) {
+	public void updateChannel(Channel channel) {
 		siteMap.put(channel.id(), channel);
 		for(Article article: channel.articleList()) {
 			articleMap.put(article.identifier(), article);

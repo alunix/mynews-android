@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.qchu.feedarticle.applogic.domain.article.entity.Channel;
 import com.qchu.feedarticle.applogic.domain.article.entity.ChannelConfig;
-import com.qchu.feedarticle.applogic.domain.article.interactor.SourceRepository;
+import com.qchu.feedarticle.applogic.domain.article.interactor.LoadService;
 import com.qchu.feedarticle.applogic.service.rss.parser.xml.ParsedRSS;
 
 import java.util.List;
@@ -17,7 +17,7 @@ import rx.functions.Func1;
 /**
  * Created by quocdungchu on 07/09/15.
  */
-public class NetworkManager implements SourceRepository {
+public class NetworkManager implements LoadService {
 
 	Scheduler observingScheduler;
 
@@ -25,12 +25,12 @@ public class NetworkManager implements SourceRepository {
 		this.observingScheduler = observingScheduler;
 	}
 
-	public void getArticles(List<ChannelConfig> channelConfigList,
-	                        final SourceRepository.GetArticleListListener
-		                        getArticleListListener){
+	public void loadArticles(List<ChannelConfig> channelConfigs,
+													 final OnLoadListener
+														 onLoadListener){
 
-		getArticleListListener.onBegin(this);
-		Observable.from(channelConfigList)
+		onLoadListener.onBegin(this);
+		Observable.from(channelConfigs)
 			.flatMap(new Func1<ChannelConfig, Observable<Channel>>() {
 				@Override
 				public Observable<Channel> call(final ChannelConfig channelConfig) {
@@ -55,13 +55,13 @@ public class NetworkManager implements SourceRepository {
 				@Override
 				public void onNext(Channel channel) {
 					Log.d("onNext Network", "Site " + channel);
-					getArticleListListener.onNext(NetworkManager.this, channel.siteConfig(), channel);
+					onLoadListener.onNext(NetworkManager.this, channel.siteConfig(), channel);
 				}
 
 				@Override
 				public void onCompleted() {
 					Log.d("onCompleted Network", "Completed");
-					getArticleListListener.onComplete(NetworkManager.this);
+					onLoadListener.onComplete(NetworkManager.this);
 				}
 			});
 	}

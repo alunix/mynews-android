@@ -11,9 +11,9 @@ import java.util.List;
  */
 public interface ArticleInteractor {
 
-	List<Article> getArticleListInRepositoryBySiteIds(List<String> siteIdList);
-	List<Article> getArticleListInRepositoryByArticleIds(List<String> articleIdList);
-	Article getArticleInRepositoryByArticleId(String articleId);
+	List<Article> articlesByChannelIds(List<String> siteIdList);
+	List<Article> articleByArticleIds(List<String> articleIdList);
+	Article articlesByArticleId(String articleId);
 
 	void refreshArticles(List<ChannelConfig> channelConfigList,
 	                     RefreshArticleListListener refreshArticleListListener);
