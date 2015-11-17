@@ -42,7 +42,7 @@ public class DetailArticlePresenter
 	@Override
 	public void onCreate() {
 		detailArticleUserInterface.bindArticles(this,
-			articleInteractor.articleByArticleIds(articleIdList));
+			articleInteractor.articlesByArticleIds(articleIdList));
 		detailArticleUserInterface.selectIndex(this, currentIndex, false);
 		updateCurrentArticleUserInterface();
 	}
