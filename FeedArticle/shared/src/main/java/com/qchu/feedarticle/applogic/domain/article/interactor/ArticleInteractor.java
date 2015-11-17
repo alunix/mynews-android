@@ -12,14 +12,14 @@ import java.util.List;
 public interface ArticleInteractor {
 
 	List<Article> articlesByChannelIds(List<String> siteIdList);
-	List<Article> articleByArticleIds(List<String> articleIdList);
+	List<Article> articlesByArticleIds(List<String> articleIdList);
 	Article articlesByArticleId(String articleId);
 
 	void refreshArticles(List<ChannelConfig> channelConfigList,
-	                     RefreshArticleListListener refreshArticleListListener);
+	                     OnRefreshListener onRefreshListener);
 
 
-	interface RefreshArticleListListener {
+	interface OnRefreshListener {
 		void onBegin(ArticleInteractor articleInteractor);
 
 		void onNextSite(ArticleInteractor articleInteractor, Channel channel,

@@ -9,7 +9,7 @@ import java.util.List;
  * Created by quocdungchu on 28/09/15.
  */
 public interface ArticleStorage {
-	
+
 	Article articleByArticleId(String articleId);
 
 	List<Article> articlesByChannelIds(List<String> channelIds);

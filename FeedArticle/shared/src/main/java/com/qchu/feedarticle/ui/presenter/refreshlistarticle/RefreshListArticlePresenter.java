@@ -59,7 +59,7 @@ public class RefreshListArticlePresenter extends ListArticlePresenter
 			.url("http://thethaovanhoa.vn/trang-chu.rss")
 			.build());
 
-		this.articleInteractor.refreshArticles(channelConfigList, new ArticleInteractor.RefreshArticleListListener() {
+		this.articleInteractor.refreshArticles(channelConfigList, new ArticleInteractor.OnRefreshListener() {
 			@Override
 			public void onBegin(ArticleInteractor articleInteractor) {
 				articleIdList = new ArrayList<>();

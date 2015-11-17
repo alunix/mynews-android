@@ -20,9 +20,7 @@ public class DefaultArticleInteractor implements ArticleInteractor {
   private LoadService loadService;
   private ArticleStorage articleStorage;
 
-  @Inject public DefaultArticleInteractor(
-    LoadService loadService,
-    ArticleStorage articleStorage) {
+  @Inject public DefaultArticleInteractor(LoadService loadService, ArticleStorage articleStorage) {
 
     this.loadService = loadService;
     this.articleStorage = articleStorage;
@@ -38,7 +36,7 @@ public class DefaultArticleInteractor implements ArticleInteractor {
   }
 
   @Override
-  public List<Article> articleByArticleIds(List<String> articleIdList){
+  public List<Article> articlesByArticleIds(List<String> articleIdList){
 
     List<Article> sortedArticleList = articleStorage.articlesByArticleIds(articleIdList);
     Collections.sort(sortedArticleList, new ArticleChronologyComparator());
@@ -54,13 +52,13 @@ public class DefaultArticleInteractor implements ArticleInteractor {
   @Override
   public void refreshArticles(
     List<ChannelConfig> channelConfigList,
-    final RefreshArticleListListener refreshArticleListListener){
+    final OnRefreshListener onRefreshListener){
 
     final List<Article> allArticleSortedList = new ArrayList<>();
     loadService.loadArticles(channelConfigList, new LoadService.OnLoadListener() {
       @Override
       public void onBegin(LoadService loadService) {
-        refreshArticleListListener.onBegin(DefaultArticleInteractor.this);
+        onRefreshListener.onBegin(DefaultArticleInteractor.this);
       }
 
       @Override
@@ -71,14 +69,14 @@ public class DefaultArticleInteractor implements ArticleInteractor {
 
         allArticleSortedList.addAll(channel.articleList());
         Collections.sort(allArticleSortedList, new ArticleChronologyComparator());
-        refreshArticleListListener.onNextSite(
+        onRefreshListener.onNextSite(
           DefaultArticleInteractor.this, channel, allArticleSortedList);
       }
 
       @Override
       public void onComplete(LoadService loadService) {
         Collections.sort(allArticleSortedList, new ArticleChronologyComparator());
-        refreshArticleListListener.onComplete(
+        onRefreshListener.onComplete(
           DefaultArticleInteractor.this, allArticleSortedList);
       }
     });
