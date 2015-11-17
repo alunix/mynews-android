@@ -1,9 +1,9 @@
 package com.qchu.feedarticle.menu
 
 import com.andrewreitz.spock.android.AndroidSpecification
-import com.qchu.feedarticle.presenter.menu.MenuPresenter
-import com.qchu.feedarticle.presenter.menu.MenuUserInterface
-import com.qchu.feedarticle.presenter.menu.MenuWireframeInterface
+import com.qchu.feedarticle.ui.presenter.menu.MenuPresenter
+import com.qchu.feedarticle.ui.presenter.menu.MenuUserInterface
+import com.qchu.feedarticle.ui.presenter.menu.MenuWireframeInterface
 
 public class MenuSpec extends AndroidSpecification {
 

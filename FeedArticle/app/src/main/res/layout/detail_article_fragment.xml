@@ -4,7 +4,7 @@
     <data class=".feature.detailarticle.ui.view.databinding.DetailArticleFragmentDataBinding">
         <variable
             name="article"
-            type="com.qchu.feedarticle.view.detailarticle.databinding.BindableArticle"/>
+            type="com.qchu.feedarticle.ui.view.detailarticle.databinding.BindableArticle"/>
     </data>
 
     <android.support.design.widget.CoordinatorLayout

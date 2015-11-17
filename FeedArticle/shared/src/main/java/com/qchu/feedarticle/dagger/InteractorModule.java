@@ -1,11 +1,9 @@
 package com.qchu.feedarticle.dagger;
 
-import com.qchu.feedarticle.domain.article.interactor.ArticleInteractor;
-import com.qchu.feedarticle.domain.article.interactor.DefaultArticleInteractor;
-import com.qchu.feedarticle.domain.favorite.interactor.DefaultFavoriteInteractor;
-import com.qchu.feedarticle.domain.favorite.interactor.FavoriteInteractor;
-import com.qchu.once.shared.network.interactor.DefaultNetworkInteractor;
-import com.qchu.once.shared.network.interactor.NetworkInteractor;
+import com.qchu.feedarticle.applogic.domain.article.interactor.ArticleInteractor;
+import com.qchu.feedarticle.applogic.domain.article.interactor.DefaultArticleInteractor;
+import com.qchu.feedarticle.applogic.domain.favorite.interactor.DefaultFavoriteInteractor;
+import com.qchu.feedarticle.applogic.domain.favorite.interactor.FavoriteInteractor;
 
 import javax.inject.Singleton;
 

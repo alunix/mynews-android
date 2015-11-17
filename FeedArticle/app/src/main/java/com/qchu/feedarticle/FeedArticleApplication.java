@@ -5,8 +5,8 @@ import android.app.Application;
 import com.qchu.feedarticle.dagger.AppLogicComponent;
 import com.qchu.feedarticle.dagger.DaggerAppLogicComponent;
 import com.qchu.feedarticle.dagger.RepositoryModule;
-import com.qchu.feedarticle.service.rss.NetworkManager;
-import com.qchu.feedarticle.repository.memory.MemoryArticleRepository;
+import com.qchu.feedarticle.applogic.service.rss.NetworkManager;
+import com.qchu.feedarticle.applogic.repository.memory.MemoryArticleRepository;
 
 import rx.android.schedulers.AndroidSchedulers;
 

@@ -1,10 +1,10 @@
 package com.qchu.feedarticle.listarticle.mock
 
-import com.qchu.feedarticle.domain.article.entity.Channel
-import com.qchu.feedarticle.domain.article.entity.ChannelConfig
-import com.qchu.feedarticle.service.rss.EntityTransformer
-import com.qchu.feedarticle.service.rss.RSSFeed
-import com.qchu.feedarticle.service.rss.parser.xml.ParsedRSS
+import com.qchu.feedarticle.applogic.domain.article.entity.Channel
+import com.qchu.feedarticle.applogic.domain.article.entity.ChannelConfig
+import com.qchu.feedarticle.applogic.service.rss.EntityTransformer
+import com.qchu.feedarticle.applogic.service.rss.RSSFeed
+import com.qchu.feedarticle.applogic.service.rss.parser.xml.ParsedRSS
 import rx.Observable
 import rx.Subscriber
 import rx.functions.Func1;

@@ -1,8 +1,8 @@
 package com.qchu.feedarticle.dagger;
 
-import com.qchu.feedarticle.domain.article.interactor.ArticleRepository;
-import com.qchu.feedarticle.domain.article.interactor.SourceRepository;
-import com.qchu.feedarticle.domain.favorite.interactor.FavoriteRepository;
+import com.qchu.feedarticle.applogic.domain.article.interactor.ArticleRepository;
+import com.qchu.feedarticle.applogic.domain.article.interactor.SourceRepository;
+import com.qchu.feedarticle.applogic.domain.favorite.interactor.FavoriteRepository;
 
 import javax.inject.Singleton;
 
