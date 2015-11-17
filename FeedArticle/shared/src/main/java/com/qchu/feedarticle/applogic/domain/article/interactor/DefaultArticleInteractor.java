@@ -36,9 +36,9 @@ public class DefaultArticleInteractor implements ArticleInteractor {
   }
 
   @Override
-  public List<Article> articlesByArticleIds(List<String> articleIdList){
+  public List<Article> articlesByArticleIds(List<String> articleIds){
 
-    List<Article> sortedArticleList = articleStorage.articlesByArticleIds(articleIdList);
+    List<Article> sortedArticleList = articleStorage.articlesByArticleIds(articleIds);
     Collections.sort(sortedArticleList, new ArticleChronologyComparator());
 
     return sortedArticleList;
