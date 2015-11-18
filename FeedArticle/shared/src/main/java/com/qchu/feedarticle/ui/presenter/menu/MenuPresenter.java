@@ -2,6 +2,8 @@ package com.qchu.feedarticle.ui.presenter.menu;
 
 import com.qchu.feedarticle.ui.presenter.common.Presenter;
 
+import javax.inject.Inject;
+
 /**
  * Created by quocdungchu on 20/09/15.
  */
@@ -12,7 +14,7 @@ public class MenuPresenter
 	private final MenuUserInterface menuUserInterface;
 	private final MenuWireframeInterface menuWireframeInterface;
 
-	public MenuPresenter(
+	@Inject public MenuPresenter(
 		MenuUserInterface menuUserInterface,
 		MenuWireframeInterface menuWireframeInterface){
 

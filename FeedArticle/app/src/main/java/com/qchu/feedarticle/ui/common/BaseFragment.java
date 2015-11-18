@@ -11,6 +11,10 @@ import com.qchu.feedarticle.dagger.AppLogicComponent;
 public class BaseFragment extends Fragment {
 
   public AppLogicComponent appLogicComponent(){
-    return ((FeedArticleApplication)getActivity().getApplication()).appLogicComponent();
+    return ((BaseActivity)getActivity()).appLogicComponent();
+  }
+
+  public ActivityComponent activityComponent(){
+    return ((BaseActivity)getActivity()).activityComponent();
   }
 }

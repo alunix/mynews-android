@@ -6,7 +6,9 @@ package com.qchu.feedarticle.ui.presenter.menu;
 public interface MenuWireframeInterface {
 	enum MenuItem {
 		HOME,
-		SEARCH
+		MY_ARTICLES,
+		SEARCH,
+		INFORMATIONS
 	}
 	void presentUserInterfaceForMenuItem(MenuItem menuItem);
 }

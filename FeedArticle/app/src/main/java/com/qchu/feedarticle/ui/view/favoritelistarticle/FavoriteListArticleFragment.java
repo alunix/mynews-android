@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.qchu.feedarticle.R;
 import com.qchu.feedarticle.applogic.domain.article.entity.Article;
+import com.qchu.feedarticle.ui.common.BaseFragment;
 import com.qchu.feedarticle.ui.presenter.favoritelistarticle.FavoriteListArticlePresenter;
 import com.qchu.feedarticle.feature.favoritelistarticle.ui.view.databinding.FavoriteListArticleFragmentDataBinding;
 import com.qchu.feedarticle.ui.presenter.listarticle.ListArticleUserInterface;
@@ -22,11 +23,17 @@ import java.util.List;
 /**
  * Created by quocdungchu on 07/10/15.
  */
-public class FavoriteListArticleFragment extends Fragment
+public class FavoriteListArticleFragment extends BaseFragment
 	implements ListArticleUserInterface {
 
 	FavoriteListArticlePresenter mFavoriteListArticlePresenter;
 	FavoriteListArticleFragmentDataBinding mFavoriteListArticleFragmentDataBinding;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		activityComponent().titleController().title(getString(R.string.title_my_articles));
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,8 +51,6 @@ public class FavoriteListArticleFragment extends Fragment
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState){
 		super.onViewCreated(view, savedInstanceState);
-
-
 	}
 
 

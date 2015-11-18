@@ -8,8 +8,8 @@ import android.support.v7.app.ActionBar;
 import android.view.View;
 
 import com.qchu.feedarticle.R;
-import com.qchu.feedarticle.common.BaseActivity;
 import com.qchu.feedarticle.applogic.domain.article.entity.Article;
+import com.qchu.feedarticle.ui.common.BaseActivity;
 import com.qchu.feedarticle.ui.presenter.detailarticle.DetailArticlePresenter;
 import com.qchu.feedarticle.ui.presenter.detailarticle.DetailArticleUserInterface;
 import com.qchu.feedarticle.ui.view.detailarticle.databinding.BindableArticle;

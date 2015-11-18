@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.qchu.feedarticle.R;
-import com.qchu.feedarticle.common.BaseFragment;
 import com.qchu.feedarticle.applogic.domain.article.entity.Article;
+import com.qchu.feedarticle.ui.common.BaseFragment;
 import com.qchu.feedarticle.ui.view.listarticle.ListArticleRecycleViewAdapter;
 import com.qchu.feedarticle.ui.presenter.refreshlistarticle.RefreshListArticlePresenter;
 import com.qchu.feedarticle.ui.presenter.refreshlistarticle.RefreshListArticleUserInterface;

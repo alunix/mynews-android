@@ -8,11 +8,9 @@ import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
 import com.qchu.feedarticle.R;
-import com.qchu.feedarticle.common.BaseActivity;
-import com.qchu.feedarticle.ui.presenter.menu.MenuPresenter;
+import com.qchu.feedarticle.ui.common.BaseActivity;
 import com.qchu.feedarticle.ui.presenter.menu.MenuUserInterface;
 import com.qchu.feedarticle.ui.presenter.menu.MenuWireframeInterface;
-import com.qchu.feedarticle.ui.wireframe.menu.MenuWireframe;
 import com.qchu.feedarticle.view.main.databinding.MainActivityBinding;
 
 /**
@@ -20,57 +18,84 @@ import com.qchu.feedarticle.view.main.databinding.MainActivityBinding;
  */
 public class MainActivity extends BaseActivity implements MenuUserInterface {
 
-	MenuPresenter mMenuPresenter;
+  private MainActivityBinding dataBinding;
 
-	MainActivityBinding mMainActivityBinding;
+  private MainComponent mainComponent;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+  public MainComponent mainComponent(){
+    if(mainComponent == null){
+      mainComponent = DaggerMainComponent.builder()
+        .mainModule(new MainModule(this))
+        .build();
+    }
+    return mainComponent;
+  }
 
-		mMainActivityBinding = DataBindingUtil.setContentView(this, R.layout.main_activity);
-		setSupportActionBar(mMainActivityBinding.toolbar);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
 
-		final ActionBar actionBar = getSupportActionBar();
-		actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
-		actionBar.setDisplayHomeAsUpEnabled(true);
+    dataBinding = DataBindingUtil.setContentView(this, R.layout.main_activity);
+    setSupportActionBar(dataBinding.toolbar);
 
-		setupDrawerContent(mMainActivityBinding.navView);
+    final ActionBar actionBar = getSupportActionBar();
+    actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+    actionBar.setDisplayHomeAsUpEnabled(true);
 
-		mMenuPresenter = new MenuPresenter(this,
-			new MenuWireframe(this, R.id.fragmentContainer));
-		mMenuPresenter.onCreate();
-	}
+    setupDrawerContent(dataBinding.navView);
 
-	protected void onDestroy(){
-		super.onDestroy();
-		mMenuPresenter.onDestroy();
-	}
+    mainComponent().menuPresenter().onCreate();
+  }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-			case android.R.id.home:
-				mMainActivityBinding.drawerLayout.openDrawer(GravityCompat.START);
-				return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+  protected void onDestroy(){
+    super.onDestroy();
+    mainComponent().menuPresenter().onDestroy();
+  }
 
-	private void setupDrawerContent(NavigationView navigationView) {
-		navigationView.setNavigationItemSelectedListener(
-			new NavigationView.OnNavigationItemSelectedListener() {
-				@Override
-				public boolean onNavigationItemSelected(MenuItem menuItem) {
-					menuItem.setChecked(true);
-					mMainActivityBinding.drawerLayout.closeDrawers();
-					switch (menuItem.getItemId()) {
-						case R.id.nav_home:
-							mMenuPresenter.onClickMenuItem(MenuWireframeInterface.MenuItem.HOME);
-							break;
-					}
-					return true;
-				}
-			});
-	}
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case android.R.id.home:
+        dataBinding.drawerLayout.openDrawer(GravityCompat.START);
+        return true;
+    }
+    return super.onOptionsItemSelected(item);
+  }
+
+  private void setupDrawerContent(NavigationView navigationView) {
+    navigationView.setNavigationItemSelectedListener(
+      new NavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(MenuItem menuItem) {
+          menuItem.setChecked(true);
+          dataBinding.drawerLayout.closeDrawers();
+          switch (menuItem.getItemId()) {
+
+            case R.id.nav_home:
+              mainComponent().menuPresenter()
+                .onClickMenuItem(MenuWireframeInterface.MenuItem.HOME);
+              break;
+
+            case R.id.nav_favorite:
+              mainComponent().menuPresenter()
+                .onClickMenuItem(MenuWireframeInterface.MenuItem.MY_ARTICLES);
+              break;
+
+            case R.id.nav_search:
+              mainComponent().menuPresenter()
+                .onClickMenuItem(MenuWireframeInterface.MenuItem.SEARCH);
+              break;
+
+            case R.id.nav_info:
+              mainComponent().menuPresenter()
+                .onClickMenuItem(MenuWireframeInterface.MenuItem.INFORMATIONS);
+              break;
+
+            default:
+              break;
+          }
+          return true;
+        }
+      });
+  }
 }
