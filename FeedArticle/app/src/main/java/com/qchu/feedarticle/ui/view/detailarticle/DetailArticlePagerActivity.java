@@ -30,15 +30,14 @@ public class DetailArticlePagerActivity extends BaseActivity
 	public static final String ARTICLE_LIST = "ARTICLE_LIST";
 
 	DetailArticlePresenter mDetailArticlePresenter;
-	DetailArticlePagerActivityDataBinding mDetailArticlePagerActivityDataBinding;
+	DetailArticlePagerActivityDataBinding dataBinding;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		mDetailArticlePagerActivityDataBinding =
-			DataBindingUtil.setContentView(this, R.layout.detail_article_pager_activity);
-		setSupportActionBar(mDetailArticlePagerActivityDataBinding.toolbar);
+		dataBinding = DataBindingUtil.setContentView(this, R.layout.detail_article_pager_activity);
+		setSupportActionBar(dataBinding.toolbar);
 
 		//setup action bar
 		final ActionBar actionBar = getSupportActionBar();
@@ -46,7 +45,7 @@ public class DetailArticlePagerActivity extends BaseActivity
 		actionBar.setTitle(null);
 
 		//setup viewpager
-		mDetailArticlePagerActivityDataBinding.viewpager.addOnPageChangeListener(
+		dataBinding.viewpager.addOnPageChangeListener(
 			new ViewPager.OnPageChangeListener() {
 
 				@Override
@@ -59,7 +58,7 @@ public class DetailArticlePagerActivity extends BaseActivity
 					if(mDetailArticlePresenter != null) {
 						mDetailArticlePresenter.onPageSelectedEvent(
 							DetailArticlePagerActivity.this,
-							mDetailArticlePagerActivityDataBinding.viewpager.getCurrentItem());
+							dataBinding.viewpager.getCurrentItem());
 					}
 				}
 
@@ -95,11 +94,11 @@ public class DetailArticlePagerActivity extends BaseActivity
 	                         List<Article> articleList) {
 		List<BindableArticle> bindableArticleList = EntityTransformer.bindableArticleList(articleList);
 
-		PagerAdapter pagerAdapter = mDetailArticlePagerActivityDataBinding.viewpager.getAdapter();
+		PagerAdapter pagerAdapter = dataBinding.viewpager.getAdapter();
 		if(pagerAdapter == null) {
 			pagerAdapter = new DetailArticleViewPagerAdater(
 				getSupportFragmentManager(), bindableArticleList);
-			mDetailArticlePagerActivityDataBinding.viewpager.setAdapter(pagerAdapter);
+			dataBinding.viewpager.setAdapter(pagerAdapter);
 		} else {
 			((DetailArticleViewPagerAdater)pagerAdapter).reload(bindableArticleList);
 		}
@@ -108,7 +107,7 @@ public class DetailArticlePagerActivity extends BaseActivity
 	@Override
 	public void selectIndex(DetailArticlePresenter detailArticlePresenter,
 	                        int selectedIndex, boolean animated) {
-		mDetailArticlePagerActivityDataBinding.viewpager.setCurrentItem(selectedIndex, animated);
+		dataBinding.viewpager.setCurrentItem(selectedIndex, animated);
 	}
 
 	@Override
@@ -121,7 +120,7 @@ public class DetailArticlePagerActivity extends BaseActivity
 	public void updateFavoriteStateOfCurrentArticle(
 		DetailArticlePresenter detailArticlePresenter, boolean isInFavorite) {
 
-		mDetailArticlePagerActivityDataBinding.favoriteButton.setSelected(isInFavorite);
+		dataBinding.favoriteButton.setSelected(isInFavorite);
 	}
 
 

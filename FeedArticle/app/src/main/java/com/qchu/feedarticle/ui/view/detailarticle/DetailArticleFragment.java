@@ -12,18 +12,19 @@ import com.hannesdorfmann.fragmentargs.FragmentArgs;
 import com.hannesdorfmann.fragmentargs.annotation.Arg;
 import com.qchu.feedarticle.R;
 import com.qchu.feedarticle.common.ParcelableArgsBundler;
+import com.qchu.feedarticle.ui.common.BaseFragment;
 import com.qchu.feedarticle.ui.view.detailarticle.databinding.BindableArticle;
 import com.qchu.feedarticle.feature.detailarticle.ui.view.databinding.DetailArticleFragmentDataBinding;
 
 /**
  * Created by quocdungchu on 29/09/15.
  */
-public class DetailArticleFragment extends Fragment {
+public class DetailArticleFragment extends BaseFragment {
 
 	@Arg( bundler = ParcelableArgsBundler.class )
-	BindableArticle mBindableArticle;
+	private BindableArticle bindableArticle;
 
-	DetailArticleFragmentDataBinding mDetailArticleFragmentDataBinding;
+	private DetailArticleFragmentDataBinding dataBinding;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -34,18 +35,17 @@ public class DetailArticleFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState){
-		mDetailArticleFragmentDataBinding =
-			DataBindingUtil.inflate(inflater, R.layout.detail_article_fragment, null, false);
+		dataBinding = DataBindingUtil.inflate(inflater, R.layout.detail_article_fragment, null, false);
 
-		mDetailArticleFragmentDataBinding.webview.getSettings().setLoadWithOverviewMode(true);
-		mDetailArticleFragmentDataBinding.webview.setBackgroundColor(Color.TRANSPARENT);
+		dataBinding.webview.getSettings().setLoadWithOverviewMode(true);
+		dataBinding.webview.setBackgroundColor(Color.TRANSPARENT);
 
-		return mDetailArticleFragmentDataBinding.getRoot();
+		return dataBinding.getRoot();
 	}
 
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		mDetailArticleFragmentDataBinding.setArticle(mBindableArticle);
+		dataBinding.setArticle(bindableArticle);
 	}
 }
