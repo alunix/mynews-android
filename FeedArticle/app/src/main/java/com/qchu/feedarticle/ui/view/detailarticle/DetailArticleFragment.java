@@ -12,9 +12,9 @@ import com.hannesdorfmann.fragmentargs.FragmentArgs;
 import com.hannesdorfmann.fragmentargs.annotation.Arg;
 import com.qchu.feedarticle.R;
 import com.qchu.feedarticle.common.ParcelableArgsBundler;
+import com.qchu.feedarticle.feature.detailarticle.ui.view.databinding.DetailArticleFragmentDataBinding;
 import com.qchu.feedarticle.ui.common.BaseFragment;
 import com.qchu.feedarticle.ui.view.detailarticle.databinding.BindableArticle;
-import com.qchu.feedarticle.feature.detailarticle.ui.view.databinding.DetailArticleFragmentDataBinding;
 
 /**
  * Created by quocdungchu on 29/09/15.
@@ -22,7 +22,7 @@ import com.qchu.feedarticle.feature.detailarticle.ui.view.databinding.DetailArti
 public class DetailArticleFragment extends BaseFragment {
 
 	@Arg( bundler = ParcelableArgsBundler.class )
-	private BindableArticle bindableArticle;
+	BindableArticle bindableArticle;
 
 	private DetailArticleFragmentDataBinding dataBinding;
 
