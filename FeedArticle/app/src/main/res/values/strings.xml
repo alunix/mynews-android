@@ -13,4 +13,5 @@
   <string name="title_home">"Feed article"</string>
   <string name="title_my_articles">"My articles"</string>
   <string name="title_search">"Search"</string>
+  <string name="hint_search">"Enter your keyword here"</string>
 </resources>

@@ -1,10 +1,12 @@
 package com.qchu.feedarticle.ui.view.main;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.qchu.feedarticle.R;
@@ -18,6 +20,7 @@ import com.qchu.feedarticle.view.main.databinding.MainActivityBinding;
  */
 public class MainActivity extends BaseActivity implements MenuUserInterface {
 
+  private static final String TAG = "MainActivity";
   private MainActivityBinding dataBinding;
 
   private MainComponent mainComponent;
@@ -97,5 +100,11 @@ public class MainActivity extends BaseActivity implements MenuUserInterface {
           return true;
         }
       });
+  }
+
+  @Override
+  protected void onNewIntent(Intent newIntent){
+    Log.d(TAG,"on new intent: action " + newIntent.getAction());
+    activityComponent().intentController().handleNewIntent(newIntent);
   }
 }

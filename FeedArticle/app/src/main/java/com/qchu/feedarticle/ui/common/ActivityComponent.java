@@ -10,4 +10,5 @@ import dagger.Module;
 @Component (modules = ActivityModule.class)
 public interface ActivityComponent {
   TitleController titleController();
+  IntentController intentController();
 }
