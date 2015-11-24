@@ -1,6 +1,7 @@
 package com.qchu.feedarticle.applogic.domain.search.interactor;
 
 import com.qchu.feedarticle.applogic.domain.article.entity.Channel;
+import com.qchu.feedarticle.applogic.domain.search.entity.Entry;
 
 import java.util.List;
 
@@ -11,6 +12,6 @@ public interface SearchService {
 	void search (String query, OnResultListener onResultListener);
 
 	interface OnResultListener {
-		void onResult(List<Channel> channelList);
+		void onResult(List<Entry> entries);
 	}
 }

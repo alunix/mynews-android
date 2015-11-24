@@ -1,6 +1,7 @@
 package com.qchu.feedarticle.applogic.service.googlefeed;
 
 import com.google.common.collect.ImmutableMap;
+import com.qchu.feedarticle.applogic.domain.search.entity.Entry;
 import com.qchu.feedarticle.applogic.domain.search.interactor.SearchService;
 import com.qchu.feedarticle.applogic.domain.article.entity.Channel;
 import com.qchu.once.shared.network.entity.Request;
@@ -22,11 +23,11 @@ public class GoogleFeedSearchService implements SearchService {
 
 
 	private NetworkInteractor networkInteractor;
-	private Parser<List<Channel>> parser;
+	private Parser<List<Entry>> parser;
 
 	@Inject public GoogleFeedSearchService(
 		@Nonnull NetworkInteractor networkInteractor,
-		@Nonnull Parser<List<Channel>> parser){
+		@Nonnull Parser<List<Entry>> parser){
 
 		this.networkInteractor = networkInteractor;
 		this.parser = parser;
@@ -44,9 +45,9 @@ public class GoogleFeedSearchService implements SearchService {
 				.method(Request.Method.GET)
 				.build(),
 			this.parser,
-			new NetworkInteractor.OnResponseListener<List<Channel>>() {
+			new NetworkInteractor.OnResponseListener<List<Entry>>() {
 				@Override
-				public void onResponse(Response<List<Channel>> response, String errorMessage) {
+				public void onResponse(Response<List<Entry>> response, String errorMessage) {
 					onResultListener.onResult(
 						response != null ? response.body(): null);
 				}

@@ -1,6 +1,7 @@
 package com.qchu.feedarticle.applogic.domain.search.interactor;
 
 import com.qchu.feedarticle.applogic.domain.article.entity.Channel;
+import com.qchu.feedarticle.applogic.domain.search.entity.Entry;
 import com.qchu.once.shared.connectivity.Connectivity;
 
 import java.util.List;
@@ -37,15 +38,15 @@ public class DefaultSearchInteractor implements SearchInteractor {
 				query,
 				new SearchService.OnResultListener() {
 					@Override
-					public void onResult(List<Channel> channelList) {
-						if(channelList == null || channelList.isEmpty()){
+					public void onResult(List<Entry> entries) {
+						if(entries == null || entries.isEmpty()){
 							onResultListener.onResult(
 								null,
 								SearchError.NO_RESULT,
 								DefaultSearchInteractor.this
 									.errorMessageProvider.message(SearchError.NO_RESULT));
 						} else {
-							onResultListener.onResult(channelList, null, null);
+							onResultListener.onResult(entries, null, null);
 						}
 					}
 				});

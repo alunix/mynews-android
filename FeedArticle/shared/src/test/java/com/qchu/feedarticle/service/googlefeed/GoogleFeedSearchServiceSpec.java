@@ -1,6 +1,7 @@
 package com.qchu.feedarticle.service.googlefeed;
 
 import com.qchu.feedarticle.applogic.domain.article.entity.Channel;
+import com.qchu.feedarticle.applogic.domain.search.entity.Entry;
 import com.qchu.feedarticle.applogic.domain.search.interactor.SearchService;
 import com.qchu.feedarticle.applogic.service.googlefeed.GoogleFeedSearchService;
 import com.qchu.once.shared.connectivity.Connectivity;
@@ -108,12 +109,10 @@ public class GoogleFeedSearchServiceSpec {
 
 		verify(this.onResultListener, times(1)).onResult(resultCaptor.capture());
 
-		List<Channel> channelList = resultCaptor.getValue();
+		List<Entry> channelList = resultCaptor.getValue();
     assertThat(channelList).isNotNull();
     assertThat(channelList.size()).isEqualTo(Integer.valueOf(1));
     assertThat(channelList.get(0).url()).isEqualTo("http://www.bongda365.com.vn/feed/");
     assertThat(channelList.get(0).title()).isEqualTo("title");
-    assertThat(channelList.get(0).id()).isEqualTo("http://www.bongda365.com.vn/feed/");
-
   }
 }

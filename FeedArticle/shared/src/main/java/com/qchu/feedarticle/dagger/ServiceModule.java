@@ -5,6 +5,7 @@ package com.qchu.feedarticle.dagger;
  */
 
 import com.qchu.feedarticle.applogic.domain.article.entity.Channel;
+import com.qchu.feedarticle.applogic.domain.search.entity.Entry;
 import com.qchu.feedarticle.applogic.domain.search.interactor.SearchService;
 import com.qchu.feedarticle.applogic.service.googlefeed.GoogleFeedSearchGsonParser;
 import com.qchu.feedarticle.applogic.service.googlefeed.GoogleFeedSearchService;
@@ -26,7 +27,7 @@ public class ServiceModule {
 	}
 
 	@Provides @Singleton
-	Parser<List<Channel>> provideParser(GoogleFeedSearchGsonParser googleFeedSearchGsonParser){
+	Parser<List<Entry>> provideParser(GoogleFeedSearchGsonParser googleFeedSearchGsonParser){
 		return googleFeedSearchGsonParser;
 	}
 }

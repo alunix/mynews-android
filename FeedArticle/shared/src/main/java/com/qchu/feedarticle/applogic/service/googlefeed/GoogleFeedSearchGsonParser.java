@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import com.qchu.feedarticle.applogic.domain.article.entity.Article;
 import com.qchu.feedarticle.applogic.domain.article.entity.Channel;
 import com.qchu.feedarticle.applogic.domain.article.entity.ChannelConfig;
+import com.qchu.feedarticle.applogic.domain.search.entity.Entry;
 import com.qchu.once.shared.network.interactor.Parser;
 
 import java.util.ArrayList;
@@ -15,69 +16,66 @@ import javax.inject.Inject;
 /**
  * Created by quocdungchu on 08/11/15.
  */
-public class GoogleFeedSearchGsonParser implements Parser<List<Channel>> {
+public class GoogleFeedSearchGsonParser implements Parser<List<Entry>> {
 
-	@Inject public GoogleFeedSearchGsonParser(){}
+  @Inject public GoogleFeedSearchGsonParser(){}
 
-	@Override
-	public List<Channel> parse(String fromString) {
+  @Override
+  public List<Entry> parse(String fromString) {
 
-		List<Channel> channelList = new ArrayList<>();
+    List<Entry> entries = new ArrayList<>();
 
-		Gson gson = new Gson();
-		ParsedRoot parsedRoot = gson.fromJson(fromString, ParsedRoot.class);
+    Gson gson = new Gson();
+    ParsedRoot parsedRoot = gson.fromJson(fromString, ParsedRoot.class);
 
-		if(parsedRoot != null
-			&& parsedRoot.status ==  200
-			&& parsedRoot.data != null
-			&& parsedRoot.data.entryList != null
-			&& !parsedRoot.data.entryList.isEmpty()){
+    if(parsedRoot != null
+      && parsedRoot.status ==  200
+      && parsedRoot.data != null
+      && parsedRoot.data.entryList != null
+      && !parsedRoot.data.entryList.isEmpty()){
 
-			for(ParsedEntry parsedEntry: parsedRoot.data.entryList){
-				channelList.add(Channel.builder()
-					.id(parsedEntry.url)
-					.url(parsedEntry.url)
-					.title(parsedEntry.title)
-					.articleList(new ArrayList<Article>())
-					.siteConfig(ChannelConfig.builder()
-						.url(parsedEntry.url)
-						.build())
-					.build());
-			}
-		}
+      for(ParsedEntry parsedEntry: parsedRoot.data.entryList){
+        entries.add(Entry.builder()
+          .url(parsedEntry.url)
+          .title(parsedEntry.title)
+          .contentSnippet(parsedEntry.content)
+          .link(parsedEntry.link)
+          .build());
+      }
+    }
 
-		return channelList;
-	}
+    return entries;
+  }
 
-	private static class ParsedRoot {
-		@SerializedName("responseData")
-		private ParsedData data;
+  private static class ParsedRoot {
+    @SerializedName("responseData")
+    private ParsedData data;
 
-		@SerializedName("responseStatus")
-		private int status;
-	}
+    @SerializedName("responseStatus")
+    private int status;
+  }
 
-	private static class ParsedData {
-		@SerializedName("query")
-		private String query;
+  private static class ParsedData {
+    @SerializedName("query")
+    private String query;
 
-		@SerializedName("entries")
-		private List<ParsedEntry> entryList;
+    @SerializedName("entries")
+    private List<ParsedEntry> entryList;
 
-	}
+  }
 
-	private static class ParsedEntry {
+  private static class ParsedEntry {
 
-		@SerializedName("url")
-		private String url;
+    @SerializedName("url")
+    private String url;
 
-		@SerializedName("title")
-		private String title;
+    @SerializedName("title")
+    private String title;
 
-		@SerializedName("contentSnippet")
-		private String content;
+    @SerializedName("contentSnippet")
+    private String content;
 
-		@SerializedName("link")
-		private String link;
-	}
+    @SerializedName("link")
+    private String link;
+  }
 }
