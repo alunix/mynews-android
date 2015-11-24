@@ -3,7 +3,6 @@ package com.qchu.feedarticle.applogic.service.googlefeed;
 import com.google.common.collect.ImmutableMap;
 import com.qchu.feedarticle.applogic.domain.search.entity.Entry;
 import com.qchu.feedarticle.applogic.domain.search.interactor.SearchService;
-import com.qchu.feedarticle.applogic.domain.article.entity.Channel;
 import com.qchu.once.shared.network.entity.Request;
 import com.qchu.once.shared.network.entity.Response;
 import com.qchu.once.shared.network.interactor.NetworkInteractor;

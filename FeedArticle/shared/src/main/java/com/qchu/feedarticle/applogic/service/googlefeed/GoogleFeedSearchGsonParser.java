@@ -2,9 +2,6 @@ package com.qchu.feedarticle.applogic.service.googlefeed;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
-import com.qchu.feedarticle.applogic.domain.article.entity.Article;
-import com.qchu.feedarticle.applogic.domain.article.entity.Channel;
-import com.qchu.feedarticle.applogic.domain.article.entity.ChannelConfig;
 import com.qchu.feedarticle.applogic.domain.search.entity.Entry;
 import com.qchu.once.shared.network.interactor.Parser;
 

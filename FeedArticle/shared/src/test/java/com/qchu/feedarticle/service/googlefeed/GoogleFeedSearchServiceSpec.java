@@ -1,6 +1,5 @@
 package com.qchu.feedarticle.service.googlefeed;
 
-import com.qchu.feedarticle.applogic.domain.article.entity.Channel;
 import com.qchu.feedarticle.applogic.domain.search.entity.Entry;
 import com.qchu.feedarticle.applogic.domain.search.interactor.SearchService;
 import com.qchu.feedarticle.applogic.service.googlefeed.GoogleFeedSearchService;
