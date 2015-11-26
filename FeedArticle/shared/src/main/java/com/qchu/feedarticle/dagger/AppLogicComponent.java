@@ -2,6 +2,7 @@ package com.qchu.feedarticle.dagger;
 
 import com.qchu.feedarticle.applogic.domain.article.interactor.ArticleInteractor;
 import com.qchu.feedarticle.applogic.domain.favorite.interactor.FavoriteInteractor;
+import com.qchu.feedarticle.applogic.domain.search.interactor.SearchInteractor;
 
 import javax.inject.Singleton;
 
@@ -13,6 +14,5 @@ import dagger.Component;
 @Singleton
 @Component(modules = InteractorModule.class)
 public interface AppLogicComponent {
-	ArticleInteractor articleInteractor();
-	FavoriteInteractor favoriteInteractor();
+
 }

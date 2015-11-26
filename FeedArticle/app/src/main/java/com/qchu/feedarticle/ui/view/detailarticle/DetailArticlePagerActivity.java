@@ -70,8 +70,8 @@ public class DetailArticlePagerActivity extends BaseActivity
 
 		//setup presenter
 		mDetailArticlePresenter = new DetailArticlePresenter(
-			appLogicComponent().articleInteractor(),
-			appLogicComponent().favoriteInteractor(),
+			appComponent().articleInteractor(),
+			appComponent().favoriteInteractor(),
 			this,
 			new DetailArticleWireframe(this),
 			getIntent().getStringArrayListExtra(ARTICLE_LIST),

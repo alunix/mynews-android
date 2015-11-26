@@ -59,6 +59,7 @@ android {
 
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
+	compile project(':utils_network_adapter_retrofit')
 	compile (project(':shared')) {
 		//exclude group: 'com.google.dagger', module: 'dagger-compiler'
 	}

@@ -15,20 +15,22 @@ import rx.android.schedulers.AndroidSchedulers;
  */
 public class FeedArticleApplication extends Application {
 
-	AppLogicComponent appLogicComponent;
+	AppComponent appComponent;
 
 	public void onCreate(){
 		super.onCreate();
 
 		MemoryArticleStorage memoryArticleRepository =
 			new MemoryArticleStorage();
-		this.appLogicComponent = DaggerAppLogicComponent.builder()
+		this.appComponent = DaggerAppComponent.builder()
+      .appModule(new AppModule(this))
 			.repositoryModule(new RepositoryModule(new NetworkManager(AndroidSchedulers.mainThread()),
-				memoryArticleRepository, memoryArticleRepository))
+        memoryArticleRepository, memoryArticleRepository))
 			.build();
 	}
 
-	public AppLogicComponent appLogicComponent() {
-		return this.appLogicComponent;
-	}
+  public AppComponent appComponent() {
+    return this.appComponent;
+  }
+
 }

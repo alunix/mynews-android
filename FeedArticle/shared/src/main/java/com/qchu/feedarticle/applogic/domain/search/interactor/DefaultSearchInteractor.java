@@ -1,12 +1,12 @@
 package com.qchu.feedarticle.applogic.domain.search.interactor;
 
-import com.qchu.feedarticle.applogic.domain.article.entity.Channel;
 import com.qchu.feedarticle.applogic.domain.search.entity.Entry;
 import com.qchu.once.shared.connectivity.Connectivity;
 
 import java.util.List;
 
 import javax.annotation.Nonnull;
+import javax.inject.Inject;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -19,7 +19,7 @@ public class DefaultSearchInteractor implements SearchInteractor {
 	private Connectivity connectivity;
 	private ErrorMessageProvider errorMessageProvider;
 
-	public DefaultSearchInteractor (
+	@Inject public DefaultSearchInteractor (
 		SearchService searchService,
 	  Connectivity connectivity,
 	  ErrorMessageProvider errorMessageProvider) {

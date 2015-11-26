@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import javax.annotation.Nonnull;
+import javax.inject.Inject;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -29,6 +30,7 @@ public class RetrofitNetworkAdapter implements NetworkAdapter {
 
 	Cache cache;
 
+	@Inject
 	public RetrofitNetworkAdapter (@Nonnull Cache cache){
 		this.cache = cache;
 	}

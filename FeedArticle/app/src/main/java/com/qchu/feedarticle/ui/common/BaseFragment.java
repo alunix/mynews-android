@@ -2,6 +2,7 @@ package com.qchu.feedarticle.ui.common;
 
 import android.support.v4.app.Fragment;
 
+import com.qchu.feedarticle.AppComponent;
 import com.qchu.feedarticle.FeedArticleApplication;
 import com.qchu.feedarticle.dagger.AppLogicComponent;
 
@@ -10,8 +11,8 @@ import com.qchu.feedarticle.dagger.AppLogicComponent;
  */
 public class BaseFragment extends Fragment {
 
-  public AppLogicComponent appLogicComponent(){
-    return ((BaseActivity)getActivity()).appLogicComponent();
+  public AppComponent appComponent(){
+    return ((BaseActivity)getActivity()).appComponent();
   }
 
   public ActivityComponent activityComponent(){

@@ -50,7 +50,7 @@ public class RefreshListArticleFragment extends BaseFragment
 
 		//setup presenter
 		mRefreshListArticlePresenter = new RefreshListArticlePresenter(
-			appLogicComponent().articleInteractor(),
+			appComponent().articleInteractor(),
 			this,
 			new RefreshListArticleWireframe(getActivity()));
 		mRefreshListArticlePresenter.onCreate();
