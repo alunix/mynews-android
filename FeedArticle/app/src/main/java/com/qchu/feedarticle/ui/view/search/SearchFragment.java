@@ -16,9 +16,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.qchu.feedarticle.R;
+import com.qchu.feedarticle.applogic.domain.search.entity.Entry;
+import com.qchu.feedarticle.applogic.domain.search.interactor.OnResultListener;
+import com.qchu.feedarticle.applogic.domain.search.interactor.SearchError;
 import com.qchu.feedarticle.ui.common.BaseFragment;
 import com.qchu.feedarticle.ui.common.IntentController;
 import com.qchu.feedarticle.ui.view.search.databinding.SearchFragmentDataBinding;
+
+import java.util.List;
 
 /**
  * Created by louischu on 18/11/15.
@@ -38,9 +43,16 @@ public class SearchFragment extends BaseFragment {
       @Override
       public void onHandleNewIntent(Intent newIntent) {
         if (Intent.ACTION_SEARCH.equals(newIntent.getAction())) {
-          String query = newIntent.getStringExtra(SearchManager.QUERY);
+          final String query = newIntent.getStringExtra(SearchManager.QUERY);
 
           Log.d(TAG, "on search : query " + query);
+
+          appComponent().searchInterator().search(query, new OnResultListener() {
+            @Override
+            public void onResult(List<Entry> entries, SearchError searchError, String errorMessage) {
+              Log.d(TAG, "on result : query " + query + ", results :" + entries);
+            }
+          });
         }
       }
     });
