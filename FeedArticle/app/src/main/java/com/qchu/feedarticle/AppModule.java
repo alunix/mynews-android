@@ -9,6 +9,8 @@ import com.qchu.once.shared.network.interactor.NetworkAdapter;
 import com.qchu.once.utils.network.adapter.retrofit.RetrofitNetworkAdapter;
 import com.squareup.okhttp.Cache;
 
+import java.io.File;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -51,7 +53,7 @@ public class AppModule {
 
   @Provides @Singleton
   Cache provideCache(){
-    return null;
+    return new Cache(new File(this.application.getCacheDir(),"network"), 10 * 1024);
   }
 
   @Provides @Singleton
