@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,7 +27,7 @@ import com.qchu.feedarticle.ui.view.search.databinding.SearchFragmentDataBinding
 import java.util.List;
 
 /**
- * Created by louischu on 18/11/15.
+ * Created by quocdungchu on 18/11/15.
  */
 public class SearchFragment extends BaseFragment {
 
@@ -51,6 +52,7 @@ public class SearchFragment extends BaseFragment {
             @Override
             public void onResult(List<Entry> entries, SearchError searchError, String errorMessage) {
               Log.d(TAG, "on result : query " + query + ", results :" + entries);
+              bindEntries(entries);
             }
           });
         }
@@ -63,8 +65,9 @@ public class SearchFragment extends BaseFragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
 
-    this.dataBinding = SearchFragmentDataBinding.inflate(inflater, container, false);
-    return this.dataBinding.getRoot();
+    dataBinding = SearchFragmentDataBinding.inflate(inflater, container, false);
+    dataBinding.recycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    return dataBinding.getRoot();
   }
 
   @Override
@@ -108,5 +111,19 @@ public class SearchFragment extends BaseFragment {
       return true;
     }
     return super.onOptionsItemSelected(item);
+  }
+
+  private void bindEntries (List<Entry> entries){
+    if(dataBinding.recycleView.getAdapter() == null){
+      dataBinding.recycleView.setAdapter(new ResultAdapter(entries, new ResultAdapter.OnItemSelect() {
+        @Override
+        public void onSelect(Entry entry, int position) {
+
+        }
+      }));
+    } else {
+      ResultAdapter resultAdapter = (ResultAdapter)dataBinding.recycleView.getAdapter();
+      resultAdapter.reload(entries);
+    }
   }
 }
