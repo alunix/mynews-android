@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 
 import com.qchu.common.Log;
+import com.qchu.googlefeed.load.service.DefaultLoadService;
+import com.qchu.googlefeed.load.service.LoadService;
 import com.qchu.googlefeed.search.service.DefaultSearchService;
 import com.qchu.googlefeed.search.service.SearchService;
 
@@ -49,6 +51,11 @@ public class AppModule {
   @Provides @Singleton
   SearchService provideSearchService(DefaultSearchService defaultSearchService){
     return defaultSearchService;
+  }
+
+  @Provides @Singleton
+  LoadService provideLoadService(DefaultLoadService defaultLoadService){
+    return defaultLoadService;
   }
 
 }

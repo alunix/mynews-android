@@ -4,6 +4,7 @@ import com.google.common.base.Function;
 import com.google.common.collect.Collections2;
 import com.google.gson.annotations.SerializedName;
 import com.qchu.common.Log;
+import com.qchu.googlefeed.Config;
 import com.qchu.googlefeed.search.entity.Entry;
 
 import java.util.ArrayList;
@@ -53,7 +54,7 @@ public class DefaultSearchService implements SearchService {
     }
 
     ApiFindService apiFindService = buildRetrofit().create(ApiFindService.class);
-    apiFindService.find(keyword)
+    apiFindService.find(Config.VERSION, keyword)
       .flatMap(new Func1<ParsedRoot, Observable<List<Entry>>>() {
         @Override
         public Observable<List<Entry>> call(ParsedRoot parsedRoot) {
@@ -98,7 +99,7 @@ public class DefaultSearchService implements SearchService {
   private Retrofit buildRetrofit() {
 
     return new Retrofit.Builder()
-      .baseUrl("https://ajax.googleapis.com")
+      .baseUrl(Config.BASE_URL)
       .addConverterFactory(GsonConverterFactory.create())
       .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
       .build();
@@ -125,8 +126,8 @@ public class DefaultSearchService implements SearchService {
   }
 
   private interface ApiFindService {
-    @GET("/ajax/services/feed/find?v=1.0")
-    Observable<ParsedRoot> find(@Query("q") String keyword);
+    @GET("/ajax/services/feed/find")
+    Observable<ParsedRoot> find(@Query("v") String version, @Query("q") String keyword);
   }
 
   private static class ParsedRoot {

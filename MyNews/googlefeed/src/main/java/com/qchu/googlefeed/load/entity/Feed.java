@@ -10,6 +10,10 @@ import java.util.List;
 @AutoValue
 public abstract class Feed {
 
+  public static Builder builder(){
+    return new AutoValue_Feed.Builder();
+  }
+
   public abstract String url();
   public abstract String title();
   public abstract String link();

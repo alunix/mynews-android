@@ -3,6 +3,8 @@ package com.qchu.mynews.common;
 import android.app.Application;
 import android.provider.Settings;
 
+import com.qchu.googlefeed.load.entity.Feed;
+import com.qchu.googlefeed.load.service.LoadService;
 import com.qchu.googlefeed.search.entity.Entry;
 import com.qchu.googlefeed.search.service.SearchService;
 
@@ -45,6 +47,29 @@ public class MNApplication extends Application {
       @Override
       public void onCompleted(String keyword) {
         appComponent.log().d("search", "onCompleted " + keyword);
+      }
+    });
+
+    appComponent.loadService().load("http://www.thethaovanhoa.net/feed",
+      new LoadService.OnLoadListener() {
+      @Override
+      public void onStarted(String rssUrl) {
+
+      }
+
+      @Override
+      public void onNext(String rssUrl, Feed feed) {
+
+      }
+
+      @Override
+      public void onError(String rssUrl, Throwable error) {
+
+      }
+
+      @Override
+      public void onCompleted(String rssUrl) {
+
       }
     });
   }
