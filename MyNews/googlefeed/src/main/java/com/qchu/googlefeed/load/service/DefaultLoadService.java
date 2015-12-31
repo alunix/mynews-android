@@ -39,6 +39,8 @@ public class DefaultLoadService implements LoadService {
   private final Scheduler subscribedOnScheduler;
   private final Log log;
 
+  private DateFormat dateFormat;
+
   @Inject
   public DefaultLoadService(
     @Named("observedOn") Scheduler observedOnScheduler,
@@ -155,9 +157,11 @@ public class DefaultLoadService implements LoadService {
       .build();
   }
 
-  private DateFormat dateFormat(){
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss");
-    return simpleDateFormat;
+  private DateFormat dateFormat() {
+    if (dateFormat == null) {
+      dateFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss");
+    }
+    return dateFormat;
   }
 
   private interface ApiLoadService {
@@ -166,61 +170,31 @@ public class DefaultLoadService implements LoadService {
   }
 
   private static class ParsedRoot {
-    @SerializedName("responseData")
-    private ParsedData data;
-
-    @SerializedName("responseStatus")
-    private int status;
+    @SerializedName("responseData") private ParsedData data;
+    @SerializedName("responseStatus") private int status;
   }
 
   private static class ParsedData {
-    @SerializedName("feed")
-    private ParsedFeed feed;
+    @SerializedName("feed") private ParsedFeed feed;
   }
 
   private static class ParsedFeed {
-    @SerializedName("feedUrl")
-    private String feedUrl;
-
-    @SerializedName("title")
-    private String title;
-
-    @SerializedName("link")
-    private String link;
-
-    @SerializedName("author")
-    private String author;
-
-    @SerializedName("description")
-    private String description;
-
-    @SerializedName("type")
-    private String type;
-
-    @SerializedName("entries")
-    private List<ParsedEntry> entries;
+    @SerializedName("feedUrl") private String feedUrl;
+    @SerializedName("title") private String title;
+    @SerializedName("link") private String link;
+    @SerializedName("author") private String author;
+    @SerializedName("description") private String description;
+    @SerializedName("type") private String type;
+    @SerializedName("entries") private List<ParsedEntry> entries;
   }
 
   private static class ParsedEntry {
-    @SerializedName("title")
-    private String title;
-
-    @SerializedName("link")
-    private String link;
-
-    @SerializedName("author")
-    private String author;
-
-    @SerializedName("contentSnippet")
-    private String contentSnippet;
-
-    @SerializedName("content")
-    private String content;
-
-    @SerializedName("publishedDate")
-    private String publishedDate;
-
-    @SerializedName("categories")
-    private List<String> categories;
+    @SerializedName("title") private String title;
+    @SerializedName("link") private String link;
+    @SerializedName("author") private String author;
+    @SerializedName("contentSnippet") private String contentSnippet;
+    @SerializedName("content") private String content;
+    @SerializedName("publishedDate") private String publishedDate;
+    @SerializedName("categories") private List<String> categories;
   }
 }

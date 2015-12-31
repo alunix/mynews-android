@@ -131,34 +131,19 @@ public class DefaultSearchService implements SearchService {
   }
 
   private static class ParsedRoot {
-    @SerializedName("responseData")
-    private ParsedData data;
-
-    @SerializedName("responseStatus")
-    private int status;
+    @SerializedName("responseData") private ParsedData data;
+    @SerializedName("responseStatus") private int status;
   }
 
   private static class ParsedData {
-    @SerializedName("query")
-    private String query;
-
-    @SerializedName("entries")
-    private List<ParsedEntry> entryList;
-
+    @SerializedName("query") private String query;
+    @SerializedName("entries") private List<ParsedEntry> entryList;
   }
 
   private static class ParsedEntry {
-
-    @SerializedName("url")
-    private String url;
-
-    @SerializedName("title")
-    private String title;
-
-    @SerializedName("contentSnippet")
-    private String content;
-
-    @SerializedName("link")
-    private String link;
+    @SerializedName("url") private String url;
+    @SerializedName("title") private String title;
+    @SerializedName("contentSnippet") private String content;
+    @SerializedName("link") private String link;
   }
 }
