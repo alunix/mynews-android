@@ -5,6 +5,7 @@ import com.google.common.collect.Collections2;
 import com.google.gson.annotations.SerializedName;
 import com.qchu.common.Log;
 import com.qchu.googlefeed.Config;
+import com.qchu.googlefeed.Constants;
 import com.qchu.googlefeed.search.entity.Entry;
 
 import java.util.ArrayList;
@@ -30,15 +31,14 @@ import rx.functions.Func1;
 public class DefaultSearchService implements SearchService {
 
   private final static String TAG = "DefaultSearchService";
-
   private final Scheduler observedOnScheduler;
   private final Scheduler subscribedOnScheduler;
   private final Log log;
 
   @Inject
   public DefaultSearchService(
-    @Named("observedOn") Scheduler observedOnScheduler,
-    @Named("subscribedOn") Scheduler subscribedOnScheduler,
+    @Named(Constants.SCHEDULER_OBSERVED) Scheduler observedOnScheduler,
+    @Named(Constants.SCHEDULER_SUBSCRIBED) Scheduler subscribedOnScheduler,
     Log log){
 
     this.observedOnScheduler = observedOnScheduler;
@@ -58,7 +58,7 @@ public class DefaultSearchService implements SearchService {
       .flatMap(new Func1<ParsedRoot, Observable<List<Entry>>>() {
         @Override
         public Observable<List<Entry>> call(ParsedRoot parsedRoot) {
-          return Observable.just(from(parsedRoot));
+          return Observable.just(entryFrom(parsedRoot));
         }
       })
       .observeOn(observedOnScheduler)
@@ -105,8 +105,8 @@ public class DefaultSearchService implements SearchService {
       .build();
   }
 
-  private List<Entry> from(ParsedRoot parsedRoot){
-    log.d(TAG, "transform in thread " + Thread.currentThread());
+  private List<Entry> entryFrom(ParsedRoot parsedRoot){
+    log.d(TAG, "search:transform entry in thread " + Thread.currentThread());
     if(parsedRoot == null || parsedRoot.data == null || parsedRoot.data.entryList == null) {
       return new ArrayList<>();
     } else {

@@ -24,7 +24,7 @@ import rx.schedulers.Schedulers;
 /**
  * Created by Quoc Dung Chu on 31/12/15.
  */
-@Module
+@Module (includes = GoogleFeedModule.class)
 public class AppModule {
   Application application;
 
@@ -39,23 +39,4 @@ public class AppModule {
   @Provides @Singleton Log provideLog(AndroidLog androidLog){
     return androidLog;
   }
-
-  @Provides @Singleton @Named("observedOn") Scheduler provideObservedOnScheduler(){
-    return AndroidSchedulers.mainThread();
-  }
-
-  @Provides @Singleton @Named("subscribedOn") Scheduler provideSubscribedOnScheduler(){
-    return Schedulers.from(Executors.newFixedThreadPool(4));
-  }
-
-  @Provides @Singleton
-  SearchService provideSearchService(DefaultSearchService defaultSearchService){
-    return defaultSearchService;
-  }
-
-  @Provides @Singleton
-  LoadService provideLoadService(DefaultLoadService defaultLoadService){
-    return defaultLoadService;
-  }
-
 }

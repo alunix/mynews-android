@@ -5,6 +5,7 @@ import com.google.common.collect.Collections2;
 import com.google.gson.annotations.SerializedName;
 import com.qchu.common.Log;
 import com.qchu.googlefeed.Config;
+import com.qchu.googlefeed.Constants;
 import com.qchu.googlefeed.load.entity.Entry;
 import com.qchu.googlefeed.load.entity.Feed;
 
@@ -34,17 +35,15 @@ import rx.functions.Func1;
 public class DefaultLoadService implements LoadService {
 
   private final static String TAG = "DefaultLoadService";
-
   private final Scheduler observedOnScheduler;
   private final Scheduler subscribedOnScheduler;
   private final Log log;
-
   private DateFormat dateFormat;
 
   @Inject
   public DefaultLoadService(
-    @Named("observedOn") Scheduler observedOnScheduler,
-    @Named("subscribedOn") Scheduler subscribedOnScheduler,
+    @Named(Constants.SCHEDULER_OBSERVED) Scheduler observedOnScheduler,
+    @Named(Constants.SCHEDULER_SUBSCRIBED) Scheduler subscribedOnScheduler,
     Log log) {
 
     this.observedOnScheduler = observedOnScheduler;
@@ -112,7 +111,7 @@ public class DefaultLoadService implements LoadService {
   }
 
   private Feed feedFrom(ParsedRoot parsedRoot){
-    log.d(TAG, "transform in thread " + Thread.currentThread());
+    log.d(TAG, "load:transform feed in thread " + Thread.currentThread());
     if(parsedRoot == null || parsedRoot.data == null ) {
       return null;
     } else {
