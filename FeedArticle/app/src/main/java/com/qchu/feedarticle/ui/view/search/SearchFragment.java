@@ -118,7 +118,7 @@ public class SearchFragment extends BaseFragment {
       dataBinding.recycleView.setAdapter(new ResultAdapter(entries, new ResultAdapter.OnItemSelect() {
         @Override
         public void onSelect(Entry entry, int position) {
-
+          getActivity().startActivity(new Intent(getActivity(), ChannelActivity.class));
         }
       }));
     } else {

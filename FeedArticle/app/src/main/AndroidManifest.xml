@@ -29,6 +29,8 @@
       </intent-filter>
     </activity>
     <activity android:name=".ui.view.detailarticle.DetailArticlePagerActivity" />
+    <activity android:name=".ui.view.search.ChannelActivity" />
+
   </application>
 
 </manifest>
