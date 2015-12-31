@@ -29,17 +29,26 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
+    compile project(':common')
     compile project(':logic')
     compile project(':googlefeed')
-    /* {
-        exclude group: 'com.google.guava', module: 'guava'
-        exclude group: 'com.google.auto.value', module: 'auto-value'
-    }*/
+
+    compile 'com.google.guava:guava:18.0'
+    //Immutable value-type code generation for Java
+    //https://github.com/google/auto/tree/master/value
+    compile 'com.google.auto.value:auto-value:1.1'
+
+    // Dagger 2: library for inject dependency
+    // https://github.com/google/dagger
+    compile 'com.google.dagger:dagger:2.0.1'
+    apt 'com.google.dagger:dagger-compiler:2.0.1'
+
+    compile 'javax.annotation:jsr250-api:1.0'
+
+    compile 'io.reactivex:rxandroid:1.0.1'
 
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
-
-
 
     testCompile 'junit:junit:4.12'
 }
