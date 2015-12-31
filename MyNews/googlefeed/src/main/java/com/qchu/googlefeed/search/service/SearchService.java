@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface SearchService {
   void search(String keyword, OnSearchListener onSearchListener);
+
   interface OnSearchListener {
     void onStarted(String keyword);
     void onNext (String keyword, List<Entry> entries);
