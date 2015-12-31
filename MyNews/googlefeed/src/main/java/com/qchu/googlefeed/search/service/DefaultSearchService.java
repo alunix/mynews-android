@@ -46,8 +46,12 @@ public class DefaultSearchService implements SearchService {
   }
 
   @Override
-  public void search(final String keyword, OnSearchListener onSearchListener){
+  public void search(final String keyword, final OnSearchListener onSearchListener){
     log.d(TAG, "search ...");
+    if(onSearchListener != null) {
+      onSearchListener.onStarted(keyword);
+    }
+
     ApiFindService apiFindService = buildRetrofit().create(ApiFindService.class);
     apiFindService.find(keyword)
       .flatMap(new Func1<ParsedRoot, Observable<List<Entry>>>() {
@@ -63,18 +67,30 @@ public class DefaultSearchService implements SearchService {
         public void onCompleted() {
           log.d(TAG, "search:onCompleted for keyword " + keyword);
           log.d(TAG, "search:onCompleted in thread " + Thread.currentThread());
+
+          if(onSearchListener != null) {
+            onSearchListener.onCompleted(keyword);
+          }
         }
 
         @Override
         public void onError(Throwable e) {
           log.d(TAG, "search:onError for keyword " + keyword + ", error " + e.getLocalizedMessage());
           log.d(TAG, "search:onError in thread " + Thread.currentThread());
+
+          if(onSearchListener != null) {
+            onSearchListener.onError(keyword, e);
+          }
         }
 
         @Override
         public void onNext(List<Entry> entries) {
           log.d(TAG, "search:onNext for keyword " + keyword + ", entries " + entries);
           log.d(TAG, "search:onNext in thread " + Thread.currentThread());
+
+          if(onSearchListener != null) {
+            onSearchListener.onNext(keyword, entries);
+          }
         }
       });
   }

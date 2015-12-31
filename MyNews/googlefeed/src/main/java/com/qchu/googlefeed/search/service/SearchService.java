@@ -10,6 +10,9 @@ import java.util.List;
 public interface SearchService {
   void search(String keyword, OnSearchListener onSearchListener);
   interface OnSearchListener {
-    void onSearch(String keyword, List<Entry> entries);
+    void onStarted(String keyword);
+    void onNext (String keyword, List<Entry> entries);
+    void onError (String keyword, Throwable error);
+    void onCompleted (String keyword);
   }
 }

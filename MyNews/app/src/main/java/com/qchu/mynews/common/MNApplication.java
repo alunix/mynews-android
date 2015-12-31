@@ -24,9 +24,27 @@ public class MNApplication extends Application {
       .build();
 
     appComponent.searchService().search("bongda", new SearchService.OnSearchListener() {
-      @Override
-      public void onSearch(String keyword, List<Entry> entries) {
 
+      @Override
+      public void onStarted(String keyword) {
+        appComponent.log().d("search", "onStarted " + keyword);
+      }
+
+      @Override
+      public void onNext(String keyword, List<Entry> entries) {
+        appComponent.log().d("search", "onNext " + keyword);
+
+      }
+
+      @Override
+      public void onError(String keyword, Throwable error) {
+        appComponent.log().d("search", "onError " + keyword+ " , "+error.getLocalizedMessage());
+
+      }
+
+      @Override
+      public void onCompleted(String keyword) {
+        appComponent.log().d("search", "onCompleted " + keyword);
       }
     });
   }
