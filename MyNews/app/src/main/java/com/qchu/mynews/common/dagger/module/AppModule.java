@@ -1,4 +1,4 @@
-package com.qchu.mynews.common;
+package com.qchu.mynews.common.dagger.module;
 
 import android.app.Application;
 import android.content.Context;

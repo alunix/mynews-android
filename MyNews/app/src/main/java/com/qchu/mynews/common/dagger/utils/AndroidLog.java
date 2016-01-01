@@ -1,4 +1,4 @@
-package com.qchu.mynews.common;
+package com.qchu.mynews.common.dagger.utils;
 
 import com.qchu.common.Log;
 

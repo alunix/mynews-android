@@ -1,7 +1,5 @@
-package com.qchu.mynews.common;
+package com.qchu.mynews.common.dagger.module;
 
-import com.qchu.googlefeed.search.service.DefaultSearchService;
-import com.qchu.googlefeed.search.service.SearchService;
 import com.qchu.mynews.applogic.database.DefaultOrmliteHelper;
 import com.qchu.mynews.applogic.database.OrmliteHelper;
 

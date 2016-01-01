@@ -1,4 +1,4 @@
-package com.qchu.mynews.common;
+package com.qchu.mynews.common.dagger.module;
 
 import com.qchu.googlefeed.Constants;
 import com.qchu.googlefeed.load.service.DefaultLoadService;

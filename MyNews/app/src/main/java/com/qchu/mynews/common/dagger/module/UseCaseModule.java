@@ -1,6 +1,4 @@
-package com.qchu.mynews.common;
-
-import android.content.Context;
+package com.qchu.mynews.common.dagger.module;
 
 import com.qchu.mynews.applogic.load.DefaultLoadStorage;
 import com.qchu.mynews.applogic.load.GoogleFeedLoadService;

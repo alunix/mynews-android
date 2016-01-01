@@ -1,4 +1,4 @@
-package com.qchu.mynews.common;
+package com.qchu.mynews.common.dagger.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

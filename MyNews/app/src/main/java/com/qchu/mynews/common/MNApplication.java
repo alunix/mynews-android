@@ -1,17 +1,13 @@
 package com.qchu.mynews.common;
 
 import android.app.Application;
-import android.provider.Settings;
 
-import com.qchu.googlefeed.load.entity.Feed;
-import com.qchu.googlefeed.load.service.LoadService;
-import com.qchu.googlefeed.search.entity.Entry;
-import com.qchu.googlefeed.search.service.SearchService;
 import com.qchu.mynews.applogic.load.usecase.OnLoadListener;
 import com.qchu.mynews.applogic.search.entity.Result;
 import com.qchu.mynews.applogic.search.usecase.OnSearchListener;
-
-import java.util.List;
+import com.qchu.mynews.common.dagger.AppComponent;
+import com.qchu.mynews.common.dagger.DaggerAppComponent;
+import com.qchu.mynews.common.dagger.module.AppModule;
 
 /**
  * Created by Quoc Dung Chu on 31/12/15.
