@@ -14,5 +14,6 @@
   <string name="search_format_number_of_channel">"%1$s channels"</string>
   <string name="search_hint">"Enter your keyword here"</string>
 
+  <string name="date_format_day_mon_year">"dd/MM/yy'-'HH'h'mm"</string>
 
 </resources>

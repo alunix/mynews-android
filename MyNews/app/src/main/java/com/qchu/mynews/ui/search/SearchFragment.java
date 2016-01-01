@@ -51,8 +51,7 @@ public class SearchFragment extends BaseFragment {
 
             @Override
             public void onNext(String keyword, Result result) {
-              dataBinding.recycleView.setAdapter(new KeywordAdapter(appComponent().searchUseCase()
-                .resultsUntilNow(7)));
+              dataBinding.recycleView.setAdapter(new ChannelAdapter(result.channels()));
             }
 
             @Override
