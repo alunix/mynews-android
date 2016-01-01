@@ -93,6 +93,8 @@ public class GoogleFeedLoadService implements LoadService {
       .title(entry.title())
       .link(entry.link())
       .author(entry.author())
+      .contentSnippet(entry.contentSnippet())
+      .content(entry.content())
       .publishedDate(entry.publishedDate())
       .channel(channel)
       .build();
