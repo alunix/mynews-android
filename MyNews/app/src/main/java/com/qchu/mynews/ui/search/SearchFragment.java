@@ -3,10 +3,12 @@ package com.qchu.mynews.ui.search;
 import android.app.SearchManager;
 import android.app.SearchableInfo;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,7 +17,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.qchu.mynews.R;
+import com.qchu.mynews.applogic.search.entity.Result;
+import com.qchu.mynews.applogic.search.usecase.OnSearchListener;
 import com.qchu.mynews.ui.common.BaseFragment;
+import com.qchu.mynews.ui.common.IntentController;
 
 /**
  * Created by Quoc Dung Chu on 31/12/15.
@@ -29,6 +34,40 @@ public class SearchFragment extends BaseFragment {
   public void onCreate(Bundle savedInstanceState){
     super.onCreate(savedInstanceState);
     setHasOptionsMenu(true);
+
+    activityComponent().intentController().addHandler(new IntentController.Handler() {
+      @Override
+      public void onHandleNewIntent(Intent newIntent) {
+        if (Intent.ACTION_SEARCH.equals(newIntent.getAction())) {
+          final String query = newIntent.getStringExtra(SearchManager.QUERY);
+
+          appComponent().log().d(TAG, "on search : query " + query);
+
+          appComponent().searchUseCase().search(query, new OnSearchListener() {
+            @Override
+            public void onStarted() {
+
+            }
+
+            @Override
+            public void onNext(String keyword, Result result) {
+              dataBinding.recycleView.setAdapter(new KeywordAdapter(appComponent().searchUseCase()
+                .resultsUntilNow(7)));
+            }
+
+            @Override
+            public void onError(Throwable error) {
+
+            }
+
+            @Override
+            public void onCompleted() {
+
+            }
+          });
+        }
+      }
+    });
   }
 
   @Override
@@ -44,7 +83,7 @@ public class SearchFragment extends BaseFragment {
   public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     dataBinding.recycleView.setAdapter(new KeywordAdapter(appComponent().searchUseCase()
-      .resultsUntilNow(1)));
+      .resultsUntilNow(7)));
   }
 
   @Override
@@ -85,6 +124,7 @@ public class SearchFragment extends BaseFragment {
   public boolean onOptionsItemSelected(MenuItem item) {
     int id = item.getItemId();
     if (id == R.id.search) {
+
       return true;
     }
     return super.onOptionsItemSelected(item);

@@ -10,7 +10,19 @@ import com.qchu.mynews.common.dagger.AppComponent;
  */
 public class BaseActivity extends AppCompatActivity {
 
+  private ActivityComponent activityComponent;
+
   public AppComponent appComponent(){
     return ((MNApplication)getApplication()).appComponent();
+  }
+
+
+  public ActivityComponent activityComponent(){
+    if(activityComponent == null){
+      activityComponent = DaggerActivityComponent.builder()
+        .activityModule(new ActivityModule(this))
+        .build();
+    }
+    return activityComponent;
   }
 }

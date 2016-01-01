@@ -13,4 +13,8 @@ public class BaseFragment extends Fragment {
   public AppComponent appComponent(){
     return ((MNApplication)getActivity().getApplication()).appComponent();
   }
+
+  public ActivityComponent activityComponent(){
+    return ((BaseActivity)getActivity()).activityComponent();
+  }
 }

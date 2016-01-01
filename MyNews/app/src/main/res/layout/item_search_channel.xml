@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-  <data class=".ui.search.KeywordItemDataBinding">
+  <data class=".ui.search.ChannelItemDataBinding">
   </data>
   <LinearLayout
     android:layout_width="match_parent"
@@ -13,13 +13,8 @@
       android:padding="@dimen/size_16"
       android:layout_gravity="center_vertical">
       <TextView
-        android:id="@+id/keyword"
+        android:id="@+id/title"
         style="@style/PrimaryText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-      <TextView
-        android:id="@+id/numberChannel"
-        style="@style/SecondPrimaryText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -27,10 +22,5 @@
       android:layout_width="match_parent"
       android:layout_height="1dp"
       android:background="@color/light_grey_background"/>
-    <android.support.v7.widget.RecyclerView
-      android:id="@+id/recycleView"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content">
-    </android.support.v7.widget.RecyclerView>
   </LinearLayout>
 </layout>

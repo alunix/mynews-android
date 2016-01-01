@@ -1,5 +1,6 @@
 package com.qchu.mynews.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,6 +9,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -17,6 +19,8 @@ import com.qchu.mynews.ui.search.SearchFragment;
 
 public class MainActivity extends BaseActivity
   implements NavigationView.OnNavigationItemSelectedListener {
+
+  private static final String TAG = "MainActivity";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +90,7 @@ public class MainActivity extends BaseActivity
     return true;
   }
 
-  void showFragment(Fragment fragment, String title) {
+  private void showFragment(Fragment fragment, String title) {
     getSupportActionBar().setTitle(title);
     FragmentManager fragmentManager = getSupportFragmentManager();
     fragmentManager.beginTransaction()
@@ -94,8 +98,14 @@ public class MainActivity extends BaseActivity
       .commit();
   }
 
-  void closeDrawer() {
+  private void closeDrawer() {
     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
     drawer.closeDrawer(GravityCompat.START);
+  }
+
+  @Override
+  protected void onNewIntent(Intent newIntent){
+    Log.d(TAG, "on new intent: action " + newIntent.getAction());
+    activityComponent().intentController().handleNewIntent(newIntent);
   }
 }
