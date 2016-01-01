@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -39,6 +38,12 @@ public class SearchFragment extends BaseFragment {
     this.dataBinding = SearchFragmentDataBinding.inflate(inflater, container, false);
     dataBinding.recycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
     return dataBinding.getRoot();
+  }
+
+  @Override
+  public void onViewCreated(View view, Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    dataBinding.recycleView.setAdapter(new KeywordAdapter(appComponent().searchUseCase().resultsWithNumberOfDayFromNow(1)));
   }
 
   @Override
