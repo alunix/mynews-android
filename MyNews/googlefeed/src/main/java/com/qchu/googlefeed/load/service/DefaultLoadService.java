@@ -34,7 +34,7 @@ import rx.functions.Func1;
  */
 public class DefaultLoadService implements LoadService {
 
-  private final static String TAG = "DefaultLoadService";
+  private final static String TAG = "googlefeed:DefaultLoadService";
   private final Scheduler observedOnScheduler;
   private final Scheduler subscribedOnScheduler;
   private final Log log;

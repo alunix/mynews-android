@@ -30,7 +30,7 @@ import rx.functions.Func1;
  */
 public class DefaultSearchService implements SearchService {
 
-  private final static String TAG = "DefaultSearchService";
+  private final static String TAG = "googlefeed:DefaultSearchService";
   private final Scheduler observedOnScheduler;
   private final Scheduler subscribedOnScheduler;
   private final Log log;
