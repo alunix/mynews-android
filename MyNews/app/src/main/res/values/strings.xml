@@ -11,4 +11,6 @@
   <string name="nav_bar_title_my_channels">"My channels"</string>
   <string name="nav_bar_title_my_articles">"My articles"</string>
 
+  <string name="search_format_number_of_channel">"%1$s channels"</string>
+
 </resources>
