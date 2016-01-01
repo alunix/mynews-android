@@ -81,7 +81,7 @@ public class DefaultLoadService implements LoadService {
 
         @Override
         public void onError(Throwable e) {
-          log.d(TAG, "load:onError for rssUrl " + rssUrl + ", error " + e.getLocalizedMessage());
+          log.e(TAG, "load:onError for rssUrl " + rssUrl + ", error " + e.getLocalizedMessage());
           log.d(TAG, "load:onError in thread " + Thread.currentThread());
 
           if(onLoadListener != null) {

@@ -76,7 +76,7 @@ public class DefaultSearchService implements SearchService {
 
         @Override
         public void onError(Throwable e) {
-          log.d(TAG, "search:onError for keyword " + keyword + ", error " + e.getLocalizedMessage());
+          log.e(TAG, "search:onError for keyword " + keyword + ", error " + e.getLocalizedMessage());
           log.d(TAG, "search:onError in thread " + Thread.currentThread());
 
           if(onSearchListener != null) {
