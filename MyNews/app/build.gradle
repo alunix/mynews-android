@@ -33,6 +33,9 @@ dependencies {
     compile project(':logic')
     compile project(':googlefeed')
 
+    // ORMLite android
+    compile 'com.j256.ormlite:ormlite-android:4.48'
+
     compile 'com.google.guava:guava:18.0'
     //Immutable value-type code generation for Java
     //https://github.com/google/auto/tree/master/value

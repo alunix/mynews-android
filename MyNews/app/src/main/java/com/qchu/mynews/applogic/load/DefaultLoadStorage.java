@@ -2,6 +2,7 @@ package com.qchu.mynews.applogic.load;
 
 import com.qchu.common.Log;
 import com.qchu.mynews.applogic.common.BaseStorage;
+import com.qchu.mynews.applogic.database.OrmliteHelper;
 import com.qchu.mynews.applogic.load.entity.Feed;
 import com.qchu.mynews.applogic.load.usecase.LoadStorage;
 
@@ -15,8 +16,8 @@ import javax.inject.Singleton;
 public class DefaultLoadStorage extends BaseStorage implements LoadStorage {
 
   @Inject
-  public DefaultLoadStorage(Log log) {
-    super(log);
+  public DefaultLoadStorage(OrmliteHelper ormliteHelper, Log log) {
+    super(ormliteHelper, log);
   }
 
   @Override

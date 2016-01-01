@@ -23,7 +23,10 @@ import dagger.Provides;
 /**
  * Created by Quoc Dung Chu on 01/01/16.
  */
-@Module (includes = GoogleFeedModule.class)
+@Module (includes = {
+  GoogleFeedModule.class,
+  OrmLiteModule.class,
+})
 public class UseCaseModule {
   @Provides @Singleton
   SearchService provideSearchService(GoogleFeedSearchService googleFeedSearchService){

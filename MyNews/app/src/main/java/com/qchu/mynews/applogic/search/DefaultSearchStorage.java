@@ -2,6 +2,7 @@ package com.qchu.mynews.applogic.search;
 
 import com.qchu.common.Log;
 import com.qchu.mynews.applogic.common.BaseStorage;
+import com.qchu.mynews.applogic.database.OrmliteHelper;
 import com.qchu.mynews.applogic.search.entity.Result;
 import com.qchu.mynews.applogic.search.usecase.SearchStorage;
 
@@ -17,8 +18,8 @@ public class DefaultSearchStorage extends BaseStorage implements SearchStorage {
   private final static String TAG = "DefaultSearchStorage";
 
   @Inject
-  public DefaultSearchStorage(Log log){
-    super(log);
+  public DefaultSearchStorage(OrmliteHelper ormliteHelper, Log log){
+    super(ormliteHelper, log);
   }
 
   @Override
