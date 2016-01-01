@@ -3,6 +3,7 @@ package com.qchu.mynews.common;
 import com.qchu.common.Log;
 import com.qchu.googlefeed.load.service.LoadService;
 import com.qchu.googlefeed.search.service.SearchService;
+import com.qchu.mynews.applogic.search.usecase.SearchUseCase;
 
 import javax.inject.Singleton;
 
@@ -16,5 +17,7 @@ import dagger.Component;
 public interface AppComponent {
   SearchService searchService();
   LoadService loadService();
+
+  SearchUseCase searchUseCase();
   Log log();
 }

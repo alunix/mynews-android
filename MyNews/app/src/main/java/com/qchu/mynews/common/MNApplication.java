@@ -7,6 +7,8 @@ import com.qchu.googlefeed.load.entity.Feed;
 import com.qchu.googlefeed.load.service.LoadService;
 import com.qchu.googlefeed.search.entity.Entry;
 import com.qchu.googlefeed.search.service.SearchService;
+import com.qchu.mynews.applogic.search.entity.Result;
+import com.qchu.mynews.applogic.search.usecase.OnSearchListener;
 
 import java.util.List;
 
@@ -52,23 +54,45 @@ public class MNApplication extends Application {
 
     appComponent.loadService().load("http://www.thethaovanhoa.net/feed",
       new LoadService.OnLoadListener() {
+        @Override
+        public void onStarted(String rssUrl) {
+
+        }
+
+        @Override
+        public void onNext(String rssUrl, Feed feed) {
+
+        }
+
+        @Override
+        public void onError(String rssUrl, Throwable error) {
+
+        }
+
+        @Override
+        public void onCompleted(String rssUrl) {
+
+        }
+      });
+
+    appComponent.searchUseCase().search("thethaovanhoa", new OnSearchListener() {
       @Override
-      public void onStarted(String rssUrl) {
+      public void onStarted() {
 
       }
 
       @Override
-      public void onNext(String rssUrl, Feed feed) {
+      public void onNext(String keyword, Result result) {
 
       }
 
       @Override
-      public void onError(String rssUrl, Throwable error) {
+      public void onError(Throwable error) {
 
       }
 
       @Override
-      public void onCompleted(String rssUrl) {
+      public void onCompleted() {
 
       }
     });
