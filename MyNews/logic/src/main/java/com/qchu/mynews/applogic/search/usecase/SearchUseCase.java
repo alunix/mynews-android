@@ -11,5 +11,5 @@ import java.util.List;
 public interface SearchUseCase {
   void search (String keyword, OnSearchListener onSearchListener);
   Result resultForKeyword (String keyword);
-  List<Result> resultsWithNumberOfDayFromNow(int numberOfDayFromNow);
+  List<Result> resultsUntilNow(int numberOfDayUntilNow);
 }

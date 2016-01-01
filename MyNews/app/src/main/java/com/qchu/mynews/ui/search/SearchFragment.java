@@ -43,7 +43,8 @@ public class SearchFragment extends BaseFragment {
   @Override
   public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    dataBinding.recycleView.setAdapter(new KeywordAdapter(appComponent().searchUseCase().resultsWithNumberOfDayFromNow(1)));
+    dataBinding.recycleView.setAdapter(new KeywordAdapter(appComponent().searchUseCase()
+      .resultsUntilNow(1)));
   }
 
   @Override
