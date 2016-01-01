@@ -77,6 +77,12 @@ public class DefaultSearchStorage extends BaseStorage implements SearchStorage {
       saveDbChannelFrom(channel);
       saveDbResultChannel(result.keyword(), channel.rssUrl());
     }
+
+    try {
+      ormliteHelper.resultDao().createOrUpdate(dbResult);
+    } catch (SQLException e) {
+      log.e(TAG, e.getLocalizedMessage());
+    }
   }
 
   @Override
@@ -117,7 +123,17 @@ public class DefaultSearchStorage extends BaseStorage implements SearchStorage {
     List<Channel> channels = Lists.newArrayList(Collections2.transform(dbResult.getResultChannels(),
       new Function<DbResultChannel, Channel>() {
       @Nullable @Override public Channel apply(DbResultChannel input) {
-        return input != null ? channelFrom(input.getChannel()): null;
+        if(input == null || input.getChannel() == null) return null;
+
+        try {
+          DbChannel dbChannel = ormliteHelper.channelDao()
+            .queryForId(input.getChannel().getRssUrl());
+          return channelFrom (dbChannel);
+        } catch (SQLException e) {
+          log.e(TAG, e.getLocalizedMessage());
+        }
+
+        return null;
       }
     }));
 
