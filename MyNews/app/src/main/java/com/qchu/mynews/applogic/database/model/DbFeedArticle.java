@@ -18,4 +18,20 @@ public class DbFeedArticle {
 
   @DatabaseField(foreign = true, foreignAutoRefresh = true)
   private DbFeed feed;
+
+  public DbArticle getArticle() {
+    return article;
+  }
+
+  public void setArticle(DbArticle article) {
+    this.article = article;
+  }
+
+  public DbFeed getFeed() {
+    return feed;
+  }
+
+  public void setFeed(DbFeed feed) {
+    this.feed = feed;
+  }
 }

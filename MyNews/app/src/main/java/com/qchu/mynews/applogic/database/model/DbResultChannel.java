@@ -9,13 +9,31 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = DbResultChannel.TABLE)
 public class DbResultChannel {
   public static final String TABLE = "ResultChannel";
+  public static final String COLUMN_CHANNEL = "channel_id";
+  public static final String COLUMN_RESULT = "result_id";
 
   @DatabaseField(generatedId = true)
   private long id;
 
-  @DatabaseField(foreign = true, foreignAutoRefresh = true)
+  @DatabaseField(index = true, foreign = true, columnName = COLUMN_CHANNEL)
   private DbChannel channel;
 
-  @DatabaseField(foreign = true, foreignAutoRefresh = true)
+  @DatabaseField(index = true, foreign = true, columnName = COLUMN_RESULT)
   private DbResult result;
+
+  public DbChannel getChannel() {
+    return channel;
+  }
+
+  public void setChannel(DbChannel channel) {
+    this.channel = channel;
+  }
+
+  public DbResult getResult() {
+    return result;
+  }
+
+  public void setResult(DbResult result) {
+    this.result = result;
+  }
 }
