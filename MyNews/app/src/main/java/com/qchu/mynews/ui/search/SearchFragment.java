@@ -17,10 +17,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.qchu.mynews.R;
+import com.qchu.mynews.applogic.common.entity.Channel;
 import com.qchu.mynews.applogic.search.entity.Result;
 import com.qchu.mynews.applogic.search.usecase.OnSearchListener;
 import com.qchu.mynews.ui.common.BaseFragment;
 import com.qchu.mynews.ui.common.IntentController;
+
+import java.util.ArrayList;
 
 /**
  * Created by Quoc Dung Chu on 31/12/15.
@@ -81,8 +84,7 @@ public class SearchFragment extends BaseFragment {
   @Override
   public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    dataBinding.recycleView.setAdapter(new KeywordAdapter(appComponent().searchUseCase()
-      .resultsUntilNow(7)));
+    loadResults();
   }
 
   @Override
@@ -95,12 +97,14 @@ public class SearchFragment extends BaseFragment {
         @Override
         public boolean onMenuItemActionExpand(MenuItem item) {
           appComponent().log().d(TAG, "on menu action expand");
+          dataBinding.recycleView.setAdapter(new ChannelAdapter(new ArrayList<Channel>()));
           return true;
         }
 
         @Override
         public boolean onMenuItemActionCollapse(MenuItem item) {
           appComponent().log().d(TAG, "on menu action collapse");
+          loadResults();
           return true;
         }
       });
@@ -128,4 +132,10 @@ public class SearchFragment extends BaseFragment {
     }
     return super.onOptionsItemSelected(item);
   }
+
+  private void loadResults(){
+    dataBinding.recycleView.setAdapter(new KeywordAdapter(appComponent().searchUseCase()
+      .resultsUntilNow(7)));
+  }
+
 }
