@@ -2,6 +2,12 @@ package com.qchu.mynews.common;
 
 import android.content.Context;
 
+import com.qchu.mynews.applogic.load.DefaultLoadStorage;
+import com.qchu.mynews.applogic.load.GoogleFeedLoadService;
+import com.qchu.mynews.applogic.load.usecase.DefaultLoadUseCase;
+import com.qchu.mynews.applogic.load.usecase.LoadService;
+import com.qchu.mynews.applogic.load.usecase.LoadStorage;
+import com.qchu.mynews.applogic.load.usecase.LoadUseCase;
 import com.qchu.mynews.applogic.search.DefaultSearchStorage;
 import com.qchu.mynews.applogic.search.GoogleFeedSearchService;
 import com.qchu.mynews.applogic.search.usecase.DefaultSearchUseCase;
@@ -32,5 +38,20 @@ public class UseCaseModule {
   @Provides @Singleton
   SearchUseCase provideSearchUseCase(DefaultSearchUseCase defaultSearchUseCase){
     return defaultSearchUseCase;
+  }
+
+  @Provides @Singleton
+  LoadService provideLoadService(GoogleFeedLoadService googleFeedLoadService){
+    return googleFeedLoadService;
+  }
+
+  @Provides @Singleton
+  LoadStorage provideLoadStorage(DefaultLoadStorage defaultLoadStorage){
+    return defaultLoadStorage;
+  }
+
+  @Provides @Singleton
+  LoadUseCase provideLoadUseCase(DefaultLoadUseCase defaultLoadUseCase){
+    return defaultLoadUseCase;
   }
 }

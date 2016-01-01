@@ -7,6 +7,7 @@ import com.qchu.googlefeed.load.entity.Feed;
 import com.qchu.googlefeed.load.service.LoadService;
 import com.qchu.googlefeed.search.entity.Entry;
 import com.qchu.googlefeed.search.service.SearchService;
+import com.qchu.mynews.applogic.load.usecase.OnLoadListener;
 import com.qchu.mynews.applogic.search.entity.Result;
 import com.qchu.mynews.applogic.search.usecase.OnSearchListener;
 
@@ -27,54 +28,6 @@ public class MNApplication extends Application {
       .appModule(new AppModule(this))
       .build();
 
-    appComponent.searchService().search("bongda", new SearchService.OnSearchListener() {
-
-      @Override
-      public void onStarted(String keyword) {
-        appComponent.log().d("search", "onStarted " + keyword);
-      }
-
-      @Override
-      public void onNext(String keyword, List<Entry> entries) {
-        appComponent.log().d("search", "onNext " + keyword);
-
-      }
-
-      @Override
-      public void onError(String keyword, Throwable error) {
-        appComponent.log().d("search", "onError " + keyword+ " , "+error.getLocalizedMessage());
-
-      }
-
-      @Override
-      public void onCompleted(String keyword) {
-        appComponent.log().d("search", "onCompleted " + keyword);
-      }
-    });
-
-    appComponent.loadService().load("http://www.thethaovanhoa.net/feed",
-      new LoadService.OnLoadListener() {
-        @Override
-        public void onStarted(String rssUrl) {
-
-        }
-
-        @Override
-        public void onNext(String rssUrl, Feed feed) {
-
-        }
-
-        @Override
-        public void onError(String rssUrl, Throwable error) {
-
-        }
-
-        @Override
-        public void onCompleted(String rssUrl) {
-
-        }
-      });
-
     appComponent.searchUseCase().search("thethaovanhoa", new OnSearchListener() {
       @Override
       public void onStarted() {
@@ -83,6 +36,28 @@ public class MNApplication extends Application {
 
       @Override
       public void onNext(String keyword, Result result) {
+
+      }
+
+      @Override
+      public void onError(Throwable error) {
+
+      }
+
+      @Override
+      public void onCompleted() {
+
+      }
+    });
+
+    appComponent.loadUseCase().load("http://www.thethaovanhoa.net/feed", new OnLoadListener() {
+      @Override
+      public void onStarted() {
+
+      }
+
+      @Override
+      public void onNext(String rssUrl, com.qchu.mynews.applogic.load.entity.Feed feed) {
 
       }
 
