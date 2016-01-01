@@ -2,6 +2,7 @@ package com.qchu.mynews.common;
 
 import android.app.Application;
 
+import com.qchu.mynews.applogic.database.model.DbResult;
 import com.qchu.mynews.applogic.load.usecase.OnLoadListener;
 import com.qchu.mynews.applogic.search.entity.Result;
 import com.qchu.mynews.applogic.search.usecase.OnSearchListener;
@@ -9,11 +10,14 @@ import com.qchu.mynews.common.dagger.AppComponent;
 import com.qchu.mynews.common.dagger.DaggerAppComponent;
 import com.qchu.mynews.common.dagger.module.AppModule;
 
+import java.util.List;
+
 /**
  * Created by Quoc Dung Chu on 31/12/15.
  */
 public class MNApplication extends Application {
 
+  private static final String TAG = "MNApplication";
   private AppComponent appComponent;
 
   @Override
@@ -27,7 +31,8 @@ public class MNApplication extends Application {
     appComponent.searchUseCase().search("thethaovanhoa", new OnSearchListener() {
       @Override
       public void onStarted() {
-
+        List<Result> results = appComponent.searchUseCase().resultsWithNumberOfDayAgo(1);
+        appComponent.log().d(TAG, "onStarted  " + results.toString());
       }
 
       @Override
@@ -42,7 +47,8 @@ public class MNApplication extends Application {
 
       @Override
       public void onCompleted() {
-
+        List<Result> results = appComponent.searchUseCase().resultsWithNumberOfDayAgo(1);
+        appComponent.log().d(TAG, "onCompleted  " + results.toString());
       }
     });
 

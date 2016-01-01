@@ -26,6 +26,7 @@ import javax.inject.Singleton;
 @Singleton
 public class DefaultOrmliteHelper extends OrmLiteSqliteOpenHelper implements OrmliteHelper {
 
+  private final static String TAG = "DefaultOrmliteHelper";
   public final static String DB_NAME = "db_ormlite_my_news";
   public final static int DB_VERSION = 1;
   private final Log log;
@@ -56,7 +57,7 @@ public class DefaultOrmliteHelper extends OrmLiteSqliteOpenHelper implements Orm
 
 
     } catch (SQLException e) {
-      log.e(DefaultOrmliteHelper.class.getName(), "Can't create database " + e.getLocalizedMessage());
+      log.e(TAG, "Can't create database " + e.getLocalizedMessage());
       throw new RuntimeException(e);
     }
   }
@@ -76,7 +77,7 @@ public class DefaultOrmliteHelper extends OrmLiteSqliteOpenHelper implements Orm
       // after we drop the old databases, we create the new ones
       onCreate(database, connectionSource);
     } catch (SQLException e) {
-      log.e(DefaultOrmliteHelper.class.getName(), "Can't drop databases" + e.getLocalizedMessage());
+      log.e(TAG, "Can't drop databases" + e.getLocalizedMessage());
       throw new RuntimeException(e);
     }
   }
@@ -84,7 +85,11 @@ public class DefaultOrmliteHelper extends OrmLiteSqliteOpenHelper implements Orm
   @Override
   public Dao<DbArticle, String> articleDao() {
     if(articleDao == null){
-      articleDao = getRuntimeExceptionDao(DbArticle.class);
+      try {
+        articleDao = getDao(DbArticle.class);
+      } catch (SQLException e) {
+        log.e(TAG, e.getLocalizedMessage());
+      }
     }
     return articleDao;
   }
@@ -92,7 +97,11 @@ public class DefaultOrmliteHelper extends OrmLiteSqliteOpenHelper implements Orm
   @Override
   public Dao<DbChannel, String> channelDao() {
     if(channelDao == null){
-      channelDao = getRuntimeExceptionDao(DbChannel.class);
+      try {
+        channelDao = getDao(DbChannel.class);
+      } catch (SQLException e) {
+        log.e(TAG, e.getLocalizedMessage());
+      }
     }
     return channelDao;
   }
@@ -100,7 +109,11 @@ public class DefaultOrmliteHelper extends OrmLiteSqliteOpenHelper implements Orm
   @Override
   public Dao<DbFeed, String> feedDao() {
     if(feedDao == null){
-      feedDao = getRuntimeExceptionDao(DbFeed.class);
+      try {
+        feedDao = getDao(DbFeed.class);
+      } catch (SQLException e) {
+        log.e(TAG, e.getLocalizedMessage());
+      }
     }
     return feedDao;
   }
@@ -108,7 +121,11 @@ public class DefaultOrmliteHelper extends OrmLiteSqliteOpenHelper implements Orm
   @Override
   public Dao<DbFeedArticle, Long> feedArticleDao() {
     if(feedArticleDao == null){
-      feedArticleDao = getRuntimeExceptionDao(DbFeedArticle.class);
+      try {
+        feedArticleDao = getDao(DbFeedArticle.class);
+      } catch (SQLException e) {
+        log.e(TAG, e.getLocalizedMessage());
+      }
     }
     return feedArticleDao;
   }
@@ -116,7 +133,11 @@ public class DefaultOrmliteHelper extends OrmLiteSqliteOpenHelper implements Orm
   @Override
   public Dao<DbResult, String> resultDao() {
     if(resultDao == null){
-      resultDao = getRuntimeExceptionDao(DbResult.class);
+      try {
+        resultDao = getDao(DbResult.class);
+      } catch (SQLException e) {
+        log.e(TAG, e.getLocalizedMessage());
+      }
     }
     return resultDao;
   }
@@ -124,7 +145,11 @@ public class DefaultOrmliteHelper extends OrmLiteSqliteOpenHelper implements Orm
   @Override
   public Dao<DbResultChannel, Long> resultChannelDao() {
     if(resultChannelDao == null){
-      resultChannelDao = getRuntimeExceptionDao(DbResultChannel.class);
+      try {
+        resultChannelDao = getDao(DbResultChannel.class);
+      } catch (SQLException e) {
+        log.e(TAG, e.getLocalizedMessage());
+      }
     }
     return resultChannelDao;
   }
