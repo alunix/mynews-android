@@ -2,7 +2,6 @@ package com.qchu.mynews.common;
 
 import android.app.Application;
 
-import com.qchu.mynews.applogic.database.model.DbResult;
 import com.qchu.mynews.applogic.load.usecase.OnLoadListener;
 import com.qchu.mynews.applogic.search.entity.Result;
 import com.qchu.mynews.applogic.search.usecase.OnSearchListener;
@@ -32,7 +31,7 @@ public class MNApplication extends Application {
       @Override
       public void onStarted() {
         List<Result> results = appComponent.searchUseCase().resultsWithNumberOfDayAgo(1);
-        appComponent.log().d(TAG, "onStarted  " + results.toString());
+        appComponent.log().d(TAG, "onStarted  " + results.size());
       }
 
       @Override
@@ -48,7 +47,7 @@ public class MNApplication extends Application {
       @Override
       public void onCompleted() {
         List<Result> results = appComponent.searchUseCase().resultsWithNumberOfDayAgo(1);
-        appComponent.log().d(TAG, "onCompleted  " + results.toString());
+        appComponent.log().d(TAG, "onCompleted  " + results.size());
       }
     });
 
