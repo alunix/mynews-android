@@ -30,7 +30,7 @@ public class MNApplication extends Application {
     appComponent.searchUseCase().search("thethaovanhoa", new OnSearchListener() {
       @Override
       public void onStarted() {
-        List<Result> results = appComponent.searchUseCase().resultsWithNumberOfDayAgo(1);
+        List<Result> results = appComponent.searchUseCase().resultsWithNumberOfDayFromNow(1);
         appComponent.log().d(TAG, "onStarted  " + results.size());
       }
 
@@ -46,7 +46,7 @@ public class MNApplication extends Application {
 
       @Override
       public void onCompleted() {
-        List<Result> results = appComponent.searchUseCase().resultsWithNumberOfDayAgo(1);
+        List<Result> results = appComponent.searchUseCase().resultsWithNumberOfDayFromNow(1);
         appComponent.log().d(TAG, "onCompleted  " + results.size());
       }
     });

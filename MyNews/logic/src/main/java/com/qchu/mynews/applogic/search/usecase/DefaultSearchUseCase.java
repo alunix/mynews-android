@@ -78,7 +78,7 @@ public class DefaultSearchUseCase implements SearchUseCase {
   }
 
   @Override
-  public List<Result> resultsWithNumberOfDayAgo(int numberOfDayAgo) {
+  public List<Result> resultsWithNumberOfDayFromNow(int numberOfDayFromNow) {
     Date currentDate = new Date();
 
     Calendar calendar = Calendar.getInstance();
@@ -92,7 +92,7 @@ public class DefaultSearchUseCase implements SearchUseCase {
     //today ending
     Date to = calendar.getTime();
 
-    Date from = new Date(to.getTime() - (numberOfDayAgo + 1) * DAY_TIME_IN_MILLISECOND + 1);
+    Date from = new Date(to.getTime() - (numberOfDayFromNow + 1) * DAY_TIME_IN_MILLISECOND + 1);
 
     List<Result> results = searchStorage.resultsBetween (from ,to);
 
