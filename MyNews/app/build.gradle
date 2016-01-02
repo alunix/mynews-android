@@ -36,6 +36,8 @@ dependencies {
     // ORMLite android
     compile 'com.j256.ormlite:ormlite-android:4.48'
 
+    compile 'com.squareup.picasso:picasso:2.5.0'
+
     compile 'com.google.guava:guava:18.0'
     //Immutable value-type code generation for Java
     //https://github.com/google/auto/tree/master/value
