@@ -32,6 +32,8 @@ dependencies {
     compile project(':common')
     compile project(':logic')
     compile project(':googlefeed')
+    compile project(':rss')
+
 
     // ORMLite android
     compile 'com.j256.ormlite:ormlite-android:4.48'

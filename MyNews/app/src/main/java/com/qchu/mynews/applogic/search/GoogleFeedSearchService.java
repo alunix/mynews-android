@@ -3,6 +3,7 @@ package com.qchu.mynews.applogic.search;
 import com.google.common.base.Function;
 import com.google.common.collect.Collections2;
 import com.qchu.googlefeed.search.entity.Entry;
+import com.qchu.googlefeed.search.service.SearchApi;
 import com.qchu.mynews.applogic.common.entity.Channel;
 import com.qchu.mynews.applogic.search.entity.Result;
 import com.qchu.mynews.applogic.search.usecase.OnSearchListener;
@@ -23,18 +24,18 @@ import autovalue.shaded.com.google.common.common.collect.Lists;
 @Singleton
 public class GoogleFeedSearchService implements SearchService {
 
-  private final com.qchu.googlefeed.search.service.SearchService searchService;
+  private final SearchApi searchApi;
 
   @Inject
   public GoogleFeedSearchService(
-    com.qchu.googlefeed.search.service.SearchService searchService){
-    this.searchService = searchService;
+    SearchApi searchApi){
+    this.searchApi = searchApi;
   }
 
   @Override
   public void search(String keyword, final OnSearchListener onSearchListener) {
-    searchService.search(keyword,
-      new com.qchu.googlefeed.search.service.SearchService.OnSearchListener() {
+    searchApi.search(keyword,
+      new SearchApi.OnSearchListener() {
       @Override
       public void onStarted(String keyword) {
         if(onSearchListener != null){

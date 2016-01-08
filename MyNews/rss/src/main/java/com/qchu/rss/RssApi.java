@@ -1,16 +1,16 @@
-package com.qchu.googlefeed.load.service;
+package com.qchu.rss;
 
-import com.qchu.googlefeed.load.entity.Feed;
+import com.qchu.rss.entity.Channel;
 
 /**
- * Created by Quoc Dung Chu on 31/12/15.
+ * Created by Quoc Dung Chu on 02/01/16.
  */
-public interface LoadService {
+public interface RssApi {
   void load(String rssUrl, OnLoadListener onLoadListener);
 
   interface OnLoadListener {
     void onStarted(String rssUrl);
-    void onNext (String rssUrl, Feed feed);
+    void onNext (String rssUrl, Channel channel);
     void onError (String rssUrl, Throwable error);
     void onCompleted (String rssUrl);
   }

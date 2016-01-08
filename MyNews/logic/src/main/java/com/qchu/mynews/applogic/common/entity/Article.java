@@ -5,6 +5,8 @@ import com.qchu.mynews.applogic.common.entity.Channel;
 
 import java.util.Date;
 
+import javax.annotation.Nullable;
+
 /**
  * Created by Quoc Dung Chu on 01/01/16.
  */
@@ -13,12 +15,12 @@ public abstract class Article {
   public static Builder builder(){
     return new AutoValue_Article.Builder();
   }
-  public abstract String title();
-  public abstract String link();
-  public abstract String author();
-  public abstract String contentSnippet();
-  public abstract String content();
-  public abstract Date publishedDate();
+  @Nullable public abstract String title();
+  @Nullable public abstract String link();
+  @Nullable public abstract String author();
+  @Nullable public abstract String contentSnippet();
+  @Nullable public abstract String content();
+  @Nullable public abstract Date publishedDate();
   public abstract Channel channel();
 
   @AutoValue.Builder

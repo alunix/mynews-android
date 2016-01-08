@@ -32,16 +32,16 @@ import rx.functions.Func1;
 /**
  * Created by Quoc Dung Chu on 31/12/15.
  */
-public class DefaultLoadService implements LoadService {
+public class DefaultLoadApi implements LoadApi {
 
-  private final static String TAG = "googlefeed:DefaultLoadService";
+  private final static String TAG = "googlefeed:DefaultLoadApi";
   private final Scheduler observedOnScheduler;
   private final Scheduler subscribedOnScheduler;
   private final Log log;
   private DateFormat dateFormat;
 
   @Inject
-  public DefaultLoadService(
+  public DefaultLoadApi(
     @Named(Constants.SCHEDULER_OBSERVED) Scheduler observedOnScheduler,
     @Named(Constants.SCHEDULER_SUBSCRIBED) Scheduler subscribedOnScheduler,
     Log log) {

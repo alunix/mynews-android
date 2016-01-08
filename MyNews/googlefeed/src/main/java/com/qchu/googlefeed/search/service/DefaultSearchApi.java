@@ -28,15 +28,15 @@ import rx.functions.Func1;
 /**
  * Created by Quoc Dung Chu on 31/12/15.
  */
-public class DefaultSearchService implements SearchService {
+public class DefaultSearchApi implements SearchApi {
 
-  private final static String TAG = "googlefeed:DefaultSearchService";
+  private final static String TAG = "googlefeed:DefaultSearchApi";
   private final Scheduler observedOnScheduler;
   private final Scheduler subscribedOnScheduler;
   private final Log log;
 
   @Inject
-  public DefaultSearchService(
+  public DefaultSearchApi(
     @Named(Constants.SCHEDULER_OBSERVED) Scheduler observedOnScheduler,
     @Named(Constants.SCHEDULER_SUBSCRIBED) Scheduler subscribedOnScheduler,
     Log log){

@@ -51,7 +51,7 @@ public class MNApplication extends Application {
       }
     });
 
-    appComponent.loadUseCase().load("http://www.thethaovanhoa.net/feed", new OnLoadListener() {
+    appComponent.loadUseCase().load("http://thethaovanhoa.vn/trang-chu.rss", new OnLoadListener() {
       @Override
       public void onStarted() {
 

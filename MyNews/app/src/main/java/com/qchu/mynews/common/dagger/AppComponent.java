@@ -1,8 +1,8 @@
 package com.qchu.mynews.common.dagger;
 
 import com.qchu.common.Log;
-import com.qchu.googlefeed.load.service.LoadService;
-import com.qchu.googlefeed.search.service.SearchService;
+import com.qchu.googlefeed.load.service.LoadApi;
+import com.qchu.googlefeed.search.service.SearchApi;
 import com.qchu.mynews.applogic.load.usecase.LoadUseCase;
 import com.qchu.mynews.applogic.search.usecase.SearchUseCase;
 import com.qchu.mynews.common.dagger.module.AppModule;
@@ -17,9 +17,6 @@ import dagger.Component;
 @Singleton
 @Component(modules = AppModule.class)
 public interface AppComponent {
-  SearchService searchService();
-  LoadService loadService();
-
   SearchUseCase searchUseCase();
   LoadUseCase loadUseCase();
   Log log();
