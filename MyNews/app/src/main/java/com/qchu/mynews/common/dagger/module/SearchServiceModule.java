@@ -3,6 +3,7 @@ package com.qchu.mynews.common.dagger.module;
 
 import com.qchu.googlefeed.search.service.DefaultSearchApi;
 import com.qchu.googlefeed.search.service.SearchApi;
+import com.qchu.mynews.applogic.search.FeedlySearchService;
 import com.qchu.mynews.applogic.search.GoogleFeedSearchService;
 import com.qchu.mynews.applogic.search.usecase.SearchService;
 
@@ -22,8 +23,7 @@ public class SearchServiceModule {
   }
 
   @Provides @Singleton
-  SearchService provideSearchService(
-    GoogleFeedSearchService googleFeedSearchService){
-    return googleFeedSearchService;
+  SearchService provideSearchService(FeedlySearchService service){
+    return service;
   }
 }

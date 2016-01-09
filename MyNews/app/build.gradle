@@ -33,6 +33,8 @@ dependencies {
     compile project(':logic')
     compile project(':googlefeed')
     compile project(':rss')
+    compile project(':feedly')
+
 
 
     // ORMLite android
