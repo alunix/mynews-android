@@ -8,6 +8,7 @@ import com.qchu.googlefeed.GoogleFeedApi;
 import com.qchu.googlefeed.load.parsed.ParsedEntry;
 import com.qchu.googlefeed.load.parsed.ParsedFeed;
 import com.qchu.googlefeed.load.parsed.ParsedLoadRoot;
+import com.qchu.mynews.applogic.Constants;
 import com.qchu.mynews.applogic.common.entity.Article;
 import com.qchu.mynews.applogic.common.entity.Channel;
 import com.qchu.mynews.applogic.load.entity.Feed;
@@ -36,8 +37,6 @@ import rx.functions.Func1;
 @Singleton
 public class GoogleFeedLoadService implements LoadService {
 
-  public final static String SCHEDULER_OBSERVED = "GoogleFeedLoadService.SCHEDULER_OBSERVED";
-  public final static String SCHEDULER_SUBSCRIBED = "GoogleFeedLoadService.SCHEDULER_SUBSCRIBED";
   private static final String TAG = "GoogleFeedLoadService";
 
   private final Scheduler observedOnScheduler;
@@ -47,8 +46,8 @@ public class GoogleFeedLoadService implements LoadService {
 
   @Inject
   public GoogleFeedLoadService(
-    @Named(SCHEDULER_OBSERVED) Scheduler observedOnScheduler,
-    @Named(SCHEDULER_SUBSCRIBED) Scheduler subscribedOnScheduler,
+    @Named(Constants.SCHEDULER_OBSERVED) Scheduler observedOnScheduler,
+    @Named(Constants.SCHEDULER_SUBSCRIBED) Scheduler subscribedOnScheduler,
     Log log){
 
     this.observedOnScheduler = observedOnScheduler;

@@ -1,6 +1,7 @@
 package com.qchu.googlefeed;
 
 import com.qchu.googlefeed.load.LoadService;
+import com.qchu.googlefeed.search.SearchService;
 
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
@@ -11,6 +12,9 @@ import retrofit.RxJavaCallAdapterFactory;
  */
 public class GoogleFeedApi {
 
+  public static SearchService searchService(){
+    return buildRetrofit().create(SearchService.class);
+  }
   public static LoadService loadService(){
     return buildRetrofit().create(LoadService.class);
   }

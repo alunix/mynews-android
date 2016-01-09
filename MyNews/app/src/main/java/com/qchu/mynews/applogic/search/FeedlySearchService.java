@@ -6,6 +6,7 @@ import com.qchu.common.Log;
 import com.qchu.feedly.FeedlyApi;
 import com.qchu.feedly.parsed.ParsedResult;
 import com.qchu.feedly.parsed.ParsedSearchRoot;
+import com.qchu.mynews.applogic.Constants;
 import com.qchu.mynews.applogic.common.entity.Channel;
 import com.qchu.mynews.applogic.search.entity.Result;
 import com.qchu.mynews.applogic.search.usecase.OnSearchListener;
@@ -31,8 +32,6 @@ import rx.functions.Func1;
 @Singleton
 public class FeedlySearchService implements SearchService {
 
-  public final static String SCHEDULER_OBSERVED = "FeedlySearchService.SCHEDULER_OBSERVED";
-  public final static String SCHEDULER_SUBSCRIBED = "FeedlySearchService.SCHEDULER_SUBSCRIBED";
   private static final String TAG = "FeedlySearchService";
 
   private final Scheduler observedOnScheduler;
@@ -41,8 +40,8 @@ public class FeedlySearchService implements SearchService {
 
   @Inject
   public FeedlySearchService(
-    @Named(SCHEDULER_OBSERVED) Scheduler observedOnScheduler,
-    @Named(SCHEDULER_SUBSCRIBED) Scheduler subscribedOnScheduler,
+    @Named(Constants.SCHEDULER_OBSERVED) Scheduler observedOnScheduler,
+    @Named(Constants.SCHEDULER_SUBSCRIBED) Scheduler subscribedOnScheduler,
     Log log){
 
     this.observedOnScheduler = observedOnScheduler;

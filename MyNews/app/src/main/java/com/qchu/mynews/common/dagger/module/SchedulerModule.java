@@ -1,8 +1,9 @@
 package com.qchu.mynews.common.dagger.module;
 
-import com.qchu.googlefeed.Constants;
+import com.qchu.mynews.applogic.Constants;
 import com.qchu.mynews.applogic.load.GoogleFeedLoadService;
 import com.qchu.mynews.applogic.search.FeedlySearchService;
+import com.qchu.mynews.applogic.search.GoogleFeedSearchService;
 
 import java.util.concurrent.Executors;
 
@@ -30,16 +31,6 @@ public class SchedulerModule {
     return networkingScheduler;
   }
 
-  @Provides @Singleton @Named(Constants.SCHEDULER_OBSERVED)
-  Scheduler provideGoogleFeedObservedOnScheduler(){
-    return AndroidSchedulers.mainThread();
-  }
-
-  @Provides @Singleton @Named(Constants.SCHEDULER_SUBSCRIBED)
-  Scheduler provideGoogleFeedSubscribedOnScheduler(){
-    return networkingScheduler();
-  }
-
   @Provides @Singleton @Named(com.qchu.rss.Constants.SCHEDULER_OBSERVED)
   Scheduler provideRssObservedOnScheduler(){
     return AndroidSchedulers.mainThread();
@@ -50,23 +41,15 @@ public class SchedulerModule {
     return networkingScheduler();
   }
 
-  @Provides @Singleton @Named(FeedlySearchService.SCHEDULER_OBSERVED)
-  Scheduler provideFeedlyObservedOnScheduler(){
+  @Provides @Singleton @Named(Constants.SCHEDULER_OBSERVED)
+  Scheduler provideObservedOnScheduler(){
     return AndroidSchedulers.mainThread();
   }
 
-  @Provides @Singleton @Named(FeedlySearchService.SCHEDULER_SUBSCRIBED)
-  Scheduler provideFeedlSubscribedOnScheduler(){
+  @Provides @Singleton @Named(Constants.SCHEDULER_SUBSCRIBED)
+  Scheduler provideSubscribedOnScheduler(){
     return networkingScheduler();
   }
 
-  @Provides @Singleton @Named(GoogleFeedLoadService.SCHEDULER_OBSERVED)
-  Scheduler provideGoogleFeedLoadObservedOnScheduler(){
-    return AndroidSchedulers.mainThread();
-  }
 
-  @Provides @Singleton @Named(GoogleFeedLoadService.SCHEDULER_SUBSCRIBED)
-  Scheduler provideGoogleFeedLoadSubscribedOnScheduler(){
-    return networkingScheduler();
-  }
 }

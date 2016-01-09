@@ -2,8 +2,11 @@ package com.qchu.mynews.applogic.search;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Collections2;
-import com.qchu.googlefeed.search.entity.Entry;
-import com.qchu.googlefeed.search.service.SearchApi;
+import com.qchu.common.Log;
+import com.qchu.googlefeed.GoogleFeedApi;
+import com.qchu.googlefeed.search.parsed.ParsedEntry;
+import com.qchu.googlefeed.search.parsed.ParsedSearchRoot;
+import com.qchu.mynews.applogic.Constants;
 import com.qchu.mynews.applogic.common.entity.Channel;
 import com.qchu.mynews.applogic.search.entity.Result;
 import com.qchu.mynews.applogic.search.usecase.OnSearchListener;
@@ -14,9 +17,14 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import autovalue.shaded.com.google.common.common.collect.Lists;
+import rx.Observable;
+import rx.Scheduler;
+import rx.Subscriber;
+import rx.functions.Func1;
 
 /**
  * Created by Quoc Dung Chu on 01/01/16.
@@ -24,67 +32,103 @@ import autovalue.shaded.com.google.common.common.collect.Lists;
 @Singleton
 public class GoogleFeedSearchService implements SearchService {
 
-  private final SearchApi searchApi;
+  private static final String TAG = "GoogleFeedLoadService";
+
+  private final Scheduler observedOnScheduler;
+  private final Scheduler subscribedOnScheduler;
+  private final Log log;
 
   @Inject
   public GoogleFeedSearchService(
-    SearchApi searchApi){
-    this.searchApi = searchApi;
+    @Named(Constants.SCHEDULER_OBSERVED) Scheduler observedOnScheduler,
+    @Named(Constants.SCHEDULER_SUBSCRIBED) Scheduler subscribedOnScheduler,
+    Log log){
+
+    this.observedOnScheduler = observedOnScheduler;
+    this.subscribedOnScheduler = subscribedOnScheduler;
+    this.log = log;
   }
 
   @Override
-  public void search(String keyword, final OnSearchListener onSearchListener) {
-    searchApi.search(keyword,
-      new SearchApi.OnSearchListener() {
-      @Override
-      public void onStarted(String keyword) {
-        if(onSearchListener != null){
-          onSearchListener.onStarted();
-        }
-      }
+  public void search(final String keyword, final OnSearchListener onSearchListener) {
+    log.d(TAG, "search ...");
+    if(onSearchListener != null) {
+      onSearchListener.onStarted();
+    }
 
-      @Override
-      public void onNext(String keyword, List<Entry> entries) {
-        if(onSearchListener != null){
-          List<Channel> channels = Lists.newArrayList(Collections2.transform(entries,
-            new Function<Entry, Channel>() {
-              @Nullable @Override public Channel apply(Entry input) {
-                return channelFrom(input);
-              }
-            }));
-          Result result = Result.builder()
-            .keyword(keyword)
-            .channels(channels)
-            .searchedDate(new Date())
-            .build();
-          onSearchListener.onNext(keyword, result);
+    GoogleFeedApi.searchService().search(keyword)
+      .observeOn(observedOnScheduler)
+      .subscribeOn(subscribedOnScheduler)
+      .flatMap(new Func1<ParsedSearchRoot, Observable<Result>>() {
+        @Override
+        public Observable<Result> call(ParsedSearchRoot parsedSearchRoot) {
+          return Observable.just(resultFrom(keyword, parsedSearchRoot));
         }
-      }
+      })
+      .subscribe(new Subscriber<Result>() {
+        @Override
+        public void onCompleted() {
+          log.d(TAG, "search:onCompleted for keyword " + keyword);
+          log.d(TAG, "search:onCompleted in thread " + Thread.currentThread());
 
-      @Override
-      public void onError(String keyword, Throwable error) {
-        if(onSearchListener != null){
-          onSearchListener.onError(error);
+          if(onSearchListener != null) {
+            onSearchListener.onCompleted();
+          }
         }
-      }
 
-      @Override
-      public void onCompleted(String keyword) {
-        if(onSearchListener != null){
-          onSearchListener.onCompleted();
+        @Override
+        public void onError(Throwable e) {
+          log.e(TAG, "search:onError for keyword " + keyword + ", error " + e.getLocalizedMessage());
+          log.d(TAG, "search:onError in thread " + Thread.currentThread());
+
+          if(onSearchListener != null) {
+            onSearchListener.onError (e);
+          }
         }
-      }
-    });
+
+        @Override
+        public void onNext(Result result) {
+          log.d(TAG, "search:onNext for keyword " + keyword + ", result " + result);
+          log.d(TAG, "search:onNext in thread " + Thread.currentThread());
+
+          if(onSearchListener != null) {
+            onSearchListener.onNext(keyword, result);
+          }
+        }
+      });
   }
 
-  private Channel channelFrom (Entry entry){
-    if(entry == null) return null;
+  private Result resultFrom (String keyword, ParsedSearchRoot parsedSearchRoot){
+    if (parsedSearchRoot == null
+      || parsedSearchRoot.getData() == null
+      || parsedSearchRoot.getData().getEntries() == null) {
+      return null;
+    }
+
+    List<Channel> channels = Lists.newArrayList(
+      Collections2.transform(parsedSearchRoot.getData().getEntries(),
+        new Function<ParsedEntry, Channel>() {
+          @Nullable @Override
+          public Channel apply(@Nullable ParsedEntry input) {
+            return channelFrom(input);
+          }
+        }));
+
+    return Result.builder()
+      .keyword(keyword)
+      .channels(channels)
+      .searchedDate(new Date())
+      .build();
+  }
+
+  private Channel channelFrom (ParsedEntry parsedEntry){
+    if(parsedEntry == null) return null;
 
     return Channel.builder()
-      .title(entry.title())
-      .rssUrl(entry.url())
-      .link(entry.link())
-      .contentSnippet(entry.contentSnippet())
+      .title(parsedEntry.getTitle())
+      .rssUrl(parsedEntry.getUrl())
+      .link(parsedEntry.getLink())
+      .contentSnippet(parsedEntry.getContent())
       .build();
   }
 }
