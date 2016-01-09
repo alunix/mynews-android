@@ -11,6 +11,7 @@ import retrofit.RxJavaCallAdapterFactory;
  * Created by Quoc Dung Chu on 09/01/16.
  */
 public class GoogleFeedApi {
+  private final static String BASE_URL = "https://ajax.googleapis.com";
 
   public static SearchService searchService(){
     return buildRetrofit().create(SearchService.class);
@@ -20,9 +21,8 @@ public class GoogleFeedApi {
   }
 
   private static Retrofit buildRetrofit() {
-
     return new Retrofit.Builder()
-      .baseUrl(Config.BASE_URL)
+      .baseUrl(BASE_URL)
       .addConverterFactory(GsonConverterFactory.create())
       .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
       .build();
