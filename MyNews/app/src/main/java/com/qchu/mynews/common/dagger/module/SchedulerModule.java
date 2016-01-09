@@ -1,6 +1,7 @@
 package com.qchu.mynews.common.dagger.module;
 
 import com.qchu.googlefeed.Constants;
+import com.qchu.mynews.applogic.load.GoogleFeedLoadService;
 import com.qchu.mynews.applogic.search.FeedlySearchService;
 
 import java.util.concurrent.Executors;
@@ -56,6 +57,16 @@ public class SchedulerModule {
 
   @Provides @Singleton @Named(FeedlySearchService.SCHEDULER_SUBSCRIBED)
   Scheduler provideFeedlSubscribedOnScheduler(){
+    return networkingScheduler();
+  }
+
+  @Provides @Singleton @Named(GoogleFeedLoadService.SCHEDULER_OBSERVED)
+  Scheduler provideGoogleFeedLoadObservedOnScheduler(){
+    return AndroidSchedulers.mainThread();
+  }
+
+  @Provides @Singleton @Named(GoogleFeedLoadService.SCHEDULER_SUBSCRIBED)
+  Scheduler provideGoogleFeedLoadSubscribedOnScheduler(){
     return networkingScheduler();
   }
 }

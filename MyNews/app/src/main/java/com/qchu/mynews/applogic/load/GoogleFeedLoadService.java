@@ -4,20 +4,15 @@ import com.google.common.base.Function;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 import com.qchu.common.Log;
-import com.qchu.feedly.FeedlyApi;
-import com.qchu.feedly.parsed.ParsedSearchRoot;
 import com.qchu.googlefeed.GoogleFeedApi;
-import com.qchu.googlefeed.load.entity.Entry;
 import com.qchu.googlefeed.load.parsed.ParsedEntry;
 import com.qchu.googlefeed.load.parsed.ParsedFeed;
 import com.qchu.googlefeed.load.parsed.ParsedLoadRoot;
-import com.qchu.googlefeed.load.service.LoadApi;
 import com.qchu.mynews.applogic.common.entity.Article;
 import com.qchu.mynews.applogic.common.entity.Channel;
 import com.qchu.mynews.applogic.load.entity.Feed;
 import com.qchu.mynews.applogic.load.usecase.LoadService;
 import com.qchu.mynews.applogic.load.usecase.OnLoadListener;
-import com.qchu.mynews.applogic.search.entity.Result;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -27,6 +22,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import rx.Observable;
@@ -51,8 +47,8 @@ public class GoogleFeedLoadService implements LoadService {
 
   @Inject
   public GoogleFeedLoadService(
-    Scheduler observedOnScheduler,
-    Scheduler subscribedOnScheduler,
+    @Named(SCHEDULER_OBSERVED) Scheduler observedOnScheduler,
+    @Named(SCHEDULER_SUBSCRIBED) Scheduler subscribedOnScheduler,
     Log log){
 
     this.observedOnScheduler = observedOnScheduler;
