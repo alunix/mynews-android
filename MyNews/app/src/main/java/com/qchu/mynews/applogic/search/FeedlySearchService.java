@@ -31,8 +31,8 @@ import rx.functions.Func1;
 @Singleton
 public class FeedlySearchService implements SearchService {
 
-  public final static String SCHEDULER_OBSERVED = "SCHEDULER_OBSERVED";
-  public final static String SCHEDULER_SUBSCRIBED = "SCHEDULER_SUBSCRIBED";
+  public final static String SCHEDULER_OBSERVED = "FeedlySearchService.SCHEDULER_OBSERVED";
+  public final static String SCHEDULER_SUBSCRIBED = "FeedlySearchService.SCHEDULER_SUBSCRIBED";
   private static final String TAG = "FeedlySearchService";
 
   private final Scheduler observedOnScheduler;
