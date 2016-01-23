@@ -30,4 +30,8 @@ public interface LoadService {
     @Query("newerThan") long newerThan,
     @Query("continuation") String continuation
   );
+
+  @GET("/v3/streams/contents")
+  Observable<ParsedLoadStreamRoot> loadStream(
+    @Query("streamId") String streamId);
 }

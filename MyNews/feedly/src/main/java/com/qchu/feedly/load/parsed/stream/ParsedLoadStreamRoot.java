@@ -12,7 +12,7 @@ public class ParsedLoadStreamRoot {
   @SerializedName("direction") private String direction;
   @SerializedName("updated") private long updated;
   @SerializedName("title") private String title;
-  @SerializedName("alternate") private List<String> alternates;
+  @SerializedName("alternate") private List<ParsedAlternate> alternates;
   @SerializedName("continuation") private String continuation;
   @SerializedName("items") private List<ParsedItem> items;
 
@@ -32,7 +32,7 @@ public class ParsedLoadStreamRoot {
     return title;
   }
 
-  public List<String> getAlternates() {
+  public List<ParsedAlternate> getAlternates() {
     return alternates;
   }
 

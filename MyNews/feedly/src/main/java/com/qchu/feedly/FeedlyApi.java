@@ -1,6 +1,8 @@
 package com.qchu.feedly;
 
 import com.qchu.feedly.load.LoadService;
+import com.qchu.feedly.search.SearchService;
+
 
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
