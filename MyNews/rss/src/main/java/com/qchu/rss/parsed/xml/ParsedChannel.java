@@ -14,20 +14,44 @@ import java.util.List;
 public class ParsedChannel {
 	// Tricky part in Simple XML because the link is named twice
 	@ElementList(entry = "link", inline = true, required = false)
-	public List<ParsedLink> links;
+	private List<ParsedLink> links;
 
 	@ElementList(entry = "item", required = true, inline = true)
-	public List<ParsedItem> items;
+	private List<ParsedItem> items;
 
 	@Element(name = "title", required = false)
-	public String title;
+	private String title;
 
 	@Element(name = "language", required = false)
-	public String language;
+	private String language;
 
 	@Element(name = "ttl", required = false)
-	public int ttl;
+	private int ttl;
 
 	@Element(name = "lastBuildDate", required = false)
-	public String lastBuildDate;
+	private String lastBuildDate;
+
+	public List<ParsedLink> getLinks() {
+		return links;
+	}
+
+	public List<ParsedItem> getItems() {
+		return items;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public int getTtl() {
+		return ttl;
+	}
+
+	public String getLastBuildDate() {
+		return lastBuildDate;
+	}
 }

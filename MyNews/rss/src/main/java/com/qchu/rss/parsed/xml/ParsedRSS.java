@@ -10,8 +10,16 @@ import org.simpleframework.xml.Root;
 @Root(name="rss", strict=false)
 public class ParsedRSS {
 	@Attribute
-  public String version;
+  private String version;
 
 	@Element
-  public ParsedChannel channel;
+  private ParsedChannel channel;
+
+  public String getVersion() {
+    return version;
+  }
+
+  public ParsedChannel getChannel() {
+    return channel;
+  }
 }

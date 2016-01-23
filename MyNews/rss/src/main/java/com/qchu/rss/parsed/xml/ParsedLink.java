@@ -10,14 +10,30 @@ import org.simpleframework.xml.Text;
 @Root(name = "link", strict = false)
 public class ParsedLink {
 	@Attribute(required = false)
-	public String href;
+	private String href;
 
 	@Attribute(required = false)
-	public String rel;
+	private String rel;
 
 	@Attribute(name = "type", required = false)
-	public String contentType;
+	private String contentType;
 
 	@Text(required = false)
-	public String link;
+	private String link;
+
+	public String getHref() {
+		return href;
+	}
+
+	public String getRel() {
+		return rel;
+	}
+
+	public String getContentType() {
+		return contentType;
+	}
+
+	public String getLink() {
+		return link;
+	}
 }

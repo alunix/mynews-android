@@ -1,9 +1,6 @@
 package com.qchu.mynews.common.dagger.module;
 
 import com.qchu.mynews.applogic.Constants;
-import com.qchu.mynews.applogic.load.GoogleFeedLoadService;
-import com.qchu.mynews.applogic.search.FeedlySearchService;
-import com.qchu.mynews.applogic.search.GoogleFeedSearchService;
 
 import java.util.concurrent.Executors;
 
@@ -31,16 +28,6 @@ public class SchedulerModule {
     return networkingScheduler;
   }
 
-  @Provides @Singleton @Named(com.qchu.rss.Constants.SCHEDULER_OBSERVED)
-  Scheduler provideRssObservedOnScheduler(){
-    return AndroidSchedulers.mainThread();
-  }
-
-  @Provides @Singleton @Named(com.qchu.rss.Constants.SCHEDULER_SUBSCRIBED)
-  Scheduler provideRssSubscribedOnScheduler(){
-    return networkingScheduler();
-  }
-
   @Provides @Singleton @Named(Constants.SCHEDULER_OBSERVED)
   Scheduler provideObservedOnScheduler(){
     return AndroidSchedulers.mainThread();
@@ -50,6 +37,4 @@ public class SchedulerModule {
   Scheduler provideSubscribedOnScheduler(){
     return networkingScheduler();
   }
-
-
 }
