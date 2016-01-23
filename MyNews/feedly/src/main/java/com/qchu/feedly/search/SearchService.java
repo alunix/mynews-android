@@ -1,6 +1,6 @@
-package com.qchu.feedly;
+package com.qchu.feedly.search;
 
-import com.qchu.feedly.parsed.ParsedSearchRoot;
+import com.qchu.feedly.search.parsed.ParsedSearchRoot;
 
 
 import retrofit.http.GET;

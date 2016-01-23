@@ -1,4 +1,4 @@
-package com.qchu.feedly.parsed;
+package com.qchu.feedly.search.parsed;
 
 import com.google.gson.annotations.SerializedName;
 
