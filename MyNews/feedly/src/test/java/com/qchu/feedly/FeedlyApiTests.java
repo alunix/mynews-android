@@ -13,6 +13,7 @@ import rx.Scheduler;
 import rx.Subscriber;
 import rx.schedulers.Schedulers;
 
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.isNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.timeout;
@@ -54,7 +55,19 @@ public class FeedlyApiTests {
 
     verify(callBack, timeout(10 * 1000).times(1))
       .onNext(resultCaptor.capture());
-    System.out.println("result : " + resultCaptor.getValue());
+    verify(callBack, timeout(10 * 1000).times(1))
+      .onComplete();
+    verify(callBack, timeout(10 * 1000).times(0))
+      .onError(any(Throwable.class));
+
+    ParsedLoadStreamRoot parsedLoadStreamRoot = resultCaptor.getValue();
+    System.out.println("id : " + parsedLoadStreamRoot.getId());
+    System.out.println("title : " + parsedLoadStreamRoot.getTitle());
+
+    assertThat(parsedLoadStreamRoot)
+      .isNotNull();
+    assertThat(parsedLoadStreamRoot.getId())
+      .isEqualTo("feed/http://bongda.com.vn/rss/");
 
   }
 }
