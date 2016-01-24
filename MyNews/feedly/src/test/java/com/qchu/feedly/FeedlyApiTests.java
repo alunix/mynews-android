@@ -61,8 +61,8 @@ public class FeedlyApiTests {
       .onError(any(Throwable.class));
 
     ParsedLoadStreamRoot parsedLoadStreamRoot = resultCaptor.getValue();
-    System.out.println("id : " + parsedLoadStreamRoot.getId());
-    System.out.println("title : " + parsedLoadStreamRoot.getTitle());
+    System.out.println("----------- result : ---------");
+    System.out.println(parsedLoadStreamRoot);
 
     assertThat(parsedLoadStreamRoot)
       .isNotNull();
