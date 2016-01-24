@@ -51,11 +51,11 @@ public class LoadServiceTests {
         }
       });
 
-    verify(loadStreamCallBack, timeout(Constants.TIME_OUT).times(1))
+    verify(loadStreamCallBack, timeout(Constants.TIME_OUT_10_SECONDS).times(1))
       .onNext(loadStreamCaptor.capture());
-    verify(loadStreamCallBack, timeout(Constants.TIME_OUT).times(1))
+    verify(loadStreamCallBack, timeout(Constants.TIME_OUT_10_SECONDS).times(1))
       .onComplete();
-    verify(loadStreamCallBack, timeout(Constants.TIME_OUT).times(0))
+    verify(loadStreamCallBack, timeout(Constants.TIME_OUT_10_SECONDS).times(0))
       .onError(any(Throwable.class));
 
     ParsedLoadStreamRoot parsedLoadStreamRoot = loadStreamCaptor.getValue();
@@ -88,11 +88,11 @@ public class LoadServiceTests {
         }
       });
 
-    verify(loadEntryCallBack, timeout(Constants.TIME_OUT).times(1))
+    verify(loadEntryCallBack, timeout(Constants.TIME_OUT_10_SECONDS).times(1))
       .onNext(loadEntryCaptor.capture());
-    verify(loadEntryCallBack, timeout(Constants.TIME_OUT).times(1))
+    verify(loadEntryCallBack, timeout(Constants.TIME_OUT_10_SECONDS).times(1))
       .onComplete();
-    verify(loadEntryCallBack, timeout(Constants.TIME_OUT).times(0))
+    verify(loadEntryCallBack, timeout(Constants.TIME_OUT_10_SECONDS).times(0))
       .onError(any(Throwable.class));
 
     ParsedLoadEntryRoot parsedLoadEntryRoot = loadEntryCaptor.getValue();
