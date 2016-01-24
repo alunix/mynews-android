@@ -21,6 +21,10 @@ public interface LoadService {
     @Query("continuation") String continuation
   );
 
+  @GET("/v3/streams/ids")
+  Observable<ParsedLoadEntryRoot> loadEntry(
+    @Query("streamId") String streamId);
+
   @GET("/v3/streams/contents")
   Observable<ParsedLoadStreamRoot> loadStream(
     @Query("streamId") String streamId,
