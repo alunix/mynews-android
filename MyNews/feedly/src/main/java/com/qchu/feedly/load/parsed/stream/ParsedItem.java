@@ -20,6 +20,7 @@ public class ParsedItem {
   @SerializedName("summary") private ParsedSummary summary;
   @SerializedName("alternate") private List<ParsedAlternate> alternates;
   @SerializedName("origin") private ParsedOrigin origin;
+  @SerializedName("visual") private ParsedVisual visual;
   @SerializedName("unread") private boolean unread;
 
   public String getId() {
@@ -66,6 +67,10 @@ public class ParsedItem {
     return origin;
   }
 
+  public ParsedVisual getVisual() {
+    return visual;
+  }
+
   public boolean isUnread() {
     return unread;
   }
@@ -84,6 +89,7 @@ public class ParsedItem {
       .add("summary", summary)
       .add("alternates", alternates)
       .add("origin", origin)
+      .add("visual", visual)
       .add("unread", unread)
       .toString();
   }
