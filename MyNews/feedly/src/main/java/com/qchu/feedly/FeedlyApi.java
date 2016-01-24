@@ -26,6 +26,7 @@ public class FeedlyApi {
 
   private static Retrofit buildRetrofit() {
 
+    //TODO logging depends on the app config (release or debug?)
     HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
     logging.setLevel(HttpLoggingInterceptor.Level.BODY);
     OkHttpClient client = new OkHttpClient();
