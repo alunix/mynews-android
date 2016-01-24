@@ -1,5 +1,6 @@
 package com.qchu.feedly.load.parsed.stream;
 
+import com.google.common.base.MoreObjects;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -15,5 +16,13 @@ public class ParsedContent {
 
   public String getDirection() {
     return direction;
+  }
+
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this)
+      .add("content", content)
+      .add("direction", direction)
+      .toString();
   }
 }

@@ -1,5 +1,6 @@
 package com.qchu.feedly.search.parsed;
 
+import com.google.common.base.MoreObjects;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -142,5 +143,38 @@ public class ParsedResult {
 
   public String getTitle() {
     return title;
+  }
+
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this)
+      .add("feedId", feedId)
+      .add("title", title)
+      .add("language", language)
+      .add("velocity", velocity)
+      .add("subscribers", subscribers)
+      .add("lastUpdated", lastUpdated)
+      .add("website", website)
+      .add("score", score)
+      .add("coverage", coverage)
+      .add("coverageScore", coverageScore)
+      .add("estimatedEngagement", estimatedEngagement)
+      .add("hint", hint)
+      .add("curated", curated)
+      .add("scheme", scheme)
+      .add("description", description)
+      .add("contentType", contentType)
+      .add("coverUrl", coverUrl)
+      .add("iconUrl", iconUrl)
+      .add("partial", partial)
+      .add("twitterScreenName", twitterScreenName)
+      .add("visualUrl", visualUrl)
+      .add("coverColor", coverColor)
+      .add("twitterFollowers", twitterFollowers)
+      .add("facebookUsername", facebookUsername)
+      .add("facebookLikes", facebookLikes)
+      .add("art", art)
+      .add("deliciousTags", deliciousTags)
+      .toString();
   }
 }

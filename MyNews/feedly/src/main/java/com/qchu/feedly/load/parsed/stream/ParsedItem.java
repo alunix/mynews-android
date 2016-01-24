@@ -1,5 +1,6 @@
 package com.qchu.feedly.load.parsed.stream;
 
+import com.google.common.base.MoreObjects;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -67,5 +68,23 @@ public class ParsedItem {
 
   public boolean isUnread() {
     return unread;
+  }
+
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this)
+      .add("id", id)
+      .add("keywords", keywords)
+      .add("originId", originId)
+      .add("fingerprint", fingerprint)
+      .add("content", content)
+      .add("title", title)
+      .add("published", published)
+      .add("crawled", crawled)
+      .add("summary", summary)
+      .add("alternates", alternates)
+      .add("origin", origin)
+      .add("unread", unread)
+      .toString();
   }
 }

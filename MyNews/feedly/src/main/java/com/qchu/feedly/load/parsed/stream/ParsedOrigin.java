@@ -1,5 +1,6 @@
 package com.qchu.feedly.load.parsed.stream;
 
+import com.google.common.base.MoreObjects;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -21,5 +22,14 @@ public class ParsedOrigin {
 
   public String getHtmlUrl() {
     return htmlUrl;
+  }
+
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this)
+      .add("streamId", streamId)
+      .add("title", title)
+      .add("htmlUrl", htmlUrl)
+      .toString();
   }
 }

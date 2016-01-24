@@ -1,5 +1,6 @@
 package com.qchu.feedly.search.parsed;
 
+import com.google.common.base.MoreObjects;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -32,5 +33,16 @@ public class ParsedSearchRoot {
 
   public List<String> getRelated() {
     return related;
+  }
+
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this)
+      .add("hint", hint)
+      .add("queryType", queryType)
+      .add("scheme", scheme)
+      .add("related", related)
+      .add("results", results)
+      .toString();
   }
 }

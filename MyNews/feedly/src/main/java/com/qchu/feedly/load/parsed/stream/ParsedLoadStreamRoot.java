@@ -1,5 +1,6 @@
 package com.qchu.feedly.load.parsed.stream;
 
+import com.google.common.base.MoreObjects;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -42,5 +43,18 @@ public class ParsedLoadStreamRoot {
 
   public List<ParsedItem> getItems() {
     return items;
+  }
+
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this)
+      .add("id", id)
+      .add("direction", direction)
+      .add("updated", updated)
+      .add("title", title)
+      .add("alternates", alternates)
+      .add("continuation", continuation)
+      .add("items", items)
+      .toString();
   }
 }

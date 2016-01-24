@@ -1,5 +1,6 @@
 package com.qchu.feedly.load.parsed.entry;
 
+import com.google.common.base.MoreObjects;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -17,5 +18,13 @@ public class ParsedLoadEntryRoot {
 
   public List<String> getIds() {
     return ids;
+  }
+
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this)
+      .add("continuation", continuation)
+      .add("ids", ids)
+      .toString();
   }
 }
