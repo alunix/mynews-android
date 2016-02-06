@@ -19,7 +19,8 @@ public abstract class Channel {
   public abstract String rssUrl();
   @Nullable public abstract String link();
   @Nullable public abstract String contentSnippet();
-
+  @Nullable public abstract String iconUrl();
+  @Nullable public abstract String thumbnailUrl();
 
   @AutoValue.Builder
   public abstract static class Builder {
@@ -27,6 +28,8 @@ public abstract class Channel {
     public abstract Builder rssUrl (String rssUrl);
     public abstract Builder link (String link);
     public abstract Builder contentSnippet (String contentSnippet);
+    public abstract Builder iconUrl (String iconUrl);
+    public abstract Builder thumbnailUrl (String thumbnailUrl);
     public abstract Channel build();
   }
 }

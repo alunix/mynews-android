@@ -135,6 +135,8 @@ public class FeedlySearchService implements SearchService {
       .rssUrl(parsedResult.getFeedId().substring(0, 5)) //remove prefix 'feed/' to obtain the rss
       .link(parsedResult.getWebsite())
       .contentSnippet(parsedResult.getDescription())
+      .iconUrl(parsedResult.getIconUrl())
+      .thumbnailUrl(parsedResult.getVisualUrl())
       .build();
   }
 }
