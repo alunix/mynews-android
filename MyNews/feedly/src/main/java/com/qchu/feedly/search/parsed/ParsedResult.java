@@ -17,8 +17,8 @@ public class ParsedResult {
   @SerializedName("lastUpdated") private long lastUpdated;
   @SerializedName("website") private String website;
   @SerializedName("score") private float score;
-  @SerializedName("coverage") private int coverage;
-  @SerializedName("coverageScore") private int coverageScore;
+  @SerializedName("coverage") private float coverage;
+  @SerializedName("coverageScore") private float coverageScore;
   @SerializedName("estimatedEngagement") private int estimatedEngagement;
   @SerializedName("hint") private String hint;
   @SerializedName("curated") private boolean curated;
@@ -34,7 +34,7 @@ public class ParsedResult {
   @SerializedName("twitterFollowers") private int twitterFollowers;
   @SerializedName("facebookUsername") private String facebookUsername;
   @SerializedName("facebookLikes") private int facebookLikes;
-  @SerializedName("art") private int art;
+  @SerializedName("art") private float art;
   @SerializedName("deliciousTags") private List<String> deliciousTags;
 
   public String getFeedId() {
@@ -65,11 +65,11 @@ public class ParsedResult {
     return score;
   }
 
-  public int getCoverage() {
+  public float getCoverage() {
     return coverage;
   }
 
-  public int getCoverageScore() {
+  public float getCoverageScore() {
     return coverageScore;
   }
 
@@ -133,7 +133,7 @@ public class ParsedResult {
     return facebookLikes;
   }
 
-  public int getArt() {
+  public float getArt() {
     return art;
   }
 
