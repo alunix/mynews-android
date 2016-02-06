@@ -121,6 +121,7 @@ public class LoadServiceTests {
     OkHttpClient client = new OkHttpClient();
     HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
     logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+    client.interceptors().add(logging);
     return client;
   }
 }

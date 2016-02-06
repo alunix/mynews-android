@@ -108,6 +108,7 @@ public class FeedlySearchService implements SearchService {
     logging.setLevel(BuildConfig.DEBUG ?
       HttpLoggingInterceptor.Level.BODY:
       HttpLoggingInterceptor.Level.NONE);
+    client.interceptors().add(logging);
     return client;
   }
 
