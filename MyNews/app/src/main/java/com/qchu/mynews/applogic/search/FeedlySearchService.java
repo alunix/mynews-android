@@ -6,11 +6,14 @@ import com.qchu.common.Log;
 import com.qchu.feedly.FeedlyApi;
 import com.qchu.feedly.search.parsed.ParsedResult;
 import com.qchu.feedly.search.parsed.ParsedSearchRoot;
+import com.qchu.mynews.BuildConfig;
 import com.qchu.mynews.applogic.Constants;
 import com.qchu.mynews.applogic.common.entity.Channel;
 import com.qchu.mynews.applogic.search.entity.Result;
 import com.qchu.mynews.applogic.search.usecase.OnSearchListener;
 import com.qchu.mynews.applogic.search.usecase.SearchService;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
 import java.util.Date;
 import java.util.List;
@@ -56,7 +59,8 @@ public class FeedlySearchService implements SearchService {
       onSearchListener.onStarted();
     }
 
-    FeedlyApi.searchService().search(keyword, 100, "fr")
+    FeedlyApi.buildRetrofit(client()).create(com.qchu.feedly.search.SearchService.class)
+      .search(keyword, 100, "fr")
       .observeOn(observedOnScheduler)
       .subscribeOn(subscribedOnScheduler)
       .flatMap(new Func1<ParsedSearchRoot, Observable<Result>>() {
@@ -96,6 +100,15 @@ public class FeedlySearchService implements SearchService {
           }
         }
       });
+  }
+
+  private OkHttpClient client(){
+    OkHttpClient client = new OkHttpClient();
+    HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+    logging.setLevel(BuildConfig.DEBUG ?
+      HttpLoggingInterceptor.Level.BODY:
+      HttpLoggingInterceptor.Level.NONE);
+    return client;
   }
 
   private Result resultFrom (String keyword, ParsedSearchRoot parsedSearchRoot){

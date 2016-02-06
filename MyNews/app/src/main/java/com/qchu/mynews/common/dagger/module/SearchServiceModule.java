@@ -1,7 +1,7 @@
 package com.qchu.mynews.common.dagger.module;
 
 
-import com.qchu.mynews.applogic.search.GoogleFeedSearchService;
+import com.qchu.mynews.applogic.search.FeedlySearchService;
 import com.qchu.mynews.applogic.search.usecase.SearchService;
 
 import javax.inject.Singleton;
@@ -15,8 +15,13 @@ import dagger.Provides;
 @Module (includes = SchedulerModule.class)
 public class SearchServiceModule {
 
-  @Provides @Singleton
+  /*@Provides @Singleton
   SearchService provideSearchService(GoogleFeedSearchService service){
+    return service;
+  }*/
+
+  @Provides @Singleton
+  SearchService provideSearchService(FeedlySearchService service){
     return service;
   }
 }

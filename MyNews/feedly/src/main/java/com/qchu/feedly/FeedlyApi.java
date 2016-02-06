@@ -1,42 +1,23 @@
 package com.qchu.feedly;
 
-import com.qchu.feedly.load.LoadService;
-import com.qchu.feedly.search.SearchService;
-import com.squareup.okhttp.Interceptor;
 import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
-import com.squareup.okhttp.logging.HttpLoggingInterceptor;
-
-
-import java.io.IOException;
 
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 import retrofit.RxJavaCallAdapterFactory;
 
 public class FeedlyApi {
-  public static SearchService searchService(){
-    return buildRetrofit().create(SearchService.class);
-  }
 
-  public static LoadService loadService(){
-    return buildRetrofit().create(LoadService.class);
-  }
+  private final static String BASE_URL = "http://cloud.feedly.com";
 
-  private static Retrofit buildRetrofit() {
-
-    //TODO logging depends on the app config (release or debug?)
-    HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-    logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-    OkHttpClient client = new OkHttpClient();
-    client.interceptors().add(logging);
+  public static Retrofit buildRetrofit(OkHttpClient client) {
 
     return new Retrofit.Builder()
-      .baseUrl("http://cloud.feedly.com")
+      .baseUrl(BASE_URL)
       .client(client)
       .addConverterFactory(GsonConverterFactory.create())
       .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
       .build();
   }
+
 }

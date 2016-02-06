@@ -1,14 +1,21 @@
 package com.qchu.feedly;
 
+import com.qchu.feedly.load.LoadService;
 import com.qchu.feedly.load.parsed.entry.ParsedLoadEntryRoot;
 import com.qchu.feedly.load.parsed.stream.ParsedLoadStreamRoot;
+import com.squareup.okhttp.Cache;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import java.io.File;
 
 import rx.Subscriber;
 
@@ -31,9 +38,16 @@ public class LoadServiceTests {
   @Mock CallBack<ParsedLoadEntryRoot> loadEntryCallBack;
   @Captor ArgumentCaptor<ParsedLoadEntryRoot> loadEntryCaptor;
 
+
+  @Before
+  public void setup(){
+    System.out.println("--------setup--------");
+  }
+
   @Test
   public void testLoadStream() {
-    FeedlyApi.loadService().loadStream(FEED_ID)
+
+    FeedlyApi.buildRetrofit(client()).create(LoadService.class).loadStream(FEED_ID)
       .subscribe(new Subscriber<ParsedLoadStreamRoot>() {
         @Override
         public void onCompleted() {
@@ -70,7 +84,7 @@ public class LoadServiceTests {
 
   @Test
   public void testLoadEntry(){
-    FeedlyApi.loadService().loadEntry(FEED_ID)
+    FeedlyApi.buildRetrofit(client()).create(LoadService.class).loadEntry(FEED_ID)
       .subscribe(new Subscriber<ParsedLoadEntryRoot>() {
         @Override
         public void onCompleted() {
@@ -101,5 +115,12 @@ public class LoadServiceTests {
 
     assertThat(parsedLoadEntryRoot)
       .isNotNull();
+  }
+
+  private OkHttpClient client(){
+    OkHttpClient client = new OkHttpClient();
+    HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+    logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+    return client;
   }
 }

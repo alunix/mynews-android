@@ -2,7 +2,6 @@ package com.qchu.feedly.search;
 
 import com.qchu.feedly.search.parsed.ParsedSearchRoot;
 
-
 import retrofit.http.GET;
 import retrofit.http.Query;
 import rx.Observable;
