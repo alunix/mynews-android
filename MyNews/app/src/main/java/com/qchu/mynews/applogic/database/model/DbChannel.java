@@ -1,5 +1,6 @@
 package com.qchu.mynews.applogic.database.model;
 
+import com.google.common.base.MoreObjects;
 import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
@@ -24,6 +25,12 @@ public class DbChannel {
   @DatabaseField
   private String contentSnippet;
 
+  @DatabaseField
+  private String iconUrl;
+
+  @DatabaseField
+  private String thumbnailUrl;
+
   @ForeignCollectionField
   private ForeignCollection<DbResultChannel> resultChannels;
 
@@ -31,35 +38,75 @@ public class DbChannel {
     return rssUrl;
   }
 
-  public void setRssUrl(String rssUrl) {
+  public DbChannel setRssUrl(String rssUrl) {
     this.rssUrl = rssUrl;
+    return this;
   }
 
   public String getLink() {
     return link;
   }
 
-  public void setLink(String link) {
+  public DbChannel setLink(String link) {
     this.link = link;
+    return this;
   }
 
   public String getTitle() {
     return title;
   }
 
-  public void setTitle(String title) {
+  public DbChannel setTitle(String title) {
     this.title = title;
+    return this;
   }
 
   public String getContentSnippet() {
     return contentSnippet;
   }
 
-  public void setContentSnippet(String contentSnippet) {
+  public DbChannel setContentSnippet(String contentSnippet) {
     this.contentSnippet = contentSnippet;
+    return this;
+  }
+
+  public String getIconUrl() {
+    return iconUrl;
+  }
+
+  public DbChannel setIconUrl(String iconUrl) {
+    this.iconUrl = iconUrl;
+    return this;
+  }
+
+  public String getThumbnailUrl() {
+    return thumbnailUrl;
+  }
+
+  public DbChannel setThumbnailUrl(String thumbnailUrl) {
+    this.thumbnailUrl = thumbnailUrl;
+    return this;
   }
 
   public ForeignCollection<DbResultChannel> getResultChannels() {
     return resultChannels;
+  }
+
+  public DbChannel setResultChannels(ForeignCollection<DbResultChannel> resultChannels) {
+    this.resultChannels = resultChannels;
+    return this;
+  }
+
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this)
+      .add("rssUrl", rssUrl)
+      .add("link", link)
+      .add("title", title)
+      .add("contentSnippet", contentSnippet)
+      .add("iconUrl", iconUrl)
+      .add("thumbnailUrl", thumbnailUrl)
+      .add("resultChannels", resultChannels)
+      .toString();
   }
 }
