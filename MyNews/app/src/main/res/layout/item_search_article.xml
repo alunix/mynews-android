@@ -3,22 +3,53 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto">
   <data class=".ui.search.ArticleItemDataBinding">
+    <variable name="imageUrl" type="String"/>
   </data>
   <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     >
     <ImageView
-
+      android:id="@+id/image"
+      app:url="@{imageUrl}"
+      app:goneIfNoUrl="@{true}"
       android:layout_width="@dimen/size_88"
       android:layout_height="@dimen/size_72"
-      android:layout_alignParentRight="true"/>
-
+      android:layout_marginTop="@dimen/size_8"
+      android:layout_marginBottom="@dimen/size_8"
+      android:layout_alignParentRight="true"
+      android:layout_centerVertical="true"
+      android:scaleType="centerCrop"
+      />
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_marginLeft="@dimen/size_16"
+      android:layout_marginTop="@dimen/size_8"
+      android:layout_marginBottom="@dimen/size_8"
+      android:layout_marginRight="@dimen/size_16"
+      android:layout_gravity="center_vertical"
+      android:layout_toLeftOf="@id/image">
+      <TextView
+        android:id="@+id/title"
+        style="@style/PrimaryText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+      <TextView
+        android:id="@+id/contentSnippet"
+        style="@style/SecondPrimaryText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="3"
+        android:ellipsize="end"
+        />
+    </LinearLayout>
     <View
       android:layout_width="match_parent"
       android:layout_height="1dp"
       android:layout_alignParentBottom="true"
       android:background="@color/light_grey_background"/>
   </RelativeLayout>
-
 </layout>
