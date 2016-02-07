@@ -137,6 +137,7 @@ public class FeedlySearchService implements SearchService {
       .contentSnippet(parsedResult.getDescription())
       .iconUrl(parsedResult.getIconUrl())
       .thumbnailUrl(parsedResult.getVisualUrl())
+      .imageUrl(parsedResult.getCoverUrl())
       .build();
   }
 }

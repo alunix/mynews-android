@@ -4,9 +4,11 @@ import android.databinding.BindingAdapter;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.common.base.Strings;
 import com.qchu.mynews.common.Converters;
 import com.squareup.picasso.Picasso;
 
@@ -33,6 +35,20 @@ public class DataBindingAdapters {
     Picasso.with(imageView.getContext())
       .load(url)
       .placeholder(placeHolder)
+      .into(imageView);
+  }
+
+  @BindingAdapter({"app:url", "app:goneIfNoUrl"})
+  public static void setImageUrl (ImageView imageView, String url, boolean goneIfNoUrl){
+
+    if(goneIfNoUrl && Strings.isNullOrEmpty(url)) {
+      imageView.setVisibility(View.GONE);
+    } else {
+      imageView.setVisibility(View.VISIBLE);
+    }
+
+    Picasso.with(imageView.getContext())
+      .load(url)
       .into(imageView);
   }
 }

@@ -32,6 +32,7 @@ public class ChannelAdapter extends RecyclerView.Adapter<ViewHolder<ChannelItemD
     Channel channel = channels.get(position);
     holder.dataBinding.title.setText(Html2.fromHtml(channel.title()));
     holder.dataBinding.contentSnippet.setText(Html2.fromHtml(channel.contentSnippet()));
+    holder.dataBinding.setImageUrl(channel.imageUrl());
   }
 
   @Override
