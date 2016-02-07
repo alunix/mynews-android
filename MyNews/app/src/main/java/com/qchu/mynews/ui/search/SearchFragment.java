@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -54,7 +53,13 @@ public class SearchFragment extends BaseFragment {
 
             @Override
             public void onNext(String keyword, Result result) {
-              dataBinding.recycleView.setAdapter(new ChannelAdapter(result.channels()));
+              dataBinding.recycleView.setAdapter(new ChannelAdapter(result.channels(),
+                new ChannelAdapter.OnItemClickListener() {
+                @Override
+                public void onClick(Channel channel, int position) {
+
+                }
+              }));
             }
 
             @Override
@@ -97,7 +102,7 @@ public class SearchFragment extends BaseFragment {
         @Override
         public boolean onMenuItemActionExpand(MenuItem item) {
           appComponent().log().d(TAG, "on menu action expand");
-          dataBinding.recycleView.setAdapter(new ChannelAdapter(new ArrayList<Channel>()));
+          dataBinding.recycleView.setAdapter(new ChannelAdapter(new ArrayList<Channel>(),null));
           return true;
         }
 
