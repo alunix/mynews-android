@@ -21,6 +21,7 @@ public abstract class Channel {
   @Nullable public abstract String contentSnippet();
   @Nullable public abstract String iconUrl();
   @Nullable public abstract String thumbnailUrl();
+  @Nullable public abstract String imageUrl();
 
   @AutoValue.Builder
   public abstract static class Builder {
@@ -30,6 +31,7 @@ public abstract class Channel {
     public abstract Builder contentSnippet (String contentSnippet);
     public abstract Builder iconUrl (String iconUrl);
     public abstract Builder thumbnailUrl (String thumbnailUrl);
+    public abstract Builder imageUrl (String imageUrl);
     public abstract Channel build();
   }
 }

@@ -31,6 +31,9 @@ public class DbChannel {
   @DatabaseField
   private String thumbnailUrl;
 
+  @DatabaseField
+  private String imageUrl;
+
   @ForeignCollectionField
   private ForeignCollection<DbResultChannel> resultChannels;
 
@@ -97,6 +100,15 @@ public class DbChannel {
     return this;
   }
 
+  public String getImageUrl() {
+    return imageUrl;
+  }
+
+  public DbChannel setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
+    return this;
+  }
+
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
@@ -106,6 +118,7 @@ public class DbChannel {
       .add("contentSnippet", contentSnippet)
       .add("iconUrl", iconUrl)
       .add("thumbnailUrl", thumbnailUrl)
+      .add("imageUrl", imageUrl)
       .add("resultChannels", resultChannels)
       .toString();
   }
