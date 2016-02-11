@@ -38,7 +38,10 @@ dependencies {
     compile project(':rss')
     compile project(':feedly')
 
-
+    //Intent builder
+    //https://github.com/emilsjolander/IntentBuilder
+    compile 'se.emilsjolander:intentbuilder-api:0.14.0'
+    apt 'se.emilsjolander:intentbuilder-compiler:0.14.0'
 
     // ORMLite android
     compile 'com.j256.ormlite:ormlite-android:4.48'

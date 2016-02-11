@@ -132,7 +132,7 @@ public class FeedlySearchService implements SearchService {
 
     return Channel.builder()
       .title(parsedResult.getTitle())
-      .rssUrl(parsedResult.getFeedId().substring(0, 5)) //remove prefix 'feed/' to obtain the rss
+      .rssUrl(parsedResult.getFeedId().substring(5)) //remove prefix 'feed/' to obtain the rss
       .link(parsedResult.getWebsite())
       .contentSnippet(parsedResult.getDescription())
       .iconUrl(parsedResult.getIconUrl())

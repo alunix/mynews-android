@@ -23,6 +23,7 @@ import com.qchu.mynews.ui.common.BaseFragment;
 import com.qchu.mynews.ui.common.IntentController;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Quoc Dung Chu on 31/12/15.
@@ -53,13 +54,7 @@ public class SearchFragment extends BaseFragment {
 
             @Override
             public void onNext(String keyword, Result result) {
-              dataBinding.recycleView.setAdapter(new ChannelAdapter(result.channels(),
-                new ChannelAdapter.OnItemClickListener() {
-                @Override
-                public void onClick(Channel channel, int position) {
-
-                }
-              }));
+              bindChannels(result.channels());
             }
 
             @Override
@@ -102,7 +97,7 @@ public class SearchFragment extends BaseFragment {
         @Override
         public boolean onMenuItemActionExpand(MenuItem item) {
           appComponent().log().d(TAG, "on menu action expand");
-          dataBinding.recycleView.setAdapter(new ChannelAdapter(new ArrayList<Channel>(),null));
+          dataBinding.recycleView.setAdapter(new ChannelAdapter(new ArrayList<Channel>(), null));
           return true;
         }
 
@@ -141,6 +136,18 @@ public class SearchFragment extends BaseFragment {
   private void loadResults(){
     dataBinding.recycleView.setAdapter(new KeywordAdapter(appComponent().searchUseCase()
       .resultsUntilNow(7)));
+  }
+
+  private void bindChannels(List<Channel> channels){
+    dataBinding.recycleView.setAdapter(new ChannelAdapter(channels,
+      new ChannelAdapter.OnItemClickListener() {
+        @Override
+        public void onClick(Channel channel, int position) {
+          startActivity(new ArticleListActivityIntentBuilder()
+            .urlToLoad(channel.rssUrl())
+            .build(getActivity()));
+        }
+      }));
   }
 
 }
