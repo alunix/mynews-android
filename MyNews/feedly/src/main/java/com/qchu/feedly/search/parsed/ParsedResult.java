@@ -2,6 +2,7 @@ package com.qchu.feedly.search.parsed;
 
 import com.google.common.base.MoreObjects;
 import com.google.gson.annotations.SerializedName;
+import com.qchu.feedly.Converter;
 
 import java.util.Date;
 import java.util.List;
@@ -144,6 +145,10 @@ public class ParsedResult {
 
   public String getTitle() {
     return title;
+  }
+
+  public String getRssUrl(){
+    return Converter.rssUrlFrom(feedId);
   }
 
   @Override

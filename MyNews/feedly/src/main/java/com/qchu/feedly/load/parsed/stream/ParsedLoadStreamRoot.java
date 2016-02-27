@@ -2,6 +2,7 @@ package com.qchu.feedly.load.parsed.stream;
 
 import com.google.common.base.MoreObjects;
 import com.google.gson.annotations.SerializedName;
+import com.qchu.feedly.Converter;
 
 import java.util.Date;
 import java.util.List;
@@ -44,6 +45,10 @@ public class ParsedLoadStreamRoot {
 
   public List<ParsedItem> getItems() {
     return items;
+  }
+
+  public String getRssUrl(){
+    return Converter.rssUrlFrom(id);
   }
 
   @Override
