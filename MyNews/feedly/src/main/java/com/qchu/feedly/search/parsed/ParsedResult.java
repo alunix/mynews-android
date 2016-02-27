@@ -3,6 +3,7 @@ package com.qchu.feedly.search.parsed;
 import com.google.common.base.MoreObjects;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ public class ParsedResult {
   @SerializedName("language") private String language;
   @SerializedName("velocity") private float velocity;
   @SerializedName("subscribers") private int subscribers;
-  @SerializedName("lastUpdated") private long lastUpdated;
+  @SerializedName("lastUpdated") private Date lastUpdated;
   @SerializedName("website") private String website;
   @SerializedName("score") private float score;
   @SerializedName("coverage") private float coverage;
@@ -53,7 +54,7 @@ public class ParsedResult {
     return subscribers;
   }
 
-  public long getLastUpdated() {
+  public Date getLastUpdated() {
     return lastUpdated;
   }
 

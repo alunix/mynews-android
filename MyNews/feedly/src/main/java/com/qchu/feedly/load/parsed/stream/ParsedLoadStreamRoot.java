@@ -3,6 +3,7 @@ package com.qchu.feedly.load.parsed.stream;
 import com.google.common.base.MoreObjects;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
 public class ParsedLoadStreamRoot {
   @SerializedName("id") private String id;
   @SerializedName("direction") private String direction;
-  @SerializedName("updated") private long updated;
+  @SerializedName("updated") private Date updated;
   @SerializedName("title") private String title;
   @SerializedName("alternate") private List<ParsedAlternate> alternates;
   @SerializedName("continuation") private String continuation;
@@ -25,7 +26,7 @@ public class ParsedLoadStreamRoot {
     return direction;
   }
 
-  public long getUpdated() {
+  public Date getUpdated() {
     return updated;
   }
 

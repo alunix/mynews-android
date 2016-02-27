@@ -3,6 +3,7 @@ package com.qchu.feedly.load.parsed.stream;
 import com.google.common.base.MoreObjects;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,10 +16,11 @@ public class ParsedItem {
   @SerializedName("fingerprint") private String fingerprint;
   @SerializedName("content") private ParsedContent content;
   @SerializedName("title") private String title;
-  @SerializedName("published") private long published;
+  @SerializedName("published") private Date published;
   @SerializedName("crawled") private long crawled;
   @SerializedName("summary") private ParsedSummary summary;
   @SerializedName("alternate") private List<ParsedAlternate> alternates;
+  @SerializedName("author") private String author;
   @SerializedName("origin") private ParsedOrigin origin;
   @SerializedName("visual") private ParsedVisual visual;
   @SerializedName("unread") private boolean unread;
@@ -47,7 +49,7 @@ public class ParsedItem {
     return title;
   }
 
-  public long getPublished() {
+  public Date getPublished() {
     return published;
   }
 
@@ -61,6 +63,10 @@ public class ParsedItem {
 
   public List<ParsedAlternate> getAlternates() {
     return alternates;
+  }
+
+  public String getAuthor() {
+    return author;
   }
 
   public ParsedOrigin getOrigin() {
@@ -88,6 +94,7 @@ public class ParsedItem {
       .add("crawled", crawled)
       .add("summary", summary)
       .add("alternates", alternates)
+      .add("author", author)
       .add("origin", origin)
       .add("visual", visual)
       .add("unread", unread)
