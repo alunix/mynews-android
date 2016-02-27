@@ -20,6 +20,7 @@ import rx.schedulers.Schedulers;
 public class SchedulerModule {
 
   private Scheduler networkingScheduler;
+  private Scheduler databaseScheduler;
 
   private Scheduler networkingScheduler(){
     if(networkingScheduler == null) {
@@ -28,13 +29,25 @@ public class SchedulerModule {
     return networkingScheduler;
   }
 
-  @Provides @Singleton @Named(Constants.SCHEDULER_OBSERVED)
-  Scheduler provideObservedOnScheduler(){
+  private Scheduler databaseScheduler(){
+    if(databaseScheduler == null) {
+      databaseScheduler = Schedulers.from(Executors.newFixedThreadPool(1));
+    }
+    return databaseScheduler;
+  }
+
+  @Provides @Singleton @Named(Constants.SCHEDULER_MAIN_THREAD)
+  Scheduler provideMainThreadScheduler(){
     return AndroidSchedulers.mainThread();
   }
 
-  @Provides @Singleton @Named(Constants.SCHEDULER_SUBSCRIBED)
-  Scheduler provideSubscribedOnScheduler(){
+  @Provides @Singleton @Named(Constants.SCHEDULER_NETWORK)
+  Scheduler provideNetworkScheduler(){
     return networkingScheduler();
+  }
+
+  @Provides @Singleton @Named(Constants.SCHEDULER_DATABASE)
+  Scheduler provideDatabaseScheduler(){
+    return databaseScheduler();
   }
 }

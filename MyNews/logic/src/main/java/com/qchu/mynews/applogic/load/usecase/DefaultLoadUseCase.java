@@ -68,17 +68,46 @@ public class DefaultLoadUseCase implements LoadUseCase {
         }
       });
     } else {
-      if(onLoadListener != null){
-        Feed feed = loadStorage.load(rssUrl);
-        onLoadListener.onStarted();
-        onLoadListener.onNext(rssUrl, feed);
-        onLoadListener.onCompleted();
-      }
+      //TODO
     }
   }
 
   @Override
-  public void load(List<String> rssUrls, OnLoadListener onLoadListener) {
+  public void load(List<String> rssUrls, final OnLoadListener onLoadListener) {
 
+    if(connectivity.isConnected()){
+      loadService.load(rssUrls, new OnLoadListener() {
+        @Override
+        public void onStarted() {
+          if(onLoadListener != null) {
+            onLoadListener.onStarted();
+          }
+        }
+
+        @Override
+        public void onNext(String rssUrl, Feed feed) {
+          loadStorage.save(feed);
+          if(onLoadListener != null) {
+            onLoadListener.onNext(rssUrl, feed);
+          }
+        }
+
+        @Override
+        public void onError(Throwable error) {
+          if(onLoadListener != null) {
+            onLoadListener.onError(error);
+          }
+        }
+
+        @Override
+        public void onCompleted() {
+          if(onLoadListener != null) {
+            onLoadListener.onCompleted();
+          }
+        }
+      });
+    } else {
+      //TODO
+    }
   }
 }

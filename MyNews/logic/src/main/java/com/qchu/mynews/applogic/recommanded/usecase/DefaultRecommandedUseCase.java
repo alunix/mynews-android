@@ -1,9 +1,12 @@
 package com.qchu.mynews.applogic.recommanded.usecase;
 
 import com.qchu.common.Log;
-import com.qchu.mynews.applogic.load.usecase.LoadService;
-import com.qchu.mynews.applogic.load.usecase.LoadStorage;
+import com.qchu.mynews.applogic.common.entity.Article;
+import com.qchu.mynews.applogic.common.storage.ArticleStorage;
+import com.qchu.mynews.applogic.common.storage.OnSaveListener;
+import com.qchu.mynews.applogic.load.entity.Feed;
 import com.qchu.mynews.applogic.load.usecase.LoadUseCase;
+import com.qchu.mynews.applogic.load.usecase.OnLoadListener;
 
 import java.util.List;
 
@@ -16,28 +19,56 @@ import javax.inject.Singleton;
 @Singleton
 public class DefaultRecommandedUseCase implements RecommandedUseCase {
 
-  private final List<String> recommandedRssUrls;
+  private static final String TAG = "DefaultRecommandedUseCase";
   private final LoadUseCase loadUseCase;
+  private final ArticleStorage articleStorage;
   private final Log log;
 
   @Inject
   public DefaultRecommandedUseCase(
-    List<String> recommandedRssUrls,
     LoadUseCase loadUseCase,
-    Log log) {
+    ArticleStorage articleStorage, Log log) {
 
-    this.recommandedRssUrls = recommandedRssUrls;
     this.loadUseCase = loadUseCase;
+    this.articleStorage = articleStorage;
     this.log = log;
   }
 
   @Override
-  public void synchronize() {
+  public void synchronize(String rssUrl) {
 
   }
 
   @Override
-  public void synchronize(OnSynchronizeListener onSynchronizeListener) {
+  public void synchronize(List<String> rssUrls, final OnSynchronizeListener onSynchronizeListener) {
+    if(onSynchronizeListener == null) return;
 
+    loadUseCase.load(rssUrls, new OnLoadListener() {
+      @Override
+      public void onStarted() {
+        onSynchronizeListener.onStart();
+      }
+
+      @Override
+      public void onNext(String rssUrl, Feed feed) {
+        log.d(TAG, "synchronze onNext: "+ feed);
+        articleStorage.save(feed.articles(), new OnSaveListener<Article>() {
+          @Override
+          public void onSave(List<Article> articles) {
+
+          }
+        });
+      }
+
+      @Override
+      public void onError(Throwable error) {
+
+      }
+
+      @Override
+      public void onCompleted() {
+
+      }
+    });
   }
 }

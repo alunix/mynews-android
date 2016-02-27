@@ -43,8 +43,8 @@ public class FeedlySearchService implements SearchService {
 
   @Inject
   public FeedlySearchService(
-    @Named(Constants.SCHEDULER_OBSERVED) Scheduler observedOnScheduler,
-    @Named(Constants.SCHEDULER_SUBSCRIBED) Scheduler subscribedOnScheduler,
+    @Named(Constants.SCHEDULER_MAIN_THREAD) Scheduler observedOnScheduler,
+    @Named(Constants.SCHEDULER_NETWORK) Scheduler subscribedOnScheduler,
     Log log){
 
     this.observedOnScheduler = observedOnScheduler;

@@ -2,14 +2,12 @@ package com.qchu.mynews.common;
 
 import android.app.Application;
 
-import com.qchu.mynews.applogic.load.usecase.OnLoadListener;
-import com.qchu.mynews.applogic.search.entity.Result;
-import com.qchu.mynews.applogic.search.usecase.OnSearchListener;
+import com.qchu.mynews.applogic.recommanded.usecase.OnSynchronizeListener;
 import com.qchu.mynews.common.dagger.AppComponent;
 import com.qchu.mynews.common.dagger.DaggerAppComponent;
 import com.qchu.mynews.common.dagger.module.AppModule;
 
-import java.util.List;
+import autovalue.shaded.com.google.common.common.collect.Lists;
 
 /**
  * Created by Quoc Dung Chu on 31/12/15.
@@ -27,7 +25,26 @@ public class MNApplication extends Application {
       .appModule(new AppModule(this))
       .build();
 
-    appComponent.searchUseCase().search("thethaovanhoa", new OnSearchListener() {
+    appComponent().recommandedUseCase().synchronize(
+      Lists.newArrayList("http://thethaovanhoa.vn/trang-chu.rss"),
+      new OnSynchronizeListener() {
+        @Override
+        public void onStart() {
+
+        }
+
+        @Override
+        public void onNext() {
+
+        }
+
+        @Override
+        public void onFinish() {
+
+        }
+      });
+
+    /*appComponent.searchUseCase().search("thethaovanhoa", new OnSearchListener() {
       @Override
       public void onStarted() {
         List<Result> results = appComponent.searchUseCase().resultsUntilNow(1);
@@ -49,9 +66,9 @@ public class MNApplication extends Application {
         List<Result> results = appComponent.searchUseCase().resultsUntilNow(1);
         appComponent.log().d(TAG, "onCompleted  " + results.size());
       }
-    });
+    });*/
 
-    appComponent.loadUseCase().load("http://thethaovanhoa.vn/trang-chu.rss", new OnLoadListener() {
+    /*appComponent.loadUseCase().load("http://thethaovanhoa.vn/trang-chu.rss", new OnLoadListener() {
       @Override
       public void onStarted() {
 
@@ -71,7 +88,9 @@ public class MNApplication extends Application {
       public void onCompleted() {
 
       }
-    });
+    });*/
+
+
   }
 
   public AppComponent appComponent() {

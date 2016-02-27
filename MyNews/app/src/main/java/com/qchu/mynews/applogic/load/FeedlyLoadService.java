@@ -14,7 +14,6 @@ import com.qchu.mynews.common.util.ListUtils;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
-import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -32,19 +31,18 @@ import rx.functions.Func1;
 public class FeedlyLoadService implements LoadService {
   private static final String TAG = "FeedlyLoadService";
 
-  private final Scheduler observedOnScheduler;
-  private final Scheduler subscribedOnScheduler;
+  private final Scheduler networkScheduler;
+  private final Scheduler mainThreadScheduler;
   private final Log log;
-  private DateFormat dateFormat;
 
   @Inject
   public FeedlyLoadService(
-    @Named(Constants.SCHEDULER_OBSERVED) Scheduler observedOnScheduler,
-    @Named(Constants.SCHEDULER_SUBSCRIBED) Scheduler subscribedOnScheduler,
+    @Named(Constants.SCHEDULER_NETWORK) Scheduler networkScheduler,
+    @Named(Constants.SCHEDULER_MAIN_THREAD) Scheduler mainThreadScheduler,
     Log log){
 
-    this.observedOnScheduler = observedOnScheduler;
-    this.subscribedOnScheduler = subscribedOnScheduler;
+    this.networkScheduler = networkScheduler;
+    this.mainThreadScheduler = mainThreadScheduler;
     this.log = log;
   }
 
@@ -55,8 +53,8 @@ public class FeedlyLoadService implements LoadService {
     onLoadListener.onStarted();
 
     downloadingObservable(rssUrl)
-      .observeOn(observedOnScheduler)
-      .subscribeOn(subscribedOnScheduler)
+      .observeOn(networkScheduler)
+      .subscribeOn(mainThreadScheduler)
       .flatMap(mappingFunc())
       .subscribe(new Subscriber<Feed>() {
         @Override
@@ -82,8 +80,8 @@ public class FeedlyLoadService implements LoadService {
 
     onLoadListener.onStarted();
     Observable.from(rssUrls)
-      .observeOn(observedOnScheduler)
-      .subscribeOn(subscribedOnScheduler)
+      .observeOn(networkScheduler)
+      .subscribeOn(mainThreadScheduler)
       .flatMap(downloadingFunc())
       .flatMap(mappingFunc())
       .subscribe(new Subscriber<Feed>() {
