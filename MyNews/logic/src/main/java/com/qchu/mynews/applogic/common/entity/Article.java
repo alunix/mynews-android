@@ -21,7 +21,8 @@ public abstract class Article {
   @Nullable public abstract String contentSnippet();
   @Nullable public abstract String content();
   @Nullable public abstract Date publishedDate();
-  public abstract Channel channel();
+  //public abstract Channel channel();
+  @Nullable public abstract String channelRssUrl();
 
   @AutoValue.Builder
   public abstract static class Builder {
@@ -31,7 +32,7 @@ public abstract class Article {
     public abstract Builder contentSnippet (String contentSnippet);
     public abstract Builder content (String content);
     public abstract Builder publishedDate (Date publishedDate);
-    public abstract Builder channel (Channel channel);
+    public abstract Builder channelRssUrl (String channelRssUrl);
     public abstract Article build();
   }
 }

@@ -1,15 +1,18 @@
 package com.qchu.mynews.applogic.load;
 
+import com.google.common.base.Function;
 import com.google.common.collect.Collections2;
+import com.google.common.collect.Lists;
 import com.qchu.feedly.load.parsed.stream.ParsedItem;
 import com.qchu.feedly.load.parsed.stream.ParsedLoadStreamRoot;
 import com.qchu.mynews.applogic.common.entity.Article;
-import com.qchu.mynews.applogic.common.entity.Channel;
 import com.qchu.mynews.applogic.load.entity.Feed;
-import com.qchu.mynews.common.util.Lists;
+import com.qchu.mynews.common.util.ListUtils;
 
 import java.util.Date;
 import java.util.List;
+
+import javax.annotation.Nullable;
 
 /**
  * Created by Quoc Dung Chu on 27/02/16.
@@ -17,38 +20,41 @@ import java.util.List;
 public class FeedlyMappings {
 
   public static Feed feedFrom(
-    String rssUrl,
     ParsedLoadStreamRoot parsedLoadStreamRoot,
     Date feedAtDate){
 
     if(parsedLoadStreamRoot == null) return null;
 
+    final String rssUrl = parsedLoadStreamRoot.getRssUrl();
 
+    List<Article> articles = Lists.newArrayList(
+      Collections2.transform(parsedLoadStreamRoot.getItems(),
+        new Function<ParsedItem, Article>() {
+          @Nullable
+          @Override
+          public Article apply(ParsedItem parsedItem) {
+            return articlesFrom(rssUrl, parsedItem);
+          }
+        }));
 
-
-    Feed feed = Feed.builder()
+    return Feed.builder()
       .rssUrl(rssUrl)
       .feedAtDate(feedAtDate)
+      .articles(articles)
       .build();
-
-    return feed;
   }
 
-  private Article articlesFrom(ParsedItem parsedItem){
+  private static Article articlesFrom(String rssUrl, ParsedItem parsedItem){
 
     return Article.builder()
-      .link(Lists.isNullOrEmpty(parsedItem.getAlternates()) ?
-        null:
+      .link(ListUtils.isNullOrEmpty(parsedItem.getAlternates()) ? null:
         parsedItem.getAlternates().get(0).getHref())
       .title(parsedItem.getTitle())
       .author(parsedItem.getAuthor())
-      .contentSnippet(parsedItem.getSummary() == null ?
-        null:
-        parsedItem.getSummary().getContent())
-      .content(parsedItem.getContent() == null ?
-        null:
-        parsedItem.getContent().getContent())
-      //.publishedDate()
+      .contentSnippet(parsedItem.getSummary() == null ? null: parsedItem.getSummary().getContent())
+      .content(parsedItem.getContent() == null ? null: parsedItem.getContent().getContent())
+      .publishedDate(parsedItem.getPublished())
+      .channelRssUrl(rssUrl)
       .build();
 
   }

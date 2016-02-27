@@ -153,7 +153,8 @@ public class RssLoadService implements LoadService {
       .contentSnippet(parsedItem.getDescription())
       .content(parsedItem.getContent())
       .publishedDate(publishedDate)
-      .channel(channel)
+      //.channel(channel)
+      .channelRssUrl(channel.rssUrl())
       .build();
   }
 

@@ -159,7 +159,8 @@ public class GoogleFeedLoadService implements LoadService {
       .contentSnippet(parsedEntry.getContentSnippet())
       .content(parsedEntry.getContent())
       .publishedDate(publishedDate)
-      .channel(channel)
+      //.channel(channel)
+      .channelRssUrl(channel.rssUrl())
       .build();
   }
 

@@ -1,5 +1,6 @@
 package com.qchu.mynews.common.dagger.module;
 
+import com.qchu.mynews.applogic.load.FeedlyLoadService;
 import com.qchu.mynews.applogic.load.RssLoadService;
 import com.qchu.mynews.applogic.load.usecase.LoadService;
 
@@ -19,8 +20,13 @@ public class LoadServiceModule {
     return service;
   }*/
 
-  @Provides @Singleton
+  /*@Provides @Singleton
   LoadService provideLoadService(RssLoadService service){
+    return service;
+  }*/
+
+  @Provides @Singleton
+  LoadService provideLoadService(FeedlyLoadService service){
     return service;
   }
 }

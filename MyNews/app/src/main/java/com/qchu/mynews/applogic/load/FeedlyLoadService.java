@@ -2,6 +2,7 @@ package com.qchu.mynews.applogic.load;
 
 import com.google.common.base.Strings;
 import com.qchu.common.Log;
+import com.qchu.feedly.Converter;
 import com.qchu.feedly.FeedlyApi;
 import com.qchu.feedly.load.parsed.stream.ParsedLoadStreamRoot;
 import com.qchu.mynews.BuildConfig;
@@ -9,11 +10,12 @@ import com.qchu.mynews.applogic.Constants;
 import com.qchu.mynews.applogic.load.entity.Feed;
 import com.qchu.mynews.applogic.load.usecase.LoadService;
 import com.qchu.mynews.applogic.load.usecase.OnLoadListener;
-import com.qchu.mynews.common.util.Lists;
+import com.qchu.mynews.common.util.ListUtils;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
 import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -28,6 +30,7 @@ import rx.functions.Func1;
  * Created by Quoc Dung Chu on 27/02/16.
  */
 public class FeedlyLoadService implements LoadService {
+  private static final String TAG = "FeedlyLoadService";
 
   private final Scheduler observedOnScheduler;
   private final Scheduler subscribedOnScheduler;
@@ -75,7 +78,7 @@ public class FeedlyLoadService implements LoadService {
 
   @Override
   public void load(List<String> rssUrls, final OnLoadListener onLoadListener) {
-    if(Lists.isNullOrEmpty(rssUrls) || onLoadListener == null) return;
+    if(ListUtils.isNullOrEmpty(rssUrls) || onLoadListener == null) return;
 
     onLoadListener.onStarted();
     Observable.from(rssUrls)
@@ -113,14 +116,14 @@ public class FeedlyLoadService implements LoadService {
   private Observable<ParsedLoadStreamRoot> downloadingObservable(String rssUrl){
     return FeedlyApi.buildRetrofit(client())
       .create(com.qchu.feedly.load.LoadService.class)
-      .loadStream(rssUrl);
+      .loadStream(Converter.feedIdFrom(rssUrl));
   }
 
   private Func1<ParsedLoadStreamRoot, Observable<Feed>> mappingFunc() {
     return new Func1<ParsedLoadStreamRoot, Observable<Feed>>() {
       @Override
       public Observable<Feed> call(ParsedLoadStreamRoot parsedLoadStreamRoot) {
-        return null;
+        return Observable.just(FeedlyMappings.feedFrom(parsedLoadStreamRoot, new Date()));
       }
     };
   }
