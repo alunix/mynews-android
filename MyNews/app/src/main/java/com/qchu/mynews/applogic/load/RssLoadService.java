@@ -108,6 +108,11 @@ public class RssLoadService implements LoadService {
       });
   }
 
+  @Override
+  public void load(List<String> rssUrls, OnLoadListener onLoadListener) {
+
+  }
+
   private Feed feedFrom(String rssUrl, ParsedChannel parsedChannel){
     if(parsedChannel == null) return null;
 
@@ -126,7 +131,7 @@ public class RssLoadService implements LoadService {
 
     return Feed.builder()
       .rssUrl(rssUrl)
-      .channel(channel)
+      //.channel(channel)
       .articles(articles)
       .feedAtDate(new Date())
       .build();

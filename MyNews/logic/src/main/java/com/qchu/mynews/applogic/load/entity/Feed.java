@@ -21,14 +21,14 @@ public abstract class Feed {
   public abstract String rssUrl();
   public abstract Date feedAtDate();
   public abstract List<Article> articles();
-  public abstract Channel channel();
+  //public abstract Channel channel();
 
   @AutoValue.Builder
   public abstract static class Builder {
     public abstract Builder rssUrl (String rssUrl);
     public abstract Builder feedAtDate (Date feedAtDate);
     public abstract Builder articles (List<Article> articles);
-    public abstract Builder channel (Channel channel);
+    //public abstract Builder channel (Channel channel);
     public abstract Feed build();
   }
 }

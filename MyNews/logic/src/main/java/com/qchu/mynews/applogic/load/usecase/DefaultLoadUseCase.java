@@ -4,6 +4,8 @@ import com.qchu.common.Connectivity;
 import com.qchu.common.Log;
 import com.qchu.mynews.applogic.load.entity.Feed;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -73,5 +75,10 @@ public class DefaultLoadUseCase implements LoadUseCase {
         onLoadListener.onCompleted();
       }
     }
+  }
+
+  @Override
+  public void load(List<String> rssUrls, OnLoadListener onLoadListener) {
+
   }
 }

@@ -106,6 +106,11 @@ public class GoogleFeedLoadService implements LoadService {
       });
   }
 
+  @Override
+  public void load(List<String> rssUrls, OnLoadListener onLoadListener) {
+
+  }
+
   private Feed feedFrom(ParsedLoadRoot parsedLoadRoot){
     if(parsedLoadRoot == null
       || parsedLoadRoot.getData() == null
@@ -132,7 +137,7 @@ public class GoogleFeedLoadService implements LoadService {
 
     return Feed.builder()
       .rssUrl(parsedFeed.getFeedUrl())
-      .channel(channel)
+      //.channel(channel)
       .articles(articles)
       .feedAtDate(new Date())
       .build();
