@@ -20,11 +20,12 @@ import autovalue.shaded.com.google.common.common.collect.Lists;
 public class FeedlyMappings {
 
   public static Result resultFrom (String keyword, ParsedSearchRoot parsedSearchRoot){
-    List<Channel> channels = Lists.newArrayList(Collections2.transform(parsedSearchRoot.getResults(), new Function<ParsedResult, Channel>() {
-      @Nullable @Override public Channel apply(ParsedResult parsedResult) {
-        return channelFrom(parsedResult);
-      }
-    }));
+    List<Channel> channels = Lists.newArrayList(Collections2.transform(parsedSearchRoot.getResults(),
+      new Function<ParsedResult, Channel>() {
+        @Nullable @Override public Channel apply(ParsedResult parsedResult) {
+          return channelFrom(parsedResult);
+        }
+      }));
 
     return Result.builder()
       .keyword(keyword)
