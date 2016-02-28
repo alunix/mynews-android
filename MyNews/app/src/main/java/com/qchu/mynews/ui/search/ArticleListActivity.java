@@ -1,17 +1,12 @@
 package com.qchu.mynews.ui.search;
 
-import android.content.Context;
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 
 import com.qchu.mynews.R;
 import com.qchu.mynews.applogic.load.entity.Feed;
 import com.qchu.mynews.applogic.load.usecase.OnLoadListener;
 import com.qchu.mynews.ui.common.BaseActivity;
-
-import java.net.URL;
 
 import javax.annotation.Nullable;
 

@@ -2,7 +2,6 @@ package com.qchu.mynews.common;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 /**
  * Created by Quoc Dung Chu on 01/01/16.

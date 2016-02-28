@@ -1,7 +1,7 @@
 package com.qchu.mynews.common.dagger.module;
 
-import com.qchu.mynews.applogic.common.storage.DefaultArticleStorage;
 import com.qchu.mynews.applogic.common.storage.ArticleStorage;
+import com.qchu.mynews.applogic.common.storage.DefaultArticleStorage;
 import com.qchu.mynews.applogic.search.storage.DefaultSearchStorage;
 import com.qchu.mynews.applogic.search.storage.SearchStorage;
 

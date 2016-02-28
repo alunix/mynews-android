@@ -1,16 +1,13 @@
 package com.qchu.mynews.applogic.database.model;
 
 import com.google.common.base.MoreObjects;
-import com.google.common.collect.Table;
 import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
-import com.qchu.mynews.applogic.common.entity.Channel;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Quoc Dung Chu on 01/01/16.

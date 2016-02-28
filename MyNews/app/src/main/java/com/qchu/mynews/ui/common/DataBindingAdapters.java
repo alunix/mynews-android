@@ -3,7 +3,6 @@ package com.qchu.mynews.ui.common;
 import android.databinding.BindingAdapter;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
