@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.common.base.Strings;
-import com.qchu.mynews.common.Converters;
+import com.qchu.mynews.common.dagger.utils.Converters;
 import com.squareup.picasso.Picasso;
 
 import java.util.Date;
