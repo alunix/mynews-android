@@ -27,7 +27,36 @@ public class MNApplication extends Application {
       .build();
 
     appComponent().recommandedUseCase().synchronize(
-      Lists.newArrayList("http://thethaovanhoa.vn/trang-chu.rss"),
+      Lists.newArrayList(
+        "http://thethaovanhoa.vn/trang-chu.rss",
+        "http://thethaovanhoa.vn/anh.rss",
+        "http://thethaovanhoa.vn/tay-ban-nha.rss",
+        "http://thethaovanhoa.vn/duc.rss",
+        "http://thethaovanhoa.vn/italy.rss",
+        "http://thethaovanhoa.vn/champions-league.rss"
+      ),
+      Priority.WHEN_EVER,
+      new OnSynchronizeListener() {
+        @Override
+        public void onStart() {
+
+        }
+
+        @Override
+        public void onNext() {
+
+        }
+
+        @Override
+        public void onFinish() {
+
+        }
+      });
+
+    appComponent().recommandedUseCase().synchronize(
+      Lists.newArrayList(
+        "http://thethaovanhoa.vn/dien-dan-van-hoa.rss"
+      ),
       Priority.IMMEDIATE,
       new OnSynchronizeListener() {
         @Override
