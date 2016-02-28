@@ -1,5 +1,6 @@
 package com.qchu.mynews.applogic.database.model;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.collect.Table;
 import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DataType;
@@ -46,5 +47,14 @@ public class DbResult {
 
   public ForeignCollection<DbResultChannel> getResultChannels() {
     return resultChannels;
+  }
+
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this)
+      .add("keyword", keyword)
+      .add("searchedDate", searchedDate)
+      .add("resultChannels", resultChannels)
+      .toString();
   }
 }

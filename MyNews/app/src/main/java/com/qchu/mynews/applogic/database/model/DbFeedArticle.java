@@ -1,5 +1,6 @@
 package com.qchu.mynews.applogic.database.model;
 
+import com.google.common.base.MoreObjects;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -33,5 +34,14 @@ public class DbFeedArticle {
 
   public void setFeed(DbFeed feed) {
     this.feed = feed;
+  }
+
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this)
+      .add("id", id)
+      .add("article", article)
+      .add("feed", feed)
+      .toString();
   }
 }

@@ -1,5 +1,6 @@
 package com.qchu.mynews.applogic.database.model;
 
+import com.google.common.base.MoreObjects;
 import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
@@ -54,5 +55,15 @@ public class DbFeed {
 
   public ForeignCollection<DbFeedArticle> getFeedArticles() {
     return feedArticles;
+  }
+
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this)
+      .add("rssUrl", rssUrl)
+      .add("feedAtDate", feedAtDate)
+      .add("channel", channel)
+      .add("feedArticles", feedArticles)
+      .toString();
   }
 }

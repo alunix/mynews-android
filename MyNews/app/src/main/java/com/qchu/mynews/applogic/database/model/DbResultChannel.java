@@ -1,5 +1,6 @@
 package com.qchu.mynews.applogic.database.model;
 
+import com.google.common.base.MoreObjects;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -35,5 +36,14 @@ public class DbResultChannel {
 
   public void setResult(DbResult result) {
     this.result = result;
+  }
+
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this)
+      .add("id", id)
+      .add("channel", channel)
+      .add("result", result)
+      .toString();
   }
 }
