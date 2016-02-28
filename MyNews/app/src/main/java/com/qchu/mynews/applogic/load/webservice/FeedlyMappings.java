@@ -7,7 +7,7 @@ import com.qchu.feedly.load.parsed.stream.ParsedItem;
 import com.qchu.feedly.load.parsed.stream.ParsedLoadStreamRoot;
 import com.qchu.mynews.applogic.common.entity.Article;
 import com.qchu.mynews.applogic.load.entity.Feed;
-import com.qchu.mynews.common.util.ListUtils;
+import com.qchu.common.utils.ListUtils;
 
 import java.util.Date;
 import java.util.List;

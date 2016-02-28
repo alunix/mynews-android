@@ -1,6 +1,6 @@
 package com.qchu.mynews.applogic.search.webservice;
 
-import com.qchu.common.Log;
+import com.qchu.common.utils.Log;
 import com.qchu.feedly.FeedlyApi;
 import com.qchu.feedly.search.parsed.ParsedSearchRoot;
 import com.qchu.mynews.BuildConfig;

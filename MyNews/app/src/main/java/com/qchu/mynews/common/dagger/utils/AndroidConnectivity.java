@@ -4,7 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.qchu.common.Connectivity;
+import com.qchu.common.utils.Connectivity;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

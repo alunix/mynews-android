@@ -1,6 +1,6 @@
 package com.qchu.mynews.applogic.search.usecase;
 
-import com.qchu.common.Log;
+import com.qchu.common.utils.Log;
 import com.qchu.mynews.applogic.search.entity.Result;
 import com.qchu.mynews.applogic.search.webservice.SearchWebService;
 

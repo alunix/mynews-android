@@ -1,6 +1,6 @@
 package com.qchu.mynews.applogic.recommanded.usecase;
 
-import com.qchu.common.Log;
+import com.qchu.common.utils.Log;
 import com.qchu.mynews.applogic.common.entity.Article;
 import com.qchu.mynews.applogic.common.storage.ArticleStorage;
 import com.qchu.mynews.applogic.common.storage.OnSaveListener;

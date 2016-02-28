@@ -1,6 +1,6 @@
 package com.qchu.mynews.common.dagger;
 
-import com.qchu.common.Log;
+import com.qchu.common.utils.Log;
 import com.qchu.mynews.applogic.load.usecase.LoadUseCase;
 import com.qchu.mynews.applogic.recommanded.usecase.RecommandedUseCase;
 import com.qchu.mynews.applogic.search.usecase.SearchUseCase;

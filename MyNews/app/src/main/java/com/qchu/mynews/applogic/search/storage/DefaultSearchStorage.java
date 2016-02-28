@@ -2,7 +2,7 @@ package com.qchu.mynews.applogic.search.storage;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Collections2;
-import com.qchu.common.Log;
+import com.qchu.common.utils.Log;
 import com.qchu.mynews.applogic.common.entity.Channel;
 import com.qchu.mynews.applogic.common.storage.BaseStorage;
 import com.qchu.mynews.applogic.database.OrmliteHelper;

@@ -1,4 +1,4 @@
-package com.qchu.common;
+package com.qchu.common.utils;
 
 /**
  * Created by Quoc Dung Chu on 01/01/16.

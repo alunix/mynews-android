@@ -1,8 +1,8 @@
 package com.qchu.mynews.common.dagger.module;
 
-import com.qchu.common.BroadcastCenter;
-import com.qchu.common.Connectivity;
-import com.qchu.common.Log;
+import com.qchu.common.utils.BroadcastCenter;
+import com.qchu.common.utils.Connectivity;
+import com.qchu.common.utils.Log;
 import com.qchu.mynews.common.dagger.utils.AndroidBroadcastCenter;
 import com.qchu.mynews.common.dagger.utils.AndroidConnectivity;
 import com.qchu.mynews.common.dagger.utils.AndroidLog;

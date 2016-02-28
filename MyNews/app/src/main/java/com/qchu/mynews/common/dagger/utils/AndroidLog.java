@@ -1,6 +1,6 @@
 package com.qchu.mynews.common.dagger.utils;
 
-import com.qchu.common.Log;
+import com.qchu.common.utils.Log;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

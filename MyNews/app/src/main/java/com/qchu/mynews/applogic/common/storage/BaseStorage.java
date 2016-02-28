@@ -1,6 +1,6 @@
 package com.qchu.mynews.applogic.common.storage;
 
-import com.qchu.common.Log;
+import com.qchu.common.utils.Log;
 import com.qchu.mynews.applogic.database.OrmliteHelper;
 
 /**

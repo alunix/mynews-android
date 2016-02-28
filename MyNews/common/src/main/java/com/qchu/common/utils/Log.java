@@ -1,4 +1,4 @@
-package com.qchu.common;
+package com.qchu.common.utils;
 
 public interface Log {
   void d (String tag, String message);

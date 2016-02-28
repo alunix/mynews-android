@@ -1,4 +1,4 @@
-package com.qchu.mynews.common.util;
+package com.qchu.common.utils;
 
 import java.util.List;
 

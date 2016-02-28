@@ -3,7 +3,7 @@ package com.qchu.mynews.common.dagger.utils;
 import android.content.Context;
 import android.content.Intent;
 
-import com.qchu.common.BroadcastCenter;
+import com.qchu.common.utils.BroadcastCenter;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

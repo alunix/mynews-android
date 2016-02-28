@@ -1,7 +1,7 @@
 package com.qchu.mynews.applogic.load.usecase;
 
-import com.qchu.common.Connectivity;
-import com.qchu.common.Log;
+import com.qchu.common.utils.Connectivity;
+import com.qchu.common.utils.Log;
 import com.qchu.mynews.applogic.load.entity.Feed;
 import com.qchu.mynews.applogic.load.webservice.LoadWebService;
 
