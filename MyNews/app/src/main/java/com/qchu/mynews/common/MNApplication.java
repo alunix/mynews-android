@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.qchu.mynews.applogic.common.Priority;
 import com.qchu.mynews.applogic.common.entity.Article;
+import com.qchu.mynews.applogic.recommanded.usecase.Configs;
 import com.qchu.mynews.applogic.recommanded.usecase.OnSynchronizeListener;
 import com.qchu.mynews.common.dagger.AppComponent;
 import com.qchu.mynews.common.dagger.DaggerAppComponent;
@@ -30,14 +31,7 @@ public class MNApplication extends Application {
       .build();
 
     appComponent().recommandedUseCase().synchronize(
-      Lists.newArrayList(
-        "http://thethaovanhoa.vn/trang-chu.rss",
-        "http://thethaovanhoa.vn/anh.rss",
-        "http://thethaovanhoa.vn/tay-ban-nha.rss",
-        "http://thethaovanhoa.vn/duc.rss",
-        "http://thethaovanhoa.vn/italy.rss",
-        "http://thethaovanhoa.vn/champions-league.rss"
-      ),
+      Configs.RECOMMANDED_RSS_URLS,
       Priority.WHENEVER,
       new OnSynchronizeListener() {
         @Override
