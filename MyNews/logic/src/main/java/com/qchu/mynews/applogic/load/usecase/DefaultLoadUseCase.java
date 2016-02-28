@@ -3,6 +3,7 @@ package com.qchu.mynews.applogic.load.usecase;
 import com.qchu.common.Connectivity;
 import com.qchu.common.Log;
 import com.qchu.mynews.applogic.load.entity.Feed;
+import com.qchu.mynews.applogic.load.webservice.LoadWebService;
 
 import java.util.List;
 
@@ -15,19 +16,19 @@ import javax.inject.Singleton;
 @Singleton
 public class DefaultLoadUseCase implements LoadUseCase {
 
-  private final LoadService loadService;
-  private final LoadStorage loadStorage;
+  private final LoadWebService loadWebService;
+  private final com.qchu.mynews.applogic.load.storage.LoadStorage loadStorage;
   private final Connectivity connectivity;
   private final Log log;
 
   @Inject
   public DefaultLoadUseCase(
-    LoadService loadService,
-    LoadStorage loadStorage,
+    LoadWebService loadWebService,
+    com.qchu.mynews.applogic.load.storage.LoadStorage loadStorage,
     Connectivity connectivity,
     Log log) {
 
-    this.loadService = loadService;
+    this.loadWebService = loadWebService;
     this.loadStorage = loadStorage;
     this.connectivity = connectivity;
     this.log = log;
@@ -37,7 +38,7 @@ public class DefaultLoadUseCase implements LoadUseCase {
   public void load(final String rssUrl, final OnLoadListener onLoadListener) {
 
     if(connectivity.isConnected()){
-      loadService.load(rssUrl, new OnLoadListener() {
+      loadWebService.load(rssUrl, new OnLoadListener() {
         @Override
         public void onStarted() {
           if(onLoadListener != null) {
@@ -76,7 +77,7 @@ public class DefaultLoadUseCase implements LoadUseCase {
   public void load(List<String> rssUrls, final OnLoadListener onLoadListener) {
 
     if(connectivity.isConnected()){
-      loadService.load(rssUrls, new OnLoadListener() {
+      loadWebService.load(rssUrls, new OnLoadListener() {
         @Override
         public void onStarted() {
           if(onLoadListener != null) {

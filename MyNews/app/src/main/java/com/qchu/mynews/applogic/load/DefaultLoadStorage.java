@@ -4,7 +4,7 @@ import com.qchu.common.Log;
 import com.qchu.mynews.applogic.common.BaseStorage;
 import com.qchu.mynews.applogic.database.OrmliteHelper;
 import com.qchu.mynews.applogic.load.entity.Feed;
-import com.qchu.mynews.applogic.load.usecase.LoadStorage;
+import com.qchu.mynews.applogic.load.storage.LoadStorage;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

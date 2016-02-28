@@ -1,7 +1,7 @@
 package com.qchu.mynews.common.dagger.module;
 
-import com.qchu.mynews.applogic.load.FeedlyLoadService;
-import com.qchu.mynews.applogic.load.usecase.LoadService;
+import com.qchu.mynews.applogic.load.FeedlyLoadWebService;
+import com.qchu.mynews.applogic.load.webservice.LoadWebService;
 
 import javax.inject.Singleton;
 
@@ -15,7 +15,7 @@ import dagger.Provides;
 public class LoadServiceModule {
 
   @Provides @Singleton
-  LoadService provideLoadService(FeedlyLoadService service){
+  LoadWebService provideLoadService(FeedlyLoadWebService service){
     return service;
   }
 }

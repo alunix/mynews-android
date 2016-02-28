@@ -1,11 +1,10 @@
 package com.qchu.mynews.common.dagger.module;
 
-import com.google.common.collect.Lists;
 import com.qchu.mynews.applogic.common.DefaultArticleStorage;
 import com.qchu.mynews.applogic.common.storage.ArticleStorage;
 import com.qchu.mynews.applogic.load.DefaultLoadStorage;
 import com.qchu.mynews.applogic.load.usecase.DefaultLoadUseCase;
-import com.qchu.mynews.applogic.load.usecase.LoadStorage;
+import com.qchu.mynews.applogic.load.storage.LoadStorage;
 import com.qchu.mynews.applogic.load.usecase.LoadUseCase;
 import com.qchu.mynews.applogic.recommanded.usecase.DefaultRecommandedUseCase;
 import com.qchu.mynews.applogic.recommanded.usecase.RecommandedUseCase;
@@ -13,8 +12,6 @@ import com.qchu.mynews.applogic.search.DefaultSearchStorage;
 import com.qchu.mynews.applogic.search.usecase.DefaultSearchUseCase;
 import com.qchu.mynews.applogic.search.usecase.SearchStorage;
 import com.qchu.mynews.applogic.search.usecase.SearchUseCase;
-
-import java.util.List;
 
 import javax.inject.Singleton;
 
