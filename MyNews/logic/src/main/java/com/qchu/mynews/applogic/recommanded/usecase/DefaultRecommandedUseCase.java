@@ -52,7 +52,7 @@ public class DefaultRecommandedUseCase implements RecommandedUseCase {
 
       @Override
       public void onNext(String rssUrl, Feed feed) {
-        log.d(TAG, "synchronze onNext: "+ feed);
+        log.d(TAG, "synchronize onNext: "+ feed);
         articleStorage.save(feed.articles(), new OnSaveListener<Article>() {
           @Override
           public void onSave(List<Article> articles) {
