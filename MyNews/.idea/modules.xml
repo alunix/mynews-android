@@ -6,9 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/feedly/feedly.iml" filepath="$PROJECT_DIR$/feedly/feedly.iml" />
-      <module fileurl="file://$PROJECT_DIR$/googlefeed/googlefeed.iml" filepath="$PROJECT_DIR$/googlefeed/googlefeed.iml" />
       <module fileurl="file://$PROJECT_DIR$/logic/logic.iml" filepath="$PROJECT_DIR$/logic/logic.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rss/rss.iml" filepath="$PROJECT_DIR$/rss/rss.iml" />
     </modules>
   </component>
 </project>

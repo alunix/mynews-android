@@ -1,1 +1,1 @@
-include ':app', ':logic', ':googlefeed', ':common', ':rss', ':feedly'
+include ':app', ':logic', ':common', ':feedly'

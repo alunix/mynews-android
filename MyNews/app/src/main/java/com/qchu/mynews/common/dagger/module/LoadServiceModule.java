@@ -1,7 +1,6 @@
 package com.qchu.mynews.common.dagger.module;
 
 import com.qchu.mynews.applogic.load.FeedlyLoadService;
-import com.qchu.mynews.applogic.load.RssLoadService;
 import com.qchu.mynews.applogic.load.usecase.LoadService;
 
 import javax.inject.Singleton;

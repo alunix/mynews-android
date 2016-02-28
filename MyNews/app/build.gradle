@@ -34,8 +34,6 @@ dependencies {
 
     compile project(':common')
     compile project(':logic')
-    compile project(':googlefeed')
-    compile project(':rss')
     compile project(':feedly')
 
     //Intent builder
