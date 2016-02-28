@@ -2,9 +2,7 @@ package com.qchu.mynews.common.dagger.module;
 
 import com.qchu.mynews.applogic.common.DefaultArticleStorage;
 import com.qchu.mynews.applogic.common.storage.ArticleStorage;
-import com.qchu.mynews.applogic.load.DefaultLoadStorage;
 import com.qchu.mynews.applogic.load.usecase.DefaultLoadUseCase;
-import com.qchu.mynews.applogic.load.storage.LoadStorage;
 import com.qchu.mynews.applogic.load.usecase.LoadUseCase;
 import com.qchu.mynews.applogic.recommanded.usecase.DefaultRecommandedUseCase;
 import com.qchu.mynews.applogic.recommanded.usecase.RecommandedUseCase;
@@ -36,11 +34,6 @@ public class UseCaseModule {
   @Provides @Singleton
   SearchStorage provideSearchStorage(DefaultSearchStorage defaultSearchStorage){
     return defaultSearchStorage;
-  }
-
-  @Provides @Singleton
-  LoadStorage provideLoadStorage(DefaultLoadStorage defaultLoadStorage){
-    return defaultLoadStorage;
   }
 
   @Provides @Singleton

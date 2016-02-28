@@ -17,19 +17,16 @@ import javax.inject.Singleton;
 public class DefaultLoadUseCase implements LoadUseCase {
 
   private final LoadWebService loadWebService;
-  private final com.qchu.mynews.applogic.load.storage.LoadStorage loadStorage;
   private final Connectivity connectivity;
   private final Log log;
 
   @Inject
   public DefaultLoadUseCase(
     LoadWebService loadWebService,
-    com.qchu.mynews.applogic.load.storage.LoadStorage loadStorage,
     Connectivity connectivity,
     Log log) {
 
     this.loadWebService = loadWebService;
-    this.loadStorage = loadStorage;
     this.connectivity = connectivity;
     this.log = log;
   }
@@ -48,7 +45,6 @@ public class DefaultLoadUseCase implements LoadUseCase {
 
         @Override
         public void onNext(String rssUrl, Feed feed) {
-          loadStorage.save(feed);
           if(onLoadListener != null) {
             onLoadListener.onNext(rssUrl, feed);
           }
@@ -87,7 +83,6 @@ public class DefaultLoadUseCase implements LoadUseCase {
 
         @Override
         public void onNext(String rssUrl, Feed feed) {
-          loadStorage.save(feed);
           if(onLoadListener != null) {
             onLoadListener.onNext(rssUrl, feed);
           }
