@@ -1,29 +1,19 @@
 package com.qchu.mynews.applogic.search.webservice;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Collections2;
 import com.qchu.common.Log;
 import com.qchu.feedly.FeedlyApi;
-import com.qchu.feedly.search.parsed.ParsedResult;
 import com.qchu.feedly.search.parsed.ParsedSearchRoot;
 import com.qchu.mynews.BuildConfig;
 import com.qchu.mynews.applogic.Constants;
-import com.qchu.mynews.applogic.common.entity.Channel;
 import com.qchu.mynews.applogic.search.entity.Result;
 import com.qchu.mynews.applogic.search.usecase.OnSearchListener;
-import com.qchu.mynews.applogic.search.webservice.SearchWebService;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.annotation.Nullable;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import autovalue.shaded.com.google.common.common.collect.Lists;
 import rx.Observable;
 import rx.Scheduler;
 import rx.Subscriber;
@@ -66,7 +56,7 @@ public class FeedlySearchWebService implements SearchWebService {
       .flatMap(new Func1<ParsedSearchRoot, Observable<Result>>() {
         @Override
         public Observable<Result> call(ParsedSearchRoot parsedSearchRoot) {
-          return Observable.just(resultFrom(keyword, parsedSearchRoot));
+          return Observable.just(FeedlyMappings.resultFrom(keyword, parsedSearchRoot));
         }
       })
       .subscribe(new Subscriber<Result>() {
@@ -110,34 +100,5 @@ public class FeedlySearchWebService implements SearchWebService {
       HttpLoggingInterceptor.Level.NONE);
     client.interceptors().add(logging);
     return client;
-  }
-
-  private Result resultFrom (String keyword, ParsedSearchRoot parsedSearchRoot){
-    List<Channel> channels = Lists.newArrayList(Collections2.transform(parsedSearchRoot.getResults(), new Function<ParsedResult, Channel>() {
-      @Nullable @Override
-      public Channel apply(ParsedResult input) {
-        return channelFrom (input);
-      }
-    }));
-
-    return Result.builder()
-      .keyword(keyword)
-      .channels(channels)
-      .searchedDate(new Date())
-      .build();
-  }
-
-  private Channel channelFrom (ParsedResult parsedResult){
-    if(parsedResult == null) return null;
-
-    return Channel.builder()
-      .title(parsedResult.getTitle())
-      .rssUrl(parsedResult.getFeedId().substring(5)) //remove prefix 'feed/' to obtain the rss
-      .link(parsedResult.getWebsite())
-      .contentSnippet(parsedResult.getDescription())
-      .iconUrl(parsedResult.getIconUrl())
-      .thumbnailUrl(parsedResult.getVisualUrl())
-      .imageUrl(parsedResult.getCoverUrl())
-      .build();
   }
 }
