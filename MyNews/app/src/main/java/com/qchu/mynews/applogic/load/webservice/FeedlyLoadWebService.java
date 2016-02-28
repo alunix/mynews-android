@@ -7,6 +7,7 @@ import com.qchu.feedly.FeedlyApi;
 import com.qchu.feedly.load.parsed.stream.ParsedLoadStreamRoot;
 import com.qchu.mynews.BuildConfig;
 import com.qchu.mynews.applogic.Constants;
+import com.qchu.mynews.applogic.common.Priority;
 import com.qchu.mynews.applogic.load.entity.Feed;
 import com.qchu.mynews.applogic.load.usecase.OnLoadListener;
 import com.qchu.common.utils.ListUtils;
@@ -46,35 +47,7 @@ public class FeedlyLoadWebService implements LoadWebService {
   }
 
   @Override
-  public void load(String rssUrl, final OnLoadListener onLoadListener) {
-    if(Strings.isNullOrEmpty(rssUrl) || onLoadListener == null) return;
-
-    onLoadListener.onStarted();
-
-    downloadingObservable(rssUrl)
-      .observeOn(networkScheduler)
-      .subscribeOn(mainThreadScheduler)
-      .flatMap(mappingFunc())
-      .subscribe(new Subscriber<Feed>() {
-        @Override
-        public void onCompleted() {
-          onLoadListener.onCompleted();
-        }
-
-        @Override
-        public void onError(Throwable error) {
-          onLoadListener.onError(error);
-        }
-
-        @Override
-        public void onNext(Feed feed) {
-          onLoadListener.onNext(feed.rssUrl(), feed);
-        }
-      });
-  }
-
-  @Override
-  public void load(List<String> rssUrls, final OnLoadListener onLoadListener) {
+  public void load(List<String> rssUrls, Priority priority, final OnLoadListener onLoadListener) {
     if(ListUtils.isNullOrEmpty(rssUrls) || onLoadListener == null) return;
 
     onLoadListener.onStarted();
