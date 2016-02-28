@@ -8,5 +8,8 @@ import java.util.List;
  * Created by Quoc Dung Chu on 27/02/16.
  */
 public interface RecommandedUseCase {
-  void synchronize(List<String> rssUrls, OnSynchronizeListener onSynchronizeListener);
+  void synchronize(
+    List<String> rssUrls,
+    Priority priority,
+    OnSynchronizeListener onSynchronizeListener);
 }

@@ -2,6 +2,7 @@ package com.qchu.mynews.common;
 
 import android.app.Application;
 
+import com.qchu.mynews.applogic.common.Priority;
 import com.qchu.mynews.applogic.recommanded.usecase.OnSynchronizeListener;
 import com.qchu.mynews.common.dagger.AppComponent;
 import com.qchu.mynews.common.dagger.DaggerAppComponent;
@@ -27,6 +28,7 @@ public class MNApplication extends Application {
 
     appComponent().recommandedUseCase().synchronize(
       Lists.newArrayList("http://thethaovanhoa.vn/trang-chu.rss"),
+      Priority.IMMEDIATE,
       new OnSynchronizeListener() {
         @Override
         public void onStart() {

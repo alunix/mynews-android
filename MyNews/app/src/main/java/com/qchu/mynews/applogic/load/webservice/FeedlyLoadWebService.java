@@ -20,6 +20,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import me.ronshapiro.rx.priority.PriorityScheduler;
 import rx.Observable;
 import rx.Scheduler;
 import rx.Subscriber;
@@ -31,13 +32,13 @@ import rx.functions.Func1;
 public class FeedlyLoadWebService implements LoadWebService {
   private static final String TAG = "FeedlyLoadWebService";
 
-  private final Scheduler networkScheduler;
+  private final PriorityScheduler networkScheduler;
   private final Scheduler mainThreadScheduler;
   private final Log log;
 
   @Inject
   public FeedlyLoadWebService(
-    @Named(Constants.SCHEDULER_NETWORK) Scheduler networkScheduler,
+    @Named(Constants.SCHEDULER_NETWORK) PriorityScheduler networkScheduler,
     @Named(Constants.SCHEDULER_MAIN_THREAD) Scheduler mainThreadScheduler,
     Log log){
 
@@ -52,7 +53,7 @@ public class FeedlyLoadWebService implements LoadWebService {
 
     onLoadListener.onStarted();
     Observable.from(rssUrls)
-      .observeOn(networkScheduler)
+      .observeOn(networkScheduler.priority(priority.getValue()))
       .subscribeOn(mainThreadScheduler)
       .flatMap(downloadingFunc())
       .flatMap(mappingFunc())

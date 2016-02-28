@@ -1,6 +1,7 @@
 package com.qchu.mynews.applogic.search.usecase;
 
 import com.qchu.common.utils.Log;
+import com.qchu.mynews.applogic.common.Priority;
 import com.qchu.mynews.applogic.search.entity.Result;
 import com.qchu.mynews.applogic.search.webservice.SearchWebService;
 
@@ -37,7 +38,7 @@ public class DefaultSearchUseCase implements SearchUseCase {
 
   @Override
   public void search(String keyword, final OnSearchListener onSearchListener) {
-    searchWebService.search(keyword, new OnSearchListener() {
+    searchWebService.search(keyword, Priority.IMMEDIATE, new OnSearchListener() {
       @Override
       public void onStarted() {
         if(onSearchListener != null){

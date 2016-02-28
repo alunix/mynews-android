@@ -6,6 +6,7 @@ import com.qchu.feedly.search.SearchService;
 import com.qchu.feedly.search.parsed.ParsedSearchRoot;
 import com.qchu.mynews.BuildConfig;
 import com.qchu.mynews.applogic.Constants;
+import com.qchu.mynews.applogic.common.Priority;
 import com.qchu.mynews.applogic.search.entity.Result;
 import com.qchu.mynews.applogic.search.usecase.OnSearchListener;
 import com.squareup.okhttp.OkHttpClient;
@@ -15,6 +16,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
+import me.ronshapiro.rx.priority.PriorityScheduler;
 import rx.Observable;
 import rx.Scheduler;
 import rx.Subscriber;
@@ -29,13 +31,13 @@ public class FeedlySearchWebService implements SearchWebService {
   private static final String TAG = "FeedlySearchWebService";
 
   private final Scheduler mainThreadScheduler;
-  private final Scheduler networkScheduler;
+  private final PriorityScheduler networkScheduler;
   private final Log log;
 
   @Inject
   public FeedlySearchWebService(
     @Named(Constants.SCHEDULER_MAIN_THREAD) Scheduler mainThreadScheduler,
-    @Named(Constants.SCHEDULER_NETWORK) Scheduler networkScheduler,
+    @Named(Constants.SCHEDULER_NETWORK) PriorityScheduler networkScheduler,
     Log log){
 
     this.mainThreadScheduler = mainThreadScheduler;
@@ -44,7 +46,7 @@ public class FeedlySearchWebService implements SearchWebService {
   }
 
   @Override
-  public void search(final String keyword, final OnSearchListener onSearchListener) {
+  public void search(final String keyword, Priority priority, final OnSearchListener onSearchListener) {
     log.d(TAG, "search ...");
     if(onSearchListener != null) {
       onSearchListener.onStarted();
@@ -53,7 +55,7 @@ public class FeedlySearchWebService implements SearchWebService {
     FeedlyApi.buildRetrofit(client()).create(SearchService.class)
       .search(keyword, 100, "fr")
       .observeOn(mainThreadScheduler)
-      .subscribeOn(networkScheduler)
+      .subscribeOn(networkScheduler.priority(priority.getValue()))
       .flatMap(new Func1<ParsedSearchRoot, Observable<Result>>() {
         @Override
         public Observable<Result> call(ParsedSearchRoot parsedSearchRoot) {

@@ -1,6 +1,7 @@
 package com.qchu.mynews.common.dagger.module;
 
 import com.qchu.mynews.applogic.Constants;
+import com.qchu.mynews.applogic.common.Priority;
 
 import java.util.concurrent.Executors;
 
@@ -9,6 +10,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import me.ronshapiro.rx.priority.PriorityScheduler;
 import rx.Scheduler;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -19,19 +21,19 @@ import rx.schedulers.Schedulers;
 @Module
 public class SchedulerModule {
 
-  private Scheduler networkingScheduler;
-  private Scheduler databaseScheduler;
+  private PriorityScheduler networkingScheduler;
+  private PriorityScheduler databaseScheduler;
 
-  private Scheduler networkingScheduler(){
+  private PriorityScheduler networkingScheduler(){
     if(networkingScheduler == null) {
-      networkingScheduler = Schedulers.from(Executors.newFixedThreadPool(4));
+      networkingScheduler = PriorityScheduler.withConcurrency(4);
     }
     return networkingScheduler;
   }
 
-  private Scheduler databaseScheduler(){
+  private PriorityScheduler databaseScheduler(){
     if(databaseScheduler == null) {
-      databaseScheduler = Schedulers.from(Executors.newFixedThreadPool(1));
+      databaseScheduler = PriorityScheduler.withConcurrency(1);
     }
     return databaseScheduler;
   }
@@ -42,12 +44,12 @@ public class SchedulerModule {
   }
 
   @Provides @Singleton @Named(Constants.SCHEDULER_NETWORK)
-  Scheduler provideNetworkScheduler(){
+  PriorityScheduler provideNetworkScheduler(){
     return networkingScheduler();
   }
 
   @Provides @Singleton @Named(Constants.SCHEDULER_DATABASE)
-  Scheduler provideDatabaseScheduler(){
+  PriorityScheduler provideDatabaseScheduler(){
     return databaseScheduler();
   }
 }

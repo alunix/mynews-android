@@ -10,6 +10,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import me.ronshapiro.rx.priority.PriorityScheduler;
 import rx.Scheduler;
 
 /**
@@ -17,14 +18,14 @@ import rx.Scheduler;
  */
 public class DefaultArticleStorage extends BaseStorage implements ArticleStorage{
 
-  private final Scheduler databaseScheduler;
+  private final PriorityScheduler databaseScheduler;
   private final Scheduler mainThreadScheduler;
 
   @Inject
   public DefaultArticleStorage(
     OrmliteHelper ormliteHelper,
     Log log,
-    @Named(Constants.SCHEDULER_DATABASE) Scheduler databaseScheduler,
+    @Named(Constants.SCHEDULER_DATABASE) PriorityScheduler databaseScheduler,
     @Named(Constants.SCHEDULER_MAIN_THREAD) Scheduler mainThreadScheduler) {
 
     super(ormliteHelper, log);
