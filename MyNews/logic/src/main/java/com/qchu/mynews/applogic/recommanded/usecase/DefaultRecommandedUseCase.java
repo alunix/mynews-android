@@ -36,11 +36,6 @@ public class DefaultRecommandedUseCase implements RecommandedUseCase {
   }
 
   @Override
-  public void synchronize(String rssUrl) {
-
-  }
-
-  @Override
   public void synchronize(List<String> rssUrls, final OnSynchronizeListener onSynchronizeListener) {
     if(ListUtils.isNullOrEmpty(rssUrls) || onSynchronizeListener == null) return;
 
