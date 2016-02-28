@@ -1,4 +1,4 @@
-package com.qchu.mynews.applogic.load;
+package com.qchu.mynews.applogic.load.webservice;
 
 import com.google.common.base.Strings;
 import com.qchu.common.Log;
@@ -8,7 +8,6 @@ import com.qchu.feedly.load.parsed.stream.ParsedLoadStreamRoot;
 import com.qchu.mynews.BuildConfig;
 import com.qchu.mynews.applogic.Constants;
 import com.qchu.mynews.applogic.load.entity.Feed;
-import com.qchu.mynews.applogic.load.webservice.LoadWebService;
 import com.qchu.mynews.applogic.load.usecase.OnLoadListener;
 import com.qchu.mynews.common.util.ListUtils;
 import com.squareup.okhttp.OkHttpClient;

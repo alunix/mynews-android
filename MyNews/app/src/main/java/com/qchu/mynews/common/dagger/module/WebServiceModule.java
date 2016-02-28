@@ -1,8 +1,8 @@
 package com.qchu.mynews.common.dagger.module;
 
-import com.qchu.mynews.applogic.load.FeedlyLoadWebService;
+import com.qchu.mynews.applogic.load.webservice.FeedlyLoadWebService;
 import com.qchu.mynews.applogic.load.webservice.LoadWebService;
-import com.qchu.mynews.applogic.search.FeedlySearchWebService;
+import com.qchu.mynews.applogic.search.webservice.FeedlySearchWebService;
 import com.qchu.mynews.applogic.search.webservice.SearchWebService;
 
 import javax.inject.Singleton;

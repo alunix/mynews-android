@@ -1,4 +1,4 @@
-package com.qchu.mynews.applogic.load;
+package com.qchu.mynews.applogic.load.webservice;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Collections2;
