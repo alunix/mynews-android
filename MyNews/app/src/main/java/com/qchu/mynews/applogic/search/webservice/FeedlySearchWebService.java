@@ -2,6 +2,7 @@ package com.qchu.mynews.applogic.search.webservice;
 
 import com.qchu.common.utils.Log;
 import com.qchu.feedly.FeedlyApi;
+import com.qchu.feedly.search.SearchService;
 import com.qchu.feedly.search.parsed.ParsedSearchRoot;
 import com.qchu.mynews.BuildConfig;
 import com.qchu.mynews.applogic.Constants;
@@ -27,18 +28,18 @@ public class FeedlySearchWebService implements SearchWebService {
 
   private static final String TAG = "FeedlySearchWebService";
 
-  private final Scheduler observedOnScheduler;
-  private final Scheduler subscribedOnScheduler;
+  private final Scheduler mainThreadScheduler;
+  private final Scheduler networkScheduler;
   private final Log log;
 
   @Inject
   public FeedlySearchWebService(
-    @Named(Constants.SCHEDULER_MAIN_THREAD) Scheduler observedOnScheduler,
-    @Named(Constants.SCHEDULER_NETWORK) Scheduler subscribedOnScheduler,
+    @Named(Constants.SCHEDULER_MAIN_THREAD) Scheduler mainThreadScheduler,
+    @Named(Constants.SCHEDULER_NETWORK) Scheduler networkScheduler,
     Log log){
 
-    this.observedOnScheduler = observedOnScheduler;
-    this.subscribedOnScheduler = subscribedOnScheduler;
+    this.mainThreadScheduler = mainThreadScheduler;
+    this.networkScheduler = networkScheduler;
     this.log = log;
   }
 
@@ -49,10 +50,10 @@ public class FeedlySearchWebService implements SearchWebService {
       onSearchListener.onStarted();
     }
 
-    FeedlyApi.buildRetrofit(client()).create(com.qchu.feedly.search.SearchService.class)
+    FeedlyApi.buildRetrofit(client()).create(SearchService.class)
       .search(keyword, 100, "fr")
-      .observeOn(observedOnScheduler)
-      .subscribeOn(subscribedOnScheduler)
+      .observeOn(mainThreadScheduler)
+      .subscribeOn(networkScheduler)
       .flatMap(new Func1<ParsedSearchRoot, Observable<Result>>() {
         @Override
         public Observable<Result> call(ParsedSearchRoot parsedSearchRoot) {
