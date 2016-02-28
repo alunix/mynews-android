@@ -14,16 +14,6 @@ import dagger.Provides;
 @Module (includes = SchedulerModule.class)
 public class LoadServiceModule {
 
-  /*@Provides @Singleton
-  LoadService provideLoadService(GoogleFeedLoadService service){
-    return service;
-  }*/
-
-  /*@Provides @Singleton
-  LoadService provideLoadService(RssLoadService service){
-    return service;
-  }*/
-
   @Provides @Singleton
   LoadService provideLoadService(FeedlyLoadService service){
     return service;

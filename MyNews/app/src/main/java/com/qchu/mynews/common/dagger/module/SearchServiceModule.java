@@ -15,11 +15,6 @@ import dagger.Provides;
 @Module (includes = SchedulerModule.class)
 public class SearchServiceModule {
 
-  /*@Provides @Singleton
-  SearchService provideSearchService(GoogleFeedSearchService service){
-    return service;
-  }*/
-
   @Provides @Singleton
   SearchService provideSearchService(FeedlySearchService service){
     return service;
