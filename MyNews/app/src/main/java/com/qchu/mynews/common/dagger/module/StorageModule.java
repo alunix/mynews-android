@@ -3,7 +3,7 @@ package com.qchu.mynews.common.dagger.module;
 import com.qchu.mynews.applogic.common.DefaultArticleStorage;
 import com.qchu.mynews.applogic.common.storage.ArticleStorage;
 import com.qchu.mynews.applogic.search.DefaultSearchStorage;
-import com.qchu.mynews.applogic.search.usecase.SearchStorage;
+import com.qchu.mynews.applogic.search.storage.SearchStorage;
 
 import javax.inject.Singleton;
 

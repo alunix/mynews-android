@@ -1,4 +1,4 @@
-package com.qchu.mynews.applogic.search.usecase;
+package com.qchu.mynews.applogic.search.storage;
 
 import com.qchu.mynews.applogic.search.entity.Result;
 

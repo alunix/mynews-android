@@ -11,7 +11,7 @@ import com.qchu.mynews.applogic.Constants;
 import com.qchu.mynews.applogic.common.entity.Channel;
 import com.qchu.mynews.applogic.search.entity.Result;
 import com.qchu.mynews.applogic.search.usecase.OnSearchListener;
-import com.qchu.mynews.applogic.search.usecase.SearchService;
+import com.qchu.mynews.applogic.search.webservice.SearchWebService;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
@@ -33,16 +33,16 @@ import rx.functions.Func1;
  * Created by Quoc Dung Chu on 09/01/16.
  */
 @Singleton
-public class FeedlySearchService implements SearchService {
+public class FeedlySearchWebService implements SearchWebService {
 
-  private static final String TAG = "FeedlySearchService";
+  private static final String TAG = "FeedlySearchWebService";
 
   private final Scheduler observedOnScheduler;
   private final Scheduler subscribedOnScheduler;
   private final Log log;
 
   @Inject
-  public FeedlySearchService(
+  public FeedlySearchWebService(
     @Named(Constants.SCHEDULER_MAIN_THREAD) Scheduler observedOnScheduler,
     @Named(Constants.SCHEDULER_NETWORK) Scheduler subscribedOnScheduler,
     Log log){

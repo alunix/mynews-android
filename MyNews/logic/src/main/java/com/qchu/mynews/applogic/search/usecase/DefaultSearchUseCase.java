@@ -1,8 +1,8 @@
 package com.qchu.mynews.applogic.search.usecase;
 
 import com.qchu.common.Log;
-import com.qchu.mynews.applogic.common.entity.Channel;
 import com.qchu.mynews.applogic.search.entity.Result;
+import com.qchu.mynews.applogic.search.webservice.SearchWebService;
 
 import java.util.Calendar;
 import java.util.Collections;
@@ -21,23 +21,23 @@ public class DefaultSearchUseCase implements SearchUseCase {
 
   private final static String TAG = "DefaultSearchUseCase";
   private final static long DAY_TIME_IN_MILLISECOND = 24 * 60 * 60 * 1000;
-  private final SearchService searchService;
-  private final SearchStorage searchStorage;
+  private final SearchWebService searchWebService;
+  private final com.qchu.mynews.applogic.search.storage.SearchStorage searchStorage;
   private final Log log;
 
   @Inject public DefaultSearchUseCase(
-    SearchService searchService,
-    SearchStorage searchStorage,
+    SearchWebService searchWebService,
+    com.qchu.mynews.applogic.search.storage.SearchStorage searchStorage,
     Log log) {
 
-    this.searchService = searchService;
+    this.searchWebService = searchWebService;
     this.searchStorage = searchStorage;
     this.log = log;
   }
 
   @Override
   public void search(String keyword, final OnSearchListener onSearchListener) {
-    searchService.search(keyword, new OnSearchListener() {
+    searchWebService.search(keyword, new OnSearchListener() {
       @Override
       public void onStarted() {
         if(onSearchListener != null){
