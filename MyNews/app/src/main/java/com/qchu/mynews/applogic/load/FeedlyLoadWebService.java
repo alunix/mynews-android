@@ -8,7 +8,7 @@ import com.qchu.feedly.load.parsed.stream.ParsedLoadStreamRoot;
 import com.qchu.mynews.BuildConfig;
 import com.qchu.mynews.applogic.Constants;
 import com.qchu.mynews.applogic.load.entity.Feed;
-import com.qchu.mynews.applogic.load.usecase.LoadService;
+import com.qchu.mynews.applogic.load.webservice.LoadWebService;
 import com.qchu.mynews.applogic.load.usecase.OnLoadListener;
 import com.qchu.mynews.common.util.ListUtils;
 import com.squareup.okhttp.OkHttpClient;
@@ -28,15 +28,15 @@ import rx.functions.Func1;
 /**
  * Created by Quoc Dung Chu on 27/02/16.
  */
-public class FeedlyLoadService implements LoadService {
-  private static final String TAG = "FeedlyLoadService";
+public class FeedlyLoadWebService implements LoadWebService {
+  private static final String TAG = "FeedlyLoadWebService";
 
   private final Scheduler networkScheduler;
   private final Scheduler mainThreadScheduler;
   private final Log log;
 
   @Inject
-  public FeedlyLoadService(
+  public FeedlyLoadWebService(
     @Named(Constants.SCHEDULER_NETWORK) Scheduler networkScheduler,
     @Named(Constants.SCHEDULER_MAIN_THREAD) Scheduler mainThreadScheduler,
     Log log){

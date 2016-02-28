@@ -1,4 +1,4 @@
-package com.qchu.mynews.applogic.load.usecase;
+package com.qchu.mynews.applogic.load.storage;
 
 import com.qchu.mynews.applogic.common.entity.Article;
 import com.qchu.mynews.applogic.load.entity.Feed;
