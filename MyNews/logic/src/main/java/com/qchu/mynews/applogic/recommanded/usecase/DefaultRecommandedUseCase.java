@@ -1,5 +1,6 @@
 package com.qchu.mynews.applogic.recommanded.usecase;
 
+import com.qchu.common.utils.ListUtils;
 import com.qchu.common.utils.Log;
 import com.qchu.mynews.applogic.common.entity.Article;
 import com.qchu.mynews.applogic.common.storage.ArticleStorage;
@@ -41,7 +42,7 @@ public class DefaultRecommandedUseCase implements RecommandedUseCase {
 
   @Override
   public void synchronize(List<String> rssUrls, final OnSynchronizeListener onSynchronizeListener) {
-    if(onSynchronizeListener == null) return;
+    if(ListUtils.isNullOrEmpty(rssUrls) || onSynchronizeListener == null) return;
 
     loadUseCase.load(rssUrls, new OnLoadListener() {
       @Override
