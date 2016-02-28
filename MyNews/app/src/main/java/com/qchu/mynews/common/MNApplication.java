@@ -3,10 +3,13 @@ package com.qchu.mynews.common;
 import android.app.Application;
 
 import com.qchu.mynews.applogic.common.Priority;
+import com.qchu.mynews.applogic.common.entity.Article;
 import com.qchu.mynews.applogic.recommanded.usecase.OnSynchronizeListener;
 import com.qchu.mynews.common.dagger.AppComponent;
 import com.qchu.mynews.common.dagger.DaggerAppComponent;
 import com.qchu.mynews.common.dagger.module.AppModule;
+
+import java.util.List;
 
 import autovalue.shaded.com.google.common.common.collect.Lists;
 
@@ -35,7 +38,7 @@ public class MNApplication extends Application {
         "http://thethaovanhoa.vn/italy.rss",
         "http://thethaovanhoa.vn/champions-league.rss"
       ),
-      Priority.WHEN_EVER,
+      Priority.WHENEVER,
       new OnSynchronizeListener() {
         @Override
         public void onStart() {
@@ -43,12 +46,17 @@ public class MNApplication extends Application {
         }
 
         @Override
-        public void onNext() {
+        public void onNext(String rssUrl, List<Article> articles) {
 
         }
 
         @Override
-        public void onFinish() {
+        public void onError(Throwable error) {
+
+        }
+
+        @Override
+        public void onCompleted() {
 
         }
       });
@@ -65,12 +73,17 @@ public class MNApplication extends Application {
         }
 
         @Override
-        public void onNext() {
+        public void onNext(String rssUrl, List<Article> articles) {
 
         }
 
         @Override
-        public void onFinish() {
+        public void onError(Throwable error) {
+
+        }
+
+        @Override
+        public void onCompleted() {
 
         }
       });

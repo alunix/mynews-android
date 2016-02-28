@@ -6,7 +6,7 @@ import com.google.common.base.Predicate;
  * Created by Quoc Dung Chu on 28/02/16.
  */
 public enum Priority {
-  WHEN_EVER(0),
+  WHENEVER(0),
   LOW(1),
   MEDIUM(2),
   HIGH(3),
