@@ -94,6 +94,7 @@ public class FeedlyLoadWebService implements LoadWebService {
     return new Func1<ParsedLoadStreamRoot, Observable<Feed>>() {
       @Override
       public Observable<Feed> call(ParsedLoadStreamRoot parsedLoadStreamRoot) {
+        log.d(TAG, "mapping "+ Thread.currentThread());
         return Observable.just(FeedlyMappings.feedFrom(parsedLoadStreamRoot, new Date()));
       }
     };

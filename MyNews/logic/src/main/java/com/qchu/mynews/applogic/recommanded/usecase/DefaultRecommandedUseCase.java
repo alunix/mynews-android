@@ -39,7 +39,7 @@ public class DefaultRecommandedUseCase implements RecommandedUseCase {
   @Override
   public void synchronize(
     List<String> rssUrls,
-    Priority priority,
+    final Priority priority,
     final OnSynchronizeListener onSynchronizeListener) {
 
     if(ListUtils.isNullOrEmpty(rssUrls) || onSynchronizeListener == null) return;
@@ -53,7 +53,7 @@ public class DefaultRecommandedUseCase implements RecommandedUseCase {
       @Override
       public void onNext(final String rssUrl, Feed feed) {
         log.d(TAG, "synchronize onNext: "+ feed);
-        articleStorage.save(feed.articles(), new OnSaveListener<Article>() {
+        articleStorage.save(feed.articles(), priority, new OnSaveListener<Article>() {
           @Override
           public void onSave(List<Article> articles) {
             onSynchronizeListener.onNext(rssUrl, articles);
